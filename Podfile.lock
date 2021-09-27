@@ -1,0 +1,16 @@
+PODS:
+  - VLCKit (3.3.17)
+
+DEPENDENCIES:
+  - VLCKit (~> 3.3.0)
+
+SPEC REPOS:
+  https://cdn.cocoapods.org/:
+    - VLCKit
+
+SPEC CHECKSUMS:
+  VLCKit: 21651e881f19774ecf9a86ca2c2010859fe68a08
+
+PODFILE CHECKSUM: 6f32dcb5a04c66731e2a489f1140134cab55e857
+
+COCOAPODS: 1.11.2

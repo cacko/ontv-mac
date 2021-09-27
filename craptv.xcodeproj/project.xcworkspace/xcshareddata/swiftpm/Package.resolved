@@ -1,0 +1,43 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "CoreStore",
+        "repositoryURL": "https://github.com/JohnEstropia/CoreStore",
+        "state": {
+          "branch": "develop",
+          "revision": "f738848e8cd015d71c92d16c23b99ebf2bc3dc22",
+          "version": null
+        }
+      },
+      {
+        "package": "Defaults",
+        "repositoryURL": "https://github.com/sindresorhus/Defaults",
+        "state": {
+          "branch": "main",
+          "revision": "04f9b3f45ea33cc54e228debe12a98635fd3515e",
+          "version": null
+        }
+      },
+      {
+        "package": "Kingfisher",
+        "repositoryURL": "https://github.com/cacko/Kingfisher",
+        "state": {
+          "branch": null,
+          "revision": "630cc7e82f2f0b4c6c3950e78c4b8b559008a023",
+          "version": "7.1.0"
+        }
+      },
+      {
+        "package": "Preferences",
+        "repositoryURL": "https://github.com/sindresorhus/Preferences",
+        "state": {
+          "branch": "main",
+          "revision": "ffeaaad1def45d0625720dc1adae3789cd9c167d",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

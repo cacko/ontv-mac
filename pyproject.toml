@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "craptv"
+version = "0.1.0"
+description = ""
+authors = ["cacko <alex@cacko.net>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+python-gitlab = "^2.10.1"
+semver = "^2.13.0"
+python-dotenv = "^0.19.1"
+
+[tool.poetry.group.dev.dependencies]
+black = "^21.9-beta.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
