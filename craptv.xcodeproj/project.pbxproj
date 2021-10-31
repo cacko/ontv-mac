@@ -118,7 +118,7 @@
 		16E69A9B27076792007F8089 /* VLC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E69A9A27076792007F8089 /* VLC.swift */; };
 		16E9A0CA2702320800C4607E /* header.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E9A0C92702320800C4607E /* header.m */; };
 		16E9A0CC270279A200C4607E /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E9A0CB270279A200C4607E /* Api.swift */; };
-		C561B8C80D7F9CD942C4C7AD /* Pods_craptv.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B473E5C4733212E24A32348A /* Pods_craptv.framework */; };
+		4BCAEDF3C922C05FC08199E2 /* Pods_craptv.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4862831020EA83B2792A2C7 /* Pods_craptv.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -238,9 +238,9 @@
 		16E9A0C82702320700C4607E /* craptv-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "craptv-Bridging-Header.h"; sourceTree = "<group>"; };
 		16E9A0C92702320800C4607E /* header.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = header.m; sourceTree = "<group>"; };
 		16E9A0CB270279A200C4607E /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
-		A2CEBB13C51F0E7C87006F35 /* Pods-craptv.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-craptv.debug.xcconfig"; path = "Target Support Files/Pods-craptv/Pods-craptv.debug.xcconfig"; sourceTree = "<group>"; };
-		B20C432CF69CC782A7484AFB /* Pods-craptv.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-craptv.release.xcconfig"; path = "Target Support Files/Pods-craptv/Pods-craptv.release.xcconfig"; sourceTree = "<group>"; };
-		B473E5C4733212E24A32348A /* Pods_craptv.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_craptv.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		204C5D78DC37BEAF98CDE253 /* Pods-craptv.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-craptv.release.xcconfig"; path = "Target Support Files/Pods-craptv/Pods-craptv.release.xcconfig"; sourceTree = "<group>"; };
+		A8F63B306B0403ABF9562237 /* Pods-craptv.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-craptv.debug.xcconfig"; path = "Target Support Files/Pods-craptv/Pods-craptv.debug.xcconfig"; sourceTree = "<group>"; };
+		B4862831020EA83B2792A2C7 /* Pods_craptv.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_craptv.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,8 +265,8 @@
 				165C98172702315C00466207 /* Foundation.framework in Frameworks */,
 				16C10F282728C9D3002E5954 /* Preferences in Frameworks */,
 				16C10F222728C9A9002E5954 /* Kingfisher in Frameworks */,
-				C561B8C80D7F9CD942C4C7AD /* Pods_craptv.framework in Frameworks */,
 				16C5B982270293DC0072F2B9 /* CoreData.framework in Frameworks */,
+				4BCAEDF3C922C05FC08199E2 /* Pods_craptv.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,7 +453,7 @@
 				165C98072702311E00466207 /* AudioToolbox.framework */,
 				165C980227022B8900466207 /* AVKit.framework */,
 				165C97EC2702260800466207 /* AVFoundation.framework */,
-				B473E5C4733212E24A32348A /* Pods_craptv.framework */,
+				B4862831020EA83B2792A2C7 /* Pods_craptv.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -664,8 +664,8 @@
 		3A6FAA207C7B4EEC5A667072 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A2CEBB13C51F0E7C87006F35 /* Pods-craptv.debug.xcconfig */,
-				B20C432CF69CC782A7484AFB /* Pods-craptv.release.xcconfig */,
+				A8F63B306B0403ABF9562237 /* Pods-craptv.debug.xcconfig */,
+				204C5D78DC37BEAF98CDE253 /* Pods-craptv.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -677,11 +677,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 165C97E82702257B00466207 /* Build configuration list for PBXNativeTarget "craptv" */;
 			buildPhases = (
-				1CEA94034799DBA7BBF6FD51 /* [CP] Check Pods Manifest.lock */,
+				A78FAD0874538F9D3002A32F /* [CP] Check Pods Manifest.lock */,
 				165C97D62702257900466207 /* Sources */,
 				165C97D72702257900466207 /* Frameworks */,
 				165C97D82702257900466207 /* Resources */,
-				DC323BAA333A30961F6FB948 /* [CP] Embed Pods Frameworks */,
+				ECA8F811C0EADBCB15A0818A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -757,7 +757,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1CEA94034799DBA7BBF6FD51 /* [CP] Check Pods Manifest.lock */ = {
+		A78FAD0874538F9D3002A32F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -779,7 +779,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DC323BAA333A30961F6FB948 /* [CP] Embed Pods Frameworks */ = {
+		ECA8F811C0EADBCB15A0818A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1011,7 +1011,7 @@
 		};
 		165C97E92702257B00466207 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A2CEBB13C51F0E7C87006F35 /* Pods-craptv.debug.xcconfig */;
+			baseConfigurationReference = A8F63B306B0403ABF9562237 /* Pods-craptv.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1049,7 +1049,7 @@
 		};
 		165C97EA2702257B00466207 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B20C432CF69CC782A7484AFB /* Pods-craptv.release.xcconfig */;
+			baseConfigurationReference = 204C5D78DC37BEAF98CDE253 /* Pods-craptv.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

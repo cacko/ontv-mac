@@ -41,9 +41,7 @@ class ScheduleMenu: BaseMenu, NSMenuDelegate, CollectionMenu {
 
   func updateMenus() {
     self.removeAllItems()
-    guard let schedules = Schedule.getAll() as [LazyStreams]? else {
-      return
-    }
+    let schedules = Schedule.getAll()
     schedules.filter { !$0.hasExpired }
       .forEach { item in
         let m = ScheduleItem(action: #selector(onSchedule(sender:)), corelazy: item)
