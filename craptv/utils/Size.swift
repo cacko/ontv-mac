@@ -11,4 +11,11 @@ extension NSSize {
   func toResolution() -> String {
     return "\(String(format: "%.0f", self.width))x\(String(format: "%.0f", self.height))"
   }
+  func getRandom() -> NSSize {
+    return NSSize(
+      width: self.width + (CGFloat.random(in: 1...10) / 10),
+      height: self.height + (CGFloat.random(in: 1...10) / 10)
+    )
+
+  }
 }

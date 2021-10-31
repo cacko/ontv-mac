@@ -12,7 +12,9 @@ import SwiftUI
 
 extension V1 {
   class EPG: CoreStoreObject, AbstractEntity, ImportableObject, ImportableModel {
-    
+
+    typealias EntityType = EPG
+
     class var primaryKey: String {
       "category_id"
     }
@@ -34,14 +36,14 @@ extension V1 {
 
     @Field.Relationship("activity")
     var activity: Activity?
-    
+
     var id: Int {
       var hasher = Hasher()
       hasher.combine(self.channel)
       hasher.combine("\(self.title).\(self.start).\(self.stop)")
       return hasher.finalize()
     }
-    
+
     func didInsert(from data: [String: Any], in transaction: BaseDataTransaction) throws {
       do {
         self.channel = (data["channel"] as? String ?? "")
@@ -55,8 +57,6 @@ extension V1 {
         throw error
       }
     }
-
-
 
     private static var activities: [Activity]!
     private static var activityChannels: [String]!

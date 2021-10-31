@@ -11,6 +11,9 @@ import Foundation
 
 extension V1 {
   class Schedule: CoreStoreObject, AbstractEntity, LazyStreams, ImportableObject, ImportableModel {
+    
+    typealias EntityType = Schedule
+
     class var primaryKey: String {
       "name"
     }

@@ -13,7 +13,7 @@ extension V1 {
   class Stream: CoreStoreObject, AbstractEntity, Reorderable, ImportableObject, ImportableModel,
     LazyStream, Streamable
   {
-        
+
     typealias EntityType = Stream
 
     @Field.Stored("stream_id")
@@ -36,7 +36,7 @@ extension V1 {
 
     @Field.Stored("stream_icon")
     var stream_icon: String = ""
-    
+
     @Field.Stored("is_adult")
     var is_adult: Bool = false
 
@@ -124,7 +124,7 @@ extension V1 {
     var icon: URL {
       API.Endpoint.Icon(id: stream_id, epg: epg_channel_id)
     }
-    
+
     var isPlaying: Bool {
       Player.instance.stream.id == self.id
     }

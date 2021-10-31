@@ -6,51 +6,34 @@
 //
 
 import Foundation
+import VLCKit
 
 extension PlayerVLC {
+
   func mediaPlayerStateChanged(_ aNotification: Notification?) {
-
-    switch self.media.state {
-    case VLCMediaState.playing:
-      logger.debug("media playing")
-      break
-    case VLCMediaState.buffering:
-      logger.debug("media buffering")
-    case VLCMediaState.error:
-      logger.debug("media error")
-      self.controller.error = PlayerError(id: .trackFailed, msg: "ff")
-      self.controller.state = .error
-      self.isLoading = false
-
-      return
-    case VLCMediaState.nothingSpecial:
-      logger.debug("media nothing special")
-    @unknown default:
-      logger.debug("state unknown")
-    }
-
     switch self.player.state {
     case VLCMediaPlayerState.error:
-      logger.debug("media error")
-      self.controller.error = PlayerError(id: .trackFailed, msg: "ff")
-      self.controller.state = .error
-      self.isLoading = false
+      self.onError(PlayerError(id: .trackFailed, msg: "VLC throw error"))
+      return
     case VLCMediaPlayerState.stopped:
-      guard self.controller.state != .stopped else {
-        break
+      guard self.controller.state != .opening else {
+        return
       }
-      self.controller.state = .error
-      self.controller.error = PlayerError(id: .trackFailed, msg: "Can't play")
+      guard self.controller.state == .stopped else {
+        self.controller.retry()
+        self.onError(PlayerError(id: .trackFailed, msg: "VLC stopped"))
+        return
+      }
       self.controller.onStopPlaying()
-      self.isLoading = false
-
-      break
+      return
     case VLCMediaPlayerState.playing:
       logger.debug("player playing")
     case VLCMediaPlayerState.buffering:
       logger.debug("player buffering")
     case VLCMediaPlayerState.ended:
       logger.debug("player ended")
+      self.controller.retry()
+      break
     case VLCMediaPlayerState.esAdded:
       logger.debug("player stream added")
     default:
@@ -58,4 +41,9 @@ extension PlayerVLC {
     }
   }
 
+  func onError(_ error: PlayerError) {
+    self.controller.state = .error
+    self.controller.error = error
+    self.controller.onStopPlaying()
+  }
 }

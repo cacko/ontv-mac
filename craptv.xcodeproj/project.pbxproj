@@ -190,6 +190,7 @@
 		1668EBFC2724ADFA00C5A286 /* Teko-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Teko-Bold.ttf"; sourceTree = "<group>"; };
 		1668EBFD2724ADFA00C5A286 /* Teko-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Teko-Regular.ttf"; sourceTree = "<group>"; };
 		1668EBFE2724ADFA00C5A286 /* Teko-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Teko-SemiBold.ttf"; sourceTree = "<group>"; };
+		166A045D272EDC1500761A55 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		167807BE27173173000FD21E /* Schema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schema.swift; sourceTree = "<group>"; };
 		167807C827176664000FD21E /* StreamTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamTitle.swift; sourceTree = "<group>"; };
 		16823CE1272E05E300DB0555 /* VLCMetadataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLCMetadataLoader.swift; sourceTree = "<group>"; };
@@ -434,6 +435,7 @@
 		165C97EB2702260800466207 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				166A045D272EDC1500761A55 /* Cocoa.framework */,
 				16C5B981270293DC0072F2B9 /* CoreData.framework */,
 				165C9822270231A500466207 /* VideoToolbox.framework */,
 				165C9820270231A000466207 /* Security.framework */,
@@ -1020,7 +1022,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 203;
+				CURRENT_PROJECT_VERSION = 206;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1058,7 +1060,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 203;
+				CURRENT_PROJECT_VERSION = 206;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;

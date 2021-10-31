@@ -8,6 +8,7 @@
 import AppKit
 import Combine
 import Defaults
+import Foundation
 import SwiftUI
 import VLCKit
 
@@ -34,12 +35,7 @@ extension Notification.Name {
   static let vlcResizeDone = NSNotification.Name("vlc_resize_done")
 }
 
-class PlayerVLC: AbstractPlayer, VLCMediaPlayerDelegate, VLCMediaDelegate,
-  VLCMediaThumbnailerDelegate
-{
-  
-  typealias PlayerType = PlayerVLC
-
+class PlayerVLC: AbstractPlayer, VLCMediaPlayerDelegate {
 
   var player: VLCMediaPlayer!
 
@@ -50,6 +46,8 @@ class PlayerVLC: AbstractPlayer, VLCMediaPlayerDelegate, VLCMediaDelegate,
   let center = NotificationCenter.default
   let mainQueue = OperationQueue.main
 
+  private var masterView: NSView!
+  
   private var observer: NSObjectProtocol!
 
   override var isMuted: Bool {
@@ -70,33 +68,23 @@ class PlayerVLC: AbstractPlayer, VLCMediaPlayerDelegate, VLCMediaDelegate,
     }
   }
 
-  private var unmuteAfterLoading: Bool = true
-
-  var isLoading: Bool! {
-    didSet {
-      if self.isLoading {
-        self.unmuteAfterLoading = !self.isMuted
-        self.player.audio.isMuted = true
-      }
-      else {
-        self.player.audio.isMuted = !self.unmuteAfterLoading
-      }
-    }
-  }
-  
   class override var icon: String {
     "vlc"
   }
-  
+
   class override var hint: String {
     "VLC Renderer"
   }
-  
+
   class override var id: PlayVendor {
     PlayVendor.vlc
   }
 
   let controller: Player
+
+  private var displayTask: DispatchSourceTimer!
+
+  private var resizeTask: DispatchSourceTimer!
 
   required init(
     _ controller: Player
@@ -107,14 +95,13 @@ class PlayerVLC: AbstractPlayer, VLCMediaPlayerDelegate, VLCMediaDelegate,
 
   override func initView(_ view: VideoView) {
     self.playerView = VLCVideoView(frame: view.frame)
-    self.playerView.autoresizingMask = [
-      NSView.AutoresizingMask.width, NSView.AutoresizingMask.height,
-    ]
-    self.playerView.fillScreen = true
+    let mask = NSView.AutoresizingMask([.height, .width])
+    self.playerView.autoresizingMask = mask
     self.player = VLCMediaPlayer(videoView: self.playerView)
     self.player.delegate = self
-    //    self.controller.size = view.frame.size
+    self.controller.size = view.frame.size
     view.addSubview(self.playerView)
+    masterView = view
     self.volume = Defaults[.volume]
     return
   }
@@ -129,57 +116,95 @@ class PlayerVLC: AbstractPlayer, VLCMediaPlayerDelegate, VLCMediaDelegate,
 
   override func play(_ stream: Stream) {
     self.media = VLCMedia(url: stream.url)
-    self.media.delegate = self
     self.player.media = self.media
-    self.isLoading = true
     self.player.play()
     self.controller.display = false
-    let thumbnailer = VLCMediaThumbnailer(media: self.media, andDelegate: self)
-    thumbnailer?.fetchThumbnail()
+    self.waitForDisplay()
   }
 
   override func stop() {
+    self.displayTask.cancel()
     self.player.stop()
     self.media = nil
-    self.isLoading = false
   }
 
   func onMediaPlaying() {
+    self.displayTask.cancel()
     self.loadMetadata()
     let sizep = self.controller.metadata.video.resolution
     logger.debug("on media playing, sizep \(sizep.width)x\(sizep.height)")
     guard sizep.width > 0 || sizep.height > 0 else {
       return
     }
-    self.controller.resolution = sizep
+    DispatchQueue.main.async {
+      self.controller.resolution = sizep
+    }
     NotificationCenter.default.post(name: .fit, object: sizep)
-    self.controller.onStartPlaying()
   }
 
   override func sizeView(_ newSize: NSSize) {
     logger.debug("VLC setting frame size \(newSize.width)x\(newSize.height)")
-    self.playerView.setFrameSize(newSize)
+    let fs = self.playerView.frame.size
+    if fs.equalTo(newSize) {
+      let newRandomSize = newSize.getRandom()
+      logger.debug(
+        "put random size -> \(fs.toResolution())==\(newSize.toResolution()) -> \(newRandomSize.toResolution())"
+      )
+      self.playerView.setFrameSize(newRandomSize)
+    }
+    else {
+      self.playerView.setFrameSize(newSize)
+    }
     self.playerView.fillScreen = true
+    self.playerView.invalidateIntrinsicContentSize()
     self.controller.display = true
-    self.isLoading = false
-  }
-
-  func mediaThumbnailerDidTimeOut(_ mediaThumbnailer: VLCMediaThumbnailer!) {
-    logger.debug("thumbnailer timeout")
-    self.controller.error = PlayerError(id: .trackFailed, msg: "Kura mi Yanko")
-    self.controller.state = .error
-    self.isLoading = false
-    self.controller.onStopPlaying()
-  }
-
-  func mediaThumbnailer(
-    _ mediaThumbnailer: VLCMediaThumbnailer!,
-    didFinishThumbnail thumbnail: CGImage!
-  ) {
-    logger.debug(
-      "thumbnailer fetch done, \(mediaThumbnailer.thumbnailWidth)x\(mediaThumbnailer.thumbnailHeight)"
+    self.controller.onStartPlaying()
+    guard let mv = self.masterView else {
+      return
+    }
+    print(
+      "\(self.playerView.frame.size.toResolution()) -> \(mv.frame.size.toResolution())"
     )
-    self.onMediaPlaying()
+//    self.waitForResoze()
   }
 
+  func waitForDisplay() {
+    if displayTask != nil && !displayTask.isCancelled {
+      displayTask.cancel()
+    }
+    displayTask = DispatchSource.makeTimerSource()
+    displayTask.schedule(deadline: .now(), repeating: .milliseconds(300))
+    displayTask.setEventHandler {
+      guard self.player.videoSize.width > 0 else {
+        return
+      }
+      DispatchQueue.main.async {
+        self.onMediaPlaying()
+      }
+    }
+    displayTask.activate()
+  }
+
+  func waitForResoze() {
+    if resizeTask != nil && !resizeTask.isCancelled {
+      resizeTask.cancel()
+    }
+    resizeTask = DispatchSource.makeTimerSource()
+    resizeTask.schedule(deadline: .now(), repeating: .milliseconds(300))
+    resizeTask.setEventHandler {
+      print("\(self.playerView.frame.size)")
+      guard self.playerView.frame.size.equalTo(self.controller.size) else {
+        return
+      }
+      DispatchQueue.main.async {
+        self.controller.display = true
+        self.controller.onStartPlaying()
+        print(
+          "\(self.playerView.frame.size.toResolution()) -> \(self.player.videoSize.toResolution())"
+        )
+        self.resizeTask.cancel()
+      }
+    }
+    resizeTask.activate()
+  }
 }

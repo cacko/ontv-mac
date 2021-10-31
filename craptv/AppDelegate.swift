@@ -82,7 +82,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     window.acceptsMouseMovedEvents = true
     window.setFrameAutosaveName("Main Window")
     window.contentView = contentViewController.view
-    window.aspectRatio = fixedRatio
     window.contentAspectRatio = fixedRatio
     window.collectionBehavior = .fullScreenPrimary
     window.backgroundColor = .black
@@ -94,7 +93,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     window.makeMain()
     window.becomeFirstResponder()
     menu = Menu()
-    window.isFloating = Defaults[.isFloating]
+    window.isFloating = false  //Defaults[.isFloating]
     API.Adapter.login()
   }
 

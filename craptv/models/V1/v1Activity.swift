@@ -10,6 +10,9 @@ import Foundation
 
 extension V1 {
   class Activity: CoreStoreObject, AbstractEntity {
+
+    typealias EntityType = Activity
+
     class var primaryKey: String {
       "category_id"
     }
@@ -38,7 +41,7 @@ extension V1 {
       hasher.combine("\(self.stream_id).recent")
       return hasher.finalize()
     }
-  
+
     class var orderBy: OrderBy<Activity> {
       OrderBy(
         .ascending("favourite"),

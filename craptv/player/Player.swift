@@ -306,6 +306,18 @@ class Player: NSObject, PlayerProtocol, ObservableObject {
     self.error = PlayerError(id: .retrying, msg: "Retrying \(self.retries + 1)/5")
     DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: self.getRetryTask())
   }
+  
+  private func getRetryTask() -> DispatchWorkItem {
+    if self.retryTask != nil && !self.retryTask.isCancelled {
+      self.retryTask.cancel()
+    }
+    self.retryTask = DispatchWorkItem {
+      self.retry()
+      self.retries += 1
+      logger.info("\retrying")
+    }
+    return self.retryTask
+  }
 
   func onAudioCommand(_ parameter: Audio.Parameter) {
     switch parameter.command {
@@ -342,17 +354,7 @@ class Player: NSObject, PlayerProtocol, ObservableObject {
     return nil
   }
 
-  private func getRetryTask() -> DispatchWorkItem {
-    if self.retryTask != nil && !self.retryTask.isCancelled {
-      self.retryTask.cancel()
-    }
-    self.retryTask = DispatchWorkItem {
-      self.retry()
-      self.retries += 1
-      logger.info("\retrying")
-    }
-    return self.retryTask
-  }
+
 
   func deinitView() {
     fatalError()

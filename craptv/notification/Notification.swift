@@ -117,10 +117,10 @@ extension AppDelegate {
       guard let size = note.object as? NSSize else {
         return
       }
-      self.window.aspectRatio = size
       self.window.contentAspectRatio = size
       self.window.setContentSize(size)
       self.player.size = size
+      logger.debug("reaspect AR\(self.window.aspectRatio.toResolution()), CAR\(self.window.contentAspectRatio.toResolution()), CS\(size.toResolution())")
       self.window.reaspectPosition()
     }
 

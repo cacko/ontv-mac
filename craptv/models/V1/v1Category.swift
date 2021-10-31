@@ -10,6 +10,9 @@ import Foundation
 
 extension V1 {
   class Category: CoreStoreObject, AbstractEntity, LazyStreams, ImportableObject, ImportableModel {
+
+    typealias EntityType = Category
+
     @Field.Stored("category_id")
     var category_id: Int64 = 0
 
