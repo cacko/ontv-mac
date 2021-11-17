@@ -86,14 +86,14 @@ extension LivescoreStorage {
 
     func startScrollTimer() {
       self.scrollGenerator.reset()
-      timer = DispatchSource.makeTimerSource()
-      timer.schedule(deadline: .now(), repeating: .seconds(3))
-      timer.setEventHandler {
+      scrollTimer = DispatchSource.makeTimerSource()
+      scrollTimer.schedule(deadline: .now(), repeating: .seconds(3))
+      scrollTimer.setEventHandler {
         DispatchQueue.main.async {
           self.scrollTo = self.scrollGenerator.next()
         }
       }
-      timer.activate()
+      scrollTimer.activate()
     }
 
     func update() {
