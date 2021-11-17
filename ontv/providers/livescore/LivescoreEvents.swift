@@ -47,20 +47,13 @@ extension LivescoreStorage {
     @Published var active: Bool = false {
       didSet {
         guard self.active else {
-          return timer.suspend()
+          return timer.cancel()
         }
-        if self.timerActive {
-          timer.resume()
-        }
-        else {
-          timer.activate()
-        }
+        self.startTimer()
       }
     }
 
-    var timer: DispatchSourceTimer
-
-    private var timerActive: Bool = false
+    var timer: DispatchSourceTimer!
 
     override init() {
       self.list = Self.dataStack.publishList(
@@ -69,13 +62,16 @@ extension LivescoreStorage {
           .orderBy(self.order)
       )
       self.ids = self.list.snapshot.makeIterator().map({$0.id!})
-
-      timer = DispatchSource.makeTimerSource()
       super.init()
+    }
+    
+    func startTimer() {
+      timer = DispatchSource.makeTimerSource()
       timer.schedule(deadline: .now(), repeating: .seconds(60))
       timer.setEventHandler {
         self.update()
       }
+      timer.activate()
     }
 
     func update() {

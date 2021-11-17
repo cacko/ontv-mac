@@ -60,17 +60,18 @@ extension V1 {
       from source: [String: Any],
       in transaction: BaseDataTransaction
     ) throws -> String? {
-      return self.asInt64(data: source, key: "idEvent").string
+      return Self.getId(from: source)
     }
-    
+
     static func getId(from source: [String: Any]) -> String {
-      guard let event_id = Self.asInt64(data: source, key: "idEvent") as Int64? else {
-        var hasher = Hasher()
-        hasher.combine(Self.asString(data: source, key: "strHomeTeam"))
-        hasher.combine(Self.asString(data: source, key: "strAwayTeam"))
-        return hasher.finalize().string
+      let event_id = Self.asInt64(data: source, key: "idEvent")
+      guard event_id == 0 else {
+        return event_id.string
       }
-      return event_id.string
+      var hasher = Hasher()
+      hasher.combine(Self.asString(data: source, key: "strHomeTeam"))
+      hasher.combine(Self.asString(data: source, key: "strAwayTeam"))
+      return hasher.finalize().string
     }
 
     func loadData(from source: [String: Any]) {
