@@ -37,7 +37,7 @@ extension Theme.Font {
       size: 14,
       relativeTo: .title
     )
-    static let score: SwiftUI.Font = Font.custom("Atami Stencil Bold", size: 18, relativeTo: .title)
+    static let score: SwiftUI.Font = Font.custom("Atami Stencil Bold", size: 25, relativeTo: .title)
     static let hint: SwiftUI.Font = Font.custom("Teko Light", size: 13, relativeTo: .title)
   }
 

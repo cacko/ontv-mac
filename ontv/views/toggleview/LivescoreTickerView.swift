@@ -64,7 +64,7 @@ extension ToggleViews {
                 .textCase(.uppercase)
                 .font(Theme.Font.Ticker.hint)
               Text(ls.$away_score.score)
-                .font(Theme.Font.score)
+                .font(Theme.Font.Ticker.score)
                 .foregroundColor(Theme.Color.Font.score)
               TitleTextView(text: awayTeam.id)
               BadgeView(icon: awayTeam.icon)
