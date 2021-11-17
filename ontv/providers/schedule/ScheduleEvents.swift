@@ -11,7 +11,7 @@ import SwiftDate
 
 extension ScheduleStorage {
 
-  class Events: NSObject, ObservableObject, StorageProviderProtocol {
+  class Events: NSObject, ObservableObject, StorageProvider {
 
     typealias EntityType = Schedule
 

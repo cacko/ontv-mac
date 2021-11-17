@@ -34,7 +34,7 @@ enum EPGStorage {
 
 }
 
-class EPGStorageAbstract: NSObject, ObservableObject, StorageProviderProtocol {
+class EPGStorageAbstract: NSObject, ObservableObject, StorageProvider {
 
   @Published var active: Bool = false
   @Published var state: ProviderState = .notavail

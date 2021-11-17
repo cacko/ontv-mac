@@ -13,7 +13,7 @@ enum ProviderState {
   case notavail, loading, loaded
 }
 
-protocol StorageProviderProtocol: ObservableObject {
+protocol StorageProvider: ObservableObject {
 
   associatedtype EntityType: CoreStoreObject
   
@@ -33,17 +33,24 @@ protocol StorageProviderProtocol: ObservableObject {
   func update() -> Void
 }
 
-protocol ObjectProviderProtocol {
+protocol ObjectProvider {
   associatedtype EntityType: CoreStoreObject
   var active: Bool { get set }
   static var instances: [String: ObjectPublisher<EntityType>] { get set }
   func get(_ id: String) -> ObjectPublisher<EntityType>?
 }
 
+protocol AutoScrollProvider: ObservableObject {
+  var scrollTo: String { get set }
+  var scrollGenerator: Provider.Generator.Scroll { get set }
+  var scrollTimer: DispatchSourceTimer { get set }
+}
+
 enum Provider {
   enum Stream {}
   enum Actiity {}
   enum EPG {}
+  enum Generator {}
 
   struct Error: CustomNSError, Identifiable, Equatable {
     var id: Errors

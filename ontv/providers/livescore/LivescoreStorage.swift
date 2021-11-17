@@ -12,7 +12,7 @@ enum LivescoreStorage {
   static let events = Events()
 }
 
-extension StorageProviderProtocol where EntityType == Livescore {
+extension StorageProvider where EntityType == Livescore {
 
   static var dataStack: DataStack {
     CoreStoreDefaults.dataStack

@@ -80,21 +80,36 @@ extension ToggleViews {
 
     private var buttonFont: Font = .system(size: 20, weight: .heavy, design: .monospaced)
 
+    func autoScrollTo(to: String, proxy: ScrollViewProxy) {
+      withAnimation(.instant) {
+        withAnimation(.linear(duration: 3000.9)) {
+          proxy.scrollTo(to, anchor: .leading)
+        }
+      }
+
+    }
+
     var body: some View {
       VStack {
         HStack(alignment: .center) {
-          ScrollingView(.horizontal, scrolling: liverscoreProvider.ids) {
-            ListReader(liverscoreProvider.list) { snapshot in
-              ForEach(objectIn: snapshot) { livescore in
-                LivescoreItem(livescore)
-                  .id(livescore.id)
+          ScrollViewReader { proxy in
+            ScrollingView(.horizontal) {
+              ListReader(liverscoreProvider.list) { snapshot in
+                ForEach(objectIn: snapshot) { livescore in
+                  LivescoreItem(livescore).id(livescore.id)
+                }
               }
             }
+            .background(Theme.Color.Background.ticker)
+            .frame(height: 50, alignment: .center)
+            .onReceive(
+              liverscoreProvider.$scrollTo,
+              perform: {
+                to in autoScrollTo(to: to, proxy: proxy)
+              }
+            )
           }
-          .background(Theme.Color.Background.ticker)
-          .frame(height: 50, alignment: .center)
         }
-
         Spacer()
       }.onAppear {
         liverscoreProvider.active = true

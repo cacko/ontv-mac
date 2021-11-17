@@ -13,7 +13,7 @@ enum ScheduleStorage {
   static let events = Events()
 }
 
-extension StorageProviderProtocol where EntityType == Schedule {
+extension StorageProvider where EntityType == Schedule {
 
   static var dataStack: DataStack {
     CoreStoreDefaults.dataStack

@@ -10,7 +10,7 @@ import Foundation
 
 extension StreamStorage {
 
-  class Search: NSObject, ObservableObject, StorageProviderProtocol {
+  class Search: NSObject, ObservableObject, StorageProvider {
     
 
     @Published var active: Bool = false

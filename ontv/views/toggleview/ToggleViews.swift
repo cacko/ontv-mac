@@ -59,13 +59,13 @@ struct ToggleView: View {
         if player.contentToggle == .livescores {
           HStack {
             ToggleViews.LivescoreView()
-              .frame(width: geo.size.width * 0.3, height: geo.size.height)
+              .frame(width: max(300, geo.size.width * 0.3), height: geo.size.height)
               .background(.black.opacity(0.8))
             Spacer()
           }
         }
         if player.contentToggle == .livescoresticker {
-            ToggleViews.LivescoreTickerView()
+          ToggleViews.LivescoreTickerView()
         }
       }
     }

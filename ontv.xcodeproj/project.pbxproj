@@ -23,6 +23,7 @@
 		162862E9273307FD0015298D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165C981E2702319400466207 /* QuartzCore.framework */; platformFilter = maccatalyst; };
 		162D4505271F68D400E0C318 /* ActivityStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162D4504271F68D400E0C318 /* ActivityStorage.swift */; };
 		162D4507271F69BF00E0C318 /* ActivityEPGList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162D4506271F69BF00E0C318 /* ActivityEPGList.swift */; };
+		162DB53A27454F7500B1D95D /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162DB53927454F7500B1D95D /* Generator.swift */; };
 		16301272273ECF2D00F33027 /* V1Livescore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16301271273ECF2D00F33027 /* V1Livescore.swift */; };
 		16301274273EDAFC00F33027 /* V1Sport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16301273273EDAFC00F33027 /* V1Sport.swift */; };
 		16301277273F3B4000F33027 /* LivescoreStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16301276273F3B4000F33027 /* LivescoreStorage.swift */; };
@@ -157,6 +158,7 @@
 		162862E7273307E40015298D /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		162D4504271F68D400E0C318 /* ActivityStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityStorage.swift; sourceTree = "<group>"; };
 		162D4506271F69BF00E0C318 /* ActivityEPGList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityEPGList.swift; sourceTree = "<group>"; };
+		162DB53927454F7500B1D95D /* Generator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; };
 		16301271273ECF2D00F33027 /* V1Livescore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V1Livescore.swift; sourceTree = "<group>"; };
 		16301273273EDAFC00F33027 /* V1Sport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V1Sport.swift; sourceTree = "<group>"; };
 		16301276273F3B4000F33027 /* LivescoreStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivescoreStorage.swift; sourceTree = "<group>"; };
@@ -553,6 +555,7 @@
 				162D4503271F68C500E0C318 /* activity */,
 				16B8013D271507210022AC94 /* stream */,
 				16D983AA2723704B00E1DC5D /* Providers.swift */,
+				162DB53927454F7500B1D95D /* Generator.swift */,
 			);
 			path = providers;
 			sourceTree = "<group>";
@@ -969,6 +972,7 @@
 				1687DEB9271A1E8A00A118E4 /* Validity.swift in Sources */,
 				161FD7A6272E4B86007FADA6 /* AVStateDelegate.swift in Sources */,
 				1677762927442E2500C46FC8 /* LivescoreView.swift in Sources */,
+				162DB53A27454F7500B1D95D /* Generator.swift in Sources */,
 				163E62A5272638C2007938C8 /* MetadataView.swift in Sources */,
 				164B075C2709FCEF00C7DE4C /* StreamMenu.swift in Sources */,
 				16E9A0CC270279A200C4607E /* Api.swift in Sources */,
@@ -1119,7 +1123,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 299;
+				CURRENT_PROJECT_VERSION = 300;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1197,7 +1201,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 299;
+				CURRENT_PROJECT_VERSION = 300;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;

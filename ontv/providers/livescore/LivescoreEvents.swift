@@ -9,14 +9,15 @@ import CoreStore
 import Foundation
 import OpenGL
 import SwiftDate
+import SwiftUI
 
 extension LivescoreStorage {
 
-  class Events: NSObject, ObservableObject, ObjectProviderProtocol, StorageProviderProtocol {
+  class Events: NSObject, ObservableObject, ObjectProvider, StorageProvider, AutoScrollProvider {
 
     var list: ListPublisher<Livescore>
-    
-    @Published var ids: [String] = []
+
+    var scrollGenerator: Provider.Generator.Scroll = Provider.Generator.Scroll([])
 
     var selected: ObjectPublisher<Livescore>!
 
@@ -47,13 +48,20 @@ extension LivescoreStorage {
     @Published var active: Bool = false {
       didSet {
         guard self.active else {
-          return timer.cancel()
+          timer.cancel()
+          scrollTimer.cancel()
+          return
         }
         self.startTimer()
+        self.startScrollTimer()
       }
     }
 
+    @Published var scrollTo: String = ""
+
     var timer: DispatchSourceTimer!
+
+    var scrollTimer: DispatchSourceTimer = DispatchSource.makeTimerSource()
 
     override init() {
       self.list = Self.dataStack.publishList(
@@ -61,15 +69,29 @@ extension LivescoreStorage {
           .where(self.query)
           .orderBy(self.order)
       )
-      self.ids = self.list.snapshot.makeIterator().map({$0.id!})
+      self.scrollGenerator = Provider.Generator.Scroll(
+        self.list.snapshot.makeIterator().filter { $0.inPlay ?? false }.map { $0.id! }
+      )
       super.init()
     }
-    
+
     func startTimer() {
       timer = DispatchSource.makeTimerSource()
       timer.schedule(deadline: .now(), repeating: .seconds(60))
       timer.setEventHandler {
         self.update()
+      }
+      timer.activate()
+    }
+
+    func startScrollTimer() {
+      self.scrollGenerator.reset()
+      timer = DispatchSource.makeTimerSource()
+      timer.schedule(deadline: .now(), repeating: .seconds(3))
+      timer.setEventHandler {
+        DispatchQueue.main.async {
+          self.scrollTo = self.scrollGenerator.next()
+        }
       }
       timer.activate()
     }

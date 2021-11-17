@@ -15,7 +15,7 @@ enum StreamStorage {
   static let search = Search()
 }
 
-extension StorageProviderProtocol where EntityType == Stream {
+extension StorageProvider where EntityType == Stream {
 
   static var dataStack: DataStack {
     CoreStoreDefaults.dataStack
