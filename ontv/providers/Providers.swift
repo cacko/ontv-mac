@@ -43,7 +43,7 @@ protocol ObjectProvider {
 protocol AutoScrollProvider: ObservableObject {
   var scrollTo: String { get set }
   var scrollGenerator: Provider.Generator.Scroll { get set }
-  var scrollTimer: DispatchSourceTimer { get set }
+  var scrollTimer: DispatchSourceTimer! { get set }
 }
 
 enum Provider {

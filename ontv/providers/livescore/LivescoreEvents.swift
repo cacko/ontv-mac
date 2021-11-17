@@ -61,7 +61,7 @@ extension LivescoreStorage {
 
     var timer: DispatchSourceTimer!
 
-    var scrollTimer: DispatchSourceTimer = DispatchSource.makeTimerSource()
+    var scrollTimer: DispatchSourceTimer!
 
     override init() {
       self.list = Self.dataStack.publishList(
