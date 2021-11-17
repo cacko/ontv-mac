@@ -15,6 +15,8 @@ extension LivescoreStorage {
   class Events: NSObject, ObservableObject, ObjectProviderProtocol, StorageProviderProtocol {
 
     var list: ListPublisher<Livescore>
+    
+    @Published var ids: [String] = []
 
     var selected: ObjectPublisher<Livescore>!
 
@@ -66,6 +68,8 @@ extension LivescoreStorage {
           .where(self.query)
           .orderBy(self.order)
       )
+      self.ids = self.list.snapshot.makeIterator().map({$0.id!})
+
       timer = DispatchSource.makeTimerSource()
       super.init()
       timer.schedule(deadline: .now(), repeating: .seconds(60))

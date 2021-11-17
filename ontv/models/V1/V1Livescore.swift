@@ -62,9 +62,19 @@ extension V1 {
     ) throws -> String? {
       return self.asInt64(data: source, key: "idEvent").string
     }
+    
+    static func getId(from source: [String: Any]) -> String {
+      guard let event_id = Self.asInt64(data: source, key: "idEvent") as Int64? else {
+        var hasher = Hasher()
+        hasher.combine(Self.asString(data: source, key: "strHomeTeam"))
+        hasher.combine(Self.asString(data: source, key: "strAwayTeam"))
+        return hasher.finalize().string
+      }
+      return event_id.string
+    }
 
     func loadData(from source: [String: Any]) {
-      id = Self.asInt64(data: source, key: "idEvent").string
+      id = Self.getId(from: source)
       event_id = Self.asInt64(data: source, key: "idEvent")
       league_id = Self.asInt64(data: source, key: "idLeague")
       home_team_id = Self.asInt64(data: source, key: "idHomeTeam")
@@ -123,7 +133,7 @@ extension V1 {
       "startTime",
       customGetter: { (object, field) in
         let val = object.$status.value
-        let isNotStarted = ["", "NS", "Not Started"].contains(val)
+        let isNotStarted = ["", "NS", "Not Started", "PPD"].contains(val)
         if isNotStarted {
           return object.$start_time.value.HHMM
         }
@@ -142,7 +152,7 @@ extension V1 {
         else {
           return false
         }
-        return !["FT"].contains(object.$status.value)
+        return !["FT", "PPD"].contains(object.$status.value)
       }
     )
     var inPlay: Bool

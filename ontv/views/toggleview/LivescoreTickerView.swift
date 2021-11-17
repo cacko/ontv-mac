@@ -83,12 +83,11 @@ extension ToggleViews {
     var body: some View {
       VStack {
         HStack(alignment: .center) {
-          ScrollView(.horizontal) {
-            LazyHStack {
-              ListReader(liverscoreProvider.list) { snapshot in
-                ForEach(objectIn: snapshot) { livescore in
-                  LivescoreItem(livescore)
-                }
+          ScrollingView(.horizontal, scrolling: liverscoreProvider.ids) {
+            ListReader(liverscoreProvider.list) { snapshot in
+              ForEach(objectIn: snapshot) { livescore in
+                LivescoreItem(livescore)
+                  .id(livescore.id)
               }
             }
           }
