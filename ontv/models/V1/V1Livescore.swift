@@ -9,6 +9,13 @@ import CoreStore
 import Foundation
 import SwiftDate
 
+enum LivescoreStatus {
+  static let fulltime = "FT"
+  static let postponed = "PPD"
+  static let empty = ""
+  static let notstarted = "NS"
+}
+
 extension V1 {
   class Livescore: CoreStoreObject, AbstractEntity, ImportableUniqueObject, ImportableModel {
 
@@ -118,7 +125,7 @@ extension V1 {
       "viewStatus",
       customGetter: { (object, field) in
         let val = object.$status.value
-        let isNotStarted = ["", "NS", "Not Started"].contains(val)
+        let isNotStarted = [LivescoreStatus.empty, LivescoreStatus.notstarted].contains(val)
         if isNotStarted {
           return "vs"
         }
@@ -134,7 +141,9 @@ extension V1 {
       "startTime",
       customGetter: { (object, field) in
         let val = object.$status.value
-        let isNotStarted = ["", "NS", "Not Started", "PPD"].contains(val)
+        let isNotStarted = [
+          LivescoreStatus.empty, LivescoreStatus.notstarted, LivescoreStatus.postponed,
+        ].contains(val)
         if isNotStarted {
           return object.$start_time.value.HHMM
         }
@@ -153,7 +162,14 @@ extension V1 {
         else {
           return false
         }
-        return !["FT", "PPD"].contains(object.$status.value)
+        guard ![LivescoreStatus.fulltime, LivescoreStatus.postponed].contains(object.$status.value)
+        else {
+          return false
+        }
+        guard min(object.$home_score.value, object.$away_score.value) > -1 else {
+          return false
+        }
+        return true
       }
     )
     var inPlay: Bool

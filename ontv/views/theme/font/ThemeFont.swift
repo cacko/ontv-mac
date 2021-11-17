@@ -23,7 +23,7 @@ extension Theme.Font {
   static let time: SwiftUI.Font = Font.system(size: 15, weight: .bold, design: .monospaced)
   static let searchTime: SwiftUI.Font = Font.system(size: 10, design: .monospaced)
   static let hint: SwiftUI.Font = Font.custom("Teko Light", size: 13, relativeTo: .title)
-  static let score: SwiftUI.Font = Font.custom("Atami Stencil Bold", size: 25, relativeTo: .title)
+  static let score: SwiftUI.Font = Font.system(size: 20, weight: .bold, design: .monospaced)
 
   static let scheduleHeader: SwiftUI.Font = Font.custom(
     "Atami Stencil Bold",

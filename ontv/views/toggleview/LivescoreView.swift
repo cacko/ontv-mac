@@ -51,6 +51,20 @@ extension ToggleViews {
       }
     }
 
+    struct ScoreView: View {
+
+      var score: Int
+
+      var body: some View {
+        VStack(alignment: .center, spacing: 0) {
+          Text(score.score)
+            .font(Theme.Font.score)
+            .foregroundColor(Theme.Color.Font.score)
+        }
+      }
+
+    }
+
     struct LivescoreItem: View {
       @ObjectState var livescore: ObjectSnapshot<Livescore>?
       private var homeTeam: Schedule.Team!
@@ -74,21 +88,17 @@ extension ToggleViews {
               .fixedSize()
               .font(Theme.Font.channel)
             Spacer()
-          }.frame(width: 40, alignment: .center)
+          }.frame(width: 30, alignment: .center)
           VStack(alignment: .center, spacing: 0) {
             HStack(alignment: .center, spacing: 5) {
               TeamView(team: homeTeam)
               Spacer()
-              Text(livescore?.$home_score.score ?? "")
-                .font(Theme.Font.score)
-                .foregroundColor(Theme.Color.Font.score)
+              ScoreView(score: livescore!.$home_score)
             }
-            HStack {
+            HStack(alignment: .center, spacing: 5) {
               TeamView(team: awayTeam)
               Spacer()
-              Text(livescore?.$away_score.score ?? "")
-                .font(Theme.Font.score)
-                .foregroundColor(Theme.Color.Font.score)
+              ScoreView(score: livescore!.$away_score)
             }
           }
         }
@@ -106,12 +116,14 @@ extension ToggleViews {
         ScrollingView {
           ListReader(liverscoreProvider.list) { snapshot in
             ForEach(objectIn: snapshot) { livescore in
-              LazyVStack(alignment: .leading, spacing: 0) {
-                LivescoreItem(livescore)
+              if livescore.$inPlay! || livescore.$status == LivescoreStatus.fulltime {
+                LazyVStack(alignment: .leading, spacing: 0) {
+                  LivescoreItem(livescore)
+                }
+                .padding()
+                .hoverAction()
+                .background(Theme.Color.Background.header)
               }
-              .padding()
-              .hoverAction()
-              .background(Theme.Color.Background.header)
             }
           }
         }.onAppear {
