@@ -15,28 +15,21 @@ extension StreamStorage {
       self.fetch()
       self.onChangeStream(stream: Player.instance.stream)
     }
-    
-    override init()
-    {
+
+    override init() {
       super.init()
     }
 
-    override func onNavigate(_ notification: Notification) {
-//      guard let signal = notification.object as! ListNavigation? else {
-//        Self.center.post(name: .contentToggle, object: ContentToggle.category)
-//        return
-//      }
-//      print("do some shit \(String(describing: signal))")
-    }
-    
+    override func onNavigate(_ notification: Notification) {}
+
     override func selectNext() throws {
       guard let res = try self.getResultOffset(off: .down) as ObjectPublisher<Stream>? else {
         return
       }
-        self.selected = res
-        self.selectedId = res.id!
+      self.selected = res
+      self.selectedId = res.id!
     }
-    
+
     override func selectPrevious() throws {
       guard let res = try self.getResultOffset(off: .up) as ObjectPublisher<Stream>? else {
         return
@@ -44,7 +37,7 @@ extension StreamStorage {
       self.selected = res
       self.selectedId = res.id!
     }
-    
+
     func getResultOffset(off: ListNavigation) throws -> ObjectPublisher<Stream> {
       guard list.snapshot.count > 0 else {
         throw Provider.Error(id: .outOfBounds, msg: "u levo")
@@ -61,30 +54,30 @@ extension StreamStorage {
       default:
         throw Provider.Error(id: .outOfBounds, msg: "kura ti tzanko")
       }
-      
+
       guard list.snapshot.indices.contains(newIdx) else {
         throw Provider.Error(id: .outOfBounds, msg: "kura ti tzanko")
       }
-      
+
       return list.snapshot[newIdx]
     }
-    
+
     func getSelectIdx() -> ListSnapshot<Stream>.Index {
-      
+
       guard let _selected = self.selected as ObjectPublisher<Stream>? else {
         return -1
       }
-      
+
       guard self.list.snapshot.contains(_selected) else {
         return -1
       }
-      
+
       guard let result = self.list.snapshot.firstIndex(of: self.selected) else {
         return -1
       }
-      
+
       return result
     }
-    
+
   }
 }

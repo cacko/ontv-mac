@@ -80,13 +80,12 @@ extension ToggleViews {
 
     private var buttonFont: Font = .system(size: 20, weight: .heavy, design: .monospaced)
 
-    func autoScrollTo(to: String, proxy: ScrollViewProxy) {
+    func onScrollTo(to: String, proxy: ScrollViewProxy) {
       withAnimation(.instant) {
-        withAnimation(.linear(duration: 3000.9)) {
+        withAnimation {
           proxy.scrollTo(to, anchor: .leading)
         }
       }
-
     }
 
     var body: some View {
@@ -100,22 +99,21 @@ extension ToggleViews {
                 }
               }
             }
-            .background(Theme.Color.Background.ticker)
-            .frame(height: 50, alignment: .center)
             .onReceive(
               liverscoreProvider.$scrollTo,
               perform: {
-                to in autoScrollTo(to: to, proxy: proxy)
+                value in onScrollTo(to: value, proxy: proxy)
               }
             )
           }
+          .background(Theme.Color.Background.ticker)
+          .frame(height: 50, alignment: .center)
+          .onAppear { liverscoreProvider.autoScroll = true }
+          .onDisappear { liverscoreProvider.autoScroll = false }
         }
         Spacer()
-      }.onAppear {
-        liverscoreProvider.active = true
-      }.onDisappear(perform: {
-        liverscoreProvider.active = false
-      })
+      }.onAppear { liverscoreProvider.active = true }
+        .onDisappear { liverscoreProvider.active = false }
     }
   }
 }

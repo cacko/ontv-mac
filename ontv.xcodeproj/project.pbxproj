@@ -104,6 +104,7 @@
 		16997B8C2718AA9600C49DFF /* ThemeColorBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16997B8B2718AA9600C49DFF /* ThemeColorBackground.swift */; };
 		169C796027300384008F5973 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 169C795F27300384008F5973 /* AppKit.framework */; platformFilter = maccatalyst; };
 		169C79622730038E008F5973 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 169C79612730038E008F5973 /* SwiftUI.framework */; platformFilter = maccatalyst; };
+		16A5615F2745B9D900F2699C /* LivescoreScrollGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A5615E2745B9D900F2699C /* LivescoreScrollGenerator.swift */; };
 		16ACE780270BFFA40096EF59 /* ProgressIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ACE77F270BFFA40096EF59 /* ProgressIndicator.swift */; };
 		16B2F75F2731A5DA0051D000 /* PlayerInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B2F75E2731A5DA0051D000 /* PlayerInterfaces.swift */; };
 		16B585EA270DE92F00C1FA24 /* EPGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B585E9270DE92F00C1FA24 /* EPGView.swift */; };
@@ -254,6 +255,7 @@
 		16997B8B2718AA9600C49DFF /* ThemeColorBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColorBackground.swift; sourceTree = "<group>"; };
 		169C795F27300384008F5973 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		169C79612730038E008F5973 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		16A5615E2745B9D900F2699C /* LivescoreScrollGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivescoreScrollGenerator.swift; sourceTree = "<group>"; };
 		16ACE77F270BFFA40096EF59 /* ProgressIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIndicator.swift; sourceTree = "<group>"; };
 		16B2F75E2731A5DA0051D000 /* PlayerInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInterfaces.swift; sourceTree = "<group>"; };
 		16B585E9270DE92F00C1FA24 /* EPGView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPGView.swift; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 			children = (
 				16301276273F3B4000F33027 /* LivescoreStorage.swift */,
 				16301279273F3B6D00F33027 /* LivescoreEvents.swift */,
+				16A5615E2745B9D900F2699C /* LivescoreScrollGenerator.swift */,
 			);
 			path = livescore;
 			sourceTree = "<group>";
@@ -890,6 +893,7 @@
 				164E4EC4271388F8001849E5 /* AbstractEntity.swift in Sources */,
 				165C97FD270228F900466207 /* VideoView.swift in Sources */,
 				1687DEAB271A13AD00A118E4 /* String.swift in Sources */,
+				16A5615F2745B9D900F2699C /* LivescoreScrollGenerator.swift in Sources */,
 				16BD651E273C21F100E9EAD8 /* Bundle.swift in Sources */,
 				165C97E02702257900466207 /* ContentView.swift in Sources */,
 				16823CE7272E367400DB0555 /* Size.swift in Sources */,
@@ -1123,7 +1127,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 304;
+				CURRENT_PROJECT_VERSION = 305;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1201,7 +1205,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 304;
+				CURRENT_PROJECT_VERSION = 305;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;

@@ -14,10 +14,12 @@ import SwiftUI
 extension LivescoreStorage {
 
   class Events: NSObject, ObservableObject, ObjectProvider, StorageProvider, AutoScrollProvider {
+    
+    typealias EntityType = Livescore
+    
+    var list: ListPublisher<EntityType>
 
-    var list: ListPublisher<Livescore>
-
-    var scrollGenerator: Provider.Generator.Scroll = Provider.Generator.Scroll([])
+    var scrollGenerator: LivescoreScrollGenerator
 
     var selected: ObjectPublisher<Livescore>!
 
@@ -31,29 +33,29 @@ extension LivescoreStorage {
 
     var state: ProviderState = .notavail
 
-    func selectNext() throws {
+    func selectNext() throws {}
 
-    }
+    func selectPrevious() throws {}
 
-    func selectPrevious() throws {
-
-    }
-
-    func onNavigate(_ notitication: Notification) {
-
-    }
-
-    typealias EntityType = Livescore
+    func onNavigate(_ notitication: Notification) {}
 
     @Published var active: Bool = false {
       didSet {
         guard self.active else {
-          timer.cancel()
-          scrollTimer.cancel()
-          return
+          return timer.cancel()
         }
         self.startTimer()
+      }
+    }
+
+    @Published var autoScroll: Bool = false {
+      didSet {
+        guard self.autoScroll else {
+          objectWillChange.send()
+          return scrollTimer.cancel()
+        }
         self.startScrollTimer()
+        objectWillChange.send()
       }
     }
 
@@ -69,9 +71,7 @@ extension LivescoreStorage {
           .where(self.query)
           .orderBy(self.order)
       )
-      self.scrollGenerator = Provider.Generator.Scroll(
-        self.list.snapshot.makeIterator().filter { $0.inPlay ?? false }.map { $0.id! }
-      )
+      self.scrollGenerator = LivescoreScrollGenerator(self.list)
       super.init()
     }
 
