@@ -38,11 +38,6 @@ extension ScheduleStorage {
     var order: OrderBy<Schedule> = Schedule.orderBy
 
     var list: ListPublisher<Schedule>
-//    {
-//      didSet {
-//        objectWillChange.send()
-//      }
-//    }
 
     var selected: ObjectPublisher<Schedule>! {
       didSet {

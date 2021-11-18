@@ -127,7 +127,7 @@ extension ToggleViews {
       }
 
       Defaults[.ticker] = ticker
-
+      NotificationCenter.default.post(name: .tickerupdated, object: nil)
     }
 
     var body: some View {
@@ -136,26 +136,21 @@ extension ToggleViews {
         ScrollingView {
           ListReader(liverscoreProvider.list) { snapshot in
             ForEach(objectIn: snapshot) { livescore in
-              //              if livescore.$inPlay! || livescore.$status == LivescoreStatus.fulltime {
-              LazyVStack(alignment: .leading, spacing: 0) {
-                LivescoreItem(livescore)
-              }
-              .padding()
-              .hoverAction()
-              .pressAction {
-                onTapItem(livescore)
-              }
-              .background(
-                livescore.$inTicker ?? false ? Theme.Color.State.ticker : Theme.Color.Background.header
-              )
-
+              LivescoreItem(livescore)
+                .padding()
+                .hoverAction()
+              //              .pressAction {
+              //                onTapItem(livescore)
               //              }
+              //              .background(
+              //                livescore.$inTicker ?? false ? Theme.Color.State.ticker : Theme.Color.Background.header
+              //              )
             }
           }
         }.onAppear {
-          liverscoreProvider.active = true
+          LivescoreStorage.toggle(.livescores)
         }.onDisappear(perform: {
-          liverscoreProvider.active = false
+          LivescoreStorage.toggle(.livescores)
         })
       }
     }

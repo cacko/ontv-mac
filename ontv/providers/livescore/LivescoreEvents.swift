@@ -13,7 +13,7 @@ import SwiftUI
 
 extension LivescoreStorage {
 
-  class Events: NSObject, ObservableObject, ObjectProvider, StorageProvider {
+  class Events: NSObject, ObservableObject, ObjectProvider, StorageProvider {    
 
     typealias EntityType = Livescore
 
@@ -37,16 +37,7 @@ extension LivescoreStorage {
 
     func onNavigate(_ notitication: Notification) {}
 
-    @Published var active: Bool = false {
-      didSet {
-        guard self.active else {
-          return timer.cancel()
-        }
-        self.startTimer()
-      }
-    }
-
-    var timer: DispatchSourceTimer!
+    @Published var active: Bool = false
 
     override init() {
       self.list = Self.dataStack.publishList(
@@ -57,40 +48,18 @@ extension LivescoreStorage {
       super.init()
     }
 
-    func startTimer() {
-      timer = DispatchSource.makeTimerSource()
-      timer.schedule(deadline: .now(), repeating: .seconds(60))
-      timer.setEventHandler {
-        self.update()
-      }
-      timer.activate()
-    }
-
-    func update() {
-      Task.init {
-        try await API.Adapter.updateLivescore()
-      }
-    }
-
-    static var instances: [String: ObjectPublisher<Livescore>] = [:]
-
     func get(_ id: String) -> ObjectPublisher<Livescore>? {
 
       guard id.count > 0 else {
         return nil
       }
-
-      if Self.instances.keys.contains(id) {
-        return Self.instances[id]
-      }
-      guard let ls = Livescore.get(id.int64) else {
+      guard let ls = self.list.snapshot.first(where: {$0.id == id})  else {
         return nil
       }
       guard let instance = ls.asPublisher(in: Livescore.dataStack) as ObjectPublisher<Livescore>?
       else {
         return nil
       }
-      Self.instances[id] = instance
       return instance
     }
 

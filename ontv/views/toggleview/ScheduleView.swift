@@ -20,27 +20,26 @@ extension ToggleViews {
     }
 
     struct ScheduleLivescoreView: View {
-      @ObjectState var livescore: ObjectSnapshot<Livescore>?
+      private var livescore: ObjectPublisher<Livescore>!
 
       init(
         _ eventId: String
       ) {
         guard let objectPublisher = LivescoreStorage.events.get(eventId) else {
-          self._livescore = ObjectState(nil)
           return
         }
-        self._livescore = .init(objectPublisher)
+        self.livescore = objectPublisher
       }
       var body: some View {
-        if let ls = self.livescore {
+        if let ls = self.livescore as ObjectPublisher<Livescore>? {
           HStack(alignment: .center, spacing: 5) {
-            Text(ls.$home_score.score)
+            Text(ls.$home_score!.score)
               .font(Theme.Font.score)
               .foregroundColor(Theme.Color.Font.score)
-            Text(ls.$viewStatus)
+            Text(ls.$viewStatus!)
               .textCase(.uppercase)
               .font(Theme.Font.hint)
-            Text(ls.$away_score.score)
+            Text(ls.$away_score!.score)
               .font(Theme.Font.score)
               .foregroundColor(Theme.Color.Font.score)
           }
@@ -48,7 +47,6 @@ extension ToggleViews {
         else {
           Text("vs").textCase(.uppercase).font(Theme.Font.hint)
         }
-
       }
     }
 
@@ -114,7 +112,7 @@ extension ToggleViews {
     struct ScheduleTime: View {
       var section: ListSnapshot<Schedule>.SectionInfo
       var body: some View {
-        if let time = section.first?.object!.timestamp {
+        if let time = section.first?.object!.timestamp as Date? {
           VStack(alignment: .leading, spacing: 0) {
             Spacer()
             Text(time.HHMM)
@@ -148,20 +146,21 @@ extension ToggleViews {
 
     struct ScheduleStreams: View {
       var schedule: ObjectPublisher<Schedule>
-      private var streams: [Stream] = []
+      var streams: [Stream]
 
       init(
         schedule: ObjectPublisher<Schedule>
       ) {
         self.schedule = schedule
-        guard let stream_ids = schedule.streams?.split(separator: ",") as NSArray? else {
+        self.streams = []
+        guard let ids = schedule.streams?.split(separator: ",") as NSArray? else {
           return
         }
-        guard stream_ids.count > 0 else {
+        guard ids.count > 0 else {
           return
         }
         self.streams = Stream.find(
-          Where<Stream>(NSPredicate(format: "ANY stream_id IN %@", stream_ids))
+          Where<Stream>(NSPredicate(format: "ANY stream_id IN %@", ids))
         )
       }
 
@@ -169,7 +168,7 @@ extension ToggleViews {
         if streams.count > 0 {
           ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack {
-              ForEach(streams, id: \.self) {
+              ForEach(streams, id: \.id) {
                 stream in
                 ScheduleStream(stream: stream)
                   .id(stream.id)
@@ -221,11 +220,7 @@ extension ToggleViews {
                   LazyVStack(alignment: .leading, spacing: 0) {
                     ForEach(objectIn: section) { schedule in
                       LazyVStack(alignment: .leading, spacing: 0) {
-                        Section(
-                          header: ScheduleHeader(
-                            schedule: schedule
-                          )
-                        ) {
+                        Section(header: ScheduleHeader(schedule: schedule)) {
                           ScheduleStreams(schedule: schedule)
                         }
                       }.hoverAction().background(Theme.Color.Background.header)
@@ -238,10 +233,10 @@ extension ToggleViews {
         }
       }.onAppear {
         scheduleProvider.active = true
-        liverscoreProvider.active = true
+        LivescoreStorage.toggle(.schedule)
       }.onDisappear(perform: {
         scheduleProvider.active = false
-        liverscoreProvider.active = false
+        LivescoreStorage.toggle(.schedule)
       })
     }
   }

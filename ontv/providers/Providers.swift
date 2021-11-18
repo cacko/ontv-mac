@@ -31,12 +31,14 @@ protocol StorageProvider: ObservableObject {
   func onChangeStream(stream: Stream)
   func onNavigate(_ notitication: Notification)
   func update()
+
+  static var emptyWhere: Where<EntityType> { get }
+  static var allWhere: Where<EntityType> { get }
 }
 
 protocol ObjectProvider {
   associatedtype EntityType: CoreStoreObject
   var active: Bool { get set }
-  static var instances: [String: ObjectPublisher<EntityType>] { get set }
   func get(_ id: String) -> ObjectPublisher<EntityType>?
 }
 

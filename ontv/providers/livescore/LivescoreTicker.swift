@@ -14,6 +14,7 @@ import SwiftUI
 extension LivescoreStorage {
 
   class Ticker: NSObject, ObservableObject, StorageProvider, AutoScrollProvider {
+
     typealias EntityType = Livescore
     var list: ListPublisher<EntityType>
     var scrollGenerator: LivescoreScrollGenerator
@@ -28,18 +29,16 @@ extension LivescoreStorage {
 
     @Published var count: Int = 0
 
-    static func query() -> Where<Livescore> {
-      guard let ticker = Defaults[.ticker] as [String]? else {
-        return Where<Livescore>(NSPredicate(value: false))
-      }
-      guard ticker.count > 0 else {
-        return Where<Livescore>(NSPredicate(value: false))
-      }
-      return Where<Livescore>(NSPredicate(format: "ANY id IN %@", ticker))
-    }
-
     var query: Where<Livescore> {
-      get { Self.query() }
+      get {
+        guard let ticker = Defaults[.ticker] as [String]? else {
+          return Where<Livescore>(NSPredicate(value: false))
+        }
+        guard ticker.count > 0 else {
+          return Where<Livescore>(NSPredicate(value: false))
+        }
+        return Where<Livescore>(NSPredicate(format: "ANY id IN %@", ticker as CVarArg))
+      }
       set {}
     }
 
@@ -57,33 +56,29 @@ extension LivescoreStorage {
     @Published var scrollTo: String = ""
 
     var timer: DispatchSourceTimer!
-    private var observer: DefaultsObservation!
+
     override init() {
       self.list = Self.dataStack.publishList(
         From<Livescore>()
-          .where(Self.query())
+          .where(Self.emptyWhere)
           .orderBy(self.order)
       )
       self.scrollGenerator = LivescoreScrollGenerator(self.list)
       self.count = self.scrollGenerator.count
       super.init()
 
-      self.observer = Defaults.observe(.ticker) { change in
-        do {
-          try self.list.refetch(
-            From<Livescore>()
-              .where(self.query)
-              .orderBy(self.order),
-            sourceIdentifier: nil
-          )
-          self.scrollGenerator = LivescoreScrollGenerator(self.list)
-          self.count = self.scrollGenerator.count
-        }
-        catch {
-          logger.error("\(error.localizedDescription)")
-        }
+      let center = NotificationCenter.default
+      let mainQueue = OperationQueue.main
+      center.addObserver(forName: .tickerupdated, object: nil, queue: mainQueue) { _ in
+        try! self.list.refetch(
+          From<Livescore>()
+            .where(self.query)
+            .orderBy(self.order),
+          sourceIdentifier: nil
+        )
+        self.scrollGenerator = LivescoreScrollGenerator(self.list)
+        self.count = self.scrollGenerator.count
       }
-
     }
 
     func startTimer() {
@@ -96,12 +91,6 @@ extension LivescoreStorage {
         }
       }
       timer.activate()
-    }
-
-    func update() {
-      Task.init {
-        try await API.Adapter.updateLivescore()
-      }
     }
   }
 }

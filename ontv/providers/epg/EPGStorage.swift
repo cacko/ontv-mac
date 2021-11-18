@@ -34,6 +34,16 @@ enum EPGStorage {
 
 }
 
+extension StorageProvider where EntityType == EPG {
+  static var emptyWhere: Where<EntityType> {
+    Where<EntityType>(NSPredicate(value: false))
+  }
+
+  static var allWhere: Where<EntityType> {
+    Where<EntityType>(NSPredicate(value: true))
+  }
+}
+
 class EPGStorageAbstract: NSObject, ObservableObject, StorageProvider {
 
   @Published var active: Bool = false

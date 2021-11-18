@@ -54,7 +54,6 @@ extension ToggleViews {
 
       var body: some View {
         if let ls = self.livescore {
-          //          if ls.$inPlay {
           HStack(alignment: .center, spacing: 3) {
             BadgeView(icon: homeTeam.icon)
             TitleTextView(text: homeTeam.id)
@@ -72,7 +71,6 @@ extension ToggleViews {
           }.frame(height: 40, alignment: .center)
             .padding()
         }
-        //        }
       }
     }
 
@@ -106,6 +104,7 @@ extension ToggleViews {
                       }
                       ticker.removeAll { $0 == livescore.id }
                       Defaults[.ticker] = ticker
+                      NotificationCenter.default.post(name: .tickerupdated, object: nil)
                     }.hoverAction()
                 }
               }
@@ -117,12 +116,11 @@ extension ToggleViews {
               }
             )
           }
-          .background(Theme.Color.Background.ticker)
           .frame(height: 50, alignment: .center)
-          .onAppear { liverscoreProvider.active = true }
-          .onDisappear { liverscoreProvider.active = false }
+          .onAppear { LivescoreStorage.toggle(.livescoresticker) }
+          .onDisappear { LivescoreStorage.toggle(.livescoresticker) }
           Spacer()
-        }
+        }.background(Theme.Color.Background.ticker)
         Spacer()
       }
     }

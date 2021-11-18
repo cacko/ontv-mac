@@ -17,6 +17,14 @@ enum StreamStorage {
 
 extension StorageProvider where EntityType == Stream {
 
+  static var emptyWhere: Where<EntityType> {
+    Where<EntityType>(NSPredicate(value: false))
+  }
+
+  static var allWhere: Where<EntityType> {
+    Where<EntityType>(NSPredicate(value: true))
+  }
+
   static var dataStack: DataStack {
     CoreStoreDefaults.dataStack
   }
