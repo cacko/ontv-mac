@@ -66,8 +66,7 @@ extension LivescoreStorage {
       super.init()
 
       self.observer = Defaults.observe(.ticker) { change in
-        print("Change")
-        do {
+=        do {
           try self.list.refetch(
             From<Livescore>()
               .where(self.query)
