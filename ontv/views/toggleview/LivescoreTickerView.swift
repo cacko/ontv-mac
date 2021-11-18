@@ -81,10 +81,8 @@ extension ToggleViews {
     private var buttonFont: Font = .system(size: 20, weight: .heavy, design: .monospaced)
 
     func onScrollTo(to: String, proxy: ScrollViewProxy) {
-      withAnimation(.instant) {
-        withAnimation {
-          proxy.scrollTo(to, anchor: .leading)
-        }
+      withAnimation {
+        proxy.scrollTo(to, anchor: .leading)
       }
     }
 

@@ -22,7 +22,7 @@ class LivescoreScrollGenerator: ScrollGeneratorProtocol {
 
   var items: [String] {
     get {
-      self.list.snapshot.makeIterator().filter { $0.inPlay ?? false }.map { $0.id! }
+      list.snapshot.makeIterator().filter { $0.inPlay ?? false }.map { $0.id! }
     }
     set {}
   }
@@ -31,23 +31,23 @@ class LivescoreScrollGenerator: ScrollGeneratorProtocol {
 
   var isBackwards: Bool = true {
     didSet {
-      self.itemsSource =
-        self.isBackwards ? ArraySlice(self.items.reversed()) : ArraySlice(self.items)
+      itemsSource =
+        ArraySlice(self.isBackwards ? self.items.reversed() : self.items)
     }
   }
 
   func reset() {
-    self.isBackwards = false
+    isBackwards = false
   }
 
   func next() -> String {
     guard items.count > 0 else {
       return ""
     }
-    if self.itemsSource.count == 0 {
-      self.isBackwards.toggle()
+    if itemsSource.count == 0 {
+      isBackwards.toggle()
     }
-    return self.itemsSource.popFirst()!
+    return itemsSource.popFirst()!
   }
 
 }
