@@ -14,6 +14,13 @@ extension ToggleViews {
     @ObservedObject var player = Player.instance
     @ObservedObject var quickStreams = Provider.Stream.QuickStreams
 
+    func onPress(_ s: QuickStream) {
+      guard s.isValid else {
+        return self.bookmark(s)
+      }
+      NotificationCenter.default.post(name: .selectStream, object: s.stream)
+    }
+
     func bookmark(_ s: QuickStream) {
       Task.init {
         do {
@@ -24,7 +31,6 @@ extension ToggleViews {
         catch let error {
           logger.error("\(error.localizedDescription)")
         }
-
       }
     }
 
@@ -32,16 +38,19 @@ extension ToggleViews {
       VStack {
         Spacer()
         VStack {
-          Text("Select slot")
-            .font(Theme.Font.Bookmark.title)
+          Text("Click to open or save if empty slot")
+            .font(Theme.Font.programme)
+            .shadow(color: .black, radius: 1, x: 1, y: 1)
             .textCase(.uppercase)
           HStack {
             Spacer()
             ForEach(quickStreams.streams, id: \.idx) { qs in
-              Button(action: { bookmark(qs) }) {
+              Button(action: { onPress(qs) }) {
                 ZStack {
                   Text(String(qs.idx))
                     .foregroundColor(qs.isValid ? .gray : .primary)
+                    .shadow(color: .black, radius: 1, x: 1, y: 1)
+
                   if let icon = qs.icon {
                     KFImage(icon)
                       .cacheOriginalImage()
@@ -53,13 +62,20 @@ extension ToggleViews {
                   }
                 }
                 .padding()
-              }.buttonStyle(CustomButtonStyle(Theme.Font.Bookmark.button)).cornerRadius(10)
+              }
+              .onLongPressGesture { bookmark(qs) }
+              .buttonStyle(CustomButtonStyle(Theme.Font.Bookmark.button))
+              .cornerRadius(10)
             }
             Spacer()
           }
-        }.padding()
-          .background(Theme.Color.Background.header)
-
+          Text("Long press to save on any slot")
+            .font(Theme.Font.programme)
+            .shadow(color: .black, radius: 1, x: 1, y: 1)
+            .textCase(.uppercase)
+        }
+        .padding()
+        .background(Theme.Color.Background.header)
         Spacer()
       }
     }

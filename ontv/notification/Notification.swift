@@ -95,7 +95,7 @@ extension AppDelegate {
     center.addObserver(forName: .toggleFullscreen, object: nil, queue: mainQueue) { _ in
 
       self.window.isFullScreen.toggle()
-      
+
       if !self.window.isFullScreen {
         self.window.contentAspectRatio = self.player.size.aspectSize
       }
@@ -216,9 +216,9 @@ extension AppDelegate {
 
     center.addObserver(forName: .bookmark, object: nil, queue: mainQueue) { _ in
       center.post(name: .contentToggle, object: ContentToggle.bookmarks)
-      Task.init {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: self.getFadeTak(.bookmarks))
-      }
+//      Task.init {
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: self.getFadeTak(.bookmarks))
+//      }
     }
 
     center.addObserver(forName: .startPlaying, object: nil, queue: mainQueue) { note in
@@ -250,6 +250,9 @@ extension AppDelegate {
       self.fadeTask.cancel()
     }
     self.fadeTask = DispatchWorkItem {
+      guard self.player.contentToggle == toggle else {
+        return
+      }
       NotificationCenter.default.post(name: .contentToggle, object: toggle)
     }
     return self.fadeTask

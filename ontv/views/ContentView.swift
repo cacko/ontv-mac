@@ -41,6 +41,7 @@ enum ContentToggleIcon: String {
   case volumeStage2 = "speaker.wave.2"
   case volumeStage3 = "speaker.wave.3"
   case close = "xmark"
+  case bookmark = "bookmark"
 
 }
 

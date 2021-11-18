@@ -41,8 +41,8 @@ struct CustomButtonStyle: ButtonStyle {
       configuration.label
         .padding(0)
         .font(font)
-
-    }.cornerRadius(10.0).hoverAction()
+    }.cornerRadius(10.0)
+      .hoverAction()
   }
 }
 

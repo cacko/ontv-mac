@@ -110,6 +110,10 @@ extension ToggleViews {
 
     private var buttonFont: Font = .system(size: 20, weight: .heavy, design: .monospaced)
 
+    func onTapItem(_ item: ObjectPublisher<Livescore>) {
+      print(item)
+    }
+
     var body: some View {
       VStack(alignment: .trailing) {
         ContentHeaderView(title: "Livescores", icon: ContentToggleIcon.livescores)
@@ -119,9 +123,13 @@ extension ToggleViews {
               if livescore.$inPlay! || livescore.$status == LivescoreStatus.fulltime {
                 LazyVStack(alignment: .leading, spacing: 0) {
                   LivescoreItem(livescore)
+
                 }
                 .padding()
                 .hoverAction()
+                .pressAction {
+                  onTapItem(livescore)
+                }
                 .background(Theme.Color.Background.header)
               }
             }
