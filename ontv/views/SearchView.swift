@@ -211,7 +211,7 @@ struct SearchView: View {
         HStack(alignment: .bottom) {
           Spacer()
           ControlItemView(
-            icon: "xmark",
+            icon: .close,
             note: Notification.Name.contentToggle,
             obj: ContentToggle.search,
             hint: "Close search"

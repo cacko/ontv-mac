@@ -112,7 +112,7 @@ extension ToggleViews {
 
     var body: some View {
       VStack(alignment: .trailing) {
-        ContentHeaderView(title: "Livescores")
+        ContentHeaderView(title: "Livescores", icon: ContentToggleIcon.livescores)
         ScrollingView {
           ListReader(liverscoreProvider.list) { snapshot in
             ForEach(objectIn: snapshot) { livescore in

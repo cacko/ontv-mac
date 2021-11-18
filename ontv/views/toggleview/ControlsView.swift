@@ -16,7 +16,7 @@ struct ControlItemView: View {
 
   private var note: Notification.Name!
   private var object: Any?
-  private let icon: String!
+  private let icon: ContentToggleIcon!
   private let image: String!
   private var hint: String!
 
@@ -28,7 +28,7 @@ struct ControlItemView: View {
   }
 
   init(
-    icon: String,
+    icon: ContentToggleIcon,
     note: Notification.Name,
     obj: Any? = nil,
     hint: String? = ""
@@ -58,10 +58,7 @@ struct ControlItemView: View {
       onClick()
     }) {
       if icon != nil {
-        Image(systemName: icon)
-          .symbolVariant(.rectangle.fill)
-          .symbolRenderingMode(.hierarchical)
-          .font(.system(size: player.iconSize.width))
+        ControlSFSymbolView(icon: icon, width: player.iconSize.width)
       }
       else {
         Image(image)
@@ -92,19 +89,19 @@ extension ToggleViews {
         hint: player.vendor.hint
       )
       ControlItemView(
-        icon: "list.bullet.rectangle",
+        icon: .category,
         note: Notification.Name.contentToggle,
         obj: ContentToggle.category,
         hint: "Category streams"
       )
       ControlItemView(
-        icon: "chevron.down",
+        icon: .next,
         note: Notification.Name.navigate,
         obj: AppNavigation.next,
         hint: "Next stream"
       )
       ControlItemView(
-        icon: "chevron.up",
+        icon: .previous,
         note: Notification.Name.navigate,
         obj: AppNavigation.previous,
         hint: "Previous stream"
@@ -120,20 +117,20 @@ extension ToggleViews {
       if api.epgState == .loaded {
         if player.epgId.count > 0 {
           ControlItemView(
-            icon: "appletvremote.gen4",
+            icon: .guide,
             note: .contentToggle,
             obj: ContentToggle.guide,
             hint: "Show programme for the stream"
           )
         }
         ControlItemView(
-          icon: "play.tv",
+          icon: .epglist,
           note: .contentToggle,
           obj: ContentToggle.epglist,
           hint: "Show programmes for all streams"
         )
         ControlItemView(
-          icon: "heart.text.square",
+          icon: .activityepg,
           note: .contentToggle,
           obj: ContentToggle.activityepg,
           hint: "Show programme for recently opened streams"
@@ -145,23 +142,34 @@ extension ToggleViews {
   struct PlayerControlsView: View {
     @ObservedObject var player = Player.instance
 
+    func volumeStage(stage: Int) -> ContentToggleIcon {
+      switch stage {
+      case 1:
+        return ContentToggleIcon.volumeStage1
+      case 2: return ContentToggleIcon.volumeStage2
+      case 3: return ContentToggleIcon.volumeStage3
+      default:
+        return ContentToggleIcon.isMutedOn
+      }
+    }
+
     var body: some View {
       ControlItemView(
         icon: player.isFullscreen
-          ? "arrow.down.right.and.arrow.up.left" : "arrow.up.left.and.arrow.down.right",
+          ? .fullscreenOff : .fullscreenOn,
         note: Notification.Name.toggleFullscreen,
         obj: nil,
         hint: "Exit fullscreen"
       )
       ControlItemView(
         icon: player.isMuted
-          ? "speaker.slash" : "speaker.wave.\(String(player.volumeStage))",
+          ? ContentToggleIcon.isMutedOn : volumeStage(stage: player.volumeStage),
         note: Notification.Name.toggleAudio,
         hint: "Toggle audio"
       )
       if !player.isFullscreen {
         ControlItemView(
-          icon: player.onTop ? "square.stack.3d.up.fill" : "square.stack.3d.up.slash",
+          icon: player.onTop ? .onTopOn : .onTopOff,
           note: Notification.Name.toggleOnTop,
           hint: "Toggle Always on top"
         )
@@ -174,19 +182,19 @@ extension ToggleViews {
 
     var body: some View {
       ControlItemView(
-        icon: "calendar",
+        icon: .schedule,
         note: Notification.Name.contentToggle,
         obj: ContentToggle.schedule,
         hint: "TheSportsDb Schedule"
       )
       ControlItemView(
-        icon: "sportscourt",
+        icon: .livescores,
         note: Notification.Name.contentToggle,
         obj: ContentToggle.livescores,
         hint: "Livescores"
       )
       ControlItemView(
-        icon: "rectangle.and.text.magnifyingglass",
+        icon: .search,
         note: Notification.Name.contentToggle,
         obj: ContentToggle.search,
         hint: "Search for whatever"

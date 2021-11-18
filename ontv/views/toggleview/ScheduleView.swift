@@ -209,7 +209,7 @@ extension ToggleViews {
 
     var body: some View {
       VStack(alignment: .trailing) {
-        ContentHeaderView(title: "SportsDB Schedule")
+        ContentHeaderView(title: "SportsDB Schedule", icon: ContentToggleIcon.schedule)
         ScrollingView {
           ListReader(scheduleProvider.list) { snapshot in
             ForEach(sectionIn: snapshot) { section in

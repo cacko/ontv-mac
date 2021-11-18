@@ -15,6 +15,35 @@ enum ContentToggle {
     metadata, schedule, livescores, livescoresticker
 }
 
+enum ContentToggleIcon: String {
+  case guide = "appletvremote.gen4"
+  case category = "list.bullet.rectangle"
+  case epglist = "play.tv"
+  case search = "rectangle.and.text.magnifyingglass"
+  case loading = "2"
+  case title = "3"
+  case controls = "4"
+  case error = "5"
+  case activityepg = "heart.text.square"
+  case bookmarks = "7"
+  case metadata = "8"
+  case schedule = "calendar"
+  case livescores = "sportscourt"
+  case livescoreticler = "11"
+  case next = "chevron.down"
+  case previous = "chevron.up"
+  case fullscreenOff = "arrow.down.right.and.arrow.up.left"
+  case fullscreenOn = "arrow.up.left.and.arrow.down.right"
+  case isMutedOn = "speaker.slash"
+  case onTopOn = "square.stack.3d.up.fill"
+  case onTopOff = "square.stack.3d.up.slash"
+  case volumeStage1 = "speaker.wave.1"
+  case volumeStage2 = "speaker.wave.2"
+  case volumeStage3 = "speaker.wave.3"
+  case close = "xmark"
+
+}
+
 struct ContentView: View {
   @ObservedObject var player = Player.instance
   @ObservedObject var api = API.Adapter

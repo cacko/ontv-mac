@@ -11,8 +11,11 @@ import SwiftUI
 struct ContentHeaderView: View {
   struct HeaderView: View {
     var text: String
+    var icon: ContentToggleIcon
     var body: some View {
       HStack(alignment: .center, spacing: 0) {
+        ControlSFSymbolView(icon: icon, width: 20).padding()
+
         Spacer()
         Text(text)
           .font(Theme.Font.title)
@@ -38,9 +41,10 @@ struct ContentHeaderView: View {
 
   struct HeaderRepresentable: NSViewControllerRepresentable {
     var text: String
+    var icon: ContentToggleIcon
     typealias NSViewControllerType = NSViewController
     func makeNSViewController(context: Context) -> NSViewController {
-      let hosting = HeaderHostingController(rootView: HeaderView(text: text))
+      let hosting = HeaderHostingController(rootView: HeaderView(text: text, icon: icon))
       hosting.view.translatesAutoresizingMaskIntoConstraints = false
       return hosting
     }
@@ -48,8 +52,9 @@ struct ContentHeaderView: View {
   }
 
   var title: String
+  var icon: ContentToggleIcon
 
   var body: some View {
-    HeaderRepresentable(text: title)
+    HeaderRepresentable(text: title, icon: icon)
   }
 }

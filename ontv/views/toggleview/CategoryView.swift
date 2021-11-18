@@ -37,7 +37,7 @@ extension ToggleViews {
 
     var body: some View {
       VStack(alignment: .trailing) {
-        ContentHeaderView(title: player.category?.title ?? "streams")
+        ContentHeaderView(title: player.category?.title ?? "streams", icon: ContentToggleIcon.category)
         ScrollViewReader { proxy in
           ScrollingView {
             ListReader(categoryProvider.list) { snapshot in
