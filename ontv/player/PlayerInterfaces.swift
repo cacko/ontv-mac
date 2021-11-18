@@ -14,7 +14,7 @@ enum Sorting {
 }
 
 enum PlayerState {
-  case opening, playing, stopped, error, retry, buffering
+  case opening, playing, stopped, error, retry, buffering, none
 }
 
 enum MetadataState {
@@ -95,7 +95,7 @@ struct VendorInfo {
 }
 
 enum PlayerControlsState {
-  case hidden, visible, hovered
+  case hidden, visible, hovered, always
 }
 
 

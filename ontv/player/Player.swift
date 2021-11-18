@@ -15,7 +15,7 @@ class Player: NSObject, PlayerProtocol, ObservableObject {
 
   @Published var error = PlayerError(id: .null, msg: "")
   @Published var resolution = CGSize(width: 1920, height: 1080)
-  @Published var state: PlayerState = .opening
+  @Published var state: PlayerState = .none
   @Published var onTop: Bool = true
   @Published var isFullscreen: Bool = false
   @Published var display: Bool = false

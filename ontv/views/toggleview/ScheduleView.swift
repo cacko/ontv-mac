@@ -154,7 +154,7 @@ extension ToggleViews {
         schedule: ObjectPublisher<Schedule>
       ) {
         self.schedule = schedule
-        guard let stream_ids = schedule.streams?.split(separator: ",") else {
+        guard let stream_ids = schedule.streams?.split(separator: ",") as NSArray? else {
           return
         }
         self.streams = Stream.find(

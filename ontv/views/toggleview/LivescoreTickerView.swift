@@ -90,6 +90,7 @@ extension ToggleViews {
     var body: some View {
       VStack {
         HStack(alignment: .center) {
+          Spacer()
           ScrollViewReader { proxy in
             ScrollingView(.horizontal) {
               ListReader(liverscoreProvider.list) { snapshot in
@@ -105,7 +106,7 @@ extension ToggleViews {
                       }
                       ticker.removeAll { $0 == livescore.id }
                       Defaults[.ticker] = ticker
-                    }
+                    }.hoverAction()
                 }
               }
             }
@@ -120,6 +121,7 @@ extension ToggleViews {
           .frame(height: 50, alignment: .center)
           .onAppear { liverscoreProvider.active = true }
           .onDisappear { liverscoreProvider.active = false }
+          Spacer()
         }
         Spacer()
       }

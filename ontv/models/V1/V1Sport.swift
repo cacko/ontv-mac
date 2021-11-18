@@ -17,7 +17,14 @@ extension V1 {
       "id"
     }
 
-    static var currentIds: [String] = [""]
+    static var clearQuery: Where<EntityType> {
+      guard let ids = currentIds as NSArray? else {
+        return Where<EntityType>(NSPredicate(value: false))
+      }
+      return Where<EntityType>(NSPredicate(format: "NONE id IN %@", ids))
+    }
+
+    static var currentIds: [String] = []
 
     @Field.Stored("id")
     var id: String = ""
@@ -65,8 +72,9 @@ extension V1 {
 
     class func doImport(
       json: [[String: Any]],
-      completion: @escaping (AsynchronousDataTransaction.Result<Void>) -> Void
+      onComplete: @escaping (AsynchronousDataTransaction.Result<Void>) -> Void
     ) async throws {
+      Self.currentIds = []
       dataStack.perform(
         asynchronous: { transaction -> Void in
           let _ = try! transaction.importUniqueObjects(
@@ -76,12 +84,9 @@ extension V1 {
         },
         completion: { r in
           Task.init {
-
-            try await Self.clearData()
-
-            completion(r)
+            try await Self.delete(clearQuery)
+            onComplete(r)
           }
-
         }
       )
     }

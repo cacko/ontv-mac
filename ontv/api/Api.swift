@@ -239,7 +239,16 @@ enum API {
 
     func updateLivescore() async throws {
       try await Livescore.fetch(url: Endpoint.Livescores) { _ in
-        NotificationCenter.default.post(name: .updatelivescore, object: nil)
+        Task.init {
+          do {
+            try await Livescore.delete(Livescore.clearQuery)
+          } catch let error {
+            logger.error("\(error.localizedDescription)")
+          }
+          NotificationCenter.default.post(name: .updatelivescore, object: nil)
+        }
+
+        return
       }
     }
 

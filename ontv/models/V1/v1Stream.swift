@@ -63,6 +63,13 @@ extension V1 {
 
     static var currentIds: [String] = [""]
 
+    static var clearQuery: Where<Stream> {
+      guard let ids = currentIds as NSArray? else {
+        return Where<Stream>(NSPredicate(value: false))
+      }
+      return Where<Stream>(NSPredicate(format: "NONE id IN %@", ids))
+    }
+
     func loadData(from source: [String: Any]) {
       num = Self.asInt64(data: source, key: "num")
       stream_id = Self.asInt64(data: source, key: "stream_id")
@@ -105,10 +112,11 @@ extension V1 {
 
     class func doImport(
       json: [[String: Any]],
-      completion: @escaping (AsynchronousDataTransaction.Result<Void>) -> Void
+      onComplete: @escaping (AsynchronousDataTransaction.Result<Void>) -> Void
     ) async throws {
       return dataStack.perform(
         asynchronous: { transaction -> Void in
+          self.currentIds = []
           let _ = try! transaction.importUniqueObjects(
             Into<Stream>(),
             sourceArray: json
@@ -116,9 +124,8 @@ extension V1 {
         },
         completion: { r in
           Task.init {
-
-            try await Self.clearData()
-            completion(r)
+            try await Self.delete(Self.clearQuery)
+            onComplete(r)
           }
         }
       )

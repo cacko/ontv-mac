@@ -19,11 +19,8 @@ protocol ImportableModel {
 
   static func doImport(
     json: [[String: Any]],
-    completion: @escaping (AsynchronousDataTransaction.Result<Void>) -> Void
+    onComplete: @escaping (AsynchronousDataTransaction.Result<Void>) -> Void
   ) async throws
-
-  static var clearQuery: Where<EntityType> { get set }
-  static var currentIds: [String] { get set }
 
   static func asInt64(data: [String: Any], key: String) -> Int64
   static func asString(data: [String: Any], key: String) -> String
@@ -32,7 +29,6 @@ protocol ImportableModel {
   static func asStringFromStringList(data: [String: Any], key: String) -> String
   static func asInt(data: [String: Any], key: String) -> Int
   static func asBool(data: [String: Any], key: String) -> Bool
-  static func clearData() async throws -> Void
 }
 
 extension ImportableModel {
@@ -43,21 +39,13 @@ extension ImportableModel {
     "id"
   }
 
-  static var clearQuery: Where<EntityType> {
-    get {
-      return Where<EntityType>(NSPredicate(format: "NONE id IN %@", currentIds))
-    }
-    set {}
-  }
-
   static func fetch(
     url: URL,
     completion: @escaping (AsynchronousDataTransaction.Result<Void>) -> Void
   ) async throws {
     do {
       let json = try await API.Adapter.fetchData(url: url)
-      self.currentIds = []
-      try await doImport(json: json, completion: completion)
+      try await doImport(json: json, onComplete: completion)
     }
     catch let error {
       DispatchQueue.main.async {
@@ -106,34 +94,5 @@ extension ImportableModel {
 
   static func asBool(data: [String: Any], key: String) -> Bool {
     (data[key] as? String ?? "0") != "0"
-  }
-
-  static func clearData() async throws {
-    CoreStoreDefaults.dataStack.perform(
-      asynchronous: { transaction -> Void in
-        try transaction.deleteAll(
-          From<EntityType>(),
-          clearQuery
-        )
-      },
-      completion: { _ in }
-    )
-
-  }
-
-  static func clear() {
-    do {
-      try CoreStoreDefaults.dataStack.perform(
-        synchronous: { transaction -> Void in
-          try transaction.deleteAll(
-            From<EntityType>(),
-            Where<EntityType>(NSPredicate(value: true))
-          )
-        }
-      )
-    }
-    catch {
-      logger.error("\(error.localizedDescription)")
-    }
   }
 }

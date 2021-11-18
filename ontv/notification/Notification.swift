@@ -170,32 +170,31 @@ extension AppDelegate {
           quickStreams.load()
           guard let stream = await recent.autoPlay
           else {
-            self.player.contentToggle = .search
-            NotificationCenter.default.post(
-              name: .contentToggle,
-              object: ContentToggle.search
-            )
+            self.player.controlsState = .always
             return
           }
           NotificationCenter.default.post(name: .updatebookmarks, object: nil)
           self.player.play(stream)
         }
-
       }
     }
 
     center.addObserver(forName: .contentToggle, object: nil, queue: mainQueue) { note in
-      guard player.stream != nil else {
-        return
-      }
-      guard player.stream.category_id > 0 else {
-        return
-      }
+//      guard player.stream != nil else {
+//        return
+//      }
+//      guard player.stream.category_id > 0 else {
+//        return
+//      }
       if let t = note.object as? ContentToggle {
         self.player.contentToggle = t
         switch t {
         case .category:
-          StreamStorage.category.search = String(player.stream.category_id)
+          guard let category_id = player.stream?.category_id as Int64? else {
+            break
+          }
+          StreamStorage.category.search = category_id.string
+          break
         case .search:
           NSCursor.unhide()
           break

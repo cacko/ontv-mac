@@ -77,4 +77,33 @@ extension AbstractEntity {
       return 0
     }
   }
+  
+  
+  static func delete(_ deleteClause: DeleteClause...) async throws {
+    CoreStoreDefaults.dataStack.perform(
+      asynchronous: { transaction -> Void in
+        try transaction.deleteAll(
+          From<EntityType>(),
+          deleteClause
+        )
+      },
+      completion: { _ in }
+    )
+  }
+  
+  static func deleteAll() {
+    do {
+      try CoreStoreDefaults.dataStack.perform(
+        synchronous: { transaction -> Void in
+          try transaction.deleteAll(
+            From<EntityType>(),
+            Where<EntityType>(NSPredicate(value: true))
+          )
+        }
+      )
+    }
+    catch {
+      logger.error("\(error.localizedDescription)")
+    }
+  }
 }

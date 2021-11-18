@@ -25,7 +25,7 @@ extension LivescoreStorage {
     func selectNext() throws {}
     func selectPrevious() throws {}
     func onNavigate(_ notitication: Notification) {}
-    
+
     @Published var count: Int = 0
 
     static func query() -> Where<Livescore> {
@@ -66,7 +66,7 @@ extension LivescoreStorage {
       super.init()
 
       self.observer = Defaults.observe(.ticker) { change in
-=        do {
+        do {
           try self.list.refetch(
             From<Livescore>()
               .where(self.query)

@@ -80,29 +80,29 @@ extension ToggleViews {
       }
 
       var body: some View {
-          HStack {
-            VStack(alignment: .leading, spacing: 0) {
+        HStack {
+          VStack(alignment: .leading, spacing: 0) {
+            Spacer()
+            Text(livescore?.$startTime ?? "")
+              .rotationEffect(.degrees(-90))
+              .lineLimit(1)
+              .fixedSize()
+              .font(Theme.Font.channel)
+            Spacer()
+          }.frame(width: 30, alignment: .center)
+          VStack(alignment: .center, spacing: 0) {
+            HStack(alignment: .center, spacing: 5) {
+              TeamView(team: homeTeam)
               Spacer()
-              Text(livescore?.$startTime ?? "")
-                .rotationEffect(.degrees(-90))
-                .lineLimit(1)
-                .fixedSize()
-                .font(Theme.Font.channel)
+              ScoreView(score: livescore?.$home_score ?? -1)
+            }
+            HStack(alignment: .center, spacing: 5) {
+              TeamView(team: awayTeam)
               Spacer()
-            }.frame(width: 30, alignment: .center)
-            VStack(alignment: .center, spacing: 0) {
-              HStack(alignment: .center, spacing: 5) {
-                TeamView(team: homeTeam)
-                Spacer()
-                ScoreView(score: livescore?.$home_score ?? -1)
-              }
-              HStack(alignment: .center, spacing: 5) {
-                TeamView(team: awayTeam)
-                Spacer()
-                ScoreView(score: livescore?.$away_score ?? -1)
-              }
+              ScoreView(score: livescore?.$away_score ?? -1)
             }
           }
+        }
       }
     }
 
@@ -136,18 +136,20 @@ extension ToggleViews {
         ScrollingView {
           ListReader(liverscoreProvider.list) { snapshot in
             ForEach(objectIn: snapshot) { livescore in
-//              if livescore.$inPlay! || livescore.$status == LivescoreStatus.fulltime {
-                LazyVStack(alignment: .leading, spacing: 0) {
-                  LivescoreItem(livescore)
+              //              if livescore.$inPlay! || livescore.$status == LivescoreStatus.fulltime {
+              LazyVStack(alignment: .leading, spacing: 0) {
+                LivescoreItem(livescore)
+              }
+              .padding()
+              .hoverAction()
+              .pressAction {
+                onTapItem(livescore)
+              }
+              .background(
+                livescore.$inTicker ?? false ? Theme.Color.State.ticker : Theme.Color.Background.header
+              )
 
-                }
-                .padding()
-                .hoverAction()
-                .pressAction {
-                  onTapItem(livescore)
-                }
-                .background(Theme.Color.Background.header)
-//              }
+              //              }
             }
           }
         }.onAppear {

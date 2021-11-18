@@ -58,6 +58,10 @@ class MainWindowController: NSWindowController, NSWindowDelegate {
     super.mouseMoved(with: event)
 
     NSCursor.unhide()
+    
+    guard self.player.controlsState != .always else {
+      return
+    }
 
     if self.player.contentToggle != .activityepg {
       player.controlsState = .visible

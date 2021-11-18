@@ -6,6 +6,7 @@
 //
 
 import CoreStore
+import Defaults
 import Foundation
 import SwiftDate
 
@@ -61,16 +62,6 @@ extension V1 {
     @Field.Stored("start_time")
     var start_time: Date = Date(timeIntervalSince1970: 0)
 
-    static var currentIds: [String] = [""]
-    
-    static var clearQuery: Where<EntityType> {
-      get {
-        let startOfDate = Calendar.current.startOfDay(for: Date())
-        return Where<EntityType>(NSPredicate(format: "start_time < %@", startOfDate as NSDate))
-      }
-      set {}
-    }
-
     static func uniqueID(
       from source: [String: Any],
       in transaction: BaseDataTransaction
@@ -95,17 +86,15 @@ extension V1 {
 
     func update(from source: [String: Any], in transaction: BaseDataTransaction) throws {
       self.loadData(from: source)
-      Self.currentIds.append(self.id)
     }
 
     func didInsert(from data: [String: Any], in transaction: BaseDataTransaction) throws {
       self.loadData(from: data)
-      Self.currentIds.append(self.id)
     }
 
     class func doImport(
       json: [[String: Any]],
-      completion: @escaping (AsynchronousDataTransaction.Result<Void>) -> Void
+      onComplete: @escaping (AsynchronousDataTransaction.Result<Void>) -> Void
     ) async throws {
       dataStack.perform(
         asynchronous: { transaction -> Void in
@@ -115,12 +104,15 @@ extension V1 {
           )
         },
         completion: { r in
-          Task.init {
-            try await Self.clearData()
-            completion(r)
-          }
+          logger.debug("import v1 completation")
+          onComplete(r)
         }
       )
+    }
+
+    static var clearQuery: Where<Livescore> {
+      let startOfDate = Calendar.current.startOfDay(for: Date())
+      return Where<EntityType>(NSPredicate(format: "start_time < %@", startOfDate as NSDate))
     }
 
     @Field.Virtual(
@@ -175,6 +167,17 @@ extension V1 {
       }
     )
     var inPlay: Bool
+
+    @Field.Virtual(
+      "inTicker",
+      customGetter: { (object, field) in
+        guard let ticker = Defaults[.ticker] as [String]? else {
+          return false
+        }
+        return ticker.contains(object.$id.value)
+      }
+    )
+    var inTicker: Bool
 
     class var orderBy: OrderBy<Livescore> {
       OrderBy(

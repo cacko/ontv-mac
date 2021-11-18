@@ -20,10 +20,7 @@ extension V1 {
     }
 
     static var clearQuery: Where<EntityType> {
-      get {
-        return Where<EntityType>(NSPredicate(format: "stop < %@", Date() as NSDate))
-      }
-      set {}
+      Where<EntityType>(NSPredicate(format: "stop < %@", Date() as NSDate))
     }
 
     @Field.Stored("id")
@@ -53,8 +50,6 @@ extension V1 {
       hasher.combine("\(self.title).\(self.start).\(self.stop)")
       return hasher.finalize()
     }
-
-    static var currentIds: [String] = [""]
 
     func loadData(from source: [String: Any]) {
       channel = Self.asString(data: source, key: "channel")
@@ -91,9 +86,9 @@ extension V1 {
 
     class func doImport(
       json: [[String: Any]],
-      completion: @escaping (AsynchronousDataTransaction.Result<Void>) -> Void
+      onComplete: @escaping (AsynchronousDataTransaction.Result<Void>) -> Void
     ) async throws {
-      clear()
+      deleteAll()
       return dataStack.perform(
         asynchronous: { transaction -> Void in
           self.activities = nil
@@ -103,7 +98,6 @@ extension V1 {
           )
         },
         completion: { _ in
-          self.currentIds = []
           dataStack.perform(
             asynchronous: { transaction -> Void in
               let now = Date()
@@ -112,33 +106,34 @@ extension V1 {
                 From<Activity>(),
                 Where<Activity>("last_visit > %s", stop)
               ).forEach({ activity in
-                if let obj = transaction.edit(activity) {
-                  if let stream_channel = obj.stream?.epg_channel_id {
-                    let predicates: [NSPredicate] = [
-                      NSPredicate(format: "stop > %@", now as NSDate),
-                      NSPredicate(format: "channel = %@", stream_channel),
-                    ]
-                    let query = Where<EPG>(
-                      NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
-                    )
-                    let order = OrderBy<EPG>(
-                      .ascending("channel"),
-                      .ascending("start"),
-                      .ascending("title")
-                    )
-                    let epgs = try transaction.fetchAll(
-                      From<EPG>().where(query).orderBy(order)
-                    )
-                    obj.epgs = Set(epgs)
-                  }
+                guard let obj = transaction.edit(activity) else {
+                  return
                 }
+                guard let stream_channel = obj.stream?.epg_channel_id else {
+                  return
+                }
+                let predicates: [NSPredicate] = [
+                  NSPredicate(format: "stop > %@", now as NSDate),
+                  NSPredicate(format: "channel = %@", stream_channel),
+                ]
+                let query = Where<EPG>(
+                  NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+                )
+                let order = OrderBy<EPG>(
+                  .ascending("channel"),
+                  .ascending("start"),
+                  .ascending("title")
+                )
+                let epgs = try transaction.fetchAll(
+                  From<EPG>().where(query).orderBy(order)
+                )
+                obj.epgs = Set(epgs)
               })
             },
             completion: { r in
               Task.init {
-
-                try await Self.clearData()
-                completion(r)
+                try await Self.delete(Self.clearQuery)
+                onComplete(r)
               }
             }
           )

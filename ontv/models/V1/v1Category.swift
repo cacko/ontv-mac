@@ -56,6 +56,13 @@ extension V1 {
 
     static var currentIds: [String] = [""]
 
+    static var clearQuery: Where<Category> {
+      guard let ids = currentIds as NSArray? else {
+        return Where<Category>(NSPredicate(value: false))
+      }
+      return Where<Category>(NSPredicate(format: "NONE id IN %@", ids))
+    }
+
     static func uniqueID(
       from source: [String: Any],
       in transaction: BaseDataTransaction
@@ -82,7 +89,7 @@ extension V1 {
 
     class func doImport(
       json: [[String: Any]],
-      completion: @escaping (AsynchronousDataTransaction.Result<Void>) -> Void
+      onComplete: @escaping (AsynchronousDataTransaction.Result<Void>) -> Void
     ) async throws {
 
       dataStack.perform(
@@ -94,9 +101,9 @@ extension V1 {
         },
         completion: { r in
           Task.init {
-
-            try await Self.clearData()
-            completion(r)
+            try await Self.delete(Self.clearQuery)
+            Self.streamsCache = [:]
+            onComplete(r)
           }
         }
       )

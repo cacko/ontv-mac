@@ -25,11 +25,8 @@ extension V1 {
     }
 
     static var clearQuery: Where<EntityType> {
-      get {
-        let startOfDate = Calendar.current.startOfDay(for: Date())
-        return Where<EntityType>(NSPredicate(format: "timestamp < %@", startOfDate as NSDate))
-      }
-      set {}
+      let startOfDate = Calendar.current.startOfDay(for: Date())
+      return Where<EntityType>(NSPredicate(format: "timestamp < %@", startOfDate as NSDate))
     }
 
     @Field.Stored("id")
@@ -96,7 +93,7 @@ extension V1 {
 
     class func doImport(
       json: [[String: Any]],
-      completion: @escaping (AsynchronousDataTransaction.Result<Void>) -> Void
+      onComplete: @escaping (AsynchronousDataTransaction.Result<Void>) -> Void
     ) async throws {
       dataStack.perform(
         asynchronous: { transaction -> Void in
@@ -107,9 +104,8 @@ extension V1 {
         },
         completion: { r in
           Task.init {
-
-            try await Self.clearData()
-            completion(r)
+            try await Self.delete(Self.clearQuery)
+            onComplete(r)
           }
         }
       )
@@ -117,7 +113,9 @@ extension V1 {
 
     var Streams: [LazyStream] {
       do {
-        let ids = streams.split(separator: ",")
+        guard let ids = streams.split(separator: ",") as NSArray? else {
+          return []
+        }
         let predicate = NSPredicate(format: "ANY stream_id in %@", ids)
         return try Self.dataStack.fetchAll(From<Stream>(), Where<Stream>(predicate), Stream.orderBy)
       }

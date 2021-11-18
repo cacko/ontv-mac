@@ -24,6 +24,7 @@ struct ControlItemView: View {
     guard note != nil else {
       return
     }
+    player.controlsState = .visible
     NotificationCenter.default.post(name: note, object: object)
   }
 
@@ -88,24 +89,26 @@ extension ToggleViews {
         note: Notification.Name.vendorToggle,
         hint: player.vendor.hint
       )
-      ControlItemView(
-        icon: .category,
-        note: Notification.Name.contentToggle,
-        obj: ContentToggle.category,
-        hint: "Category streams"
-      )
-      ControlItemView(
-        icon: .next,
-        note: Notification.Name.navigate,
-        obj: AppNavigation.next,
-        hint: "Next stream"
-      )
-      ControlItemView(
-        icon: .previous,
-        note: Notification.Name.navigate,
-        obj: AppNavigation.previous,
-        hint: "Previous stream"
-      )
+      if player.stream != nil {
+        ControlItemView(
+          icon: .category,
+          note: Notification.Name.contentToggle,
+          obj: ContentToggle.category,
+          hint: "Category streams"
+        )
+        ControlItemView(
+          icon: .next,
+          note: Notification.Name.navigate,
+          obj: AppNavigation.next,
+          hint: "Next stream"
+        )
+        ControlItemView(
+          icon: .previous,
+          note: Notification.Name.navigate,
+          obj: AppNavigation.previous,
+          hint: "Previous stream"
+        )
+      }
     }
   }
 
@@ -224,12 +227,24 @@ extension ToggleViews {
           }
           .padding()
           .onHover(perform: { hover in
+            guard player.controlsState != .always else {
+              return
+            }
             player.controlsState = hover ? .hovered : .visible
           })
-          .background(.black.opacity(0.6))
+          .background(player.controlsState == .always ? .clear : Theme.Color.Background.controls)
           .cornerRadius(10)
           Spacer()
-        }.padding()
+        }
+        .background(
+          player.controlsState == .always
+            ? Theme.Color.Background.header
+            : .linearGradient(colors: [.clear], startPoint: .top, endPoint: .bottom)
+        )
+        .padding()
+        if player.controlsState == .always {
+          Spacer()
+        }
       }
     }
   }
