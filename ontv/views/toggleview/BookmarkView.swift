@@ -62,15 +62,17 @@ extension ToggleViews {
                 }
                 .padding()
               }
-              .highPriorityGesture {
-                TapGesture(count: 2) { bookmark(qa)}
-              }
+              .highPriorityGesture(
+                TapGesture(count: 2)
+                  .onEnded({ _ in
+                    bookmark(qs)})
+              )
               .buttonStyle(CustomButtonStyle(Theme.Font.Bookmark.button))
               .cornerRadius(10)
             }
             Spacer()
           }
-          Text("Long press to save on any slot")
+          Text("Double click to save on any slot")
             .font(Theme.Font.programme)
             .shadow(color: .black, radius: 1, x: 1, y: 1)
             .textCase(.uppercase)
