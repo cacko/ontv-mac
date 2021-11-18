@@ -16,7 +16,7 @@ enum ProviderState {
 protocol StorageProvider: ObservableObject {
 
   associatedtype EntityType: CoreStoreObject
-  
+
   var list: ListPublisher<EntityType> { get set }
   var selected: ObjectPublisher<EntityType>! { get set }
   var selectedId: String { get set }
@@ -29,8 +29,8 @@ protocol StorageProvider: ObservableObject {
   func selectNext() throws
   func selectPrevious() throws
   func onChangeStream(stream: Stream)
-  func onNavigate(_ notitication: Notification) -> Void
-  func update() -> Void
+  func onNavigate(_ notitication: Notification)
+  func update()
 }
 
 protocol ObjectProvider {
@@ -42,8 +42,7 @@ protocol ObjectProvider {
 
 protocol AutoScrollProvider: ObservableObject {
   var scrollTo: String { get set }
-  var scrollTimer: DispatchSourceTimer! { get set }
-  var autoScroll: Bool { get set }
+  var count: Int { get set }
 }
 
 enum Provider {

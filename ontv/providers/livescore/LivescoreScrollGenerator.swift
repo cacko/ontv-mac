@@ -22,7 +22,7 @@ class LivescoreScrollGenerator: ScrollGeneratorProtocol {
 
   var items: [String] {
     get {
-      list.snapshot.makeIterator().filter { $0.inPlay ?? false }.map { $0.id! }
+      list.snapshot.makeIterator().map { $0.id! }
     }
     set {}
   }

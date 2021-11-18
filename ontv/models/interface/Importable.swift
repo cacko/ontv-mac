@@ -32,17 +32,17 @@ protocol ImportableModel {
   static func asStringFromStringList(data: [String: Any], key: String) -> String
   static func asInt(data: [String: Any], key: String) -> Int
   static func asBool(data: [String: Any], key: String) -> Bool
-  static func clearData()
+  static func clearData() async throws -> Void
 }
 
 extension ImportableModel {
-  
+
   typealias UniqueIDType = String
-  
+
   static var uniqueIDKeyPath: String {
     "id"
   }
-  
+
   static var clearQuery: Where<EntityType> {
     get {
       return Where<EntityType>(NSPredicate(format: "NONE id IN %@", currentIds))
@@ -58,7 +58,6 @@ extension ImportableModel {
       let json = try await API.Adapter.fetchData(url: url)
       self.currentIds = []
       try await doImport(json: json, completion: completion)
-      Self.clearData()
     }
     catch let error {
       DispatchQueue.main.async {
@@ -109,22 +108,19 @@ extension ImportableModel {
     (data[key] as? String ?? "0") != "0"
   }
 
-  static func clearData() {
-    do {
-      try CoreStoreDefaults.dataStack.perform(
-        synchronous: { transaction -> Void in
-          try transaction.deleteAll(
-            From<EntityType>(),
-            clearQuery
-          )
-        }
-      )
-    }
-    catch {
-      logger.error("\(error.localizedDescription)")
-    }
+  static func clearData() async throws {
+    CoreStoreDefaults.dataStack.perform(
+      asynchronous: { transaction -> Void in
+        try transaction.deleteAll(
+          From<EntityType>(),
+          clearQuery
+        )
+      },
+      completion: { _ in }
+    )
+
   }
-  
+
   static func clear() {
     do {
       try CoreStoreDefaults.dataStack.perform(

@@ -62,6 +62,14 @@ extension V1 {
     var start_time: Date = Date(timeIntervalSince1970: 0)
 
     static var currentIds: [String] = [""]
+    
+    static var clearQuery: Where<EntityType> {
+      get {
+        let startOfDate = Calendar.current.startOfDay(for: Date())
+        return Where<EntityType>(NSPredicate(format: "start_time < %@", startOfDate as NSDate))
+      }
+      set {}
+    }
 
     static func uniqueID(
       from source: [String: Any],
@@ -106,7 +114,12 @@ extension V1 {
             sourceArray: json
           )
         },
-        completion: { r in completion(r) }
+        completion: { r in
+          Task.init {
+            try await Self.clearData()
+            completion(r)
+          }
+        }
       )
     }
 

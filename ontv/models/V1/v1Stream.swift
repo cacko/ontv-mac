@@ -115,7 +115,11 @@ extension V1 {
           )
         },
         completion: { r in
-          completion(r)
+          Task.init {
+
+            try await Self.clearData()
+            completion(r)
+          }
         }
       )
     }

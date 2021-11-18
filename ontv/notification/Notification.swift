@@ -119,7 +119,7 @@ extension AppDelegate {
 
     center.addObserver(forName: .minimize, object: nil, queue: mainQueue) { _ in
       self.preferencesWindowController.close()
-      guard self.player.contentToggle == nil else {
+      guard [nil, .livescoresticker].contains(self.player.contentToggle) else {
         self.player.contentToggle = nil
         return
       }
@@ -216,9 +216,9 @@ extension AppDelegate {
 
     center.addObserver(forName: .bookmark, object: nil, queue: mainQueue) { _ in
       center.post(name: .contentToggle, object: ContentToggle.bookmarks)
-//      Task.init {
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: self.getFadeTak(.bookmarks))
-//      }
+      //      Task.init {
+      //        DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: self.getFadeTak(.bookmarks))
+      //      }
     }
 
     center.addObserver(forName: .startPlaying, object: nil, queue: mainQueue) { note in

@@ -1,5 +1,6 @@
 import AppKit
 import CoreStore
+import Defaults
 import Kingfisher
 import SwiftUI
 
@@ -53,29 +54,29 @@ extension ToggleViews {
 
       var body: some View {
         if let ls = self.livescore {
-          if ls.$inPlay {
-            HStack(alignment: .center, spacing: 3) {
-              BadgeView(icon: homeTeam.icon)
-              TitleTextView(text: homeTeam.id)
-              Text(ls.$home_score.score)
-                .font(Theme.Font.Ticker.score)
-                .foregroundColor(Theme.Color.Font.score)
-              Text(ls.$viewStatus)
-                .textCase(.uppercase)
-                .font(Theme.Font.Ticker.hint)
-              Text(ls.$away_score.score)
-                .font(Theme.Font.Ticker.score)
-                .foregroundColor(Theme.Color.Font.score)
-              TitleTextView(text: awayTeam.id)
-              BadgeView(icon: awayTeam.icon)
-            }.frame(height: 40, alignment: .center)
-              .padding()
-          }
+          //          if ls.$inPlay {
+          HStack(alignment: .center, spacing: 3) {
+            BadgeView(icon: homeTeam.icon)
+            TitleTextView(text: homeTeam.id)
+            Text(ls.$home_score.score)
+              .font(Theme.Font.Ticker.score)
+              .foregroundColor(Theme.Color.Font.score)
+            Text(ls.$viewStatus)
+              .textCase(.uppercase)
+              .font(Theme.Font.Ticker.hint)
+            Text(ls.$away_score.score)
+              .font(Theme.Font.Ticker.score)
+              .foregroundColor(Theme.Color.Font.score)
+            TitleTextView(text: awayTeam.id)
+            BadgeView(icon: awayTeam.icon)
+          }.frame(height: 40, alignment: .center)
+            .padding()
         }
+        //        }
       }
     }
 
-    @ObservedObject var liverscoreProvider = LivescoreStorage.events
+    @ObservedObject var liverscoreProvider = LivescoreStorage.ticker
     @ObservedObject var player = Player.instance
 
     private var buttonFont: Font = .system(size: 20, weight: .heavy, design: .monospaced)
@@ -93,7 +94,18 @@ extension ToggleViews {
             ScrollingView(.horizontal) {
               ListReader(liverscoreProvider.list) { snapshot in
                 ForEach(objectIn: snapshot) { livescore in
-                  LivescoreItem(livescore).id(livescore.id)
+                  LivescoreItem(livescore)
+                    .id(livescore.id)
+                    .onTapGesture(count: 2) {
+                      guard var ticker = Defaults[.ticker] as [String]? else {
+                        return
+                      }
+                      guard ticker.contains(livescore.id!) else {
+                        return
+                      }
+                      ticker.removeAll { $0 == livescore.id }
+                      Defaults[.ticker] = ticker
+                    }
                 }
               }
             }
@@ -106,12 +118,11 @@ extension ToggleViews {
           }
           .background(Theme.Color.Background.ticker)
           .frame(height: 50, alignment: .center)
-          .onAppear { liverscoreProvider.autoScroll = true }
-          .onDisappear { liverscoreProvider.autoScroll = false }
+          .onAppear { liverscoreProvider.active = true }
+          .onDisappear { liverscoreProvider.active = false }
         }
         Spacer()
-      }.onAppear { liverscoreProvider.active = true }
-        .onDisappear { liverscoreProvider.active = false }
+      }
     }
   }
 }

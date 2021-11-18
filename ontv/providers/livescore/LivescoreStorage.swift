@@ -10,6 +10,7 @@ import Foundation
 
 enum LivescoreStorage {
   static let events = Events()
+  static let ticker = Ticker()
 }
 
 extension StorageProvider where EntityType == Livescore {

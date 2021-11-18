@@ -13,13 +13,11 @@ import SwiftUI
 
 extension LivescoreStorage {
 
-  class Events: NSObject, ObservableObject, ObjectProvider, StorageProvider, AutoScrollProvider {
-    
-    typealias EntityType = Livescore
-    
-    var list: ListPublisher<EntityType>
+  class Events: NSObject, ObservableObject, ObjectProvider, StorageProvider {
 
-    var scrollGenerator: LivescoreScrollGenerator
+    typealias EntityType = Livescore
+
+    var list: ListPublisher<EntityType>
 
     var selected: ObjectPublisher<Livescore>!
 
@@ -48,22 +46,7 @@ extension LivescoreStorage {
       }
     }
 
-    @Published var autoScroll: Bool = false {
-      didSet {
-        guard self.autoScroll else {
-          objectWillChange.send()
-          return scrollTimer.cancel()
-        }
-        self.startScrollTimer()
-        objectWillChange.send()
-      }
-    }
-
-    @Published var scrollTo: String = ""
-
     var timer: DispatchSourceTimer!
-
-    var scrollTimer: DispatchSourceTimer!
 
     override init() {
       self.list = Self.dataStack.publishList(
@@ -71,7 +54,6 @@ extension LivescoreStorage {
           .where(self.query)
           .orderBy(self.order)
       )
-      self.scrollGenerator = LivescoreScrollGenerator(self.list)
       super.init()
     }
 
@@ -82,18 +64,6 @@ extension LivescoreStorage {
         self.update()
       }
       timer.activate()
-    }
-
-    func startScrollTimer() {
-      self.scrollGenerator.reset()
-      scrollTimer = DispatchSource.makeTimerSource()
-      scrollTimer.schedule(deadline: .now(), repeating: .seconds(3))
-      scrollTimer.setEventHandler {
-        DispatchQueue.main.async {
-          self.scrollTo = self.scrollGenerator.next()
-        }
-      }
-      scrollTimer.activate()
     }
 
     func update() {

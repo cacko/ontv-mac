@@ -46,7 +46,7 @@ extension V1 {
 
     @Field.Relationship("activity")
     var activity: Activity?
-    
+
     var hashId: Int {
       var hasher = Hasher()
       hasher.combine(self.channel)
@@ -134,7 +134,13 @@ extension V1 {
                 }
               })
             },
-            completion: { r in completion(r) }
+            completion: { r in
+              Task.init {
+
+                try await Self.clearData()
+                completion(r)
+              }
+            }
           )
         }
       )

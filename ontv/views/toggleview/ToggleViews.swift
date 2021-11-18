@@ -64,9 +64,6 @@ struct ToggleView: View {
             Spacer()
           }
         }
-        if player.contentToggle == .livescoresticker {
-          ToggleViews.LivescoreTickerView()
-        }
       }
     }
   }

@@ -131,6 +131,7 @@
 		16DE28CF2735AE3C00B63B8F /* ContentHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DE28CE2735AE3C00B63B8F /* ContentHeader.swift */; };
 		16E1B47C270931ED00D245C0 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E1B47B270931ED00D245C0 /* Date.swift */; };
 		16E9A0CC270279A200C4607E /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E9A0CB270279A200C4607E /* Api.swift */; };
+		16EAAF9E2746191800CC88C6 /* LivescoreTicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EAAF9D2746191800CC88C6 /* LivescoreTicker.swift */; };
 		16F5FBF52730239B00CF62CB /* FFMpegStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F5FBF42730239B00CF62CB /* FFMpegStateDelegate.swift */; };
 		16F5FBF9273023D700CF62CB /* FFMpegPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F5FBF8273023D700CF62CB /* FFMpegPlayerView.swift */; };
 		16F5FBFA27304A6A00CF62CB /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165C98102702314900466207 /* CoreMedia.framework */; platformFilter = maccatalyst; };
@@ -283,6 +284,7 @@
 		16DE28CE2735AE3C00B63B8F /* ContentHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentHeader.swift; sourceTree = "<group>"; };
 		16E1B47B270931ED00D245C0 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		16E9A0CB270279A200C4607E /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		16EAAF9D2746191800CC88C6 /* LivescoreTicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivescoreTicker.swift; sourceTree = "<group>"; };
 		16F5FBF42730239B00CF62CB /* FFMpegStateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFMpegStateDelegate.swift; sourceTree = "<group>"; };
 		16F5FBF8273023D700CF62CB /* FFMpegPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFMpegPlayerView.swift; sourceTree = "<group>"; };
 		16F5FBFB2730A0C100CF62CB /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
@@ -365,6 +367,7 @@
 				16301276273F3B4000F33027 /* LivescoreStorage.swift */,
 				16301279273F3B6D00F33027 /* LivescoreEvents.swift */,
 				16A5615E2745B9D900F2699C /* LivescoreScrollGenerator.swift */,
+				16EAAF9D2746191800CC88C6 /* LivescoreTicker.swift */,
 			);
 			path = livescore;
 			sourceTree = "<group>";
@@ -949,6 +952,7 @@
 				165C97FB270228B000466207 /* Menu.swift in Sources */,
 				163E62A827263AF1007938C8 /* ToggleViews.swift in Sources */,
 				162862E62732F64B0015298D /* Icon.swift in Sources */,
+				16EAAF9E2746191800CC88C6 /* LivescoreTicker.swift in Sources */,
 				16DE28CF2735AE3C00B63B8F /* ContentHeader.swift in Sources */,
 				1649B8FD2724706400C6A045 /* ApiUrl.swift in Sources */,
 				1687DEAD271A1B2800A118E4 /* Streams.swift in Sources */,
@@ -1131,7 +1135,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 308;
+				CURRENT_PROJECT_VERSION = 309;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1209,7 +1213,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 308;
+				CURRENT_PROJECT_VERSION = 309;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;

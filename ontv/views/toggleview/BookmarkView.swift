@@ -50,7 +50,6 @@ extension ToggleViews {
                   Text(String(qs.idx))
                     .foregroundColor(qs.isValid ? .gray : .primary)
                     .shadow(color: .black, radius: 1, x: 1, y: 1)
-
                   if let icon = qs.icon {
                     KFImage(icon)
                       .cacheOriginalImage()
@@ -63,7 +62,9 @@ extension ToggleViews {
                 }
                 .padding()
               }
-              .onLongPressGesture { bookmark(qs) }
+              .highPriorityGesture {
+                TapGesture(count: 2) { bookmark(qa)}
+              }
               .buttonStyle(CustomButtonStyle(Theme.Font.Bookmark.button))
               .cornerRadius(10)
             }

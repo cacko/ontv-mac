@@ -105,7 +105,13 @@ extension V1 {
             sourceArray: json
           )
         },
-        completion: { r in completion(r) }
+        completion: { r in
+          Task.init {
+
+            try await Self.clearData()
+            completion(r)
+          }
+        }
       )
     }
 
