@@ -157,6 +157,9 @@ extension ToggleViews {
         guard let stream_ids = schedule.streams?.split(separator: ",") as NSArray? else {
           return
         }
+        guard stream_ids.count > 0 else {
+          return
+        }
         self.streams = Stream.find(
           Where<Stream>(NSPredicate(format: "ANY stream_id IN %@", stream_ids))
         )

@@ -54,10 +54,13 @@ extension V1 {
       return self.asInt64(data: source, key: uniqueIDKeyPath)
     }
 
-    static var currentIds: [String] = [""]
+    static var currentIds: [String] = []
 
     static var clearQuery: Where<Category> {
       guard let ids = currentIds as NSArray? else {
+        return Where<Category>(NSPredicate(value: false))
+      }
+      guard ids.count > 0 else {
         return Where<Category>(NSPredicate(value: false))
       }
       return Where<Category>(NSPredicate(format: "NONE id IN %@", ids))
@@ -100,11 +103,8 @@ extension V1 {
           )
         },
         completion: { r in
-          Task.init {
-            try await Self.delete(Self.clearQuery)
-            Self.streamsCache = [:]
-            onComplete(r)
-          }
+          Self.streamsCache = [:]
+          onComplete(r)
         }
       )
     }

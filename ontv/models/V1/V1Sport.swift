@@ -17,11 +17,14 @@ extension V1 {
       "id"
     }
 
-    static var clearQuery: Where<EntityType> {
+    static var clearQuery: Where<Sport> {
       guard let ids = currentIds as NSArray? else {
-        return Where<EntityType>(NSPredicate(value: false))
+        return Where<Sport>(NSPredicate(value: false))
       }
-      return Where<EntityType>(NSPredicate(format: "NONE id IN %@", ids))
+      guard ids.count > 0 else {
+        return Where<Sport>(NSPredicate(value: false))
+      }
+      return Where<Sport>(NSPredicate(format: "NONE id IN %@", ids))
     }
 
     static var currentIds: [String] = []
@@ -83,10 +86,7 @@ extension V1 {
           )
         },
         completion: { r in
-          Task.init {
-            try await Self.delete(clearQuery)
-            onComplete(r)
-          }
+          onComplete(r)
         }
       )
     }

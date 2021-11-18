@@ -195,6 +195,14 @@ enum API {
         self.loading = .schedule
       }
       try await Schedule.fetch(url: Endpoint.Schedule) { _ in
+        Task.init {
+          do {
+            try await Schedule.delete(Schedule.clearQuery)
+          }
+          catch let error {
+            logger.error("\(error.localizedDescription)")
+          }
+        }
         Defaults[.scheduleUpdated] = Date()
         DispatchQueue.main.async {
           self.loading = .loaded
@@ -208,12 +216,28 @@ enum API {
         self.loading = .category
       }
       try await Category.fetch(url: Endpoint.Categories) { _ in
+        Task.init {
+          do {
+            try await Category.delete(Category.clearQuery)
+          }
+          catch let error {
+            logger.error("\(error.localizedDescription)")
+          }
+        }
         DispatchQueue.main.async {
           self.loading = .stream
         }
       }
 
       try await Stream.fetch(url: Endpoint.Streams) { _ in
+        Task.init {
+          do {
+            try await Stream.delete(Stream.clearQuery)
+          }
+          catch let error {
+            logger.error("\(error.localizedDescription)")
+          }
+        }
         Defaults[.streamsUpdated] = Date()
         NotificationCenter.default.post(name: .updatestreams, object: nil)
         DispatchQueue.main.async {
@@ -228,6 +252,14 @@ enum API {
         self.epgState = .loading
       }
       try await EPG.fetch(url: Endpoint.EPG) { _ in
+        Task.init {
+          do {
+            try await EPG.delete(EPG.clearQuery)
+          }
+          catch let error {
+            logger.error("\(error.localizedDescription)")
+          }
+        }
         Defaults[.epgUpdated] = Date()
         DispatchQueue.main.async {
           self.epgState = .loaded
@@ -254,6 +286,14 @@ enum API {
 
     func updateSports() async throws {
       try await Sport.fetch(url: Endpoint.Sports) { _ in
+        Task.init {
+          do {
+            try await Sport.delete(Sport.clearQuery)
+          }
+          catch let error {
+            logger.error("\(error.localizedDescription)")
+          }
+        }
         NotificationCenter.default.post(name: .updatesports, object: nil)
       }
     }

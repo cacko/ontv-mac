@@ -25,24 +25,18 @@ class ScheduleMenu: BaseMenu, NSMenuDelegate, CollectionMenu {
         notification: .schedule
       ),
       ToggleItem(
-        title: "Toggle :ivescore",
+        title: "Toggle Livescore",
         action: #selector(onToggle(sender:)),
         keyEquivalent: "r",
         notification: .livescores
       ),
-      ToggleInverseItem(
-        title: "Toggle Livescore ticker",
-        action: #selector(onToggle(sender:)),
-        keyEquivalent: "t",
-        notification: .livescoresticker
-      ),
+      NSMenuItem.separator(),
       FetchItem(
         title: "Update schedule",
         action: #selector(onFetch(sender:)),
         keyEquivalent: "",
         notification: .schedule
       ),
-
     ]
   }
 

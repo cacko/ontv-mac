@@ -131,10 +131,7 @@ extension V1 {
               })
             },
             completion: { r in
-              Task.init {
-                try await Self.delete(Self.clearQuery)
-                onComplete(r)
-              }
+              onComplete(r)
             }
           )
         }

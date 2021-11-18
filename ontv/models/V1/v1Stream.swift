@@ -67,6 +67,9 @@ extension V1 {
       guard let ids = currentIds as NSArray? else {
         return Where<Stream>(NSPredicate(value: false))
       }
+      guard ids.count > 0 else {
+        return Where<Stream>(NSPredicate(value: false))
+      }
       return Where<Stream>(NSPredicate(format: "NONE id IN %@", ids))
     }
 
@@ -123,10 +126,7 @@ extension V1 {
           )
         },
         completion: { r in
-          Task.init {
-            try await Self.delete(Self.clearQuery)
-            onComplete(r)
-          }
+          onComplete(r)
         }
       )
     }

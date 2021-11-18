@@ -103,10 +103,7 @@ extension V1 {
           )
         },
         completion: { r in
-          Task.init {
-            try await Self.delete(Self.clearQuery)
-            onComplete(r)
-          }
+          onComplete(r)
         }
       )
     }
@@ -114,6 +111,9 @@ extension V1 {
     var Streams: [LazyStream] {
       do {
         guard let ids = streams.split(separator: ",") as NSArray? else {
+          return []
+        }
+        guard ids.count > 0 else {
           return []
         }
         let predicate = NSPredicate(format: "ANY stream_id in %@", ids)
