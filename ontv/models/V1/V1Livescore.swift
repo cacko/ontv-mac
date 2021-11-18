@@ -104,7 +104,6 @@ extension V1 {
           )
         },
         completion: { r in
-          logger.debug("import v1 completation")
           onComplete(r)
         }
       )

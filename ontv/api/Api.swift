@@ -242,12 +242,12 @@ enum API {
         Task.init {
           do {
             try await Livescore.delete(Livescore.clearQuery)
-          } catch let error {
+          }
+          catch let error {
             logger.error("\(error.localizedDescription)")
           }
           NotificationCenter.default.post(name: .updatelivescore, object: nil)
         }
-
         return
       }
     }

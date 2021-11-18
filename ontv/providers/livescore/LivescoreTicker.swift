@@ -32,6 +32,9 @@ extension LivescoreStorage {
       guard let ticker = Defaults[.ticker] as [String]? else {
         return Where<Livescore>(NSPredicate(value: false))
       }
+      guard ticker.count > 0 else {
+        return Where<Livescore>(NSPredicate(value: false))
+      }
       return Where<Livescore>(NSPredicate(format: "ANY id IN %@", ticker))
     }
 
