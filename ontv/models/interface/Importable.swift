@@ -74,6 +74,13 @@ extension ImportableModel {
     return (data[key] as? NSString ?? "").longLongValue
   }
 
+  static func asDouble(data: [String: Any], key: String) -> Double {
+    if let n = data[key] as? Double {
+      return n
+    }
+    return (data[key] as? NSString ?? "").doubleValue
+  }
+
   static func asString(data: [String: Any], key: String) -> String {
     data[key] as? String ?? ""
   }

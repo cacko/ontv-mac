@@ -62,6 +62,9 @@ extension V1 {
     @Field.Stored("start_time")
     var start_time: Date = Date(timeIntervalSince1970: 0)
 
+    @Field.Stored("sort")
+    var sort: Double = 0.0
+
     static func uniqueID(
       from source: [String: Any],
       in transaction: BaseDataTransaction
@@ -82,6 +85,7 @@ extension V1 {
       away_score = Self.asInt(data: source, key: "intAwayScore")
       status = Self.asString(data: source, key: "strStatus")
       start_time = Self.asDate(data: source, key: "startTime")
+      sort = Self.asDouble(data: source, key: "sort")
     }
 
     func update(from source: [String: Any], in transaction: BaseDataTransaction) throws {
@@ -180,7 +184,7 @@ extension V1 {
 
     class var orderBy: OrderBy<Livescore> {
       OrderBy(
-        .descending("start_time")
+        .ascending("sort")
       )
     }
   }
