@@ -139,12 +139,13 @@ extension ToggleViews {
               LivescoreItem(livescore)
                 .padding()
                 .hoverAction()
-              //              .pressAction {
-              //                onTapItem(livescore)
-              //              }
-              //              .background(
-              //                livescore.$inTicker ?? false ? Theme.Color.State.ticker : Theme.Color.Background.header
-              //              )
+                .pressAction {
+                  onTapItem(livescore)
+                }
+                .background(
+                  livescore.$inTicker ?? false
+                    ? Theme.Color.State.ticker : Theme.Color.Background.header
+                )
             }
           }
         }.onAppear {
