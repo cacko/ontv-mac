@@ -233,10 +233,10 @@ extension ToggleViews {
         }
       }.onAppear {
         scheduleProvider.active = true
-        LivescoreStorage.toggle(.schedule)
+        LivescoreStorage.enable(.schedule)
       }.onDisappear(perform: {
         scheduleProvider.active = false
-        LivescoreStorage.toggle(.schedule)
+        LivescoreStorage.disable(.schedule)
       })
     }
   }

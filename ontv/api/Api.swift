@@ -195,16 +195,16 @@ enum API {
         self.loading = .schedule
       }
       try await Schedule.fetch(url: Endpoint.Schedule) { _ in
-        Task.init {
-          do {
-            try await Schedule.delete(Schedule.clearQuery)
-          }
-          catch let error {
-            logger.error("\(error.localizedDescription)")
-          }
-        }
-        Defaults[.scheduleUpdated] = Date()
         DispatchQueue.main.async {
+          Task.detached {
+            do {
+              try await Schedule.delete(Schedule.clearQuery)
+            }
+            catch let error {
+              logger.error("\(error.localizedDescription)")
+            }
+          }
+          Defaults[.scheduleUpdated] = Date()
           self.loading = .loaded
           NotificationCenter.default.post(name: .updateschedule, object: nil)
         }
@@ -216,31 +216,31 @@ enum API {
         self.loading = .category
       }
       try await Category.fetch(url: Endpoint.Categories) { _ in
-        Task.init {
-          do {
-            try await Category.delete(Category.clearQuery)
-          }
-          catch let error {
-            logger.error("\(error.localizedDescription)")
-          }
-        }
         DispatchQueue.main.async {
+          Task.detached {
+            do {
+              try await Category.delete(Category.clearQuery)
+            }
+            catch let error {
+              logger.error("\(error.localizedDescription)")
+            }
+          }
           self.loading = .stream
         }
       }
 
       try await Stream.fetch(url: Endpoint.Streams) { _ in
-        Task.init {
-          do {
-            try await Stream.delete(Stream.clearQuery)
-          }
-          catch let error {
-            logger.error("\(error.localizedDescription)")
-          }
-        }
-        Defaults[.streamsUpdated] = Date()
-        NotificationCenter.default.post(name: .updatestreams, object: nil)
         DispatchQueue.main.async {
+          Task.detached {
+            do {
+              try await Stream.delete(Stream.clearQuery)
+            }
+            catch let error {
+              logger.error("\(error.localizedDescription)")
+            }
+          }
+          Defaults[.streamsUpdated] = Date()
+          NotificationCenter.default.post(name: .updatestreams, object: nil)
           self.loading = .loaded
         }
       }
@@ -252,32 +252,35 @@ enum API {
         self.epgState = .loading
       }
       try await EPG.fetch(url: Endpoint.EPG) { _ in
-        Task.init {
-          do {
-            try await EPG.delete(EPG.clearQuery)
-          }
-          catch let error {
-            logger.error("\(error.localizedDescription)")
-          }
-        }
-        Defaults[.epgUpdated] = Date()
         DispatchQueue.main.async {
-          self.epgState = .loaded
-          self.loading = .loaded
+          Task.detached {
+            do {
+              try await EPG.delete(EPG.clearQuery)
+            }
+            catch let error {
+              logger.error("\(error.localizedDescription)")
+            }
+            Defaults[.epgUpdated] = Date()
+            self.epgState = .loaded
+            self.loading = .loaded
+            NotificationCenter.default.post(name: .updateepg, object: nil)
+          }
         }
-        NotificationCenter.default.post(name: .updateepg, object: nil)
       }
     }
 
     func updateLivescore() async throws {
       try await Livescore.fetch(url: Endpoint.Livescores) { _ in
-        Task.init {
-          do {
-            try await Livescore.delete(Livescore.clearQuery)
-            NotificationCenter.default.post(name: .updatelivescore, object: nil)
-          }
-          catch let error {
-            logger.error("\(error.localizedDescription)")
+
+        DispatchQueue.main.async {
+          Task.detached {
+            do {
+              try await Livescore.delete(Livescore.clearQuery)
+              NotificationCenter.default.post(name: .updatelivescore, object: nil)
+            }
+            catch let error {
+              logger.error("\(error.localizedDescription)")
+            }
           }
         }
         return
@@ -286,15 +289,17 @@ enum API {
 
     func updateSports() async throws {
       try await Sport.fetch(url: Endpoint.Sports) { _ in
-        Task.init {
-          do {
-            try await Sport.delete(Sport.clearQuery)
+        DispatchQueue.main.async {
+          Task.detached {
+            do {
+              try await Sport.delete(Sport.clearQuery)
+            }
+            catch let error {
+              logger.error("\(error.localizedDescription)")
+            }
           }
-          catch let error {
-            logger.error("\(error.localizedDescription)")
-          }
+          NotificationCenter.default.post(name: .updatesports, object: nil)
         }
-        NotificationCenter.default.post(name: .updatesports, object: nil)
       }
     }
 

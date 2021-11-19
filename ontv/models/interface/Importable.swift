@@ -30,8 +30,6 @@ protocol ImportableModel {
   static func asInt(data: [String: Any], key: String) -> Int
   static func asBool(data: [String: Any], key: String) -> Bool
 
-  static var emptyWhere: Where<EntityType> { get }
-  static var allWhere: Where<EntityType> { get }
 
 }
 
@@ -41,14 +39,6 @@ extension ImportableModel {
 
   static var uniqueIDKeyPath: String {
     "id"
-  }
-
-  static var emptyWhere: Where<EntityType> {
-    Where<EntityType>(NSPredicate(value: false))
-  }
-
-  static var allWhere: Where<EntityType> {
-    Where<EntityType>(NSPredicate(value: true))
   }
 
   static func fetch(

@@ -174,7 +174,10 @@ extension V1 {
     @Field.Virtual(
       "inTicker",
       customGetter: { (object, field) in
-        guard let ticker = Defaults[.ticker] as [String]? else {
+        guard let ticker = Defaults[.ticker] as Set<String>? else {
+          return false
+        }
+        guard ticker.count > 0 else {
           return false
         }
         return ticker.contains(object.$id.value)

@@ -112,22 +112,21 @@ extension ToggleViews {
     private var buttonFont: Font = .system(size: 20, weight: .heavy, design: .monospaced)
 
     func onTapItem(_ item: ObjectPublisher<Livescore>) {
-      guard var ticker = Defaults[.ticker] as [String]? else {
+      guard var ticker = Defaults[.ticker] as Set<String>? else {
         return
       }
-      guard let itemId = item.id as String? else {
+      guard let itemId = item.$id as String? else {
         return
       }
-
       if ticker.contains(itemId) {
-        ticker.removeAll { $0 == itemId }
+        ticker.remove(itemId)
       }
       else {
-        ticker.insert(itemId, at: 0)
+        ticker.insert(itemId)
       }
 
-      Defaults[.ticker] = ticker
-      NotificationCenter.default.post(name: .tickerupdated, object: nil)
+      Defaults[.ticker] = Set(ticker)
+      //      NotificationCenter.default.post(name: .tickerupdated, object: nil)
     }
 
     var body: some View {
@@ -149,9 +148,9 @@ extension ToggleViews {
             }
           }
         }.onAppear {
-          LivescoreStorage.toggle(.livescores)
+          LivescoreStorage.enable(.livescores)
         }.onDisappear(perform: {
-          LivescoreStorage.toggle(.livescores)
+          LivescoreStorage.disable(.livescores)
         })
       }
     }

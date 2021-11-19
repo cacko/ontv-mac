@@ -34,16 +34,6 @@ enum EPGStorage {
 
 }
 
-extension StorageProvider where EntityType == EPG {
-  static var emptyWhere: Where<EntityType> {
-    Where<EntityType>(NSPredicate(value: false))
-  }
-
-  static var allWhere: Where<EntityType> {
-    Where<EntityType>(NSPredicate(value: true))
-  }
-}
-
 class EPGStorageAbstract: NSObject, ObservableObject, StorageProvider {
 
   @Published var active: Bool = false
@@ -178,7 +168,7 @@ class EPGStorageAbstract: NSObject, ObservableObject, StorageProvider {
       return
     }
     self.selected = res
-    self.selectedId = res.id!
+    self.selectedId = res.$id!
   }
 
   func getResultOffset(off: AppNavigation) throws -> ObjectPublisher<EPG> {

@@ -48,8 +48,8 @@ extension ToggleViews {
         _ objectPublisher: ObjectPublisher<Livescore>
       ) {
         self._livescore = .init(objectPublisher)
-        self.homeTeam = Schedule.Team(id: objectPublisher.home_team ?? "")
-        self.awayTeam = Schedule.Team(id: objectPublisher.away_team ?? "")
+        self.homeTeam = Schedule.Team(id: objectPublisher.$home_team ?? "")
+        self.awayTeam = Schedule.Team(id: objectPublisher.$away_team ?? "")
       }
 
       var body: some View {
@@ -76,7 +76,7 @@ extension ToggleViews {
       }
     }
 
-    @ObservedObject var liverscoreProvider = LivescoreStorage.ticker
+    @ObservedObject var liverscoreProvider = LivescoreStorage.events
     @ObservedObject var player = Player.instance
 
     private var buttonFont: Font = .system(size: 20, weight: .heavy, design: .monospaced)
@@ -95,21 +95,22 @@ extension ToggleViews {
             ScrollingView(.horizontal) {
               ListReader(liverscoreProvider.list) { snapshot in
                 ForEach(objectIn: snapshot) { livescore in
-                  LivescoreItem(livescore)
-                    .id(livescore.id)
-                    .onTapGesture(count: 2) {
-                      guard var ticker = Defaults[.ticker] as [String]? else {
-                        return
+                  if livescore.$inTicker! {
+                    LivescoreItem(livescore)
+                      .id(livescore.$id)
+                      .onTapGesture(count: 2) {
+                        guard var ticker = Defaults[.ticker] as Set<String>? else {
+                          return
+                        }
+                        guard ticker.contains(livescore.$id!) else {
+                          return
+                        }
+                        ticker.remove(livescore.$id!)
+                        Defaults[.ticker] = Set(ticker)
+                        //                      NotificationCenter.default.post(name: .tickerupdated, object: nil)
                       }
-                      guard ticker.contains(livescore.id!) else {
-                        return
-                      }
-                      ticker.removeAll { $0 == livescore.id }
-                      Defaults[.ticker] = ticker
-                      NotificationCenter.default.post(name: .tickerupdated, object: nil)
-                    }
-                    .background(Theme.Color.Background.ticker)
-                    .hoverAction()
+                      .hoverAction()
+                  }
                 }
               }
             }
@@ -121,10 +122,15 @@ extension ToggleViews {
             )
           }
           .frame(height: 50, alignment: .center)
-          .onAppear { LivescoreStorage.toggle(.livescoresticker) }
-          .onDisappear { LivescoreStorage.toggle(.livescoresticker) }
+          .onAppear {
+            LivescoreStorage.enable(.livescoresticker)
+          }
+          .onDisappear {
+            LivescoreStorage.disable(.livescoresticker)
+          }
           Spacer()
-        }
+        }.background(Theme.Color.Background.ticker)
+
         Spacer()
       }
     }

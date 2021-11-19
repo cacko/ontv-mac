@@ -58,3 +58,10 @@ extension Int64 {
     return hexBytes.joined()
   }
 }
+
+extension Double {
+  
+  var string: String {
+    String(format: "%f", self.toNative())
+  }
+}

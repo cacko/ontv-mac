@@ -15,15 +15,6 @@ enum ScheduleStorage {
 
 extension StorageProvider where EntityType == Schedule {
   
-  static var emptyWhere: Where<EntityType> {
-    Where<EntityType>(NSPredicate(value: false))
-  }
-  
-  static var allWhere: Where<EntityType> {
-    Where<EntityType>(NSPredicate(value: true))
-  }
-
-
   static var dataStack: DataStack {
     CoreStoreDefaults.dataStack
   }

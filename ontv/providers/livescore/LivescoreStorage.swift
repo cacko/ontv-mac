@@ -10,37 +10,42 @@ import Foundation
 
 enum LivescoreStorage {
 
-  private static var active: [ContentToggle] = []
-  private static var timer: DispatchSourceTimer!
+  static var active: [ContentToggle] = []
+  static var timer: DispatchSourceTimer!
 
   static let events = Events()
-  static let ticker = Ticker()
 
-  static func toggle(_ content: ContentToggle) {
-    if active.contains(content) {
-      active.removeAll(where: { $0 == content })
-      switch content {
-      case .livescores:
-        events.active = false
-        break
-      default:
-        break
-      }
+  static func enable(_ content: ContentToggle) {
+    guard !active.contains(content) else {
+      return
     }
-    else {
-      active.append(content)
-      switch content {
-      case .livescores:
-        events.active = true
-        break
-      default:
-        break
-      }
+    active.append(content)
+    switch content {
+//    case .livescores:
+//      events.active = true
+    case .livescoresticker:
+      events.active = true
+    default:
+      break
     }
     if active.count > 0 {
       return startTimer()
     }
+  }
 
+  static func disable(_ content: ContentToggle) {
+    guard active.contains(content) else {
+      return
+    }
+    active.removeAll(where: { $0 == content })
+    switch content {
+//    case .livescores:
+//      events.active = false
+    case .livescoresticker:
+      events.active = false
+    default:
+      break
+    }
     guard timer == nil || timer.isCancelled else {
       return timer.cancel()
     }
@@ -63,14 +68,6 @@ enum LivescoreStorage {
 }
 
 extension StorageProvider where EntityType == Livescore {
-
-  static var emptyWhere: Where<EntityType> {
-    Where<EntityType>(NSPredicate(value: false))
-  }
-
-  static var allWhere: Where<EntityType> {
-    Where<EntityType>(NSPredicate(value: true))
-  }
 
   static var dataStack: DataStack {
     CoreStoreDefaults.dataStack

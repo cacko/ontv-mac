@@ -56,6 +56,18 @@ extension ScheduleStorage {
       self.observe()
     }
 
+    func observe() {
+      Self.center.addObserver(forName: .updateschedule, object: nil, queue: Self.mainQueue) { _ in
+        try? self.list.refetch(
+          From<Schedule>()
+            .sectionBy("timestamp")
+            .where(self.query)
+            .orderBy(self.order),
+          sourceIdentifier: nil
+        )
+      }
+    }
+
     func update() {
       self.fetch()
     }

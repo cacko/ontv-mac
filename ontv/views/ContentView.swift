@@ -48,8 +48,9 @@ enum ContentToggleIcon: String {
 struct ContentView: View {
   @ObservedObject var player = Player.instance
   @ObservedObject var api = API.Adapter
-  @ObservedObject var ticker = LivescoreStorage.ticker
+  @ObservedObject var ticker = LivescoreStorage.events
   @State private var hasBorder = false
+
 
   let showSearch = Binding<Bool>(
     get: {
@@ -87,7 +88,7 @@ struct ContentView: View {
         if api.loading != .loaded {
           ApiLoadingView()
         }
-        if ticker.count > 0 {
+        if ticker.scrollCount > 0 {
           ToggleViews.LivescoreTickerView()
         }
         ToggleView()

@@ -31,9 +31,6 @@ protocol StorageProvider: ObservableObject {
   func onChangeStream(stream: Stream)
   func onNavigate(_ notitication: Notification)
   func update()
-
-  static var emptyWhere: Where<EntityType> { get }
-  static var allWhere: Where<EntityType> { get }
 }
 
 protocol ObjectProvider {
@@ -44,7 +41,7 @@ protocol ObjectProvider {
 
 protocol AutoScrollProvider: ObservableObject {
   var scrollTo: String { get set }
-  var count: Int { get set }
+  var scrollCount: Int { get set }
 }
 
 enum Provider {

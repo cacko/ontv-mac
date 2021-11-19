@@ -6,26 +6,25 @@
 //
 
 import CoreStore
+import Defaults
 import Foundation
 
 class LivescoreScrollGenerator: ScrollGeneratorProtocol {
+
+  var items: [String]
 
   required init(
     _ list: ListPublisher<Livescore>
   ) {
     self.list = list
+    self.items = list.snapshot.makeIterator()
+      .filter { $0.$inTicker ?? false }
+      .map { $0.$id! }
   }
 
   typealias EntityType = Livescore
 
   var list: ListPublisher<Livescore>
-
-  var items: [String] {
-    get {
-      list.snapshot.makeIterator().map { $0.id! }
-    }
-    set {}
-  }
 
   var itemsSource: ArraySlice<String> = ArraySlice([])
 
