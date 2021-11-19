@@ -89,12 +89,14 @@ extension ToggleViews {
     }
 
     func toggle(_ object: ObjectPublisher<Livescore>) {
-      Task.detached {
-        do {
-          try await object.object?.toggleTicker()
-        }
-        catch let error {
-          logger.error("\(error.localizedDescription)")
+      DispatchQueue.main.async {
+        Task.detached {
+          do {
+            try await object.object?.toggleTicker()
+          }
+          catch let error {
+            logger.error("\(error.localizedDescription)")
+          }
         }
       }
     }

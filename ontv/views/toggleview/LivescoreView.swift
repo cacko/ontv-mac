@@ -115,12 +115,14 @@ extension ToggleViews {
       guard let ls = item.object as Livescore? else {
         return
       }
-      Task.detached {
-        do {
-          try await ls.toggleTicker()
-        }
-        catch let error {
-          logger.error("\(error.localizedDescription)")
+      DispatchQueue.main.async {
+        Task.detached {
+          do {
+            try await ls.toggleTicker()
+          }
+          catch let error {
+            logger.error("\(error.localizedDescription)")
+          }
         }
       }
     }
