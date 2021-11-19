@@ -112,21 +112,17 @@ extension ToggleViews {
     private var buttonFont: Font = .system(size: 20, weight: .heavy, design: .monospaced)
 
     func onTapItem(_ item: ObjectPublisher<Livescore>) {
-      guard var ticker = Defaults[.ticker] as Set<String>? else {
+      guard let ls = item.object as Livescore? else {
         return
       }
-      guard let itemId = item.$id as String? else {
-        return
+      Task.detached {
+        do {
+          try await ls.toggleTicker()
+        }
+        catch let error {
+          logger.error("\(error.localizedDescription)")
+        }
       }
-      if ticker.contains(itemId) {
-        ticker.remove(itemId)
-      }
-      else {
-        ticker.insert(itemId)
-      }
-
-      Defaults[.ticker] = Set(ticker)
-      //      NotificationCenter.default.post(name: .tickerupdated, object: nil)
     }
 
     var body: some View {
@@ -142,7 +138,7 @@ extension ToggleViews {
                   onTapItem(livescore)
                 }
                 .background(
-                  livescore.$inTicker ?? false
+                  (livescore.$in_ticker ?? 0) > 0
                     ? Theme.Color.State.ticker : Theme.Color.Background.header
                 )
             }

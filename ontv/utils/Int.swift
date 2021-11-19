@@ -15,6 +15,10 @@ extension Int {
     Int64(self.toNative())
   }
   
+  var bool: Bool {
+    self.toNative() != 0
+  }
+  
   var string: String {
     String(format: "%d", self.toNative())
   }

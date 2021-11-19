@@ -6,7 +6,6 @@
 //
 
 import CoreStore
-import Defaults
 import Foundation
 import SwiftDate
 
@@ -64,6 +63,9 @@ extension V1 {
 
     @Field.Stored("sort")
     var sort: Double = 0.0
+
+    @Field.Stored("in_ticker")
+    var in_ticker: Int = 0
 
     static func uniqueID(
       from source: [String: Any],
@@ -171,22 +173,9 @@ extension V1 {
     )
     var inPlay: Bool
 
-    @Field.Virtual(
-      "inTicker",
-      customGetter: { (object, field) in
-        guard let ticker = Defaults[.ticker] as Set<String>? else {
-          return false
-        }
-        guard ticker.count > 0 else {
-          return false
-        }
-        return ticker.contains(object.$id.value)
-      }
-    )
-    var inTicker: Bool
-
     class var orderBy: OrderBy<Livescore> {
-      OrderBy(
+      OrderBy<Livescore>(
+        .descending("in_ticker"),
         .ascending("sort")
       )
     }

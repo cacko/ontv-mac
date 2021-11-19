@@ -1,6 +1,5 @@
 import AppKit
 import CoreStore
-import Defaults
 import Kingfisher
 import SwiftUI
 
@@ -54,24 +53,26 @@ extension ToggleViews {
 
       var body: some View {
         if let ls = self.livescore {
-          HStack(alignment: .center, spacing: 3) {
-            BadgeView(icon: homeTeam.icon)
-            TitleTextView(text: homeTeam.id)
-            Text(ls.$home_score.score)
-              .font(Theme.Font.Ticker.score)
-              .shadow(color: .black, radius: 1, x: 1, y: 1)
-              .foregroundColor(Theme.Color.Font.score)
-            Text(ls.$viewStatus)
-              .textCase(.uppercase)
-              .font(Theme.Font.Ticker.hint)
-            Text(ls.$away_score.score)
-              .font(Theme.Font.Ticker.score)
-              .shadow(color: .black, radius: 1, x: 1, y: 1)
-              .foregroundColor(Theme.Color.Font.score)
-            TitleTextView(text: awayTeam.id)
-            BadgeView(icon: awayTeam.icon)
-          }.frame(height: 40, alignment: .center)
-            .padding()
+          if ls.$in_ticker.bool {
+            HStack(alignment: .center, spacing: 3) {
+              BadgeView(icon: homeTeam.icon)
+              TitleTextView(text: homeTeam.id)
+              Text(ls.$home_score.score)
+                .font(Theme.Font.Ticker.score)
+                .shadow(color: .black, radius: 1, x: 1, y: 1)
+                .foregroundColor(Theme.Color.Font.score)
+              Text(ls.$viewStatus)
+                .textCase(.uppercase)
+                .font(Theme.Font.Ticker.hint)
+              Text(ls.$away_score.score)
+                .font(Theme.Font.Ticker.score)
+                .shadow(color: .black, radius: 1, x: 1, y: 1)
+                .foregroundColor(Theme.Color.Font.score)
+              TitleTextView(text: awayTeam.id)
+              BadgeView(icon: awayTeam.icon)
+            }.frame(height: 40, alignment: .center)
+              .padding()
+          }
         }
       }
     }
@@ -87,6 +88,17 @@ extension ToggleViews {
       }
     }
 
+    func toggle(_ object: ObjectPublisher<Livescore>) {
+      Task.detached {
+        do {
+          try await object.object?.toggleTicker()
+        }
+        catch let error {
+          logger.error("\(error.localizedDescription)")
+        }
+      }
+    }
+
     var body: some View {
       VStack {
         HStack(alignment: .center) {
@@ -95,22 +107,10 @@ extension ToggleViews {
             ScrollingView(.horizontal) {
               ListReader(liverscoreProvider.list) { snapshot in
                 ForEach(objectIn: snapshot) { livescore in
-                  if livescore.$inTicker! {
-                    LivescoreItem(livescore)
-                      .id(livescore.$id)
-                      .onTapGesture(count: 2) {
-                        guard var ticker = Defaults[.ticker] as Set<String>? else {
-                          return
-                        }
-                        guard ticker.contains(livescore.$id!) else {
-                          return
-                        }
-                        ticker.remove(livescore.$id!)
-                        Defaults[.ticker] = Set(ticker)
-                        //                      NotificationCenter.default.post(name: .tickerupdated, object: nil)
-                      }
-                      .hoverAction()
-                  }
+                  LivescoreItem(livescore)
+                    .id(livescore.$id)
+                    .onTapGesture(count: 2) { toggle(livescore) }
+                    .hoverAction()
                 }
               }
             }

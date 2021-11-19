@@ -6,7 +6,6 @@
 //
 
 import CoreStore
-import Defaults
 import Foundation
 
 class LivescoreScrollGenerator: ScrollGeneratorProtocol {
@@ -18,7 +17,7 @@ class LivescoreScrollGenerator: ScrollGeneratorProtocol {
   ) {
     self.list = list
     self.items = list.snapshot.makeIterator()
-      .filter { $0.$inTicker ?? false }
+      .filter { $0.$in_ticker! > 0 }
       .map { $0.$id! }
   }
 

@@ -6,7 +6,6 @@
 //
 
 import CoreStore
-import Defaults
 import Foundation
 import OpenGL
 import SwiftDate
@@ -76,7 +75,6 @@ extension LivescoreStorage {
     }
 
     var scrollTimer: DispatchSourceTimer!
-    var settings: DefaultsObservation!
     var scrollGenerator: LivescoreScrollGenerator
     @Published var scrollTo: String = ""
     @Published var scrollCount: Int = 0
@@ -84,11 +82,9 @@ extension LivescoreStorage {
     @Published var active: Bool = false {
       didSet {
         guard self.active else {
-          settings.invalidate()
           return scrollTimer.cancel()
         }
         self.startScrollTimer()
-        self.startScrollObserver()
       }
     }
 
@@ -102,13 +98,6 @@ extension LivescoreStorage {
         }
       }
       scrollTimer.activate()
-    }
-
-    func startScrollObserver() {
-      self.settings = Defaults.observe(.ticker) { change in
-        self.scrollGenerator = LivescoreScrollGenerator(self.list)
-        self.scrollCount = self.scrollGenerator.count
-      }
     }
   }
 }

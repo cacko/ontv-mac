@@ -128,6 +128,7 @@
 		16D983AB2723704B00E1DC5D /* Providers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D983AA2723704B00E1DC5D /* Providers.swift */; };
 		16D983AD27238D7500E1DC5D /* AbstractPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D983AC27238D7500E1DC5D /* AbstractPlayer.swift */; };
 		16DAC40F2745E30800239B3C /* ControlSFSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DAC40E2745E30800239B3C /* ControlSFSymbol.swift */; };
+		16DAE01A274844DC0059E87C /* LivescoreTicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DAE019274844DC0059E87C /* LivescoreTicker.swift */; };
 		16DE28CF2735AE3C00B63B8F /* ContentHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DE28CE2735AE3C00B63B8F /* ContentHeader.swift */; };
 		16E1B47C270931ED00D245C0 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E1B47B270931ED00D245C0 /* Date.swift */; };
 		16E9A0CC270279A200C4607E /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E9A0CB270279A200C4607E /* Api.swift */; };
@@ -281,6 +282,7 @@
 		16D983AA2723704B00E1DC5D /* Providers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Providers.swift; sourceTree = "<group>"; };
 		16D983AC27238D7500E1DC5D /* AbstractPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractPlayer.swift; sourceTree = "<group>"; };
 		16DAC40E2745E30800239B3C /* ControlSFSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlSFSymbol.swift; sourceTree = "<group>"; };
+		16DAE019274844DC0059E87C /* LivescoreTicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivescoreTicker.swift; sourceTree = "<group>"; };
 		16DE28CE2735AE3C00B63B8F /* ContentHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentHeader.swift; sourceTree = "<group>"; };
 		16E1B47B270931ED00D245C0 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		16E9A0CB270279A200C4607E /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
@@ -576,6 +578,7 @@
 				1686F7602720C8FC006F9B7D /* ActivityEPG.swift */,
 				1606D64B27339B8F006F512F /* Teams.swift */,
 				167378FC2738578000528917 /* Thumb.swift */,
+				16DAE019274844DC0059E87C /* LivescoreTicker.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -953,6 +956,7 @@
 				165C97FB270228B000466207 /* Menu.swift in Sources */,
 				163E62A827263AF1007938C8 /* ToggleViews.swift in Sources */,
 				162862E62732F64B0015298D /* Icon.swift in Sources */,
+				16DAE01A274844DC0059E87C /* LivescoreTicker.swift in Sources */,
 				16DE28CF2735AE3C00B63B8F /* ContentHeader.swift in Sources */,
 				1649B8FD2724706400C6A045 /* ApiUrl.swift in Sources */,
 				1687DEAD271A1B2800A118E4 /* Streams.swift in Sources */,
@@ -1135,7 +1139,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 322;
+				CURRENT_PROJECT_VERSION = 323;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1213,7 +1217,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 322;
+				CURRENT_PROJECT_VERSION = 323;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;

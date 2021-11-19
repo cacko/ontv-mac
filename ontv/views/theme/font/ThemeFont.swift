@@ -38,7 +38,7 @@ extension Theme.Font {
       relativeTo: .title
     )
     static let score: SwiftUI.Font = Font.custom("Major Mono Display", size: 20)
-    static let hint: SwiftUI.Font = Font.custom("Teko Light", size: 13, relativeTo: .title)
+    static let hint: SwiftUI.Font = Font.custom("Teko Light", size: 16, relativeTo: .title)
   }
 
   static let searchInput = NSFont(name: "Atami Stencil Bold", size: 30)

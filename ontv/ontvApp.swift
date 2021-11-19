@@ -28,7 +28,6 @@ extension Defaults.Keys {
   static let volume = Key<Float>("volume", default: 100)
   static let vendor = Key<PlayVendor>("vender", default: .ffmpeg)
   static let isFloating = Key<Bool>("isFloating", default: true)
-  static let ticker = Key<Set<String>>("ticker", default: Set<String>([""]))
 }
 
 protocol Reorderable {
