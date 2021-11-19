@@ -132,6 +132,7 @@
 		16E1B47C270931ED00D245C0 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E1B47B270931ED00D245C0 /* Date.swift */; };
 		16E9A0CC270279A200C4607E /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E9A0CB270279A200C4607E /* Api.swift */; };
 		16EAAF9E2746191800CC88C6 /* LivescoreTicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EAAF9D2746191800CC88C6 /* LivescoreTicker.swift */; };
+		16F54B78274742D2004BC87B /* MajorMonoDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16F54B77274742D2004BC87B /* MajorMonoDisplay-Regular.ttf */; };
 		16F5FBF52730239B00CF62CB /* FFMpegStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F5FBF42730239B00CF62CB /* FFMpegStateDelegate.swift */; };
 		16F5FBF9273023D700CF62CB /* FFMpegPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F5FBF8273023D700CF62CB /* FFMpegPlayerView.swift */; };
 		16F5FBFA27304A6A00CF62CB /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165C98102702314900466207 /* CoreMedia.framework */; platformFilter = maccatalyst; };
@@ -285,6 +286,7 @@
 		16E1B47B270931ED00D245C0 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		16E9A0CB270279A200C4607E /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		16EAAF9D2746191800CC88C6 /* LivescoreTicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivescoreTicker.swift; sourceTree = "<group>"; };
+		16F54B77274742D2004BC87B /* MajorMonoDisplay-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MajorMonoDisplay-Regular.ttf"; sourceTree = "<group>"; };
 		16F5FBF42730239B00CF62CB /* FFMpegStateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFMpegStateDelegate.swift; sourceTree = "<group>"; };
 		16F5FBF8273023D700CF62CB /* FFMpegPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFMpegPlayerView.swift; sourceTree = "<group>"; };
 		16F5FBFB2730A0C100CF62CB /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
@@ -426,6 +428,7 @@
 		1649B91D27247F5000C6A045 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				16F54B77274742D2004BC87B /* MajorMonoDisplay-Regular.ttf */,
 				1668EBFC2724ADFA00C5A286 /* Teko-Bold.ttf */,
 				1668EBFB2724ADFA00C5A286 /* Teko-Medium.ttf */,
 				1668EBFD2724ADFA00C5A286 /* Teko-Regular.ttf */,
@@ -485,7 +488,6 @@
 			children = (
 				168E057B273A6F7800B0F40F /* ontv.entitlements */,
 				16B88BB0270436060021DC8C /* api */,
-				1649B91D27247F5000C6A045 /* fonts */,
 				1686F75B2720C8A5006F9B7D /* providers */,
 				16700167270CFD2B00F6FAB2 /* models */,
 				1685FF1B2707D8FF001DD56E /* notification */,
@@ -494,6 +496,7 @@
 				16B88BAE270435CB0021DC8C /* views */,
 				16BF3D0A270E8302006CFF1D /* window */,
 				16E1B47A270931DB00D245C0 /* utils */,
+				1649B91D27247F5000C6A045 /* fonts */,
 				165C97EF2702273B00466207 /* Info.plist */,
 				168937EB270AB9B700F8364E /* AppDelegate.swift */,
 				165C97DD2702257900466207 /* ontvApp.swift */,
@@ -841,6 +844,7 @@
 				165C97E22702257B00466207 /* Assets.xcassets in Resources */,
 				1649B92227247F7E00C6A045 /* AtamiStencil.otf in Resources */,
 				1668EC022724ADFA00C5A286 /* Teko-SemiBold.ttf in Resources */,
+				16F54B78274742D2004BC87B /* MajorMonoDisplay-Regular.ttf in Resources */,
 				1668EBFF2724ADFA00C5A286 /* Teko-Medium.ttf in Resources */,
 				1668EBFA2724ADEC00C5A286 /* Teko-Light.ttf in Resources */,
 				1649B92427247F7E00C6A045 /* AtamiStencilBold.otf in Resources */,
@@ -1135,7 +1139,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 320;
+				CURRENT_PROJECT_VERSION = 321;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1213,7 +1217,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 320;
+				CURRENT_PROJECT_VERSION = 321;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;

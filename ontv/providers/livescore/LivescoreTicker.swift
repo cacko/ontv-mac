@@ -29,15 +29,19 @@ extension LivescoreStorage {
 
     @Published var count: Int = 0
 
+    static func query() -> Where<Livescore> {
+      guard let ticker = Defaults[.ticker] as [String]? else {
+        return Where<Livescore>(NSPredicate(value: false))
+      }
+      guard ticker.count > 0 else {
+        return Where<Livescore>(NSPredicate(value: false))
+      }
+      return Where<Livescore>(NSPredicate(format: "ANY id IN %@", ticker as CVarArg))
+    }
+
     var query: Where<Livescore> {
       get {
-        guard let ticker = Defaults[.ticker] as [String]? else {
-          return Where<Livescore>(NSPredicate(value: false))
-        }
-        guard ticker.count > 0 else {
-          return Where<Livescore>(NSPredicate(value: false))
-        }
-        return Where<Livescore>(NSPredicate(format: "ANY id IN %@", ticker as CVarArg))
+        Self.query()
       }
       set {}
     }
@@ -60,7 +64,7 @@ extension LivescoreStorage {
     override init() {
       self.list = Self.dataStack.publishList(
         From<Livescore>()
-          .where(Self.emptyWhere)
+          .where(Self.query())
           .orderBy(self.order)
       )
       self.scrollGenerator = LivescoreScrollGenerator(self.list)

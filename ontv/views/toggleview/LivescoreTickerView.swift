@@ -59,12 +59,14 @@ extension ToggleViews {
             TitleTextView(text: homeTeam.id)
             Text(ls.$home_score.score)
               .font(Theme.Font.Ticker.score)
+              .shadow(color: .black, radius: 1, x: 1, y: 1)
               .foregroundColor(Theme.Color.Font.score)
             Text(ls.$viewStatus)
               .textCase(.uppercase)
               .font(Theme.Font.Ticker.hint)
             Text(ls.$away_score.score)
               .font(Theme.Font.Ticker.score)
+              .shadow(color: .black, radius: 1, x: 1, y: 1)
               .foregroundColor(Theme.Color.Font.score)
             TitleTextView(text: awayTeam.id)
             BadgeView(icon: awayTeam.icon)
@@ -105,7 +107,9 @@ extension ToggleViews {
                       ticker.removeAll { $0 == livescore.id }
                       Defaults[.ticker] = ticker
                       NotificationCenter.default.post(name: .tickerupdated, object: nil)
-                    }.hoverAction()
+                    }
+                    .background(Theme.Color.Background.ticker)
+                    .hoverAction()
                 }
               }
             }
@@ -120,7 +124,7 @@ extension ToggleViews {
           .onAppear { LivescoreStorage.toggle(.livescoresticker) }
           .onDisappear { LivescoreStorage.toggle(.livescoresticker) }
           Spacer()
-        }.background(Theme.Color.Background.ticker)
+        }
         Spacer()
       }
     }

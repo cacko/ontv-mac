@@ -236,7 +236,7 @@ extension ToggleViews {
       VStack(alignment: .leading, spacing: 0) {
         ContentHeaderView(
           title: player.contentToggle == .epglist ? "TV guide" : "Recent TV guide",
-          icon: player.contentToggle == .epglist ? .guide : .activityepg
+          icon: player.contentToggle == .epglist ? .epglist : .activityepg
         )
         ZStack {
           if player.contentToggle == .activityepg {
