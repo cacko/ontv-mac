@@ -114,12 +114,12 @@ class VideoView: NSView {
     fatalError("init(coder:) has not been implemented")
   }
 
-  override func mouseDown(with event: NSEvent) {
-    guard event.clickCount < 2 else {
-      NotificationCenter.default.post(name: .toggleFullscreen, object: nil)
-      return
-    }
-  }
+//  override func mouseDown(with event: NSEvent) {
+//    guard event.clickCount < 2 else {
+//      NotificationCenter.default.post(name: .toggleFullscreen, object: nil)
+//      return
+//    }
+//  }
 
   override func mouseDragged(with event: NSEvent) {
     window?.performDrag(with: event)

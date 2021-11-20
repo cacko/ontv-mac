@@ -51,7 +51,6 @@ struct ContentView: View {
   @ObservedObject var ticker = LivescoreStorage.events
   @State private var hasBorder = false
 
-
   let showSearch = Binding<Bool>(
     get: {
       Player.instance.contentToggle == .search
@@ -74,6 +73,15 @@ struct ContentView: View {
           .onHover { over in
             hasBorder = over
           }
+          .onTapGesture {
+            NotificationCenter.default.post(name: .onTap, object: nil)
+          }
+          .highPriorityGesture(
+            TapGesture(count: 2)
+              .onEnded({ _ in
+                NotificationCenter.default.post(name: .toggleFullscreen, object: nil)
+              })
+          )
           .sheet(isPresented: showSearch) {
             SearchView()
               .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
