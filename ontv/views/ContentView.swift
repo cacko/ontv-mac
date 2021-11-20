@@ -88,7 +88,7 @@ struct ContentView: View {
         if api.loading != .loaded {
           ApiLoadingView()
         }
-        if ticker.scrollCount > 0 {
+        if ticker.tickerVisible {
           ToggleViews.LivescoreTickerView()
         }
         ToggleView()

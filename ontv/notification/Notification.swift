@@ -39,9 +39,6 @@ extension Notification.Name {
   static let audioCommand = Notification.Name("audio_command")
   static let audioCommandResult = Notification.Name("audio_command_result")
   static let list_navigate = Notification.Name("list_navigate")
-  static let updatelivescore = NSNotification.Name("updatelivescore")
-  static let updatesports = NSNotification.Name("updatesports")
-  static let tickerupdated = NSNotification.Name("tickerupdated")
 
 }
 

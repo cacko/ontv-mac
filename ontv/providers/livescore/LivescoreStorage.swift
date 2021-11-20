@@ -21,8 +21,6 @@ enum LivescoreStorage {
     }
     active.append(content)
     switch content {
-//    case .livescores:
-//      events.active = true
     case .livescoresticker:
       events.active = true
     default:
@@ -39,8 +37,6 @@ enum LivescoreStorage {
     }
     active.removeAll(where: { $0 == content })
     switch content {
-//    case .livescores:
-//      events.active = false
     case .livescoresticker:
       events.active = false
     default:
@@ -59,7 +55,7 @@ enum LivescoreStorage {
     timer.schedule(deadline: .now(), repeating: .seconds(60))
     timer.setEventHandler {
       Task.detached {
-        try! await API.Adapter.updateLivescore()
+        try await API.Adapter.updateLivescore()
       }
     }
     timer.activate()

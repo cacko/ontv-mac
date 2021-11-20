@@ -49,10 +49,6 @@ extension Provider.Stream {
     func load() {
       Task.init {
         self.streams = await Recent.streams
-        NotificationCenter.default.post(
-          name: .updaterecent,
-          object: nil
-        )
       }
     }
   }

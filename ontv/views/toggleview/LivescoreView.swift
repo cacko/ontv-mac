@@ -116,9 +116,15 @@ extension ToggleViews {
         return
       }
       DispatchQueue.main.async {
+        LivescoreStorage.disable(.livescoresticker)
         Task.detached {
           do {
-            try await ls.toggleTicker()
+            try await ls.toggleTicker() {_ in
+              DispatchQueue.main.async {
+                liverscoreProvider.update()
+                LivescoreStorage.enable(.livescoresticker)
+              }
+            }
           }
           catch let error {
             logger.error("\(error.localizedDescription)")

@@ -13,7 +13,9 @@ import SwiftUI
 
 extension LivescoreStorage {
 
-  class Events: NSObject, ObservableObject, ObjectProvider, StorageProvider, AutoScrollProvider {
+  class Events: NSObject, ObservableObject, ObjectProvider, StorageProvider, AutoScrollProvider,
+    TicketProvider
+  {
 
     typealias EntityType = Livescore
 
@@ -46,16 +48,14 @@ extension LivescoreStorage {
 
       self.scrollGenerator = LivescoreScrollGenerator(self.list)
       self.scrollCount = self.scrollGenerator.count
-
       super.init()
+      self.tickerVisible = self.scrollCount > 0
+    }
 
-      Self.center.addObserver(forName: .updatelivescore, object: nil, queue: Self.mainQueue) { _ in
-        try? self.list.refetch(
-          From<Livescore>()
-            .where(self.query)
-            .orderBy(self.order),
-          sourceIdentifier: nil
-        )
+    func update() {
+      DispatchQueue.main.async {
+        self.scrollCount = self.scrollGenerator.count
+        self.tickerVisible = self.scrollCount > 0
       }
     }
 
@@ -82,11 +82,21 @@ extension LivescoreStorage {
     @Published var active: Bool = false {
       didSet {
         guard self.active else {
-          return scrollTimer.cancel()
+          if scrollTimer != nil, !scrollTimer.isCancelled {
+            return scrollTimer.cancel()
+          }
+          return
         }
-        self.startScrollTimer()
+        guard scrollTimer != nil else {
+          return startScrollTimer()
+        }
+        guard !scrollTimer.isCancelled else {
+          return startScrollTimer()
+        }
       }
     }
+
+    @Published var tickerVisible: Bool = false
 
     func startScrollTimer() {
       self.scrollGenerator.reset()

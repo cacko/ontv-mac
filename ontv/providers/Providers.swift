@@ -44,6 +44,10 @@ protocol AutoScrollProvider: ObservableObject {
   var scrollCount: Int { get set }
 }
 
+protocol TicketProvider: ObservableObject {
+  var tickerVisible: Bool { get set }
+}
+
 enum Provider {
   enum Stream {}
   enum Actiity {}

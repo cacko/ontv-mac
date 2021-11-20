@@ -276,7 +276,6 @@ enum API {
           Task.detached {
             do {
               try await Livescore.delete(Livescore.clearQuery)
-              NotificationCenter.default.post(name: .updatelivescore, object: nil)
             }
             catch let error {
               logger.error("\(error.localizedDescription)")
@@ -298,7 +297,6 @@ enum API {
               logger.error("\(error.localizedDescription)")
             }
           }
-          NotificationCenter.default.post(name: .updatesports, object: nil)
         }
       }
     }

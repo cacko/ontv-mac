@@ -137,6 +137,10 @@ class BaseMenu: NSMenu {
   @objc func onZoom(sender: ZoomItem) {
     NotificationCenter.default.post(name: .zoomchange, object: sender.zoom)
   }
+
+  @objc func onTickerToggle(sender: NSMenuItem) {
+    LivescoreStorage.events.tickerVisible.toggle()
+  }
 }
 
 protocol CollectionMenu {
