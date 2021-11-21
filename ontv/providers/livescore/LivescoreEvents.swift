@@ -113,7 +113,9 @@ extension LivescoreStorage {
 
     @Published var tickerVisible: Bool = false {
       didSet {
-        LivescoreStorage.toggle(.livescoresticker)
+        DispatchQueue.main.async {
+          LivescoreStorage.toggle(.livescoresticker)
+        }
       }
     }
     @Published var tickerAvailable: Bool = false
