@@ -10,4 +10,5 @@ import SwiftUI
 
 extension Theme.Color.Font {
   static let score = Color(.yellow)
+  static let scoreStatus = Color(.red)
 }

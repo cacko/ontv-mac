@@ -60,9 +60,12 @@ extension ToggleViews {
               .font(Theme.Font.Ticker.score)
               .shadow(color: .black, radius: 1, x: 1, y: 1)
               .foregroundColor(Theme.Color.Font.score)
-            Text(ls.$viewStatus)
-              .textCase(.uppercase)
-              .font(Theme.Font.Ticker.hint)
+            HStack(alignment: .center, spacing: 0) {
+              Text(ls.$viewStatus)
+                .textCase(.uppercase)
+                .font(Theme.Font.Ticker.hint)
+                .foregroundColor(ls.$inPlay ? .accentColor : .primary)
+            }
             Text(ls.$away_score.score)
               .font(Theme.Font.Ticker.score)
               .shadow(color: .black, radius: 1, x: 1, y: 1)
@@ -87,24 +90,10 @@ extension ToggleViews {
     }
 
     func toggle(_ object: ObjectPublisher<Livescore>) {
-      DispatchQueue.main.async {
-        LivescoreStorage.disable(.livescoresticker)
-
-        Task.detached {
-          do {
-            try await object.object?.toggleTicker() {_ in
-              DispatchQueue.main.async {
-                liverscoreProvider.update()
-                LivescoreStorage.enable(.livescoresticker)
-
-              }
-            }
-          }
-          catch let error {
-            logger.error("\(error.localizedDescription)")
-          }
-        }
+      guard let livescore = object.object as Livescore? else {
+        return
       }
+      liverscoreProvider.update(livescore)
     }
 
     var body: some View {

@@ -160,7 +160,7 @@ extension ToggleViews {
           return
         }
         self.streams = Stream.find(
-          Where<Stream>(NSPredicate(format: "ANY stream_id IN %@", ids))
+          Where<Stream>(NSPredicate(format: "stream_id IN %@", ids))
         )
       }
 

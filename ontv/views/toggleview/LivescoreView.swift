@@ -115,22 +115,7 @@ extension ToggleViews {
       guard let ls = item.object as Livescore? else {
         return
       }
-      DispatchQueue.main.async {
-        LivescoreStorage.disable(.livescoresticker)
-        Task.detached {
-          do {
-            try await ls.toggleTicker() {_ in
-              DispatchQueue.main.async {
-                liverscoreProvider.update()
-                LivescoreStorage.enable(.livescoresticker)
-              }
-            }
-          }
-          catch let error {
-            logger.error("\(error.localizedDescription)")
-          }
-        }
-      }
+      liverscoreProvider.update(ls)
     }
 
     var body: some View {

@@ -270,9 +270,7 @@ enum API {
     }
 
     func updateLivescore() async throws {
-      Livescore.state = .loading
       try await Livescore.fetch(url: Endpoint.Livescores) { _ in
-
         DispatchQueue.main.async {
           Task.detached {
             do {

@@ -42,7 +42,7 @@ extension LivescoreStorage {
     func onNavigate(_ notitication: Notification) {}
 
     override init() {
-      self.query = Where<Livescore>(NSPredicate(format: "ANY league_id IN %@", Self.LEAGUES))
+      self.query = Where<Livescore>(NSPredicate(format: "league_id IN %@", Self.LEAGUES))
       self.list = Self.dataStack.publishList(
         From<Livescore>()
           .where(self.query)
@@ -55,10 +55,19 @@ extension LivescoreStorage {
       self.tickerVisible = self.scrollCount > 0
     }
 
-    func update() {
-      DispatchQueue.main.async {
-        self.scrollCount = self.scrollGenerator.count
-        self.tickerVisible = self.scrollCount > 0
+    func update(_ livescore: Livescore) {
+      self.active = false
+      Task.init {
+        try await livescore.toggleTicker() {_ in
+          DispatchQueue.main.async {
+            self.scrollCount = self.scrollGenerator.count
+            self.tickerVisible = self.scrollCount > 0
+            guard self.tickerVisible else {
+              return
+            }
+            self.active = true
+          }
+        }
       }
     }
 
@@ -106,10 +115,10 @@ extension LivescoreStorage {
       scrollTimer = DispatchSource.makeTimerSource()
       scrollTimer.schedule(deadline: .now(), repeating: .seconds(3))
       scrollTimer.setEventHandler {
+        guard Livescore.state == .ready else {
+          return
+        }
         DispatchQueue.main.async {
-          guard Livescore.state == .ready else {
-            return
-          }
           self.scrollTo = self.scrollGenerator.next()
         }
       }

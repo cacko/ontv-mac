@@ -116,7 +116,7 @@ extension V1 {
         guard ids.count > 0 else {
           return []
         }
-        let predicate = NSPredicate(format: "ANY stream_id in %@", ids)
+        let predicate = NSPredicate(format: "stream_id in %@", ids)
         return try Self.dataStack.fetchAll(From<Stream>(), Where<Stream>(predicate), Stream.orderBy)
       }
       catch {

@@ -114,6 +114,7 @@ extension V1 {
     ) async throws {
       dataStack.perform(
         asynchronous: { transaction -> Void in
+          Livescore.state = .loading
           let _ = try transaction.importUniqueObjects(
             Into<Livescore>(),
             sourceArray: json
@@ -121,6 +122,7 @@ extension V1 {
         },
         completion: { r in
           onComplete(r)
+          Livescore.state = .ready
         }
       )
     }
