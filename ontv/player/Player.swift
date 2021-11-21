@@ -32,7 +32,7 @@ class Player: NSObject, PlayerProtocol, ObservableObject {
       guard self.size.width * self.size.height > 0 else {
         return
       }
-      self.iconSize = NSSize(width: self.size.width / 25, height: self.size.width / 25)
+      self.iconSize = NSSize(width: self.size.width / 30, height: self.size.width / 30)
       self.vendorPlayer.sizeView(self.size)
     }
   }
