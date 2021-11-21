@@ -53,6 +53,7 @@ extension LivescoreStorage {
       self.scrollCount = self.scrollGenerator.count
       super.init()
       self.tickerVisible = self.scrollCount > 0
+      self.tickerAvailable = self.scrollCount > 0
     }
 
     func update(_ livescore: Livescore) {
@@ -62,6 +63,7 @@ extension LivescoreStorage {
           DispatchQueue.main.async {
             self.scrollCount = self.scrollGenerator.count
             self.tickerVisible = self.scrollCount > 0
+            self.tickerAvailable = self.scrollCount > 0
             guard self.tickerVisible else {
               return
             }
@@ -109,6 +111,8 @@ extension LivescoreStorage {
     }
 
     @Published var tickerVisible: Bool = false
+    @Published var tickerAvailable: Bool = false
+
 
     func startScrollTimer() {
       self.scrollGenerator.reset()

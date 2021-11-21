@@ -186,6 +186,8 @@ extension AppDelegate {
       if let t = note.object as? ContentToggle {
         self.player.contentToggle = t
         switch t {
+        case .livescoresticker:
+          LivescoreStorage.events.tickerVisible.toggle()
         case .category:
           guard let category_id = player.stream?.category_id as Int64? else {
             break

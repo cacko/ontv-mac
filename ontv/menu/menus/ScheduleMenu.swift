@@ -31,7 +31,7 @@ class ScheduleMenu: BaseMenu, NSMenuDelegate, CollectionMenu {
         notification: .livescores
       ),
       BaseItem(
-        title: "Toggle livescopre ticker",
+        title: "Toggle livescore ticker",
         action: #selector(onTickerToggle(sender:)),
         keyEquivalent: "t"
       ),

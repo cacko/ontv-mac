@@ -182,6 +182,7 @@ extension ToggleViews {
   }
 
   struct StreamControlsView: View {
+    @ObservedObject var ticker = LivescoreStorage.events
 
     var body: some View {
       ControlItemView(
@@ -196,6 +197,14 @@ extension ToggleViews {
         obj: ContentToggle.livescores,
         hint: "Livescores"
       )
+      if ticker.tickerAvailable {
+        ControlItemView(
+          icon: .livescoreticler,
+          note: Notification.Name.contentToggle,
+          obj: ContentToggle.livescoresticker,
+          hint: "Livescore Ticker"
+        )
+      }
       ControlItemView(
         icon: .search,
         note: Notification.Name.contentToggle,

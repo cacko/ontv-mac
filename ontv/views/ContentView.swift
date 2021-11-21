@@ -29,7 +29,7 @@ enum ContentToggleIcon: String {
   case metadata = "8"
   case schedule = "calendar"
   case livescores = "sportscourt"
-  case livescoreticler = "11"
+  case livescoreticler = "level"
   case next = "chevron.down"
   case previous = "chevron.up"
   case fullscreenOff = "arrow.down.right.and.arrow.up.left"
