@@ -73,7 +73,7 @@ struct ContentView: View {
           .onHover { over in
             hasBorder = over
           }.gesture(
-            TapGesture(count:2).onEnded({ _ in
+            TapGesture(count:3).onEnded({ _ in
               NotificationCenter.default.post(name: .toggleFullscreen, object: nil)})
               .exclusively(before: TapGesture(count: 1)
                 .onEnded({ _ in
