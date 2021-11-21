@@ -96,11 +96,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     window.makeMain()
     window.becomeFirstResponder()
     menu = Menu()
-//    #if DEBUG
-//    window.isFloating = false
-//    #else
+    #if DEBUG
+    window.isFloating = false
+    #else
     window.isFloating = Defaults[.isFloating]
-//    #endif
+    #endif
     Task.init {
       await API.Adapter.login()
     }

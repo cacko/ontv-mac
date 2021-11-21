@@ -25,11 +25,13 @@ extension LivescoreStorage {
 
     var selectedId: String = ""
 
-    var query: Where<Livescore> = Where<Livescore>(NSPredicate(value: true))
+    var query: Where<Livescore>
 
     var order: OrderBy<Livescore> = Livescore.orderBy
 
     var search: String = ""
+    
+    static let LEAGUES: Set<Int> = Set([43, 41, 44, 45, 39, 256])
 
     var state: ProviderState = .notavail
 
@@ -40,6 +42,7 @@ extension LivescoreStorage {
     func onNavigate(_ notitication: Notification) {}
 
     override init() {
+      self.query = Where<Livescore>(NSPredicate(format: "ANY league_id IN %@", Self.LEAGUES))
       self.list = Self.dataStack.publishList(
         From<Livescore>()
           .where(self.query)
@@ -104,6 +107,9 @@ extension LivescoreStorage {
       scrollTimer.schedule(deadline: .now(), repeating: .seconds(3))
       scrollTimer.setEventHandler {
         DispatchQueue.main.async {
+          guard Livescore.state == .ready else {
+            return
+          }
           self.scrollTo = self.scrollGenerator.next()
         }
       }

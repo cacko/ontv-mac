@@ -16,9 +16,15 @@ enum LivescoreStatus {
   static let notstarted = "NS"
 }
 
+enum LivescoreState {
+  case loading, ready
+}
+
 extension V1 {
   class Livescore: CoreStoreObject, AbstractEntity, ImportableUniqueObject, ImportableModel {
 
+    static var state: LivescoreState = .ready
+    
     typealias EntityType = Livescore
 
     class var primaryKey: String {
@@ -36,6 +42,9 @@ extension V1 {
 
     @Field.Stored("league_id")
     var league_id: Int64 = 0
+    
+    @Field.Stored("league_name")
+    var league_name: String = ""
 
     @Field.Stored("home_team_id")
     var home_team_id: Int64 = 0
@@ -78,6 +87,7 @@ extension V1 {
       id = Self.asString(data: source, key: "id")
       event_id = Self.asInt64(data: source, key: "idEvent")
       league_id = Self.asInt64(data: source, key: "idLeague")
+      league_name = Self.asString(data: source, key: "strLeague")
       home_team_id = Self.asInt64(data: source, key: "idHomeTeam")
       away_team_id = Self.asInt64(data: source, key: "idAwayTeam")
       sport = Self.asString(data: source, key: "strSport")
