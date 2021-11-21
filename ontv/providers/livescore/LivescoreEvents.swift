@@ -60,6 +60,7 @@ extension LivescoreStorage {
       self.active = false
       Task.init {
         try await livescore.toggleTicker() {_ in
+          self.scrollGenerator.update()
           DispatchQueue.main.async {
             self.scrollCount = self.scrollGenerator.count
             self.tickerVisible = self.scrollCount > 0

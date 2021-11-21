@@ -27,7 +27,7 @@ enum API {
   }
 
   enum FetchType {
-    case streams, schedule, epg, livescore, sports
+    case streams, schedule, epg, livescore
   }
 
   enum LoadingItem: String {
@@ -37,7 +37,6 @@ enum API {
     case category = "Loading categories"
     case loaded = "Done"
     case livescore = "Loading livescores"
-    case sports = "Loading Sports"
   }
 
   static let Adapter = ApiAdapter()
@@ -86,9 +85,6 @@ enum API {
         case .livescore:
           try await self.updateLivescore()
           break
-        case .sports:
-          try await self.updateSports()
-          break
         }
       }
     }
@@ -134,7 +130,6 @@ enum API {
             NotificationCenter.default.post(name: .updateepg, object: nil)
           }
         }
-        try await self.updateSports()
       }
       catch let error {
         DispatchQueue.main.async {
@@ -252,7 +247,6 @@ enum API {
         self.epgState = .loading
       }
       try await EPG.fetch(url: Endpoint.EPG) { _ in
-        DispatchQueue.main.async {
           Task.detached {
             do {
               try await EPG.delete(EPG.clearQuery)
@@ -261,13 +255,15 @@ enum API {
               logger.error("\(error.localizedDescription)")
             }
             Defaults[.epgUpdated] = Date()
-            self.epgState = .loaded
-            self.loading = .loaded
+            DispatchQueue.main.async {
+              self.epgState = .loaded
+              self.loading = .loaded
+            }
             NotificationCenter.default.post(name: .updateepg, object: nil)
           }
-        }
       }
     }
+    
 
     func updateLivescore() async throws {
       try await Livescore.fetch(url: Endpoint.Livescores) { _ in
@@ -283,21 +279,6 @@ enum API {
           }
         }
         return
-      }
-    }
-
-    func updateSports() async throws {
-      try await Sport.fetch(url: Endpoint.Sports) { _ in
-        DispatchQueue.main.async {
-          Task.detached {
-            do {
-              try await Sport.delete(Sport.clearQuery)
-            }
-            catch let error {
-              logger.error("\(error.localizedDescription)")
-            }
-          }
-        }
       }
     }
 

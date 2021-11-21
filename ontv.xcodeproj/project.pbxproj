@@ -25,7 +25,6 @@
 		162D4507271F69BF00E0C318 /* ActivityEPGList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162D4506271F69BF00E0C318 /* ActivityEPGList.swift */; };
 		162DB53A27454F7500B1D95D /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162DB53927454F7500B1D95D /* Generator.swift */; };
 		16301272273ECF2D00F33027 /* V1Livescore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16301271273ECF2D00F33027 /* V1Livescore.swift */; };
-		16301274273EDAFC00F33027 /* V1Sport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16301273273EDAFC00F33027 /* V1Sport.swift */; };
 		16301277273F3B4000F33027 /* LivescoreStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16301276273F3B4000F33027 /* LivescoreStorage.swift */; };
 		1630127A273F3B6D00F33027 /* LivescoreEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16301279273F3B6D00F33027 /* LivescoreEvents.swift */; };
 		1630127C273F416000F33027 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1630127B273F416000F33027 /* Int.swift */; };
@@ -164,7 +163,6 @@
 		162D4506271F69BF00E0C318 /* ActivityEPGList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityEPGList.swift; sourceTree = "<group>"; };
 		162DB53927454F7500B1D95D /* Generator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; };
 		16301271273ECF2D00F33027 /* V1Livescore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V1Livescore.swift; sourceTree = "<group>"; };
-		16301273273EDAFC00F33027 /* V1Sport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V1Sport.swift; sourceTree = "<group>"; };
 		16301276273F3B4000F33027 /* LivescoreStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivescoreStorage.swift; sourceTree = "<group>"; };
 		16301279273F3B6D00F33027 /* LivescoreEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivescoreEvents.swift; sourceTree = "<group>"; };
 		1630127B273F416000F33027 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
@@ -592,7 +590,6 @@
 				1687DEA6271A135500A118E4 /* v1Schedule.swift */,
 				1687DEA8271A135D00A118E4 /* v1Activity.swift */,
 				16301271273ECF2D00F33027 /* V1Livescore.swift */,
-				16301273273EDAFC00F33027 /* V1Sport.swift */,
 			);
 			path = V1;
 			sourceTree = "<group>";
@@ -945,7 +942,6 @@
 				16D983AD27238D7500E1DC5D /* AbstractPlayer.swift in Sources */,
 				163FEB3A272A10020098CF8B /* ListActions.swift in Sources */,
 				168937EC270AB9B700F8364E /* AppDelegate.swift in Sources */,
-				16301274273EDAFC00F33027 /* V1Sport.swift in Sources */,
 				16B801462715082D0022AC94 /* EPGLiveList.swift in Sources */,
 				1603B4D5271A8A2E002FDBC4 /* ApiLoadingView.swift in Sources */,
 				165C97DE2702257900466207 /* ontvApp.swift in Sources */,
@@ -1139,7 +1135,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 335;
+				CURRENT_PROJECT_VERSION = 338;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1217,7 +1213,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 335;
+				CURRENT_PROJECT_VERSION = 338;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;

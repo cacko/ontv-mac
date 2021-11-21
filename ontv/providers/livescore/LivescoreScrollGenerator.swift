@@ -33,6 +33,13 @@ class LivescoreScrollGenerator: ScrollGeneratorProtocol {
         ArraySlice(self.isBackwards ? self.items.reversed() : self.items)
     }
   }
+  
+  func update() {
+    self.reset()
+    self.items = list.snapshot.makeIterator()
+      .filter { $0.$in_ticker! > 0 }
+      .map { $0.$id! }
+  }
 
   func reset() {
     isBackwards = false
