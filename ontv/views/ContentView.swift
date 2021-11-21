@@ -72,15 +72,13 @@ struct ContentView: View {
           .opacity(player.display ? 1 : 0)
           .onHover { over in
             hasBorder = over
-          }
-          .onTapGesture {
-            NotificationCenter.default.post(name: .onTap, object: nil)
-          }
-          .highPriorityGesture(
-            TapGesture(count: 2)
-              .onEnded({ _ in
-                NotificationCenter.default.post(name: .toggleFullscreen, object: nil)
-              })
+          }.gesture(
+            TapGesture(count:2).onEnded({ _ in
+              NotificationCenter.default.post(name: .toggleFullscreen, object: nil)})
+              .exclusively(before: TapGesture(count: 1)
+                .onEnded({ _ in
+                  NotificationCenter.default.post(name: .onTap, object: nil)
+                }))
           )
           .sheet(isPresented: showSearch) {
             SearchView()

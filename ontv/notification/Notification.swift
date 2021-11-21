@@ -208,6 +208,9 @@ extension AppDelegate {
         self.player.contentToggle = nil
         self.fadeTask?.cancel()
       }
+      if self.player.controlsState != .always {
+        self.player.controlsState = .hidden
+      }
     }
 
     center.addObserver(forName: .bookmark, object: nil, queue: mainQueue) { _ in
