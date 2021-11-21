@@ -111,7 +111,11 @@ extension LivescoreStorage {
       }
     }
 
-    @Published var tickerVisible: Bool = false
+    @Published var tickerVisible: Bool = false {
+      didSet {
+        LivescoreStorage.toggle(.livescoresticker)
+      }
+    }
     @Published var tickerAvailable: Bool = false
 
 

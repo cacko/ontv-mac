@@ -14,6 +14,13 @@ enum LivescoreStorage {
   static var timer: DispatchSourceTimer!
 
   static let events = Events()
+  
+  static func toggle(_ content: ContentToggle) {
+    guard active.contains(content) else {
+      return Self.enable(content)
+    }
+    Self.disable(content)
+  }
 
   static func enable(_ content: ContentToggle) {
     guard !active.contains(content) else {
