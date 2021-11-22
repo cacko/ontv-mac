@@ -1,32 +1,26 @@
 //
-//  Int.swift
+//  Int64.swift
 //  ontv
 //
-//  Created by Alex on 13/11/2021.
+//  Created by Alex on 22/11/2021.
 //
 
-import CommonCrypto
 import Foundation
+import CommonCrypto
 
-extension Int {
-
-  var int64: Int64 {
-    Int64(self.toNative())
+extension Int64 {
+  func isEqual(_ other: Int) -> Bool {
+    self.toNative() == other.int64
   }
-
-  var bool: Bool {
-    self.toNative() != 0
-  }
-
+  
   var string: String {
     String(format: "%d", self.toNative())
   }
-
-  var score: String {
-    let val = self.toNative()
-    return val > -1 ? String(format: "%d", val) : ""
+  
+  var int: Int {
+    Int(truncatingIfNeeded: self.toNative())
   }
-
+  
   var sha1: String {
     let hs = String(self.toNative())
     let data = Data(hs.utf8)
@@ -37,5 +31,4 @@ extension Int {
     let hexBytes = digest.map { String(format: "%02hhx", $0) }
     return hexBytes.joined()
   }
-
 }

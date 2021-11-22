@@ -16,7 +16,6 @@ protocol ScrollGeneratorProtocol {
   var count: Int { get }
   var list: ListPublisher<EntityType> { get set }
   init(_ list: ListPublisher<EntityType>)
-  func reset()
   func next() -> String
 }
 

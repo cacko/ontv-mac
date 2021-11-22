@@ -9,6 +9,10 @@ import CoreStore
 import Foundation
 import SwiftUI
 
+enum TimerState {
+  case none, active, suspended
+}
+
 enum ProviderState {
   case notavail, loading, loaded
 }

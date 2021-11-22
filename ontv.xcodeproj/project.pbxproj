@@ -136,6 +136,8 @@
 		16DE28CF2735AE3C00B63B8F /* ContentHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DE28CE2735AE3C00B63B8F /* ContentHeader.swift */; };
 		16E1B47C270931ED00D245C0 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E1B47B270931ED00D245C0 /* Date.swift */; };
 		16E9A0CC270279A200C4607E /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E9A0CB270279A200C4607E /* Api.swift */; };
+		16F1307A274C33D500898515 /* Int64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F13079274C33D500898515 /* Int64.swift */; };
+		16F1307C274C33FD00898515 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F1307B274C33FD00898515 /* Double.swift */; };
 		16F54B78274742D2004BC87B /* MajorMonoDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16F54B77274742D2004BC87B /* MajorMonoDisplay-Regular.ttf */; };
 		16F5FBF52730239B00CF62CB /* FFMpegStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F5FBF42730239B00CF62CB /* FFMpegStateDelegate.swift */; };
 		16F5FBF9273023D700CF62CB /* FFMpegPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F5FBF8273023D700CF62CB /* FFMpegPlayerView.swift */; };
@@ -294,6 +296,8 @@
 		16DE28CE2735AE3C00B63B8F /* ContentHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentHeader.swift; sourceTree = "<group>"; };
 		16E1B47B270931ED00D245C0 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		16E9A0CB270279A200C4607E /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		16F13079274C33D500898515 /* Int64.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int64.swift; sourceTree = "<group>"; };
+		16F1307B274C33FD00898515 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		16F54B77274742D2004BC87B /* MajorMonoDisplay-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MajorMonoDisplay-Regular.ttf"; sourceTree = "<group>"; };
 		16F5FBF42730239B00CF62CB /* FFMpegStateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFMpegStateDelegate.swift; sourceTree = "<group>"; };
 		16F5FBF8273023D700CF62CB /* FFMpegPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFMpegPlayerView.swift; sourceTree = "<group>"; };
@@ -745,6 +749,8 @@
 				16BFDA5E272F357C005E7D80 /* Fraction.swift */,
 				16BD651D273C21F100E9EAD8 /* Bundle.swift */,
 				1630127B273F416000F33027 /* Int.swift */,
+				16F13079274C33D500898515 /* Int64.swift */,
+				16F1307B274C33FD00898515 /* Double.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -962,10 +968,12 @@
 				164B07562709FCB100C7DE4C /* BaseMenu.swift in Sources */,
 				16162499271DD810002D7C8C /* Apple.swift in Sources */,
 				162D4507271F69BF00E0C318 /* ActivityEPGList.swift in Sources */,
+				16F1307C274C33FD00898515 /* Double.swift in Sources */,
 				16CFBB382706D67800B136FC /* ControlsView.swift in Sources */,
 				164B07672709FF2400C7DE4C /* ScheduleItems.swift in Sources */,
 				1687DEA3271A134300A118E4 /* v1Epg.swift in Sources */,
 				16BF3D09270E70A2006CFF1D /* EPGContentView.swift in Sources */,
+				16F1307A274C33D500898515 /* Int64.swift in Sources */,
 				1687DEA9271A135D00A118E4 /* v1Activity.swift in Sources */,
 				164B07582709FCD400C7DE4C /* VideoMenu.swift in Sources */,
 				16B80142271507EA0022AC94 /* EPGStorage.swift in Sources */,
@@ -1171,7 +1179,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 350;
+				CURRENT_PROJECT_VERSION = 351;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1249,7 +1257,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 350;
+				CURRENT_PROJECT_VERSION = 351;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;

@@ -35,18 +35,14 @@ class LivescoreScrollGenerator: ScrollGeneratorProtocol {
   }
   
   func update() {
-    self.reset()
     self.items = list.snapshot.makeIterator()
       .filter { $0.$in_ticker! > 0 }
       .map { $0.$id! }
-  }
-
-  func reset() {
     isBackwards = false
   }
 
   func next() -> String {
-    guard items.count > 1 else {
+    guard items.count > 0 else {
       return ""
     }
     if itemsSource.count == 0 {

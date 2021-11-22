@@ -32,14 +32,11 @@ extension LivescoreStorage {
       }
       set {}
     }
-
     var order: OrderBy<Livescore> = Livescore.orderBy
-
     var search: String = ""
-
     var state: ProviderState = .notavail
-
-    var scrollTimer: DispatchSourceTimer!
+    var scrollTimer: DispatchSourceTimer = DispatchSource.makeTimerSource()
+    var scrollTimerState: TimerState = .none
     var leagueObserver: DefaultsObservation!
     var scrollGenerator: LivescoreScrollGenerator
     @Published var scrollTo: String = ""
@@ -49,9 +46,6 @@ extension LivescoreStorage {
       didSet {
         guard self.active else {
           return self.stopScrollTimer()
-        }
-        guard scrollTimer == nil else {
-          return
         }
         self.startScrollTimer()
       }
@@ -139,29 +133,41 @@ extension LivescoreStorage {
     }
 
     func startScrollTimer() {
-      self.scrollGenerator.reset()
-      self.scrollTimer = DispatchSource.makeTimerSource()
-      self.scrollTimer.schedule(deadline: .now(), repeating: .seconds(3))
-      self.scrollTimer.setEventHandler {
-        guard Livescore.state == .ready else {
-          return
+      if scrollTimerState == .none {
+        self.scrollTimer.schedule(deadline: .now(), repeating: .seconds(7))
+        self.scrollTimer.setEventHandler {
+          guard Livescore.state == .ready else {
+            return
+          }
+          DispatchQueue.main.async {
+            self.scrollTo = self.scrollGenerator.next()
+          }
         }
+        self.scrollTimerState = .suspended
         DispatchQueue.main.async {
-          self.scrollTo = self.scrollGenerator.next()
+          self.scrollTimer.activate()
+          self.scrollTimerState = .active
         }
+        return
       }
+      
+      guard scrollTimerState == .suspended else {
+        return
+      }
+
       DispatchQueue.main.async {
-        self.scrollTimer.activate()
+        self.scrollTimer.resume()
+        self.scrollTimerState = .active
       }
     }
 
     func stopScrollTimer() {
-      guard scrollTimer != nil else {
+      guard scrollTimerState == .active else {
         return
       }
       DispatchQueue.main.async {
-        self.scrollTimer.cancel()
-        self.scrollTimer = nil
+        self.scrollTimer.suspend()
+        self.scrollTimerState = .suspended
       }
     }
   }

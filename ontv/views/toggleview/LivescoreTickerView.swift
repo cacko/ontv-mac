@@ -83,10 +83,15 @@ extension ToggleViews {
     @State private var forRemoval: Livescore!
     @State private var scrollingTo: String!
 
+    private var height: CGFloat = 50.0
     private var buttonFont: Font = .system(size: 20, weight: .heavy, design: .monospaced)
 
     func onScrollTo(to: String, proxy: ScrollViewProxy) {
       self.scrollingTo = to
+      if forRemoval != nil {
+        liverscoreProvider.update(forRemoval)
+        forRemoval = nil
+      }
       withAnimation {
         proxy.scrollTo(to, anchor: .leading)
       }
@@ -96,10 +101,14 @@ extension ToggleViews {
       guard let livescore = object.object as Livescore? else {
         return
       }
+      
+      self.forRemoval = livescore
+      
       guard self.scrollingTo == nil || self.scrollingTo != livescore.id else {
         return
       }
       liverscoreProvider.update(livescore)
+      self.forRemoval = nil
     }
 
     var body: some View {
@@ -115,6 +124,8 @@ extension ToggleViews {
                       .id(livescore.$id)
                       .onTapGesture(count: 2) { toggle(livescore) }
                       .hoverAction()
+                      .opacity(forRemoval?.id == livescore.$id ? 0 : 1)
+                      .scaleEffect(forRemoval?.id == livescore.$id ? 0 : 1)
                   }
                 }
               }
@@ -126,7 +137,7 @@ extension ToggleViews {
               }
             )
           }
-          .frame(height: 50, alignment: .center)
+          .frame(height: height, alignment: .center)
           .onAppear {
             DispatchQueue.main.async {
               LivescoreStorage.enable(.livescoresticker)
