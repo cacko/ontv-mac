@@ -47,6 +47,10 @@ extension StorageProvider where EntityType == Schedule {
       guard Player.instance.contentToggle == .schedule else {
         return
       }
+      
+      guard self.selected != nil else {
+        return
+      }
 
       do {
         switch action {

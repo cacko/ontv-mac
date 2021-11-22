@@ -59,6 +59,10 @@ extension StorageProvider where EntityType == Stream {
       guard [ContentToggle.search, ContentToggle.category].contains(Player.instance.contentToggle) else {
         return
       }
+      
+      guard self.selected != nil else {
+        return
+      }
 
       do {
         switch action {
