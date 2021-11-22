@@ -15,7 +15,7 @@ extension PreferencesView {
     @Default(.liveScoreLeagues) var leagues
     private var leagueProvider = LeagueStorage.list
 
-    private let contentWidth: Double = 450.0
+    private let contentWidth: Double = 550.0
     private let padding: Double = 15
 
     func isSelected(_ id: Int64) -> Binding<Bool> {
@@ -36,13 +36,20 @@ extension PreferencesView {
 
     var body: some View {
       Preferences.Container(contentWidth: contentWidth) {
-        Preferences.Section(title: "") {
+        Preferences.Section(title: "Leagues", verticalAlignment: .top) {
           VStack(alignment: .leading, spacing: 0) {
             HStack(alignment: .top, spacing: 0) {
-              ScrollingView {
+              ScrollingView(
+                direction: .vertical,
+                columns: Array(repeating: .init(.adaptive(minimum: 180)), count: 2),
+                spacing: 5
+              ) {
                 ListReader(leagueProvider.list) { snapshot in
                   ForEach(objectIn: snapshot) { league in
-                    Toggle(league.$league_name!, isOn: isSelected(league.$league_id!))
+                    Toggle(isOn: isSelected(league.$league_id!)) {
+                      Text(league.$league_name!)
+                        .frame(maxWidth: 180, alignment: .leading)
+                    }
                   }
                 }
               }
