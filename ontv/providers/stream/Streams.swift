@@ -55,6 +55,10 @@ extension StorageProvider where EntityType == Stream {
       guard let action = note.object as? ListNavigation else {
         return
       }
+      
+      guard [ContentToggle.search, ContentToggle.category].contains(Player.instance.contentToggle) else {
+        return
+      }
 
       do {
         switch action {

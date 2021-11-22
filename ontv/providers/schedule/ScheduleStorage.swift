@@ -43,6 +43,10 @@ extension StorageProvider where EntityType == Schedule {
       guard let action = note.object as? ListNavigation else {
         return
       }
+      
+      guard Player.instance.contentToggle == .schedule else {
+        return
+      }
 
       do {
         switch action {
