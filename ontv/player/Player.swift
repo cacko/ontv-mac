@@ -10,7 +10,6 @@ import Combine
 import Defaults
 import SwiftUI
 
-
 class Player: NSObject, PlayerProtocol, ObservableObject {
 
   @Published var error = PlayerError(id: .null, msg: "")
@@ -32,7 +31,6 @@ class Player: NSObject, PlayerProtocol, ObservableObject {
       guard self.size.width * self.size.height > 0 else {
         return
       }
-      self.iconSize = NSSize(width: self.size.width / 30, height: self.size.width / 30)
       self.vendorPlayer.sizeView(self.size)
     }
   }

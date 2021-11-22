@@ -115,10 +115,10 @@ class VideoView: NSView {
   }
 
   override func mouseDown(with event: NSEvent) {
-//    guard event.clickCount < 2 else {
-//      NotificationCenter.default.post(name: .toggleFullscreen, object: nil)
-//      return
-//    }
+    //    guard event.clickCount < 2 else {
+    //      NotificationCenter.default.post(name: .toggleFullscreen, object: nil)
+    //      return
+    //    }
   }
 
   override func mouseDragged(with event: NSEvent) {

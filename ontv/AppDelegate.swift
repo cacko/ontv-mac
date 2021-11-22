@@ -53,7 +53,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   var player: Player
 
   var menu: NSMenu!
-  
+
   var fadeTask: DispatchWorkItem!
 
   override init() {
@@ -98,13 +98,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     window.becomeFirstResponder()
     menu = Menu()
     #if DEBUG
-    window.isFloating = false
+      window.isFloating = false
     #else
-    window.isFloating = Defaults[.isFloating]
+      window.isFloating = Defaults[.isFloating]
     #endif
     Task.init {
       await API.Adapter.login()
     }
+    player.iconSize = NSSize(width: window.frame.width / 30, height: window.frame.width / 30)
   }
 
   let StreamsPreferencesView: () -> PreferencePane = {
@@ -121,7 +122,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     return Preferences.PaneHostingController(pane: paneView)
   }
-  
+
   let LeaguesPreferencesView: () -> PreferencePane = {
     let paneView = Preferences.Pane(
       identifier: .leagues,
@@ -133,13 +134,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     ) {
       PreferencesView.Leagues()
     }
-    
+
     return Preferences.PaneHostingController(pane: paneView)
   }
 
   private lazy var preferences: [PreferencePane] = [
     StreamsPreferencesView(),
-    LeaguesPreferencesView()
+    LeaguesPreferencesView(),
   ]
 
   lazy var preferencesWindowController = PreferencesWindowController(

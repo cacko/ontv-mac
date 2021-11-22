@@ -46,7 +46,7 @@ class MainHostingController: NSHostingController<ContentView> {
 class MainWindowController: NSWindowController, NSWindowDelegate {
 
   var player = Player.instance
-
+  
   override func windowDidLoad() {
     super.windowDidLoad()
     window?.delegate = self
@@ -99,7 +99,15 @@ class MainWindowController: NSWindowController, NSWindowDelegate {
   }
 
   func windowWillResize(_ sender: NSWindow, to frameSize: NSSize) -> NSSize {
-    self.player.iconSize = NSSize(width: frameSize.width / 25, height: frameSize.width / 25)
+    guard let win = self.window as? MainWindow else {
+      return frameSize
+    }
+    if win.isFullScreen {
+      let ss = NSScreen.main?.frame.size
+      self.player.iconSize = NSSize(width: ss!.width / 30, height: ss!.width / 30)
+    } else {
+      self.player.iconSize = NSSize(width: frameSize.width / 30, height: frameSize.width / 30)
+    }
     return frameSize
   }
 

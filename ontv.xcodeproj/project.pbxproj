@@ -143,9 +143,9 @@
 		16F5FBFC2730A0C100CF62CB /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16F5FBFB2730A0C100CF62CB /* MetalKit.framework */; platformFilter = maccatalyst; };
 		16F5FBFD2730B3F700CF62CB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165C98072702311E00466207 /* AudioToolbox.framework */; platformFilter = maccatalyst; };
 		16FD4D162730212C00F2016F /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 16FD4D152730212C00F2016F /* Defaults */; };
-		16FD4D192730214100F2016F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 16FD4D182730214100F2016F /* Kingfisher */; };
-		16FD4D1C2730216500F2016F /* CoreStore in Frameworks */ = {isa = PBXBuildFile; productRef = 16FD4D1B2730216500F2016F /* CoreStore */; };
-		16FD4D1F2730218000F2016F /* Preferences in Frameworks */ = {isa = PBXBuildFile; productRef = 16FD4D1E2730218000F2016F /* Preferences */; };
+		16FDDAB4274B49FA005668E7 /* CoreStore in Frameworks */ = {isa = PBXBuildFile; productRef = 16FDDAB3274B49FA005668E7 /* CoreStore */; };
+		16FDDAB6274B4A08005668E7 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 16FDDAB5274B4A08005668E7 /* Kingfisher */; };
+		16FDDAB8274B4A14005668E7 /* Preferences in Frameworks */ = {isa = PBXBuildFile; productRef = 16FDDAB7274B4A14005668E7 /* Preferences */; };
 		6EE733194A7D45181382041F /* Pods_ontv.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 347B393565F2FDF56EB0B38A /* Pods_ontv.framework */; };
 /* End PBXBuildFile section */
 
@@ -311,25 +311,25 @@
 			files = (
 				169C79622730038E008F5973 /* SwiftUI.framework in Frameworks */,
 				16F5FBFA27304A6A00CF62CB /* CoreMedia.framework in Frameworks */,
-				16FD4D1F2730218000F2016F /* Preferences in Frameworks */,
 				1604067C2730E7EB00719408 /* CoreAudio.framework in Frameworks */,
 				162862E22732F2D40015298D /* SwiftDate in Frameworks */,
+				16FDDAB6274B4A08005668E7 /* Kingfisher in Frameworks */,
 				165C98092702312700466207 /* AVFoundation.framework in Frameworks */,
 				164A1A392735E21C0023607A /* Security.framework in Frameworks */,
+				16FDDAB8274B4A14005668E7 /* Preferences in Frameworks */,
 				165C98172702315C00466207 /* Foundation.framework in Frameworks */,
 				16F5FBFD2730B3F700CF62CB /* AudioToolbox.framework in Frameworks */,
 				16696D80273708F300E616DE /* Introspect in Frameworks */,
 				164A1A372735E1CE0023607A /* AVKit.framework in Frameworks */,
 				162862E9273307FD0015298D /* QuartzCore.framework in Frameworks */,
 				169C796027300384008F5973 /* AppKit.framework in Frameworks */,
-				16FD4D192730214100F2016F /* Kingfisher in Frameworks */,
 				164A1A3B2735E21C0023607A /* VideoToolbox.framework in Frameworks */,
 				16C5B982270293DC0072F2B9 /* CoreData.framework in Frameworks */,
 				164A1A382735E21C0023607A /* CoreVideo.framework in Frameworks */,
 				16F5FBFC2730A0C100CF62CB /* MetalKit.framework in Frameworks */,
-				16FD4D1C2730216500F2016F /* CoreStore in Frameworks */,
 				16FD4D162730212C00F2016F /* Defaults in Frameworks */,
 				6EE733194A7D45181382041F /* Pods_ontv.framework in Frameworks */,
+				16FDDAB4274B49FA005668E7 /* CoreStore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -810,11 +810,11 @@
 			name = ontv;
 			packageProductDependencies = (
 				16FD4D152730212C00F2016F /* Defaults */,
-				16FD4D182730214100F2016F /* Kingfisher */,
-				16FD4D1B2730216500F2016F /* CoreStore */,
-				16FD4D1E2730218000F2016F /* Preferences */,
 				162862E12732F2D40015298D /* SwiftDate */,
 				16696D7F273708F300E616DE /* Introspect */,
+				16FDDAB3274B49FA005668E7 /* CoreStore */,
+				16FDDAB5274B4A08005668E7 /* Kingfisher */,
+				16FDDAB7274B4A14005668E7 /* Preferences */,
 			);
 			productName = craptv;
 			productReference = 165C97DA2702257900466207 /* ontv.app */;
@@ -847,11 +847,11 @@
 			mainGroup = 165C97D12702257900466207;
 			packageReferences = (
 				16FD4D142730212C00F2016F /* XCRemoteSwiftPackageReference "Defaults" */,
-				16FD4D172730214100F2016F /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				16FD4D1A2730216500F2016F /* XCRemoteSwiftPackageReference "CoreStore" */,
-				16FD4D1D2730218000F2016F /* XCRemoteSwiftPackageReference "Preferences" */,
 				162862E02732F2D40015298D /* XCRemoteSwiftPackageReference "SwiftDate" */,
 				16696D7E273708F300E616DE /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+				16F485DC274B45D000655CFC /* XCRemoteSwiftPackageReference "Preferences" */,
+				16F485DF274B46A300655CFC /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				16F485E0274B46B600655CFC /* XCRemoteSwiftPackageReference "CoreStore" */,
 			);
 			productRefGroup = 165C97DB2702257900466207 /* Products */;
 			projectDirPath = "";
@@ -1171,7 +1171,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 342;
+				CURRENT_PROJECT_VERSION = 343;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1249,7 +1249,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 342;
+				CURRENT_PROJECT_VERSION = 343;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1354,15 +1354,15 @@
 				kind = branch;
 			};
 		};
-		16FD4D142730212C00F2016F /* XCRemoteSwiftPackageReference "Defaults" */ = {
+		16F485DC274B45D000655CFC /* XCRemoteSwiftPackageReference "Preferences" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sindresorhus/Defaults";
+			repositoryURL = "https://github.com/sindresorhus/Preferences";
 			requirement = {
 				branch = main;
 				kind = branch;
 			};
 		};
-		16FD4D172730214100F2016F /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		16F485DF274B46A300655CFC /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/cacko/Kingfisher";
 			requirement = {
@@ -1370,7 +1370,7 @@
 				kind = branch;
 			};
 		};
-		16FD4D1A2730216500F2016F /* XCRemoteSwiftPackageReference "CoreStore" */ = {
+		16F485E0274B46B600655CFC /* XCRemoteSwiftPackageReference "CoreStore" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JohnEstropia/CoreStore";
 			requirement = {
@@ -1378,9 +1378,9 @@
 				kind = branch;
 			};
 		};
-		16FD4D1D2730218000F2016F /* XCRemoteSwiftPackageReference "Preferences" */ = {
+		16FD4D142730212C00F2016F /* XCRemoteSwiftPackageReference "Defaults" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sindresorhus/Preferences";
+			repositoryURL = "https://github.com/sindresorhus/Defaults";
 			requirement = {
 				branch = main;
 				kind = branch;
@@ -1404,19 +1404,19 @@
 			package = 16FD4D142730212C00F2016F /* XCRemoteSwiftPackageReference "Defaults" */;
 			productName = Defaults;
 		};
-		16FD4D182730214100F2016F /* Kingfisher */ = {
+		16FDDAB3274B49FA005668E7 /* CoreStore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 16FD4D172730214100F2016F /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
-		};
-		16FD4D1B2730216500F2016F /* CoreStore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 16FD4D1A2730216500F2016F /* XCRemoteSwiftPackageReference "CoreStore" */;
+			package = 16F485E0274B46B600655CFC /* XCRemoteSwiftPackageReference "CoreStore" */;
 			productName = CoreStore;
 		};
-		16FD4D1E2730218000F2016F /* Preferences */ = {
+		16FDDAB5274B4A08005668E7 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 16FD4D1D2730218000F2016F /* XCRemoteSwiftPackageReference "Preferences" */;
+			package = 16F485DF274B46A300655CFC /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		16FDDAB7274B4A14005668E7 /* Preferences */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 16F485DC274B45D000655CFC /* XCRemoteSwiftPackageReference "Preferences" */;
 			productName = Preferences;
 		};
 /* End XCSwiftPackageProductDependency section */
