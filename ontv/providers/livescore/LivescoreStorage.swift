@@ -58,6 +58,9 @@ enum LivescoreStorage {
     guard timerIsActive else {
       return
     }
+    guard active.count == 0 else {
+      return
+    }
     timer.cancel()
     timer = nil
   }
