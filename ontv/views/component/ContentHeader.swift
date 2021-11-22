@@ -14,8 +14,14 @@ struct ContentHeaderView: View {
     var icon: ContentToggleIcon
     var body: some View {
       HStack(alignment: .center, spacing: 0) {
-        ControlSFSymbolView(icon: icon, width: 20).padding()
-
+        ControlSFSymbolView(icon: icon, width: 20)
+          .padding()
+          .onTapGesture(perform: {
+            NotificationCenter.default.post(
+              name: .contentToggle,
+              object: Player.instance.contentToggle
+            )
+          })
         Spacer()
         Text(text)
           .font(Theme.Font.title)
