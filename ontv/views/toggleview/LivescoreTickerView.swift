@@ -94,6 +94,9 @@ extension ToggleViews {
           self.forRemoval = nil
         }
       }
+      guard forRemoval.id != to else {
+        return
+      }
       withAnimation {
         proxy.scrollTo(to, anchor: .leading)
       }
