@@ -83,6 +83,7 @@ enum LivescoreStorage {
       return
     }
     timer.resume()
+    timerState = .active
   }
 
   static func stopTimer()

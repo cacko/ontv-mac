@@ -61,9 +61,10 @@ extension ToggleViews {
           Text(score.score)
             .font(Theme.Font.score)
             .foregroundColor(Theme.Color.Font.score)
+            .fixedSize()
+            .frame(width: 20)
         }
       }
-
     }
 
     struct LivescoreItem: View {
@@ -89,7 +90,7 @@ extension ToggleViews {
               .fixedSize()
               .font(Theme.Font.channel)
             Spacer()
-          }.frame(width: 30, alignment: .center)
+          }.frame(width: 20, alignment: .center)
           VStack(alignment: .center, spacing: 0) {
             HStack(alignment: .center, spacing: 5) {
               TeamView(team: homeTeam)
