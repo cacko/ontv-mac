@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16016FEB274AF70800712C55 /* PreferencesUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16016FEA274AF70800712C55 /* PreferencesUser.swift */; };
+		16016FED274AF72B00712C55 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16016FEC274AF72B00712C55 /* PreferencesView.swift */; };
+		16016FEF274AF7B800712C55 /* PreferencesLeagues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16016FEE274AF7B800712C55 /* PreferencesLeagues.swift */; };
+		16016FF1274B002E00712C55 /* V1League.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16016FF0274B002E00712C55 /* V1League.swift */; };
+		16016FF4274B0F7C00712C55 /* LeagueStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16016FF3274B0F7C00712C55 /* LeagueStorage.swift */; };
+		16016FF6274B0FB000712C55 /* LeagueList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16016FF5274B0FB000712C55 /* LeagueList.swift */; };
 		1601FC3D2720AE92009ED5F0 /* ThemeSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1601FC3C2720AE92009ED5F0 /* ThemeSize.swift */; };
 		1603B4D5271A8A2E002FDBC4 /* ApiLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1603B4D4271A8A2E002FDBC4 /* ApiLoadingView.swift */; };
 		1604067C2730E7EB00719408 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1604067B2730E7EB00719408 /* CoreAudio.framework */; platformFilter = maccatalyst; };
@@ -61,7 +67,6 @@
 		165C97E02702257900466207 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165C97DF2702257900466207 /* ContentView.swift */; };
 		165C97E22702257B00466207 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 165C97E12702257B00466207 /* Assets.xcassets */; };
 		165C97F7270227B900466207 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165C97F6270227B900466207 /* Player.swift */; };
-		165C97F92702282000466207 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165C97F82702282000466207 /* PreferencesView.swift */; };
 		165C97FB270228B000466207 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165C97FA270228B000466207 /* Menu.swift */; };
 		165C97FD270228F900466207 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165C97FC270228F900466207 /* VideoView.swift */; };
 		165C97FF2702291A00466207 /* MainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165C97FE2702291A00466207 /* MainWindow.swift */; };
@@ -146,6 +151,12 @@
 
 /* Begin PBXFileReference section */
 		12587405E2B5FB4B3B0555BF /* Pods-craptv.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-craptv.debug.xcconfig"; path = "Target Support Files/Pods-craptv/Pods-craptv.debug.xcconfig"; sourceTree = "<group>"; };
+		16016FEA274AF70800712C55 /* PreferencesUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesUser.swift; sourceTree = "<group>"; };
+		16016FEC274AF72B00712C55 /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
+		16016FEE274AF7B800712C55 /* PreferencesLeagues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesLeagues.swift; sourceTree = "<group>"; };
+		16016FF0274B002E00712C55 /* V1League.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = V1League.swift; sourceTree = "<group>"; };
+		16016FF3274B0F7C00712C55 /* LeagueStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueStorage.swift; sourceTree = "<group>"; };
+		16016FF5274B0FB000712C55 /* LeagueList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueList.swift; sourceTree = "<group>"; };
 		1601FC3C2720AE92009ED5F0 /* ThemeSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSize.swift; sourceTree = "<group>"; };
 		1603B4D4271A8A2E002FDBC4 /* ApiLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiLoadingView.swift; sourceTree = "<group>"; };
 		1604067B2730E7EB00719408 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
@@ -198,7 +209,6 @@
 		165C97EC2702260800466207 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		165C97EF2702273B00466207 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		165C97F6270227B900466207 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		165C97F82702282000466207 /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
 		165C97FA270228B000466207 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		165C97FC270228F900466207 /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
 		165C97FE2702291A00466207 /* MainWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindow.swift; sourceTree = "<group>"; };
@@ -326,6 +336,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		16016FE9274AF6EC00712C55 /* preferences */ = {
+			isa = PBXGroup;
+			children = (
+				16016FEA274AF70800712C55 /* PreferencesUser.swift */,
+				16016FEC274AF72B00712C55 /* PreferencesView.swift */,
+				16016FEE274AF7B800712C55 /* PreferencesLeagues.swift */,
+			);
+			path = preferences;
+			sourceTree = "<group>";
+		};
+		16016FF2274B0F6F00712C55 /* league */ = {
+			isa = PBXGroup;
+			children = (
+				16016FF3274B0F7C00712C55 /* LeagueStorage.swift */,
+				16016FF5274B0FB000712C55 /* LeagueList.swift */,
+			);
+			path = league;
+			sourceTree = "<group>";
+		};
 		1601FC3B2720AE76009ED5F0 /* size */ = {
 			isa = PBXGroup;
 			children = (
@@ -558,6 +587,7 @@
 		1686F75B2720C8A5006F9B7D /* providers */ = {
 			isa = PBXGroup;
 			children = (
+				16016FF2274B0F6F00712C55 /* league */,
 				16301275273F3B2D00F33027 /* livescore */,
 				162862D82732E9BB0015298D /* schedule */,
 				16B80140271507DD0022AC94 /* epg */,
@@ -590,6 +620,7 @@
 				1687DEA6271A135500A118E4 /* v1Schedule.swift */,
 				1687DEA8271A135D00A118E4 /* v1Activity.swift */,
 				16301271273ECF2D00F33027 /* V1Livescore.swift */,
+				16016FF0274B002E00712C55 /* V1League.swift */,
 			);
 			path = V1;
 			sourceTree = "<group>";
@@ -659,6 +690,7 @@
 		16B88BAE270435CB0021DC8C /* views */ = {
 			isa = PBXGroup;
 			children = (
+				16016FE9274AF6EC00712C55 /* preferences */,
 				163FEB34272A0F2C0098CF8B /* action */,
 				163E62A627263A19007938C8 /* toggleview */,
 				163E62A32726253E007938C8 /* component */,
@@ -666,7 +698,6 @@
 				16997B802718A98A00C49DFF /* theme */,
 				16BB62B727038631009B2639 /* SearchView.swift */,
 				165C97DF2702257900466207 /* ContentView.swift */,
-				165C97F82702282000466207 /* PreferencesView.swift */,
 				165C97FC270228F900466207 /* VideoView.swift */,
 				16CFBB312706D65100B136FC /* LoadingView.swift */,
 				16CFBB332706D66000B136FC /* ErrorView.swift */,
@@ -910,14 +941,15 @@
 				16E1B47C270931ED00D245C0 /* Date.swift in Sources */,
 				16CFBB302706D64800B136FC /* TitleView.swift in Sources */,
 				161FD7A4272E4ACE007FADA6 /* AVMetadataLoader.swift in Sources */,
+				16016FF4274B0F7C00712C55 /* LeagueStorage.swift in Sources */,
 				16B585EC270E450C00C1FA24 /* EPGMenu.swift in Sources */,
 				164B07652709FF0B00C7DE4C /* StreamItems.swift in Sources */,
 				16B801482715083A0022AC94 /* EPGGuide.swift in Sources */,
 				1678026027447BC300DE0FD7 /* LivescoreTickerView.swift in Sources */,
 				16997B8A2718AA8B00C49DFF /* ThemeColorFont.swift in Sources */,
 				16BB62B827038631009B2639 /* SearchView.swift in Sources */,
+				16016FEF274AF7B800712C55 /* PreferencesLeagues.swift in Sources */,
 				164E4EC227137DD0001849E5 /* ApiResponse.swift in Sources */,
-				165C97F92702282000466207 /* PreferencesView.swift in Sources */,
 				16228C4F270EF2ED00C701C8 /* CategoryView.swift in Sources */,
 				1687DEA7271A135500A118E4 /* v1Schedule.swift in Sources */,
 				1633B5FA272B926800D4D11E /* StreamSearch.swift in Sources */,
@@ -942,6 +974,7 @@
 				16D983AD27238D7500E1DC5D /* AbstractPlayer.swift in Sources */,
 				163FEB3A272A10020098CF8B /* ListActions.swift in Sources */,
 				168937EC270AB9B700F8364E /* AppDelegate.swift in Sources */,
+				16016FF6274B0FB000712C55 /* LeagueList.swift in Sources */,
 				16B801462715082D0022AC94 /* EPGLiveList.swift in Sources */,
 				1603B4D5271A8A2E002FDBC4 /* ApiLoadingView.swift in Sources */,
 				165C97DE2702257900466207 /* ontvApp.swift in Sources */,
@@ -966,6 +999,7 @@
 				162862E42732F4160015298D /* ScheduleView.swift in Sources */,
 				16F5FBF52730239B00CF62CB /* FFMpegStateDelegate.swift in Sources */,
 				16301272273ECF2D00F33027 /* V1Livescore.swift in Sources */,
+				16016FED274AF72B00712C55 /* PreferencesView.swift in Sources */,
 				16ACE780270BFFA40096EF59 /* ProgressIndicator.swift in Sources */,
 				16696D82273712C800E616DE /* ScrollingView.swift in Sources */,
 				1633B5FE272B928300D4D11E /* StreamCategory.swift in Sources */,
@@ -979,6 +1013,7 @@
 				1687DEB7271A1D7E00A118E4 /* LazyStream.swift in Sources */,
 				164B075A2709FCE700C7DE4C /* AudioMenu.swift in Sources */,
 				16997B842718AA3700C49DFF /* ThemeFont.swift in Sources */,
+				16016FF1274B002E00712C55 /* V1League.swift in Sources */,
 				16CFBB342706D66000B136FC /* ErrorView.swift in Sources */,
 				1687DEB9271A1E8A00A118E4 /* Validity.swift in Sources */,
 				161FD7A6272E4B86007FADA6 /* AVStateDelegate.swift in Sources */,
@@ -1000,6 +1035,7 @@
 				16301277273F3B4000F33027 /* LivescoreStorage.swift in Sources */,
 				165497F727142131003B2F0A /* QuickStream.swift in Sources */,
 				16DAC40F2745E30800239B3C /* ControlSFSymbol.swift in Sources */,
+				16016FEB274AF70800712C55 /* PreferencesUser.swift in Sources */,
 				16F5FBF9273023D700CF62CB /* FFMpegPlayerView.swift in Sources */,
 				163FEB38272A0F5F0098CF8B /* HoverAction.swift in Sources */,
 			);
@@ -1135,7 +1171,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 340;
+				CURRENT_PROJECT_VERSION = 341;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1213,7 +1249,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 340;
+				CURRENT_PROJECT_VERSION = 341;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;

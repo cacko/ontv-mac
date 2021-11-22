@@ -122,10 +122,14 @@ extension ToggleViews {
           }
           .frame(height: 50, alignment: .center)
           .onAppear {
-            LivescoreStorage.enable(.livescoresticker)
+            DispatchQueue.main.async {
+              LivescoreStorage.enable(.livescoresticker)
+            }
           }
           .onDisappear {
-            LivescoreStorage.disable(.livescoresticker)
+            DispatchQueue.main.async {
+              LivescoreStorage.disable(.livescoresticker)
+            }
           }
           Spacer()
         }.background(Theme.Color.Background.ticker)

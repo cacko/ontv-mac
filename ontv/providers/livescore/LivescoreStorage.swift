@@ -9,10 +9,14 @@ import CoreStore
 import Foundation
 
 enum LivescoreStorage {
-
+  
   static var active: [ContentToggle] = []
   static var timer: DispatchSourceTimer!
-
+  
+  static var timerIsActive: Bool {
+    timer != nil && !timer.isCancelled
+  }
+  
   static let events = Events()
   
   static func toggle(_ content: ContentToggle) {
@@ -21,7 +25,7 @@ enum LivescoreStorage {
     }
     Self.disable(content)
   }
-
+  
   static func enable(_ content: ContentToggle) {
     guard !active.contains(content) else {
       return
@@ -33,11 +37,13 @@ enum LivescoreStorage {
     default:
       break
     }
-    if active.count > 0 {
-      return startTimer()
+    
+    guard active.count > 0 else {
+      return
     }
+    startTimer()
   }
-
+  
   static func disable(_ content: ContentToggle) {
     guard active.contains(content) else {
       return
@@ -49,13 +55,14 @@ enum LivescoreStorage {
     default:
       break
     }
-    guard timer == nil || timer.isCancelled else {
-      return timer.cancel()
+    guard timerIsActive else {
+      return
     }
+    timer.cancel()
   }
-
+  
   static func startTimer() {
-    if timer != nil && !timer.isCancelled {
+    guard !timerIsActive else {
       return
     }
     timer = DispatchSource.makeTimerSource()
@@ -67,33 +74,32 @@ enum LivescoreStorage {
     }
     timer.activate()
   }
-
 }
 
 extension StorageProvider where EntityType == Livescore {
-
+  
   static var dataStack: DataStack {
     CoreStoreDefaults.dataStack
   }
-
+  
   static var center: NotificationCenter {
     NotificationCenter.default
   }
-
+  
   static var mainQueue: OperationQueue {
     OperationQueue.main
   }
-
+  
   func observe() {
   }
-
+  
   func fetch() {
-
+    
   }
-
+  
   func update() {
-
+    
   }
-
+  
   func onChangeStream(stream: Stream) {}
 }

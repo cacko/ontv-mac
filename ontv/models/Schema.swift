@@ -14,6 +14,7 @@ typealias Category = V1.Category
 typealias Schedule = V1.Schedule
 typealias Activity = V1.Activity
 typealias Livescore = V1.Livescore
+typealias League = V1.League
 
 enum V1 {
 }
@@ -30,14 +31,38 @@ class Schema {
             Entity<V1.Schedule>("Schedule"),
             Entity<V1.EPG>("EPG"),
             Entity<V1.Activity>("Activity"),
-            Entity<V1.Livescore>("Livescore")
-          ],versionLock: [
-            "Activity": [0x314af1a524494ef2, 0x5ea1c94456a75f65, 0x97145591fced717, 0x5b992d9fa3f6a108],
-            "Category": [0x1e66e5c4734a20b3, 0xf33d9d0abab32af7, 0xb7027799b0814d2d, 0x3bcf75d0feb59842],
-            "EPG": [0xb382dcb39c59663e, 0x334938e5d71a4ebb, 0xbb8594624f10d374, 0x16cb4120db9d551b],
-            "Livescore": [0x436880428931496b, 0x848d76a05183ca72, 0x558c669bede3df6b, 0xbb2ae5610d6f22d5],
-            "Schedule": [0x1be1e880d66c07f, 0x8a2bedac42cd65c0, 0x9021a5d23f014601, 0x3a54fa4c4cfd0874],
-            "Stream": [0x9937e748575a81d, 0xecf724f737fbf606, 0xce7d2e1d7a2c1981, 0x5c2b7ed1daaa13ef]
+            Entity<V1.Livescore>("Livescore"),
+            Entity<V1.League>("League"),
+          ],
+          versionLock: [
+            "Activity": [
+              0x314a_f1a5_2449_4ef2, 0x5ea1_c944_56a7_5f65, 0x971_4559_1fce_d717,
+              0x5b99_2d9f_a3f6_a108,
+            ],
+            "Category": [
+              0x1e66_e5c4_734a_20b3, 0xf33d_9d0a_bab3_2af7, 0xb702_7799_b081_4d2d,
+              0x3bcf_75d0_feb5_9842,
+            ],
+            "EPG": [
+              0xb382_dcb3_9c59_663e, 0x3349_38e5_d71a_4ebb, 0xbb85_9462_4f10_d374,
+              0x16cb_4120_db9d_551b,
+            ],
+            "League": [
+              0x97d0_384d_c4be_ce1e, 0xad80_72a1_5ebb_15ca, 0xc754_bf9f_daaa_204d,
+              0xe84a_9903_3395_98e2,
+            ],
+            "Livescore": [
+              0x4368_8042_8931_496b, 0x848d_76a0_5183_ca72, 0x558c_669b_ede3_df6b,
+              0xbb2a_e561_0d6f_22d5,
+            ],
+            "Schedule": [
+              0x1be_1e88_0d66_c07f, 0x8a2b_edac_42cd_65c0, 0x9021_a5d2_3f01_4601,
+              0x3a54_fa4c_4cfd_0874,
+            ],
+            "Stream": [
+              0x993_7e74_8575_a81d, 0xecf7_24f7_37fb_f606, 0xce7d_2e1d_7a2c_1981,
+              0x5c2b_7ed1_daaa_13ef,
+            ],
           ]
         )
       )

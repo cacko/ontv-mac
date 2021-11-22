@@ -10,6 +10,7 @@ import Foundation
 import OpenGL
 import SwiftDate
 import SwiftUI
+import Defaults
 
 extension LivescoreStorage {
 
@@ -31,8 +32,6 @@ extension LivescoreStorage {
 
     var search: String = ""
     
-    static let LEAGUES: Set<Int> = Set([43, 41, 44, 45, 39, 256])
-
     var state: ProviderState = .notavail
 
     func selectNext() throws {}
@@ -42,13 +41,15 @@ extension LivescoreStorage {
     func onNavigate(_ notitication: Notification) {}
 
     override init() {
-      self.query = Where<Livescore>(NSPredicate(format: "league_id IN %@", Self.LEAGUES))
+      self.query =  Where<Livescore>(NSPredicate(value: true))
+      if let leagues = Defaults[.liveScoreLeagues] as Set<Int64>? {
+        self.query = Where<Livescore>(NSPredicate(format: "league_id IN %@", leagues))
+      }
       self.list = Self.dataStack.publishList(
         From<Livescore>()
           .where(self.query)
           .orderBy(self.order)
       )
-
       self.scrollGenerator = LivescoreScrollGenerator(self.list)
       self.scrollCount = self.scrollGenerator.count
       super.init()

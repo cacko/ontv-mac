@@ -27,6 +27,7 @@ extension NSWindow.StyleMask {
 extension Preferences.PaneIdentifier {
   static let streams = Self("streams")
   static let urlinput = Self("urlinput")
+  static let leagues = Self("leagues")
 }
 
 extension CATransaction {
@@ -96,18 +97,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     window.makeMain()
     window.becomeFirstResponder()
     menu = Menu()
-//    #if DEBUG
-//    window.isFloating = false
-//    #else
+    #if DEBUG
+    window.isFloating = false
+    #else
     window.isFloating = Defaults[.isFloating]
-//    #endif
+    #endif
     Task.init {
       await API.Adapter.login()
     }
   }
 
   let StreamsPreferencesView: () -> PreferencePane = {
-    /// Wrap your custom view into `Preferences.Pane`, while providing necessary toolbar info.
     let paneView = Preferences.Pane(
       identifier: .streams,
       title: "Streams",
@@ -116,14 +116,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         accessibilityDescription: "Streams preferences"
       )!
     ) {
-      PreferencesView()
+      PreferencesView.User()
     }
 
     return Preferences.PaneHostingController(pane: paneView)
   }
+  
+  let LeaguesPreferencesView: () -> PreferencePane = {
+    let paneView = Preferences.Pane(
+      identifier: .leagues,
+      title: "Leagues",
+      toolbarIcon: NSImage(
+        systemSymbolName: "sportscourt",
+        accessibilityDescription: "Preffered leagues"
+      )!
+    ) {
+      PreferencesView.Leagues()
+    }
+    
+    return Preferences.PaneHostingController(pane: paneView)
+  }
 
   private lazy var preferences: [PreferencePane] = [
-    StreamsPreferencesView()
+    StreamsPreferencesView(),
+    LeaguesPreferencesView()
   ]
 
   lazy var preferencesWindowController = PreferencesWindowController(

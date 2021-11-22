@@ -23,7 +23,7 @@ extension Defaults.Keys {
 enum API {
 
   enum State {
-    case starting, started, error, loading, loggedin, loaded
+    case loading, ready, error, loggedin
   }
 
   enum FetchType {
@@ -107,8 +107,10 @@ enum API {
 
         if Stream.needUpdate() {
           try await updateStreams()
-        }
-        else {
+        } else {
+          DispatchQueue.main.async {
+            self.state = .ready
+          }
           NotificationCenter.default.post(name: .updatestreams, object: nil)
         }
         if Schedule.needUpdate() {
@@ -118,9 +120,6 @@ enum API {
           NotificationCenter.default.post(name: .updateschedule, object: nil)
         }
         NotificationCenter.default.post(name: .loaded, object: nil)
-        DispatchQueue.main.async {
-          self.state = .started
-        }
         if EPG.needUpdate() {
           try await updateEPG()
         }
@@ -212,6 +211,9 @@ enum API {
       }
       try await Category.fetch(url: Endpoint.Categories) { _ in
         DispatchQueue.main.async {
+          self.state = .ready
+        }
+        DispatchQueue.main.async {
           Task.detached {
             do {
               try await Category.delete(Category.clearQuery)
@@ -266,12 +268,15 @@ enum API {
     
 
     func updateLivescore() async throws {
+      guard state == .ready else {
+        return
+      }
       try await Livescore.fetch(url: Endpoint.Livescores) { _ in
-        DispatchQueue.main.async {
           Task.detached {
             do {
               try await Livescore.delete(Livescore.clearQuery)
               Livescore.state = .ready
+              self.updateLeagues()
             }
             catch let error {
               logger.error("\(error.localizedDescription)")
@@ -279,6 +284,22 @@ enum API {
           }
         }
         return
+    }
+    
+    func updateLeagues() {
+      DispatchQueue.main.async {
+        let livescores  = Livescore.getAll()
+        let leagues: [String: Any] = livescores.reduce(into: [:], {(res, livescore) in
+          guard res.keys.contains(livescore.league_id.string) else {
+            res[livescore.league_id.string] = livescore.league_name
+            return
+          }
+        })
+        Task.init {
+          do {
+            try await League.doImport(json: leagues.map{["id": $0, "idLeague": $0.int64, "strLeague": $1]}) { _ in }
+          } catch {}
+        }
       }
     }
 
