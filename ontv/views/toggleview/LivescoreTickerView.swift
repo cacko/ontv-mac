@@ -94,7 +94,7 @@ extension ToggleViews {
           self.forRemoval = nil
         }
       }
-      guard forRemoval.id != to else {
+      guard forRemoval?.id != to else {
         return
       }
       withAnimation {
