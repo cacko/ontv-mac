@@ -14,7 +14,7 @@ enum LivescoreStorage {
   static var timer: DispatchSourceTimer!
   
   static var timerIsActive: Bool {
-    timer != nil && !timer.isCancelled
+    timer != nil
   }
   
   static let events = Events()
@@ -59,6 +59,7 @@ enum LivescoreStorage {
       return
     }
     timer.cancel()
+    timer = nil
   }
   
   static func startTimer() {

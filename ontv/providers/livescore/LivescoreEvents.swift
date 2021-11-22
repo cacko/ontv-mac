@@ -6,11 +6,11 @@
 //
 
 import CoreStore
+import Defaults
 import Foundation
 import OpenGL
 import SwiftDate
 import SwiftUI
-import Defaults
 
 extension LivescoreStorage {
 
@@ -26,13 +26,45 @@ extension LivescoreStorage {
 
     var selectedId: String = ""
 
-    var query: Where<Livescore>
+    var query: Where<Livescore> {
+      get {
+        Self.leagueQuery
+      }
+      set {}
+    }
 
     var order: OrderBy<Livescore> = Livescore.orderBy
 
     var search: String = ""
-    
+
     var state: ProviderState = .notavail
+
+    var scrollTimer: DispatchSourceTimer!
+    var leagueObserver: DefaultsObservation!
+    var scrollGenerator: LivescoreScrollGenerator
+    @Published var scrollTo: String = ""
+    @Published var scrollCount: Int = 0
+
+    @Published var active: Bool = false {
+      didSet {
+        guard self.active else {
+          return self.stopScrollTimer()
+        }
+        guard scrollTimer == nil else {
+          return
+        }
+        self.startScrollTimer()
+      }
+    }
+
+    @Published var tickerVisible: Bool = false {
+      didSet {
+        DispatchQueue.main.async {
+          LivescoreStorage.toggle(.livescoresticker)
+        }
+      }
+    }
+    @Published var tickerAvailable: Bool = false
 
     func selectNext() throws {}
 
@@ -40,27 +72,40 @@ extension LivescoreStorage {
 
     func onNavigate(_ notitication: Notification) {}
 
-    override init() {
-      self.query =  Where<Livescore>(NSPredicate(value: true))
-      if let leagues = Defaults[.liveScoreLeagues] as Set<Int64>? {
-        self.query = Where<Livescore>(NSPredicate(format: "league_id IN %@", leagues))
+    static var leagueQuery: Where<EntityType> {
+      guard let leagues = Defaults[.leagues] as Set<Int>? else {
+        return Where<Livescore>(NSPredicate(value: true))
       }
-      self.list = Self.dataStack.publishList(
-        From<Livescore>()
-          .where(self.query)
-          .orderBy(self.order)
+      return Where<Livescore>(NSPredicate(format: "league_id IN %@", leagues))
+    }
+
+    override init() {
+      list = Self.dataStack.publishList(
+        From<EntityType>()
+          .where(Self.leagueQuery)
+          .orderBy(order)
       )
-      self.scrollGenerator = LivescoreScrollGenerator(self.list)
-      self.scrollCount = self.scrollGenerator.count
+      scrollGenerator = LivescoreScrollGenerator(list)
+      scrollCount = scrollGenerator.count
       super.init()
-      self.tickerVisible = self.scrollCount > 0
-      self.tickerAvailable = self.scrollCount > 0
+      tickerVisible = scrollCount > 0
+      tickerAvailable = scrollCount > 0
+      leagueObserver = Defaults.observe(keys: .leagues) {
+        DispatchQueue.main.async {
+          do {
+            try self.list.refetch(From<EntityType>().where(self.query).orderBy(self.order))
+          }
+          catch let error {
+            logger.error("\(error.localizedDescription)")
+          }
+        }
+      }
     }
 
     func update(_ livescore: Livescore) {
       self.active = false
       Task.init {
-        try await livescore.toggleTicker() {_ in
+        try await livescore.toggleTicker { _ in
           self.scrollGenerator.update()
           DispatchQueue.main.async {
             self.scrollCount = self.scrollGenerator.count
@@ -90,38 +135,6 @@ extension LivescoreStorage {
       return instance
     }
 
-    var scrollTimer: DispatchSourceTimer!
-    var scrollGenerator: LivescoreScrollGenerator
-    @Published var scrollTo: String = ""
-    @Published var scrollCount: Int = 0
-
-    @Published var active: Bool = false {
-      didSet {
-        guard self.active else {
-          if scrollTimer != nil, !scrollTimer.isCancelled {
-            return scrollTimer.cancel()
-          }
-          return
-        }
-        guard scrollTimer != nil else {
-          return startScrollTimer()
-        }
-        guard !scrollTimer.isCancelled else {
-          return startScrollTimer()
-        }
-      }
-    }
-
-    @Published var tickerVisible: Bool = false {
-      didSet {
-        DispatchQueue.main.async {
-          LivescoreStorage.toggle(.livescoresticker)
-        }
-      }
-    }
-    @Published var tickerAvailable: Bool = false
-
-
     func startScrollTimer() {
       self.scrollGenerator.reset()
       scrollTimer = DispatchSource.makeTimerSource()
@@ -135,6 +148,14 @@ extension LivescoreStorage {
         }
       }
       scrollTimer.activate()
+    }
+
+    func stopScrollTimer() {
+      guard scrollTimer != nil else {
+        return
+      }
+      self.scrollTimer.cancel()
+      self.scrollTimer = nil
     }
   }
 }

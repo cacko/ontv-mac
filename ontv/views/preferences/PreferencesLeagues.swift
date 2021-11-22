@@ -12,7 +12,7 @@ import SwiftUI
 
 extension PreferencesView {
   struct Leagues: View {
-    @Default(.liveScoreLeagues) var leagues
+    @Default(.leagues) var leagues
     private var leagueProvider = LeagueStorage.list
 
     private let contentWidth: Double = 550.0
@@ -21,14 +21,14 @@ extension PreferencesView {
     func isSelected(_ id: Int64) -> Binding<Bool> {
       Binding(
         get: {
-          leagues.contains(id)
+          leagues.contains(id.int)
         },
         set: { state in
           if state {
-            leagues.insert(id)
+            leagues.insert(id.int)
           }
           else {
-            leagues.remove(id)
+            leagues.remove(id.int)
           }
         }
       )
@@ -59,5 +59,4 @@ extension PreferencesView {
       }.frame(width: contentWidth, height: 500, alignment: .leading)
     }
   }
-
 }
