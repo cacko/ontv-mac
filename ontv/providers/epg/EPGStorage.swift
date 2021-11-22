@@ -111,6 +111,9 @@ class EPGStorageAbstract: NSObject, ObservableObject, StorageProvider {
         case .previous:
           try self.selectPrevious()
         case .select:
+          guard self.selected != nil else {
+            return
+          }
           NotificationCenter.default.post(name: .selectStream, object: self.selected.stream!)
         }
       }

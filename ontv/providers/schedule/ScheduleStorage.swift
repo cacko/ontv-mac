@@ -48,10 +48,6 @@ extension StorageProvider where EntityType == Schedule {
         return
       }
       
-      guard self.selected != nil else {
-        return
-      }
-
       do {
         switch action {
         case .down:
@@ -59,7 +55,11 @@ extension StorageProvider where EntityType == Schedule {
         case .up:
           try self.selectPrevious()
         case .select:
+          guard self.selected != nil else {
+            return
+          }
           NotificationCenter.default.post(name: .selectStream, object: self.selected.object)
+          break
         default:
           logger.info("eat shit")
         }
