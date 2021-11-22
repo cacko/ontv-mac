@@ -80,10 +80,13 @@ extension ToggleViews {
 
     @ObservedObject var liverscoreProvider = LivescoreStorage.events
     @ObservedObject var player = Player.instance
+    @State private var forRemoval: Livescore!
+    @State private var scrollingTo: String!
 
     private var buttonFont: Font = .system(size: 20, weight: .heavy, design: .monospaced)
 
     func onScrollTo(to: String, proxy: ScrollViewProxy) {
+      self.scrollingTo = to
       withAnimation {
         proxy.scrollTo(to, anchor: .leading)
       }
@@ -91,6 +94,9 @@ extension ToggleViews {
 
     func toggle(_ object: ObjectPublisher<Livescore>) {
       guard let livescore = object.object as Livescore? else {
+        return
+      }
+      guard self.scrollingTo == nil || self.scrollingTo != livescore.id else {
         return
       }
       liverscoreProvider.update(livescore)

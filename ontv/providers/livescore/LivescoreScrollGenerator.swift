@@ -46,7 +46,7 @@ class LivescoreScrollGenerator: ScrollGeneratorProtocol {
   }
 
   func next() -> String {
-    guard items.count > 0 else {
+    guard items.count > 1 else {
       return ""
     }
     if itemsSource.count == 0 {

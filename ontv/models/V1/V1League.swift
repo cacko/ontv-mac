@@ -42,13 +42,10 @@ extension V1 {
     
     func update(from source: [String: Any], in transaction: BaseDataTransaction) throws {
       self.loadData(from: source)
-      logger.debug("update \(self.id) \(self.league_id) \(self.league_name)")
     }
     
     func didInsert(from data: [String: Any], in transaction: BaseDataTransaction) throws {
       self.loadData(from: data)
-      logger.debug("insert \(self.id) \(self.league_id) \(self.league_name)")
-
     }
     
     class func doImport(

@@ -60,7 +60,10 @@ extension LivescoreStorage {
     @Published var tickerVisible: Bool = false {
       didSet {
         DispatchQueue.main.async {
-          LivescoreStorage.toggle(.livescoresticker)
+          guard self.tickerVisible else {
+            return LivescoreStorage.disable(.livescoresticker)
+          }
+          LivescoreStorage.enable(.livescoresticker)
         }
       }
     }
@@ -137,9 +140,9 @@ extension LivescoreStorage {
 
     func startScrollTimer() {
       self.scrollGenerator.reset()
-      scrollTimer = DispatchSource.makeTimerSource()
-      scrollTimer.schedule(deadline: .now(), repeating: .seconds(3))
-      scrollTimer.setEventHandler {
+      self.scrollTimer = DispatchSource.makeTimerSource()
+      self.scrollTimer.schedule(deadline: .now(), repeating: .seconds(3))
+      self.scrollTimer.setEventHandler {
         guard Livescore.state == .ready else {
           return
         }
@@ -147,15 +150,19 @@ extension LivescoreStorage {
           self.scrollTo = self.scrollGenerator.next()
         }
       }
-      scrollTimer.activate()
+      DispatchQueue.main.async {
+        self.scrollTimer.activate()
+      }
     }
 
     func stopScrollTimer() {
       guard scrollTimer != nil else {
         return
       }
-      self.scrollTimer.cancel()
-      self.scrollTimer = nil
+      DispatchQueue.main.async {
+        self.scrollTimer.cancel()
+        self.scrollTimer = nil
+      }
     }
   }
 }
