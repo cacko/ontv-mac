@@ -54,7 +54,6 @@ extension V1 {
     ) async throws {
       dataStack.perform(
         asynchronous: { transaction -> Void in
-          Livescore.state = .loading
           let _ = try transaction.importUniqueObjects(
             Into<EntityType>(),
             sourceArray: json

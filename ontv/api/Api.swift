@@ -48,6 +48,7 @@ enum API {
     @Published var epgState: ProviderState = .notavail
     @Published var user: UserInfo? = nil
     @Published var expires: String = ""
+    @Published var livescoreState: LivescoreState = .ready
 
     var server_info: ServerInfo = ServerInfo(
       url: Defaults[.server_host],
@@ -271,12 +272,13 @@ enum API {
       guard state == .ready else {
         return
       }
+      self.livescoreState = .loading
       try await Livescore.fetch(url: Endpoint.Livescores) { _ in
           Task.detached {
             do {
               self.updateLeagues()
               try await Livescore.delete(Livescore.clearQuery)
-              Livescore.state = .ready
+              self.livescoreState = .ready
             }
             catch let error {
               logger.error("\(error.localizedDescription)")

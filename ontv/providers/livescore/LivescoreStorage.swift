@@ -19,18 +19,14 @@ enum LivescoreStorage {
 
   static let events = Events()
 
-  static func toggle(_ content: ContentToggle) {
-    guard active.contains(content) else {
-      return Self.enable(content)
-    }
-    Self.disable(content)
-  }
-
   static func enable(_ content: ContentToggle) {
+    debugPrint(">>> livescore storage enable \(content)")
     guard active.contains(content) == false else {
+      debugPrint(">>> livescore storage enable \(content) is already enabled")
       return
     }
     active.append(content)
+    debugPrint(">>> livescore storage appended to active \(content)")
     switch content {
     case .livescoresticker:
       events.active = true
@@ -39,6 +35,11 @@ enum LivescoreStorage {
     }
 
     guard active.count > 0 else {
+      debugPrint(">>> livescore storage no active content not starting timer")
+      return
+    }
+    
+    guard timerState != .active else {
       return
     }
 
@@ -46,7 +47,10 @@ enum LivescoreStorage {
   }
 
   static func disable(_ content: ContentToggle) {
+    debugPrint(">>> livescore storage disable \(content)")
+
     guard active.contains(content) else {
+      debugPrint(">>> livescore storage does not contain \(content)")
       return
     }
     active.removeAll(where: { $0 == content })
@@ -68,9 +72,11 @@ enum LivescoreStorage {
   static func startTimer() {
 
     if timerState == .none {
+      debugPrint(">>> initialising timer")
       timer.schedule(deadline: .now(), repeating: .seconds(60))
       timer.setEventHandler {
         Task.detached {
+          debugPrint(">>> livescore timer call api.updatelivescore")
           try await API.Adapter.updateLivescore()
         }
       }
@@ -80,21 +86,26 @@ enum LivescoreStorage {
     }
 
     guard timerState == .suspended else {
+      debugPrint(">>> livescore timer is not suspended, not resuming")
       return
     }
     timer.resume()
     timerState = .active
+    debugPrint(">>> livescore timer resumed")
+
   }
 
   static func stopTimer()
   {
     
     guard timerState == .active else {
+      debugPrint(">>> livescore timer not active, can't suspend")
       return
     }
     
     timer.suspend()
     timerState = .suspended
+    debugPrint(">>> livescore timer suspended")
   }
 }
 

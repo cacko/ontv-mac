@@ -18,6 +18,8 @@ extension LivescoreStorage {
     TicketProvider
   {
 
+    let api: API.ApiAdapter = API.Adapter
+    
     typealias EntityType = Livescore
 
     var list: ListPublisher<EntityType>
@@ -45,9 +47,12 @@ extension LivescoreStorage {
     @Published var active: Bool = false {
       didSet {
         guard self.active else {
+          debugPrint(">>> livescore scroll actove = false, call stop timer")
+
           return self.stopScrollTimer()
         }
         self.startScrollTimer()
+        debugPrint(">>> livescore scroll actove = true, call start timer")
       }
     }
 
@@ -134,9 +139,12 @@ extension LivescoreStorage {
 
     func startScrollTimer() {
       if scrollTimerState == .none {
+        debugPrint(">>> livescore scroll timer intializing")
+
         self.scrollTimer.schedule(deadline: .now(), repeating: .seconds(5))
         self.scrollTimer.setEventHandler {
-          guard Livescore.state == .ready else {
+          guard self.api.livescoreState == .ready else {
+            debugPrint(">>> livescore scroll not started, Livescore.state is not ready")
             return
           }
           DispatchQueue.main.async {
@@ -145,23 +153,30 @@ extension LivescoreStorage {
         }
         self.scrollTimer.activate()
         self.scrollTimerState = .active
+        debugPrint(">>> livescore scroll timer activated")
         return
       }
       
       guard scrollTimerState == .suspended else {
+        debugPrint(">>> livescore scroll can't resume not suspended")
         return
       }
 
       self.scrollTimer.resume()
       self.scrollTimerState = .active
+      debugPrint(">>> livescore scroll timer resumed")
+
     }
 
     func stopScrollTimer() {
       guard scrollTimerState == .active else {
+        debugPrint(">>> livescore scroll timer can't suspend not active")
+
         return
       }
       self.scrollTimer.suspend()
       self.scrollTimerState = .suspended
+      debugPrint(">>> livescore scroll timer suspended")
     }
   }
 }
