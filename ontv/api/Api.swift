@@ -290,10 +290,10 @@ enum API {
       DispatchQueue.main.async {
         let livescores  = Livescore.getAll()
         let leagues: [String: Any] = livescores.reduce(into: [:], {(res, livescore) in
-          guard let key: Int64 = livescore.league_id as Int64? else {
+          guard ((livescore.league_id as Any?) != nil) else {
             return
           }
-          guard res.keys.contains(key.string) else {
+          guard res.keys.contains(livescore.league_id.string) else {
             res[livescore.league_id.string] = livescore.league_name
             return
           }

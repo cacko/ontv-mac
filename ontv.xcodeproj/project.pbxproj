@@ -110,6 +110,9 @@
 		169C79622730038E008F5973 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 169C79612730038E008F5973 /* SwiftUI.framework */; platformFilter = maccatalyst; };
 		16A5615F2745B9D900F2699C /* LivescoreScrollGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A5615E2745B9D900F2699C /* LivescoreScrollGenerator.swift */; };
 		16ACE780270BFFA40096EF59 /* ProgressIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16ACE77F270BFFA40096EF59 /* ProgressIndicator.swift */; };
+		16AE6314274C8DCE002BC91C /* TickerAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AE6313274C8DCE002BC91C /* TickerAction.swift */; };
+		16AE6316274C900A002BC91C /* ScoreChangeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AE6315274C900A002BC91C /* ScoreChangeAction.swift */; };
+		16AE6318274C92B3002BC91C /* HideViewAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AE6317274C92B3002BC91C /* HideViewAction.swift */; };
 		16B2F75F2731A5DA0051D000 /* PlayerInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B2F75E2731A5DA0051D000 /* PlayerInterfaces.swift */; };
 		16B585EA270DE92F00C1FA24 /* EPGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B585E9270DE92F00C1FA24 /* EPGView.swift */; };
 		16B585EC270E450C00C1FA24 /* EPGMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B585EB270E450C00C1FA24 /* EPGMenu.swift */; };
@@ -270,6 +273,9 @@
 		169C79612730038E008F5973 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		16A5615E2745B9D900F2699C /* LivescoreScrollGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivescoreScrollGenerator.swift; sourceTree = "<group>"; };
 		16ACE77F270BFFA40096EF59 /* ProgressIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIndicator.swift; sourceTree = "<group>"; };
+		16AE6313274C8DCE002BC91C /* TickerAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerAction.swift; sourceTree = "<group>"; };
+		16AE6315274C900A002BC91C /* ScoreChangeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreChangeAction.swift; sourceTree = "<group>"; };
+		16AE6317274C92B3002BC91C /* HideViewAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideViewAction.swift; sourceTree = "<group>"; };
 		16B2F75E2731A5DA0051D000 /* PlayerInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInterfaces.swift; sourceTree = "<group>"; };
 		16B585E9270DE92F00C1FA24 /* EPGView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPGView.swift; sourceTree = "<group>"; };
 		16B585EB270E450C00C1FA24 /* EPGMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPGMenu.swift; sourceTree = "<group>"; };
@@ -451,6 +457,9 @@
 				163FEB39272A10020098CF8B /* ListActions.swift */,
 				163FEB3B272A10380098CF8B /* LiveBackground.swift */,
 				1668DBC8272CA64C00B60951 /* ListNavigator.swift */,
+				16AE6313274C8DCE002BC91C /* TickerAction.swift */,
+				16AE6315274C900A002BC91C /* ScoreChangeAction.swift */,
+				16AE6317274C92B3002BC91C /* HideViewAction.swift */,
 			);
 			path = action;
 			sourceTree = "<group>";
@@ -980,6 +989,7 @@
 				165C97F7270227B900466207 /* Player.swift in Sources */,
 				163E62A1272624F6007938C8 /* Bool.swift in Sources */,
 				16D983AD27238D7500E1DC5D /* AbstractPlayer.swift in Sources */,
+				16AE6314274C8DCE002BC91C /* TickerAction.swift in Sources */,
 				163FEB3A272A10020098CF8B /* ListActions.swift in Sources */,
 				168937EC270AB9B700F8364E /* AppDelegate.swift in Sources */,
 				16016FF6274B0FB000712C55 /* LeagueList.swift in Sources */,
@@ -987,6 +997,7 @@
 				1603B4D5271A8A2E002FDBC4 /* ApiLoadingView.swift in Sources */,
 				165C97DE2702257900466207 /* ontvApp.swift in Sources */,
 				1630127C273F416000F33027 /* Int.swift in Sources */,
+				16AE6316274C900A002BC91C /* ScoreChangeAction.swift in Sources */,
 				16B8014A2715085F0022AC94 /* EPGLiveSearch.swift in Sources */,
 				167807BF27173173000FD21E /* Schema.swift in Sources */,
 				1630127A273F3B6D00F33027 /* LivescoreEvents.swift in Sources */,
@@ -1041,6 +1052,7 @@
 				164B07602709FD0400C7DE4C /* ScheduleMenu.swift in Sources */,
 				165C97FF2702291A00466207 /* MainWindow.swift in Sources */,
 				16301277273F3B4000F33027 /* LivescoreStorage.swift in Sources */,
+				16AE6318274C92B3002BC91C /* HideViewAction.swift in Sources */,
 				165497F727142131003B2F0A /* QuickStream.swift in Sources */,
 				16DAC40F2745E30800239B3C /* ControlSFSymbol.swift in Sources */,
 				16016FEB274AF70800712C55 /* PreferencesUser.swift in Sources */,
@@ -1179,7 +1191,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 359;
+				CURRENT_PROJECT_VERSION = 360;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1257,7 +1269,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 359;
+				CURRENT_PROJECT_VERSION = 360;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;

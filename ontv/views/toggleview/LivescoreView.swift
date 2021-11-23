@@ -131,10 +131,8 @@ extension ToggleViews {
                 .pressAction {
                   onTapItem(livescore)
                 }
-                .background(
-                  (livescore.$in_ticker ?? 0) > 0
-                    ? Theme.Color.State.ticker : Theme.Color.Background.header
-                ).brightness(livescore.$score_changed ?? 0 > 0 ? 2 : 1)
+                .onTicker(state: livescore.$in_ticker ?? 0 > 0)
+                .onScoreChange(state: livescore.$score_changed ?? 0 > 0)
             }
           }
         }.onAppear {

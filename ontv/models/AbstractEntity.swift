@@ -36,11 +36,7 @@ extension AbstractEntity {
 
   static func getAll() -> [EntityType] {
     do {
-      let res = try dataStack.fetchAll(
-        From<EntityType>(),
-        Self.orderBy
-      )
-      return res
+      return try dataStack.fetchAll(From<EntityType>().orderBy(orderBy))
     }
     catch {
       return []

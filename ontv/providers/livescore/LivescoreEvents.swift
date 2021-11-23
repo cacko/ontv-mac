@@ -143,11 +143,8 @@ extension LivescoreStorage {
             self.scrollTo = self.scrollGenerator.next()
           }
         }
-        self.scrollTimerState = .suspended
-        DispatchQueue.main.async {
-          self.scrollTimer.activate()
-          self.scrollTimerState = .active
-        }
+        self.scrollTimer.activate()
+        self.scrollTimerState = .active
         return
       }
       
@@ -155,20 +152,16 @@ extension LivescoreStorage {
         return
       }
 
-      DispatchQueue.main.async {
-        self.scrollTimer.resume()
-        self.scrollTimerState = .active
-      }
+      self.scrollTimer.resume()
+      self.scrollTimerState = .active
     }
 
     func stopScrollTimer() {
       guard scrollTimerState == .active else {
         return
       }
-      DispatchQueue.main.async {
-        self.scrollTimer.suspend()
-        self.scrollTimerState = .suspended
-      }
+      self.scrollTimer.suspend()
+      self.scrollTimerState = .suspended
     }
   }
 }

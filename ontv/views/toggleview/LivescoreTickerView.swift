@@ -133,9 +133,8 @@ extension ToggleViews {
                       .id(livescore.$id)
                       .onTapGesture(count: 2) { toggle(livescore) }
                       .hoverAction()
-                      .opacity(forRemoval?.id == livescore.$id ? 0 : 1)
-                      .scaleEffect(forRemoval?.id == livescore.$id ? 0 : 1)
-                      .brightness(livescore.$score_changed ?? 0 > 0 ? 2 : 1)
+                      .hideView(state: forRemoval?.id == livescore.$id )
+                      .onScoreChange(state: livescore.$score_changed ?? 0 > 0)
                   }
                 }
               }
