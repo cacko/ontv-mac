@@ -134,7 +134,7 @@ extension ToggleViews {
                 .background(
                   (livescore.$in_ticker ?? 0) > 0
                     ? Theme.Color.State.ticker : Theme.Color.Background.header
-                )
+                ).brightness(livescore.$score_changed ?? 0 > 0 ? 2 : 1)
             }
           }
         }.onAppear {

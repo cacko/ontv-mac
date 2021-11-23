@@ -274,9 +274,9 @@ enum API {
       try await Livescore.fetch(url: Endpoint.Livescores) { _ in
           Task.detached {
             do {
+              self.updateLeagues()
               try await Livescore.delete(Livescore.clearQuery)
               Livescore.state = .ready
-              self.updateLeagues()
             }
             catch let error {
               logger.error("\(error.localizedDescription)")
@@ -290,7 +290,10 @@ enum API {
       DispatchQueue.main.async {
         let livescores  = Livescore.getAll()
         let leagues: [String: Any] = livescores.reduce(into: [:], {(res, livescore) in
-          guard res.keys.contains(livescore.league_id.string) else {
+          guard let key: Int64 = livescore.league_id as Int64? else {
+            return
+          }
+          guard res.keys.contains(key.string) else {
             res[livescore.league_id.string] = livescore.league_name
             return
           }

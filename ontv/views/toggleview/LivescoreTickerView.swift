@@ -135,6 +135,7 @@ extension ToggleViews {
                       .hoverAction()
                       .opacity(forRemoval?.id == livescore.$id ? 0 : 1)
                       .scaleEffect(forRemoval?.id == livescore.$id ? 0 : 1)
+                      .brightness(livescore.$score_changed ?? 0 > 0 ? 2 : 1)
                   }
                 }
               }

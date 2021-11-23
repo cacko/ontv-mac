@@ -75,6 +75,9 @@ extension V1 {
 
     @Field.Stored("in_ticker")
     var in_ticker: Int = 0
+    
+    @Field.Stored("score_changed")
+    var score_changed: Int = 0
 
     static func uniqueID(
       from source: [String: Any],
@@ -101,7 +104,10 @@ extension V1 {
     }
 
     func update(from source: [String: Any], in transaction: BaseDataTransaction) throws {
+      let old_score = "\(home_score.string):\(away_score.string)"
       self.loadData(from: source)
+      let new_score = "\(home_score.string):\(away_score.string)"
+      score_changed = (new_score != old_score).intValue
     }
 
     func didInsert(from data: [String: Any], in transaction: BaseDataTransaction) throws {
