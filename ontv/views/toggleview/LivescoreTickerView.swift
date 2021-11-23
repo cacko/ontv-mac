@@ -52,7 +52,7 @@ extension ToggleViews {
       }
 
       var body: some View {
-        if let ls = self.livescore {
+        if let ls = self.livescore as ObjectSnapshot<Livescore>? {
           HStack(alignment: .center, spacing: 3) {
             BadgeView(icon: homeTeam.icon)
             TitleTextView(text: homeTeam.id)
@@ -88,6 +88,9 @@ extension ToggleViews {
 
     func onScrollTo(to: String, proxy: ScrollViewProxy) {
       self.scrollingTo = to
+      guard Livescore.state == .ready else {
+        return
+      }
       if forRemoval != nil {
         DispatchQueue.main.async {
           liverscoreProvider.update(self.forRemoval)
@@ -97,6 +100,7 @@ extension ToggleViews {
       guard forRemoval?.id != to else {
         return
       }
+
       withAnimation {
         proxy.scrollTo(to, anchor: .leading)
       }
@@ -106,7 +110,7 @@ extension ToggleViews {
       guard let livescore = object.object as Livescore? else {
         return
       }
-            
+
       guard self.scrollingTo == livescore.id else {
         DispatchQueue.main.async {
           liverscoreProvider.update(livescore)

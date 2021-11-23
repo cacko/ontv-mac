@@ -102,7 +102,7 @@ extension LivescoreStorage {
     func update(_ livescore: Livescore) {
       self.active = false
       Task.init {
-        try await livescore.toggleTicker { _ in
+        try await livescore.toggleTicker() { _ in
           self.scrollGenerator.update()
           DispatchQueue.main.async {
             self.scrollCount = self.scrollGenerator.count
@@ -134,7 +134,7 @@ extension LivescoreStorage {
 
     func startScrollTimer() {
       if scrollTimerState == .none {
-        self.scrollTimer.schedule(deadline: .now(), repeating: .seconds(7))
+        self.scrollTimer.schedule(deadline: .now(), repeating: .seconds(5))
         self.scrollTimer.setEventHandler {
           guard Livescore.state == .ready else {
             return
