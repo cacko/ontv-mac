@@ -12,7 +12,7 @@ import SwiftUI
 
 enum ContentToggle {
   case guide, category, epglist, search, title, loading, controls, errror, activityepg, bookmarks,
-    metadata, schedule, livescores, livescoresticker
+       metadata, schedule, livescores, livescoresticker, none
 }
 
 enum ContentToggleIcon: String {

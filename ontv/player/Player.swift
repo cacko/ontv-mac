@@ -63,6 +63,9 @@ class Player: NSObject, PlayerProtocol, ObservableObject {
     }
     set {
       self._contentToggle = newValue == self._contentToggle ? nil : newValue
+      if ToggleViews.hideControls.contains(self._contentToggle ?? .none) {
+        controlsState = .hidden
+      }
       objectWillChange.send()
     }
   }

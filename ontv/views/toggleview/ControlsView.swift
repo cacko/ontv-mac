@@ -239,6 +239,10 @@ extension ToggleViews {
             guard player.controlsState != .always else {
               return
             }
+            guard ToggleViews.hideControls.contains(self.player.contentToggle ?? .none) == false else {
+              player.controlsState = .hidden
+              return
+            }
             player.controlsState = hover ? .hovered : .visible
           })
           .background(player.controlsState == .always ? .clear : Theme.Color.Background.controls)

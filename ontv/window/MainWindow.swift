@@ -63,7 +63,7 @@ class MainWindowController: NSWindowController, NSWindowDelegate {
       return
     }
 
-    if [ContentToggle.activityepg, ContentToggle.epglist].contains(self.player.contentToggle) == false {
+    if ToggleViews.hideControls.contains(self.player.contentToggle ?? .none) == false {
       player.controlsState = .visible
     }
 

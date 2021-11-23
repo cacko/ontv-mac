@@ -9,8 +9,8 @@ import Foundation
 import SwiftUI
 
 enum ToggleViews {
-
-}
+  static let hideControls: [ContentToggle] = [.activityepg, .epglist, .schedule, .search]
+  }
 
 struct ToggleView: View {
 
