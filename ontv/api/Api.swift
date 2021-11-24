@@ -108,7 +108,8 @@ enum API {
 
         if Stream.needUpdate() {
           try await updateStreams()
-        } else {
+        }
+        else {
           DispatchQueue.main.async {
             self.state = .ready
           }
@@ -250,60 +251,69 @@ enum API {
         self.epgState = .loading
       }
       try await EPG.fetch(url: Endpoint.EPG) { _ in
-          Task.detached {
-            do {
-              try await EPG.delete(EPG.clearQuery)
-            }
-            catch let error {
-              logger.error("\(error.localizedDescription)")
-            }
-            Defaults[.epgUpdated] = Date()
-            DispatchQueue.main.async {
-              self.epgState = .loaded
-              self.loading = .loaded
-            }
-            NotificationCenter.default.post(name: .updateepg, object: nil)
+        Task.detached {
+          do {
+            try await EPG.delete(EPG.clearQuery)
           }
+          catch let error {
+            logger.error("\(error.localizedDescription)")
+          }
+          Defaults[.epgUpdated] = Date()
+          DispatchQueue.main.async {
+            self.epgState = .loaded
+            self.loading = .loaded
+          }
+          NotificationCenter.default.post(name: .updateepg, object: nil)
+        }
       }
     }
-    
 
     func updateLivescore() async throws {
       guard state == .ready else {
         return
       }
-      self.livescoreState = .loading
+      DispatchQueue.main.async {
+        self.livescoreState = .loading
+      }
       try await Livescore.fetch(url: Endpoint.Livescores) { _ in
-          Task.detached {
-            do {
-              self.updateLeagues()
-              try await Livescore.delete(Livescore.clearQuery)
+        Task.detached {
+          do {
+            self.updateLeagues()
+            try await Livescore.delete(Livescore.clearQuery)
+            DispatchQueue.main.async {
               self.livescoreState = .ready
             }
-            catch let error {
-              logger.error("\(error.localizedDescription)")
-            }
+          }
+          catch let error {
+            logger.error("\(error.localizedDescription)")
           }
         }
-        return
+      }
+      return
     }
-    
+
     func updateLeagues() {
       DispatchQueue.main.async {
-        let livescores  = Livescore.getAll()
-        let leagues: [String: Any] = livescores.reduce(into: [:], {(res, livescore) in
-          guard ((livescore.league_id as Any?) != nil) else {
-            return
+        let livescores = Livescore.getAll()
+        let leagues: [String: Any] = livescores.reduce(
+          into: [:],
+          { (res, livescore) in
+            guard (livescore.league_id as Any?) != nil else {
+              return
+            }
+            guard res.keys.contains(livescore.league_id.string) else {
+              res[livescore.league_id.string] = livescore.league_name
+              return
+            }
           }
-          guard res.keys.contains(livescore.league_id.string) else {
-            res[livescore.league_id.string] = livescore.league_name
-            return
-          }
-        })
+        )
         Task.init {
           do {
-            try await League.doImport(json: leagues.map{["id": $0, "idLeague": $0.int64, "strLeague": $1]}) { _ in }
-          } catch {}
+            try await League.doImport(
+              json: leagues.map { ["id": $0, "idLeague": $0.int64, "strLeague": $1] }
+            ) { _ in }
+          }
+          catch {}
         }
       }
     }

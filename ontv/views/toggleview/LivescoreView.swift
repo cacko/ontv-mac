@@ -120,8 +120,13 @@ extension ToggleViews {
     }
 
     var body: some View {
-      VStack(alignment: .trailing) {
+      VStack(alignment: .leading) {
         ContentHeaderView(title: "Livescores", icon: ContentToggleIcon.livescores)
+        if liverscoreProvider.list.snapshot.count == 0 {
+          Text("No scores for the selected leagues")
+            .font(Theme.Font.programme)
+            .padding()
+        }
         ScrollingView {
           ListReader(liverscoreProvider.list) { snapshot in
             ForEach(objectIn: snapshot) { livescore in

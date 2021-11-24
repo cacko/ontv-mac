@@ -73,16 +73,16 @@ extension ScheduleStorage {
     }
 
     func onNavigate(_ notification: Notification) {
-      logger.error("kira mi janko")
+      logger.error("on navigate")
     }
 
     func selectNext() throws {
-      logger.error("kira mi janko")
+      logger.error("select next")
 
     }
 
     func selectPrevious() throws {
-      logger.error("kira mi janko")
+      logger.error("select previous")
     }
   }
 }

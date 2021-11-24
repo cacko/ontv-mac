@@ -46,6 +46,16 @@ tasks:
       - echo "publishing app to gitlab"
       - poetry run python deploy.py
 
+  delete_image_cache:
+    desc: removes app images cache
+    cmds:
+      - rm -rf ~/Library/Containers/net.cacko.ontv/Data/Library/Caches/*
+
+  delete_app_storage:
+    desc: delete app container
+    cmds:
+      - rm -rf ~/Library/Containers/net.cacko.ontv
+
   release:
     desc: archive, dmg and upload package
     cmds:
