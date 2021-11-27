@@ -46,15 +46,21 @@ tasks:
       - echo "publishing app to gitlab"
       - poetry run python deploy.py
 
-  delete_image_cache:
+  uncacheimages:
     desc: removes app images cache
     cmds:
       - rm -rf ~/Library/Containers/net.cacko.ontv/Data/Library/Caches/*
 
-  delete_app_storage:
+  uncache:
     desc: delete app container
     cmds:
       - rm -rf ~/Library/Containers/net.cacko.ontv
+
+  fix:
+    desc: fix formatter
+    cmds:
+      - /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -f /Applications/Xcode.app
+
 
   release:
     desc: archive, dmg and upload package

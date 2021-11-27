@@ -52,8 +52,8 @@ class Schema {
               0xe84a_9903_3395_98e2,
             ],
             "Livescore": [
-              0xd243_92c4_2d76_4df2, 0x1a51_9b13_b6e3_09c8, 0x855e_ad6e_e353_9500,
-              0x2b14_64b2_b00a_5850,
+              0xc660_e89f_8b4e_e4fe, 0xb402_aaf7_edfb_663d, 0x5e00_b54d_0788_e26e,
+              0x6633_f454_c158_e76b,
             ],
             "Schedule": [
               0x1be_1e88_0d66_c07f, 0x8a2b_edac_42cd_65c0, 0x9021_a5d2_3f01_4601,

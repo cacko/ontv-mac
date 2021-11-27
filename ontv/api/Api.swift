@@ -301,8 +301,8 @@ enum API {
             guard (livescore.league_id as Any?) != nil else {
               return
             }
-            guard res.keys.contains(livescore.league_id.string) else {
-              res[livescore.league_id.string] = livescore.league_name
+            guard res.keys.contains(livescore.league_id?.string ?? "") else {
+              res[livescore.league_id?.string ?? ""] = livescore.league_name
               return
             }
           }

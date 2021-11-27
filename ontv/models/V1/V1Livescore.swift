@@ -39,10 +39,10 @@ extension V1 {
     var sport: String = ""
 
     @Field.Stored("league_id")
-    var league_id: Int64 = 0
+    var league_id: Int64? = 0
     
     @Field.Stored("league_name")
-    var league_name: String = ""
+    var league_name: String? = ""
 
     @Field.Stored("home_team_id")
     var home_team_id: Int64 = 0
