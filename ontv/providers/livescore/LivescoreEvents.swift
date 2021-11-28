@@ -12,6 +12,11 @@ import OpenGL
 import SwiftDate
 import SwiftUI
 
+enum TickerPosition: Int {
+  case top = 0;
+  case bottom = 1;
+}
+
 extension LivescoreStorage {
 
   class Events: NSObject, ObservableObject, ObjectProvider, StorageProvider, AutoScrollProvider,
@@ -43,6 +48,11 @@ extension LivescoreStorage {
     var scrollGenerator: LivescoreScrollGenerator
     @Published var scrollTo: String = ""
     @Published var scrollCount: Int = 0
+    @Published var tickerPosition: TickerPosition = .top {
+      didSet {
+        Defaults[.tickerPosition] = self.tickerPosition.rawValue
+      }
+    }
 
     @Published var active: Bool = false {
       didSet {
@@ -92,6 +102,7 @@ extension LivescoreStorage {
       super.init()
       tickerVisible = scrollCount > 0
       tickerAvailable = scrollCount > 0
+      tickerPosition = TickerPosition(rawValue: Defaults[.tickerPosition])!
       leagueObserver = Defaults.observe(keys: .leagues) {
         DispatchQueue.main.async {
           do {

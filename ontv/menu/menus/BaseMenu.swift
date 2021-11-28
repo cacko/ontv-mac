@@ -141,6 +141,12 @@ class BaseMenu: NSMenu {
   @objc func onTickerToggle(sender: NSMenuItem) {
     LivescoreStorage.events.tickerVisible.toggle()
   }
+
+  @objc func onTickerPositionToggle(sender: NSMenuItem) {
+    LivescoreStorage.events.tickerPosition = TickerPosition(
+      rawValue: abs(LivescoreStorage.events.tickerPosition.rawValue - 1)
+    )!
+  }
 }
 
 protocol CollectionMenu {

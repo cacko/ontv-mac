@@ -35,6 +35,18 @@ class BaseItem: NSMenuItem, NSUserInterfaceValidations {
     }
 }
 
+class ShiftModifierItem: BaseItem {
+  override init(title: String, action: Selector?, keyEquivalent: String) {
+    super.init(title: title, action: action, keyEquivalent: keyEquivalent)
+    self.keyEquivalentModifierMask.insert(.shift)
+  }
+  
+  @available(*, unavailable)
+  required init(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+}
+
 class NoModifierItem: BaseItem {
     override init(title: String, action: Selector?, keyEquivalent: String) {
         super.init(title: title, action: action, keyEquivalent: keyEquivalent)

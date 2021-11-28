@@ -71,7 +71,7 @@ class Menu: NSMenu, NSMenuDelegate, NSMenuItemValidation, NSUserInterfaceValidat
             addMenu(VideoMenu(title: "Video", parent: self))
             addMenu(AudioMenu(title: "Audio", parent: self))
             addMenu(CategoryMenu(title: "Category", parent: self))
-            addMenu(ScheduleMenu(title: "TheSportsDB", parent: self))
+            addMenu(ScheduleMenu(title: "Schedule", parent: self))
             addMenu(EPGMenu(title: "EPG", parent: self))
             addItem(helpMenu)
         }

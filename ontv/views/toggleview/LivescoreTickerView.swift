@@ -123,6 +123,9 @@ extension ToggleViews {
 
     var body: some View {
       VStack {
+        if liverscoreProvider.tickerPosition == .bottom {
+          Spacer()
+        }
         HStack(alignment: .center) {
           Spacer()
           ScrollViewReader { proxy in
@@ -160,8 +163,9 @@ extension ToggleViews {
           }
           Spacer()
         }.background(Theme.Color.Background.ticker)
-
-        Spacer()
+        if liverscoreProvider.tickerPosition == .top {
+          Spacer()
+        }
       }
     }
   }

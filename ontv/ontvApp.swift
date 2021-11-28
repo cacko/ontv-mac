@@ -29,6 +29,7 @@ extension Defaults.Keys {
   static let vendor = Key<PlayVendor>("vender", default: .ffmpeg)
   static let isFloating = Key<Bool>("isFloating", default: true)
   static let leagues = Key<Set<Int>>("livescoreLeague", default: Set([43, 41, 44, 45, 39, 256, 84, 247, 558,246,147,195,2442,625,31,908]))
+  static let tickerPosition = Key<Int>("tickerPosition", default: TickerPosition.top.rawValue)
 }
 
 protocol Reorderable {

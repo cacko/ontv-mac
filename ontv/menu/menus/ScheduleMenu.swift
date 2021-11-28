@@ -14,30 +14,40 @@ class ScheduleStreamsMenu: StreamsSubmenu {
   }
 }
 
+class LivescoreMenu: BaseMenu, NSMenuDelegate {
+  override var actions: [NSMenuItem] {
+    [
+      ToggleItem(
+        title: "Toggle Sidebar",
+        action: #selector(onToggle(sender:)),
+        keyEquivalent: "r",
+        notification: .livescores
+      ),
+      BaseItem(
+        title: "Toggle Ticker",
+        action: #selector(onTickerToggle(sender:)),
+        keyEquivalent: "t"
+      ),
+      ShiftModifierItem(
+        title: "Toggle Position",
+        action: #selector(onTickerPositionToggle(sender:)),
+        keyEquivalent: "t"
+      ),
+    ]
+  }
+}
+
 class ScheduleMenu: BaseMenu, NSMenuDelegate, CollectionMenu {
   override var actions: [NSMenuItem] {
     [
-      NSMenuItem.separator(),
       ToggleItem(
         title: "Toggle Schedule",
         action: #selector(onToggle(sender:)),
         keyEquivalent: "s",
         notification: .schedule
       ),
-      ToggleItem(
-        title: "Toggle Livescore",
-        action: #selector(onToggle(sender:)),
-        keyEquivalent: "r",
-        notification: .livescores
-      ),
-      BaseItem(
-        title: "Toggle livescore ticker",
-        action: #selector(onTickerToggle(sender:)),
-        keyEquivalent: "t"
-      ),
-      NSMenuItem.separator(),
       FetchItem(
-        title: "Update schedule",
+        title: "Update Schedule",
         action: #selector(onFetch(sender:)),
         keyEquivalent: "",
         notification: .schedule
@@ -57,8 +67,19 @@ class ScheduleMenu: BaseMenu, NSMenuDelegate, CollectionMenu {
     }
   }
 
+  override func _init() {
+    super._init()
+    let item = NSMenuItem(title: "Livescore", action: nil, keyEquivalent: "")
+    item.target = self
+    addItem(item)
+    let menu = LivescoreMenu(title: "", parent: parent)
+    item.submenu = menu
+    addItem(NSMenuItem.separator())
+  }
+
   func updateMenus() {
     self.removeAllItems()
+    self._init()
     (Schedule.getAll() as [LazyStreams]).filter { $0.hasExpired }
       .forEach { (item: LazyStreams) in
         let m = ScheduleItem(action: #selector(onSchedule(sender:)), corelazy: item)
@@ -67,10 +88,8 @@ class ScheduleMenu: BaseMenu, NSMenuDelegate, CollectionMenu {
         let submenu = ScheduleStreamsMenu(title: "", parent: parent, corelazy: item)
         m.submenu = submenu
       }
-    super._init()
     DispatchQueue.main.asyncAfter(deadline: .now() + 60) {
       self.removeExpired()
-
     }
   }
 

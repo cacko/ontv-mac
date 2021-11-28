@@ -61,7 +61,7 @@ extension V1 {
 
     @Field.Stored("season")
     var season: String = ""
-
+    
     static func uniqueID(
       from source: [String: Any],
       in transaction: BaseDataTransaction
