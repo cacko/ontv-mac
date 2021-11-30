@@ -147,6 +147,25 @@ extension LivescoreStorage {
       }
       return instance
     }
+    
+    func timestampInList(_ timestamp: Date) -> Bool {
+      guard self.list.snapshot.first(where: { $0.$start_time == timestamp }) != nil else {
+        return false
+      }
+      return true
+    }
+        
+    func eventInList(_ event_id: Int) -> Bool {
+      guard event_id > 0 else {
+        return false
+      }
+      guard let ls = self.list.snapshot.first(where: { $0.$event_id == event_id.int64 }) else {
+        logger.debug("dropping \(event_id)")
+        return false
+      }
+      logger.debug("is in schedule \(event_id) \(ls.$home_team! as NSObject) \(ls.$away_team! as NSObject)")
+      return true
+    }
 
     func startScrollTimer() {
       if scrollTimerState == .none {

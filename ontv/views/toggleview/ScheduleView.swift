@@ -1,5 +1,6 @@
 import AppKit
 import CoreStore
+import Introspect
 import Kingfisher
 import SwiftUI
 
@@ -216,15 +217,20 @@ extension ToggleViews {
         ScrollingView {
           ListReader(scheduleProvider.list) { snapshot in
             ForEach(sectionIn: snapshot) { section in
-              HStack(alignment: .center, spacing: 0) {
-                Section(header: ScheduleTime(section: section)) {
-                  LazyVStack(alignment: .leading, spacing: 0) {
-                    ForEach(objectIn: section) { schedule in
-                      LazyVStack(alignment: .leading, spacing: 0) {
-                        Section(header: ScheduleHeader(schedule: schedule)) {
-                          ScheduleStreams(schedule: schedule)
-                        }
-                      }.hoverAction().background(Theme.Color.Background.header)
+              if liverscoreProvider.timestampInList((section.first?.object!.timestamp)!) {
+
+                HStack(alignment: .center, spacing: 0) {
+                  Section(header: ScheduleTime(section: section)) {
+                    LazyVStack(alignment: .leading, spacing: 0) {
+                      ForEach(objectIn: section) { schedule in
+                        LazyVStack(alignment: .leading, spacing: 0) {
+                          if liverscoreProvider.eventInList(schedule.$event_id ?? 0) {
+                            Section(header: ScheduleHeader(schedule: schedule)) {
+                              ScheduleStreams(schedule: schedule)
+                            }
+                          }
+                        }.hoverAction().background(Theme.Color.Background.header)
+                      }
                     }
                   }
                 }
