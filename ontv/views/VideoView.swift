@@ -7,6 +7,8 @@
 
 import AVFoundation
 import Defaults
+import Metal
+import MetalKit
 import SwiftUI
 
 enum Video {
@@ -20,11 +22,10 @@ extension NSNotification.Name {
   static let zoomchange = NSNotification.Name("zppm_change")
 }
 
-class VideoView: NSView {
+class VideoView: MTKView {
   var player = Player.instance
 
-  init() {
-    super.init(frame: .zero)
+  func postInit() {
     player.initView(self)
 
     let center = NotificationCenter.default
@@ -107,13 +108,6 @@ class VideoView: NSView {
     player.initView(self)
   }
 
-  @available(*, unavailable)
-  required init?(
-    coder: NSCoder
-  ) {
-    fatalError("init(coder:) has not been implemented")
-  }
-
   override func mouseDown(with event: NSEvent) {
     //    guard event.clickCount < 2 else {
     //      NotificationCenter.default.post(name: .toggleFullscreen, object: nil)
@@ -128,11 +122,64 @@ class VideoView: NSView {
 }
 
 struct VideoViewRep: NSViewRepresentable {
+
   typealias NSViewType = VideoView
 
+  func makeCoordinator() -> Coordinator {
+    Coordinator(self)
+  }
+
   func makeNSView(context: Context) -> VideoView {
-    VideoView()
+
+    let mtkView = VideoView()
+    mtkView.delegate = context.coordinator
+    mtkView.preferredFramesPerSecond = 60
+    mtkView.enableSetNeedsDisplay = true
+    if let metalDevice = MTLCreateSystemDefaultDevice() {
+      mtkView.device = metalDevice
+    }
+    mtkView.framebufferOnly = false
+    mtkView.clearColor = MTLClearColor(red: 0, green: 0, blue: 0, alpha: 0)
+    mtkView.drawableSize = mtkView.frame.size
+    mtkView.enableSetNeedsDisplay = true
+    mtkView.postInit()
+    return mtkView
+
   }
 
   func updateNSView(_ nsView: VideoView, context: Context) {}
+
+  class Coordinator: NSObject, MTKViewDelegate {
+    var parent: VideoViewRep
+    var metalDevice: MTLDevice!
+    var metalCommandQueue: MTLCommandQueue!
+
+    init(
+      _ parent: VideoViewRep
+    ) {
+      self.parent = parent
+      if let metalDevice = MTLCreateSystemDefaultDevice() {
+        self.metalDevice = metalDevice
+      }
+      self.metalCommandQueue = metalDevice.makeCommandQueue()!
+      super.init()
+    }
+    func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
+    }
+    func draw(in view: MTKView) {
+      guard let drawable = view.currentDrawable else {
+        return
+      }
+      let commandBuffer = metalCommandQueue.makeCommandBuffer()
+      let rpd = view.currentRenderPassDescriptor
+      rpd?.colorAttachments[0].clearColor = MTLClearColorMake(0, 1, 0, 1)
+      rpd?.colorAttachments[0].loadAction = .clear
+      rpd?.colorAttachments[0].storeAction = .store
+      let re = commandBuffer?.makeRenderCommandEncoder(descriptor: rpd!)
+      re?.endEncoding()
+      commandBuffer?.present(drawable)
+      commandBuffer?.commit()
+    }
+  }
+
 }
