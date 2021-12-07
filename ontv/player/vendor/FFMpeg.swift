@@ -96,6 +96,9 @@ class PlayerFFMpeg: AbstractPlayer, PlayerControllerDelegate {
     let options = KSOptions()
     options.avOptions = ["AVURLAssetHTTPHeaderFieldsKey": header]
     options.preferredForwardBufferDuration = 1.0
+    options.hardwareDecodeH264 = true
+    options.hardwareDecodeH265 = true
+    options.subtitleDisable = true
     return options
   }
 
