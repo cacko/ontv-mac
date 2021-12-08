@@ -3,33 +3,33 @@ PODS:
     - FFmpeg/FFmpeg (= 4.4)
   - FFmpeg/FFmpeg (4.4):
     - OpenSSL
-  - KSPlayer (1.1.3):
-    - KSPlayer/Audio (= 1.1.3)
-    - KSPlayer/AVPlayer (= 1.1.3)
-    - KSPlayer/Basic (= 1.1.3)
-    - KSPlayer/Core (= 1.1.3)
-    - KSPlayer/MEPlayer (= 1.1.3)
-    - KSPlayer/Metal (= 1.1.3)
-    - KSPlayer/Subtitle (= 1.1.3)
-    - KSPlayer/UXKit (= 1.1.3)
-    - KSPlayer/Video (= 1.1.3)
-  - KSPlayer/Audio (1.1.3):
+  - KSPlayer (1.1.4):
+    - KSPlayer/Audio (= 1.1.4)
+    - KSPlayer/AVPlayer (= 1.1.4)
+    - KSPlayer/Basic (= 1.1.4)
+    - KSPlayer/Core (= 1.1.4)
+    - KSPlayer/MEPlayer (= 1.1.4)
+    - KSPlayer/Metal (= 1.1.4)
+    - KSPlayer/Subtitle (= 1.1.4)
+    - KSPlayer/UXKit (= 1.1.4)
+    - KSPlayer/Video (= 1.1.4)
+  - KSPlayer/Audio (1.1.4):
     - KSPlayer/Core
-  - KSPlayer/AVPlayer (1.1.3):
+  - KSPlayer/AVPlayer (1.1.4):
     - KSPlayer/Basic
-  - KSPlayer/Basic (1.1.3):
+  - KSPlayer/Basic (1.1.4):
     - KSPlayer/UXKit
-  - KSPlayer/Core (1.1.3):
+  - KSPlayer/Core (1.1.4):
     - KSPlayer/AVPlayer
-  - KSPlayer/MEPlayer (1.1.3):
+  - KSPlayer/MEPlayer (1.1.4):
     - FFmpeg
     - KSPlayer/AVPlayer
     - KSPlayer/Metal
     - KSPlayer/Subtitle
-  - KSPlayer/Metal (1.1.3)
-  - KSPlayer/Subtitle (1.1.3)
-  - KSPlayer/UXKit (1.1.3)
-  - KSPlayer/Video (1.1.3):
+  - KSPlayer/Metal (1.1.4)
+  - KSPlayer/Subtitle (1.1.4)
+  - KSPlayer/UXKit (1.1.4)
+  - KSPlayer/Video (1.1.4):
     - KSPlayer/Core
     - KSPlayer/Subtitle
   - OpenSSL (3.0.0):
@@ -54,18 +54,18 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FFmpeg:
-    :commit: 90fe55dde72920301c34d99e76ade371582dac0d
+    :commit: bf38d064d8297f4169dd172970fe4165f082d270
     :git: https://github.com/cacko/KSPlayer.git
   KSPlayer:
-    :commit: 90fe55dde72920301c34d99e76ade371582dac0d
+    :commit: bf38d064d8297f4169dd172970fe4165f082d270
     :git: https://github.com/cacko/KSPlayer.git
   OpenSSL:
-    :commit: 90fe55dde72920301c34d99e76ade371582dac0d
+    :commit: bf38d064d8297f4169dd172970fe4165f082d270
     :git: https://github.com/cacko/KSPlayer.git
 
 SPEC CHECKSUMS:
   FFmpeg: 6eb6e663949bb2805c3b41a786790343dba45c05
-  KSPlayer: 9e205db4809d3efcd6b9ce22c7d17b315e3edcf6
+  KSPlayer: 8c5b1bba8bff48f4177fc6271638217ae7aaae04
   OpenSSL: 5c8108a5de70c698329b32f8aaec4085a03cec39
 
 PODFILE CHECKSUM: 0833d5d5cdf40f2e1edc88049c16243b036d55fb

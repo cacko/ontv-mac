@@ -12,8 +12,8 @@ extension Theme.Color {
   enum Background {
     static let header = LinearGradient(
       colors: [
-        Color.black.opacity(0.5), Color.blue.opacity(0.5), Color.red.opacity(0.5),
-        Color.gray.opacity(0.5),
+        Color.black.opacity(0.8), Color.blue.opacity(0.9), Color.red.opacity(0.9),
+        Color.gray.opacity(0.9),
       ],
       startPoint: UnitPoint.leading,
       endPoint: UnitPoint.trailing
