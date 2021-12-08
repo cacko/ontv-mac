@@ -85,6 +85,9 @@
 		1678026027447BC300DE0FD7 /* LivescoreTickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1678025F27447BC300DE0FD7 /* LivescoreTickerView.swift */; };
 		167807BF27173173000FD21E /* Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167807BE27173173000FD21E /* Schema.swift */; };
 		167807C927176664000FD21E /* StreamTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167807C827176664000FD21E /* StreamTitle.swift */; };
+		167E55812760EFA900511B1F /* MetalPerformanceShadersGraph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 167E557E2760EFA900511B1F /* MetalPerformanceShadersGraph.framework */; platformFilter = maccatalyst; };
+		167E55822760EFA900511B1F /* MetalPerformanceShaders.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 167E557F2760EFA900511B1F /* MetalPerformanceShaders.framework */; platformFilter = maccatalyst; };
+		167E55832760EFA900511B1F /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 167E55802760EFA900511B1F /* Metal.framework */; platformFilter = maccatalyst; };
 		16823CE7272E367400DB0555 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16823CE6272E367300DB0555 /* Size.swift */; };
 		1685FF1D2707D90E001DD56E /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1685FF1C2707D90E001DD56E /* Notification.swift */; };
 		1686F75E2720C8E0006F9B7D /* StreamActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1686F75D2720C8E0006F9B7D /* StreamActivity.swift */; };
@@ -247,6 +250,9 @@
 		1678025F27447BC300DE0FD7 /* LivescoreTickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivescoreTickerView.swift; sourceTree = "<group>"; };
 		167807BE27173173000FD21E /* Schema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schema.swift; sourceTree = "<group>"; };
 		167807C827176664000FD21E /* StreamTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamTitle.swift; sourceTree = "<group>"; };
+		167E557E2760EFA900511B1F /* MetalPerformanceShadersGraph.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalPerformanceShadersGraph.framework; path = System/Library/Frameworks/MetalPerformanceShadersGraph.framework; sourceTree = SDKROOT; };
+		167E557F2760EFA900511B1F /* MetalPerformanceShaders.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalPerformanceShaders.framework; path = System/Library/Frameworks/MetalPerformanceShaders.framework; sourceTree = SDKROOT; };
+		167E55802760EFA900511B1F /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		16823CE6272E367300DB0555 /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
 		1685FF1C2707D90E001DD56E /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		1686F75D2720C8E0006F9B7D /* StreamActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamActivity.swift; sourceTree = "<group>"; };
@@ -326,6 +332,7 @@
 				16FDDAB6274B4A08005668E7 /* Kingfisher in Frameworks */,
 				165C98092702312700466207 /* AVFoundation.framework in Frameworks */,
 				164A1A392735E21C0023607A /* Security.framework in Frameworks */,
+				167E55812760EFA900511B1F /* MetalPerformanceShadersGraph.framework in Frameworks */,
 				16FDDAB8274B4A14005668E7 /* Preferences in Frameworks */,
 				165C98172702315C00466207 /* Foundation.framework in Frameworks */,
 				16F5FBFD2730B3F700CF62CB /* AudioToolbox.framework in Frameworks */,
@@ -337,8 +344,10 @@
 				16C5B982270293DC0072F2B9 /* CoreData.framework in Frameworks */,
 				164A1A382735E21C0023607A /* CoreVideo.framework in Frameworks */,
 				16F5FBFC2730A0C100CF62CB /* MetalKit.framework in Frameworks */,
+				167E55822760EFA900511B1F /* MetalPerformanceShaders.framework in Frameworks */,
 				16FD4D162730212C00F2016F /* Defaults in Frameworks */,
 				6EE733194A7D45181382041F /* Pods_ontv.framework in Frameworks */,
+				167E55832760EFA900511B1F /* Metal.framework in Frameworks */,
 				16FDDAB4274B49FA005668E7 /* CoreStore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -547,6 +556,9 @@
 		165C97EB2702260800466207 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				167E55802760EFA900511B1F /* Metal.framework */,
+				167E557F2760EFA900511B1F /* MetalPerformanceShaders.framework */,
+				167E557E2760EFA900511B1F /* MetalPerformanceShadersGraph.framework */,
 				162862E7273307E40015298D /* Quartz.framework */,
 				1604067B2730E7EB00719408 /* CoreAudio.framework */,
 				16F5FBFB2730A0C100CF62CB /* MetalKit.framework */,
@@ -857,7 +869,6 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 			);
 			mainGroup = 165C97D12702257900466207;
 			packageReferences = (
@@ -1115,7 +1126,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1170,7 +1181,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1191,7 +1202,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 373;
+				CURRENT_PROJECT_VERSION = 374;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1207,7 +1218,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.1;
 				MARKETING_VERSION = 1.0;
 				"OTHER_LDFLAGS[arch=*]" = (
 					"$(inherited)",
@@ -1269,7 +1280,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 373;
+				CURRENT_PROJECT_VERSION = 374;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1285,7 +1296,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.1;
 				MARKETING_VERSION = 1.0;
 				"OTHER_LDFLAGS[arch=*]" = (
 					"$(inherited)",
