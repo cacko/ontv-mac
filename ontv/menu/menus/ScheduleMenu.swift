@@ -37,6 +37,50 @@ class LivescoreMenu: BaseMenu, NSMenuDelegate {
   }
 }
 
+class UpdateScheduleItem: FetchItem {
+
+  let api = API.Adapter
+  let center = NotificationCenter.default
+  let mainQueue = OperationQueue.main
+
+  override init(
+    title: String,
+    action: Selector?,
+    keyEquivalent: String,
+    notification: API.FetchType
+  ) {
+    super.init(
+      title: title,
+      action: action,
+      keyEquivalent: keyEquivalent,
+      notification: notification
+    )
+
+    center.addObserver(forName: .updateschedule, object: nil, queue: mainQueue) { _ in
+      self.isHidden = false
+    }
+
+    center.addObserver(forName: .loaded, object: nil, queue: mainQueue) { _ in
+      self.isHidden = false
+    }
+
+    center.addObserver(forName: .fetch, object: nil, queue: mainQueue) { note in
+      guard let notification = note.object as? API.FetchType else {
+        return
+      }
+
+      guard notification == .schedule else {
+        return
+      }
+      DispatchQueue.main.async {
+        self.isHidden = true
+      }
+    }
+
+    self.isHidden = api.loading == .schedule
+  }
+}
+
 class ScheduleMenu: BaseMenu, NSMenuDelegate, CollectionMenu {
   override var actions: [NSMenuItem] {
     [
@@ -46,7 +90,7 @@ class ScheduleMenu: BaseMenu, NSMenuDelegate, CollectionMenu {
         keyEquivalent: "s",
         notification: .schedule
       ),
-      FetchItem(
+      UpdateScheduleItem(
         title: "Update Schedule",
         action: #selector(onFetch(sender:)),
         keyEquivalent: "",

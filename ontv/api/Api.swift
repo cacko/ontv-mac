@@ -26,7 +26,7 @@ enum API {
     case loading, ready, error, loggedin
   }
 
-  enum FetchType {
+enum FetchType {
     case streams, schedule, epg, livescore
   }
 

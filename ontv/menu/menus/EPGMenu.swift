@@ -8,6 +8,47 @@
 import Foundation
 import SwiftUI
 
+class UpdateEPGItem: FetchItem {
+  let api = API.Adapter
+  let center = NotificationCenter.default
+  let mainQueue = OperationQueue.main
+
+  override init(
+    title: String,
+    action: Selector?,
+    keyEquivalent: String,
+    notification: API.FetchType
+  ) {
+    super.init(
+      title: title,
+      action: action,
+      keyEquivalent: keyEquivalent,
+      notification: notification
+    )
+    
+    center.addObserver(forName: .updateepg, object: nil, queue: mainQueue) { _ in
+      self.isHidden = false
+    }
+    
+    center.addObserver(forName: .fetch, object: nil, queue: mainQueue) { note in
+      guard let notification = note.object as? API.FetchType else {
+        return
+      }
+      
+      guard notification == .epg else {
+        return
+      }
+      DispatchQueue.main.async {
+        self.isHidden = true
+      }
+    }
+    
+    self.isHidden = api.epgState == .loading
+    
+  }
+
+}
+
 class EPGMenu: BaseMenu {
   override var actions: [NSMenuItem] {
     [
@@ -32,7 +73,7 @@ class EPGMenu: BaseMenu {
         notification: .epglist
       ),
       NSMenuItem.separator(),
-      FetchItem(
+      UpdateEPGItem(
         title: "Update EPG",
         action: #selector(onFetch(sender:)),
         keyEquivalent: "",
@@ -70,13 +111,5 @@ class EPGMenu: BaseMenu {
         notification: .select
       ),
     ]
-  }
-
-  override func observe() {
-    center.addObserver(forName: .updateepg, object: nil, queue: mainQueue) { _ in
-      if let updateItem = self.items.filter({ $0.title == "Update EPG" }).first {
-        updateItem.isHidden = false
-      }
-    }
   }
 }
