@@ -14,6 +14,9 @@ from subprocess import call
 from shlex import join
 import requests
 import argparse
+from faker import Faker
+
+fake = Faker()
 
 Logger = logging.Logger("ONTV")
 GIT = "/usr/local/bin/git"
@@ -83,10 +86,12 @@ if __name__ == "__main__":
         "/packages/", "/package_files/"
     )
     releases: ProjectReleaseManager = project.releases
+    fake = Faker()
     release = releases.create(
         {
             "tag_name": deployJSON.package_version,
-            "description": version_name,
+            "name": version_name,
+            "description": fake.paragraph(),
             "assets": {
                 "links": [
                     {
