@@ -9,7 +9,7 @@ tasks:
   push:
     desc: push code
     cmds:
-      - git commit -am "$(curl -s https://commit.cacko.net/index.txt)"
+      - git commit -am "fix CVE-2021-44228"
       - git push
 
   init:
