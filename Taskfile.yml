@@ -9,7 +9,7 @@ tasks:
   push:
     desc: push code
     cmds:
-      - git commit -am "fix CVE-2021-44228"
+      - git commit -am 
       - git push
 
   init:
@@ -44,7 +44,7 @@ tasks:
     desc: publish dmg file as package
     cmds:
       - echo "publishing app to gitlab"
-      - poetry run python deploy.py
+      - poetry run python deploy/deploy.py
 
   uncacheimages:
     desc: removes app images cache
@@ -68,5 +68,4 @@ tasks:
       - task: archive
       - task: dmg
       - task: publish
-      - task: push
       - task: install

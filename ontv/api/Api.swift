@@ -26,7 +26,7 @@ enum API {
     case loading, ready, error, loggedin
   }
 
-enum FetchType {
+  enum FetchType {
     case streams, schedule, epg, livescore
   }
 
@@ -104,7 +104,6 @@ enum FetchType {
       }
       do {
         _ = try await self.updateUser()
-        NotificationCenter.default.post(name: .loggedin, object: nil)
 
         if Stream.needUpdate() {
           try await updateStreams()
@@ -156,7 +155,13 @@ enum FetchType {
             let formatter = RelativeDateTimeFormatter()
             formatter.unitsStyle = .full
             self.expires = formatter.localizedString(for: dt, relativeTo: Date())
+            if self.user!.isSubscriptionExpired() {
+              self.state = .error
+              self.error = API.Exception.subscriptionExpired(self.expires)
+              return
+            }
           }
+          NotificationCenter.default.post(name: .loggedin, object: nil)
           self.state = .loggedin
         }
       }
@@ -180,8 +185,14 @@ enum FetchType {
             let formatter = RelativeDateTimeFormatter()
             formatter.unitsStyle = .full
             self.expires = formatter.localizedString(for: dt, relativeTo: Date())
+            if storedUser.isSubscriptionExpired() {
+              self.state = .error
+              self.error = API.Exception.subscriptionExpired(self.expires)
+              return
+            }
           }
           self.state = .loggedin
+          NotificationCenter.default.post(name: .loggedin, object: nil)
         }
       }
     }
