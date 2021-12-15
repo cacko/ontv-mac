@@ -82,11 +82,12 @@ if __name__ == "__main__":
     version_name = args.name if args.name != "" else message()
     gitpush(version_name, deployJSON.package_version)
     new_package = package_for_version(project, deployJSON.package_version)
-    web_path = new_package._links.get("web_path").replace(
-        "/packages/", "/package_files/"
-    )
+    new_file = new_package.package_files.list()[0]
+    downloadUrl = f"https://gitlab.com/{project_name_with_namespace}/-/package_files/{new_file.id}/download"
     releases: ProjectReleaseManager = project.releases
     fake = Faker()
+    for release in releases.list():
+            release.delete()
     release = releases.create(
         {
             "tag_name": deployJSON.package_version,
@@ -96,7 +97,7 @@ if __name__ == "__main__":
                 "links": [
                     {
                         "name": deployJSON.file_name,
-                        "url": f"https://gitlab.com/{web_path}/download",
+                        "url": downloadUrl,
                     }
                 ]
             },
