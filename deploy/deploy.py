@@ -87,7 +87,7 @@ if __name__ == "__main__":
     releases: ProjectReleaseManager = project.releases
     fake = Faker()
     for release in releases.list():
-            release.delete()
+            project.releases.delete(release.tag_name)
     release = releases.create(
         {
             "tag_name": deployJSON.package_version,
