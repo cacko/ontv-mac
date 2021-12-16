@@ -86,8 +86,6 @@ if __name__ == "__main__":
     downloadUrl = f"https://gitlab.com/{project_name_with_namespace}/-/package_files/{new_file.id}/download"
     releases: ProjectReleaseManager = project.releases
     fake = Faker()
-    for release in releases.list():
-            project.releases.delete(release.tag_name)
     release = releases.create(
         {
             "tag_name": deployJSON.package_version,
