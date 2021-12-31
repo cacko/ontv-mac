@@ -158,8 +158,8 @@ extension V1 {
     }
 
     static func needUpdate() -> Bool {
-      !Date().isSameDay(Defaults[.scheduleUpdated])
+      let updated = Defaults[.scheduleUpdated]
+      return !updated.isCloseTo(precision: 2.hours.timeInterval)
     }
-
   }
 }

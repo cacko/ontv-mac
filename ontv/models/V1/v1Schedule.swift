@@ -61,7 +61,7 @@ extension V1 {
 
     @Field.Stored("season")
     var season: String = ""
-    
+
     static func uniqueID(
       from source: [String: Any],
       in transaction: BaseDataTransaction
@@ -152,7 +152,8 @@ extension V1 {
     }
 
     static func needUpdate() -> Bool {
-      !Date().isSameDay(Defaults[.scheduleUpdated])
+      let updated = Defaults[.scheduleUpdated]
+      return !updated.isCloseTo(precision: 2.hours.timeInterval)
     }
   }
 }

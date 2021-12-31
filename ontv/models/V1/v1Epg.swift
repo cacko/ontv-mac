@@ -139,7 +139,9 @@ extension V1 {
     }
 
     static func needUpdate() -> Bool {
-      !Date().isSameDay(Defaults[.epgUpdated])
+      let updated = Defaults[.scheduleUpdated]
+      return !updated.isCloseTo(precision: 2.hours.timeInterval) || !updated.isSameDay(Date())
+
     }
 
     var isLive: Bool {

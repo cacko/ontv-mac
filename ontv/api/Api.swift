@@ -22,8 +22,12 @@ extension Defaults.Keys {
 
 enum API {
 
-  enum State {
-    case loading, ready, error, loggedin
+  enum State: Int, DefaultsSerializable {
+    case loading = 1
+    case ready = 2
+    case error = 3
+    case loggedin = 4
+    case idle = 0
   }
 
   enum FetchType {
@@ -49,6 +53,8 @@ enum API {
     @Published var user: UserInfo? = nil
     @Published var expires: String = ""
     @Published var livescoreState: LivescoreState = .ready
+    @Published var scheduleState: API.State = .idle
+    @Published var streamsState: API.State = .idle
 
     var server_info: ServerInfo = ServerInfo(
       url: Defaults[.server_host],
@@ -202,18 +208,18 @@ enum API {
         self.loading = .schedule
       }
       try await Schedule.fetch(url: Endpoint.Schedule) { _ in
-        DispatchQueue.main.async {
-          Task.detached {
-            do {
-              try await Schedule.delete(Schedule.clearQuery)
-            }
-            catch let error {
-              logger.error("\(error.localizedDescription)")
+        Task.detached {
+          do {
+            try await Schedule.delete(Schedule.clearQuery)
+            DispatchQueue.main.async {
+              Defaults[.scheduleUpdated] = Date()
+              self.loading = .loaded
+              NotificationCenter.default.post(name: .updateschedule, object: nil)
             }
           }
-          Defaults[.scheduleUpdated] = Date()
-          self.loading = .loaded
-          NotificationCenter.default.post(name: .updateschedule, object: nil)
+          catch let error {
+            logger.error("\(error.localizedDescription)")
+          }
         }
       }
     }
@@ -226,32 +232,31 @@ enum API {
         DispatchQueue.main.async {
           self.state = .ready
         }
-        DispatchQueue.main.async {
-          Task.detached {
-            do {
-              try await Category.delete(Category.clearQuery)
+        Task.detached {
+          do {
+            try await Category.delete(Category.clearQuery)
+            DispatchQueue.main.async {
+              self.loading = .stream
             }
-            catch let error {
-              logger.error("\(error.localizedDescription)")
+            try await Stream.fetch(url: Endpoint.Streams) { _ in
+              Task.detached {
+                do {
+                  try await Stream.delete(Stream.clearQuery)
+                  DispatchQueue.main.async {
+                    Defaults[.streamsUpdated] = Date()
+                    NotificationCenter.default.post(name: .updatestreams, object: nil)
+                    self.loading = .loaded
+                  }
+                }
+                catch let error {
+                  logger.error("\(error.localizedDescription)")
+                }
+              }
             }
           }
-          self.loading = .stream
-        }
-      }
-
-      try await Stream.fetch(url: Endpoint.Streams) { _ in
-        DispatchQueue.main.async {
-          Task.detached {
-            do {
-              try await Stream.delete(Stream.clearQuery)
-            }
-            catch let error {
-              logger.error("\(error.localizedDescription)")
-            }
+          catch let error {
+            logger.error("\(error.localizedDescription)")
           }
-          Defaults[.streamsUpdated] = Date()
-          NotificationCenter.default.post(name: .updatestreams, object: nil)
-          self.loading = .loaded
         }
       }
     }
@@ -265,16 +270,18 @@ enum API {
         Task.detached {
           do {
             try await EPG.delete(EPG.clearQuery)
+            DispatchQueue.main.async {
+              Defaults[.epgUpdated] = Date()
+              DispatchQueue.main.async {
+                self.epgState = .loaded
+                self.loading = .loaded
+              }
+              NotificationCenter.default.post(name: .updateepg, object: nil)
+            }
           }
           catch let error {
             logger.error("\(error.localizedDescription)")
           }
-          Defaults[.epgUpdated] = Date()
-          DispatchQueue.main.async {
-            self.epgState = .loaded
-            self.loading = .loaded
-          }
-          NotificationCenter.default.post(name: .updateepg, object: nil)
         }
       }
     }
