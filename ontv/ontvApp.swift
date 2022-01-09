@@ -28,7 +28,7 @@ extension Defaults.Keys {
   static let volume = Key<Float>("volume", default: 100)
   static let vendor = Key<PlayVendor>("vender", default: .ffmpeg)
   static let isFloating = Key<Bool>("isFloating", default: true)
-  static let leaguesUpdated = Key<Date>("scheduleUpdated", default: Date(timeIntervalSince1970: 0))
+  static let leaguesUpdated = Key<Date>("leaguesUpdated", default: Date(timeIntervalSince1970: 0))
   static let leagues = Key<Set<Int>>(
     "livescoreLeague",
     default: Set([8, 35, 25, 570, 17, 6216, 6994])

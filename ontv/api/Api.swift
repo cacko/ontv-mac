@@ -63,7 +63,6 @@ enum API {
     @Published var progressValue: Double = 0
     @Published var loggedIn: Bool = false
 
-
     private var tasks: [Sendable] = []
 
     var server_info: ServerInfo = ServerInfo(
@@ -347,25 +346,21 @@ enum API {
       guard self.leaguesState != .loading else {
         return
       }
-
       DispatchQueue.main.async {
         self.loading = .leagues
         self.leaguesState = .loading
         self.fetchType = .leagues
       }
-
       try await League.fetch(url: Endpoint.Leagues) { _ in
-        let te = Task.detached {
-          League.deleteAll()
-          Defaults[.leaguesUpdated] = Date()
-          NotificationCenter.default.post(name: .leagues_updates, object: nil)
+        Task.detached {
           DispatchQueue.main.async {
             self.leaguesState = .ready
             self.fetchType = .idle
+            self.loading = .loaded
+            Defaults[.leaguesUpdated] = Date()
+            NotificationCenter.default.post(name: .leagues_updates, object: nil)
           }
-          //                      self.tasks.remove(te)
         }
-        self.tasks.append(te)
       }
     }
 

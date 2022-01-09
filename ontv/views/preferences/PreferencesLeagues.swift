@@ -18,6 +18,10 @@ extension PreferencesView {
     private let contentWidth: Double = 550.0
     private let padding: Double = 15
 
+    func onOpen() {
+      self.leagueProvider.fetch()
+    }
+
     func isSelected(_ id: Int64) -> Binding<Bool> {
       Binding(
         get: {
@@ -57,6 +61,7 @@ extension PreferencesView {
           }
         }
       }.frame(width: contentWidth, height: 500, alignment: .leading)
+        .onAppear(perform: { onOpen() })
     }
   }
 }

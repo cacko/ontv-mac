@@ -11,8 +11,7 @@ import Foundation
 import SwiftDate
 
 extension V1 {
-  class League: CoreStoreObject, AbstractEntity, ImportableUniqueObject, ImportableModel, Updatable
-  {
+  class League: CoreStoreObject, AbstractEntity, ImportableUniqueObject, ImportableModel {
 
     typealias EntityType = League
 
@@ -45,15 +44,15 @@ extension V1 {
       from source: [String: Any],
       in transaction: BaseDataTransaction
     ) throws -> String? {
-      Self.asString(data: source, key: "id")
+      String(describing: source["id"])
     }
 
     func loadData(from source: [String: Any]) {
       id = Self.asString(data: source, key: "id")
       league_id = Self.asInt64(data: source, key: "id")
       league_name = Self.asString(data: source, key: "name")
-      country_id = Self.asInt64(data: source, key: "countrId")
-      country_name = Self.asString(data: source, key: "sport")
+      country_id = Self.asInt64(data: source, key: "countryId")
+      country_name = Self.asString(data: source, key: "country")
       sport_id = Self.asInt64(data: source, key: "sportId")
       sport_name = Self.asString(data: source, key: "sport")
     }
@@ -72,12 +71,14 @@ extension V1 {
     ) async throws {
       dataStack.perform(
         asynchronous: { transaction -> Void in
-          let _ = try transaction.importUniqueObjects(
-            Into<EntityType>(),
+          let _ = try! transaction.importUniqueObjects(
+            Into<League>(),
             sourceArray: json
           )
         },
-        completion: { r in onComplete(r) }
+        completion: { r in
+          onComplete(r)
+        }
       )
     }
 
@@ -91,6 +92,7 @@ extension V1 {
 
     class var orderBy: OrderBy<EntityType> {
       OrderBy<EntityType>(
+        .ascending("country_name"),
         .ascending("league_name")
       )
     }
@@ -102,6 +104,6 @@ extension V1 {
     static var isLoaded: Bool {
       Defaults[.leaguesUpdated].timeIntervalSince1970 > 0
     }
-  
+
   }
 }
