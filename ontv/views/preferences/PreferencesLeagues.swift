@@ -47,7 +47,7 @@ extension PreferencesView {
                 ListReader(leagueProvider.list) { snapshot in
                   ForEach(objectIn: snapshot) { league in
                     Toggle(isOn: isSelected(league.$league_id!)) {
-                      Text(league.$league_name!)
+                      Text(league.$leagueName!)
                         .frame(maxWidth: 180, alignment: .leading)
                     }
                   }

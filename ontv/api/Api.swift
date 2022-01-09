@@ -31,7 +31,7 @@ enum API {
   }
 
   enum FetchType {
-    case streams, schedule, epg, livescore
+    case streams, schedule, epg, livescore, leagues, idle
   }
 
   enum LoadingItem: String {
@@ -41,6 +41,7 @@ enum API {
     case category = "Loading categories"
     case loaded = "Done"
     case livescore = "Loading livescores"
+    case leagues = "Loading leagues"
   }
 
   static let Adapter = ApiAdapter()
@@ -55,6 +56,15 @@ enum API {
     @Published var livescoreState: LivescoreState = .ready
     @Published var scheduleState: API.State = .idle
     @Published var streamsState: API.State = .idle
+    @Published var leaguesState: API.State = .idle
+    @Published var fetchType: API.FetchType = .idle
+    @Published var inProgress: Bool = false
+    @Published var progressTotal: Double = 0
+    @Published var progressValue: Double = 0
+    @Published var loggedIn: Bool = false
+
+
+    private var tasks: [Sendable] = []
 
     var server_info: ServerInfo = ServerInfo(
       url: Defaults[.server_host],
@@ -92,6 +102,11 @@ enum API {
         case .livescore:
           try await self.updateLivescore()
           break
+        case .leagues:
+          try await self.updateLeagues()
+          break
+        case .idle:
+          break
         }
       }
     }
@@ -111,7 +126,20 @@ enum API {
       do {
         _ = try await self.updateUser()
 
-        if Stream.needUpdate() {
+        if Stream.isLoaded {
+          DispatchQueue.main.async {
+            self.state = .ready
+            self.streamsState = .ready
+            NotificationCenter.default.post(name: .updatestreams, object: nil)
+          }
+        }
+        else {
+          DispatchQueue.main.async {
+            self.inProgress = true
+          }
+        }
+
+        if Stream.needsUpdate {
           try await updateStreams()
         }
         else {
@@ -120,6 +148,11 @@ enum API {
           }
           NotificationCenter.default.post(name: .updatestreams, object: nil)
         }
+
+        if League.needsUpdate {
+          try await updateLeagues()
+        }
+
         if Schedule.needUpdate() {
           try await updateSchedule()
         }
@@ -246,6 +279,7 @@ enum API {
                     Defaults[.streamsUpdated] = Date()
                     NotificationCenter.default.post(name: .updatestreams, object: nil)
                     self.loading = .loaded
+                    self.inProgress = false
                   }
                 }
                 catch let error {
@@ -296,7 +330,6 @@ enum API {
       try await Livescore.fetch(url: Endpoint.Livescores) { _ in
         Task.detached {
           do {
-            self.updateLeagues()
             try await Livescore.delete(Livescore.clearQuery)
             DispatchQueue.main.async {
               self.livescoreState = .ready
@@ -310,29 +343,29 @@ enum API {
       return
     }
 
-    func updateLeagues() {
+    func updateLeagues() async throws {
+      guard self.leaguesState != .loading else {
+        return
+      }
+
       DispatchQueue.main.async {
-        let livescores = Livescore.getAll()
-        let leagues: [String: Any] = livescores.reduce(
-          into: [:],
-          { (res, livescore) in
-            guard (livescore.league_id as Any?) != nil else {
-              return
-            }
-            guard res.keys.contains(livescore.league_id?.string ?? "") else {
-              res[livescore.league_id?.string ?? ""] = livescore.league_name
-              return
-            }
+        self.loading = .leagues
+        self.leaguesState = .loading
+        self.fetchType = .leagues
+      }
+
+      try await League.fetch(url: Endpoint.Leagues) { _ in
+        let te = Task.detached {
+          League.deleteAll()
+          Defaults[.leaguesUpdated] = Date()
+          NotificationCenter.default.post(name: .leagues_updates, object: nil)
+          DispatchQueue.main.async {
+            self.leaguesState = .ready
+            self.fetchType = .idle
           }
-        )
-        Task.init {
-          do {
-            try await League.doImport(
-              json: leagues.map { ["id": $0, "idLeague": $0.int64, "strLeague": $1] }
-            ) { _ in }
-          }
-          catch {}
+          //                      self.tasks.remove(te)
         }
+        self.tasks.append(te)
       }
     }
 

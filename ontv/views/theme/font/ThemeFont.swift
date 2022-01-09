@@ -25,6 +25,7 @@ extension Theme.Font {
   static let hint: SwiftUI.Font = Font.custom("Teko Light", size: 16, relativeTo: .title)
   static let status: SwiftUI.Font = Font.custom("Teko Light", size: 16, relativeTo: .title)
   static let score: SwiftUI.Font = Font.custom("Atami Stencil Bold", size: 20)
+  static let progress = Font.system(size: 18, weight: .light, design: .monospaced)
 
   static let scheduleHeader: SwiftUI.Font = Font.custom(
     "Atami Stencil Bold",

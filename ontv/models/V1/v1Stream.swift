@@ -11,7 +11,7 @@ import SwiftUI
 
 extension V1 {
   class Stream: CoreStoreObject, AbstractEntity, Reorderable, ImportableUniqueObject,
-    ImportableModel,
+    ImportableModel, Updatable,
     LazyStream, Streamable
   {
 
@@ -83,6 +83,9 @@ extension V1 {
       stream_icon = Self.asString(data: source, key: "stream_icon")
       is_adult = Self.asBool(data: source, key: "is_adult")
       id = stream_id.string
+      DispatchQueue.main.async {
+        API.Adapter.progressValue += 1
+      }
     }
 
     static func uniqueID(
@@ -120,6 +123,10 @@ extension V1 {
       return dataStack.perform(
         asynchronous: { transaction -> Void in
           self.currentIds = []
+          DispatchQueue.main.async {
+            API.Adapter.progressTotal = Double(json.count)
+            API.Adapter.progressValue = 0
+          }
           let _ = try! transaction.importUniqueObjects(
             Into<Stream>(),
             sourceArray: json
@@ -157,9 +164,12 @@ extension V1 {
       is_adult || category_id == 366
     }
 
-    static func needUpdate() -> Bool {
-      let updated = Defaults[.scheduleUpdated]
-      return !updated.isCloseTo(precision: 2.hours.timeInterval)
+    static var needsUpdate: Bool {
+      !Defaults[.scheduleUpdated].isCloseTo(precision: 4.hours.timeInterval)
+    }
+
+    static var isLoaded: Bool {
+      Defaults[.scheduleUpdated].timeIntervalSince1970 > 0
     }
   }
 }

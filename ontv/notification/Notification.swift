@@ -39,6 +39,7 @@ extension Notification.Name {
   static let audioCommand = Notification.Name("audio_command")
   static let audioCommandResult = Notification.Name("audio_command_result")
   static let list_navigate = Notification.Name("list_navigate")
+  static let leagues_updates = Notification.Name("leagues_updated")
 
 }
 

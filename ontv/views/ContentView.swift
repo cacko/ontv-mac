@@ -12,7 +12,7 @@ import SwiftUI
 
 enum ContentToggle {
   case guide, category, epglist, search, title, loading, controls, errror, activityepg, bookmarks,
-       metadata, schedule, livescores, livescoresticker, none
+    metadata, schedule, livescores, livescoresticker, none
 }
 
 enum ContentToggleIcon: String {
@@ -73,18 +73,24 @@ struct ContentView: View {
           .onHover { over in
             hasBorder = over
           }.gesture(
-            TapGesture(count:3).onEnded({ _ in
-              NotificationCenter.default.post(name: .toggleFullscreen, object: nil)})
-              .exclusively(before: TapGesture(count: 1)
+            TapGesture(count: 3).onEnded({ _ in
+              NotificationCenter.default.post(name: .toggleFullscreen, object: nil)
+            })
+            .exclusively(
+              before: TapGesture(count: 1)
                 .onEnded({ _ in
                   NotificationCenter.default.post(name: .onTap, object: nil)
-                }))
+                })
+            )
           )
           .sheet(isPresented: showSearch) {
             SearchView()
               .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
               .cornerRadius(player.isFullscreen ? 0 : 5)
           }
+        if api.inProgress {
+          ApiInitProgress()
+        }
         if [PlayerState.opening, PlayerState.buffering].contains(player.state) {
           LoadingView()
         }
@@ -105,6 +111,11 @@ struct ContentView: View {
             NotificationCenter.default.post(name: .onTap, object: nil)
           }
         })
+        .background(
+          Image("splash").resizable().aspectRatio(contentMode: .fill).opacity(
+            (player.stream != nil) ? 0 : 0.5
+          )
+        ).background(.black)
     }
   }
 }

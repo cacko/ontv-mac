@@ -10,11 +10,12 @@ import SwiftUI
 
 enum ToggleViews {
   static let hideControls: [ContentToggle] = [.activityepg, .epglist, .schedule, .search]
-  }
+}
 
 struct ToggleView: View {
 
   @ObservedObject var player = Player.instance
+  @ObservedObject var api = API.Adapter
 
   var body: some View {
     GeometryReader { geo in
@@ -50,7 +51,7 @@ struct ToggleView: View {
             .background(.black.opacity(0.8))
             .cornerRadius(player.isFullscreen ? 0 : 5)
         }
-        if player.controlsState != .hidden {
+        if player.controlsState != .hidden && api.inProgress == false {
           ToggleViews.ControlsView()
         }
         if player.contentToggle == .bookmarks {

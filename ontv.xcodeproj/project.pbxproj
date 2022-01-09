@@ -18,6 +18,8 @@
 		1604067C2730E7EB00719408 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1604067B2730E7EB00719408 /* CoreAudio.framework */; platformFilter = maccatalyst; };
 		1606D64C27339B8F006F512F /* Teams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1606D64B27339B8F006F512F /* Teams.swift */; };
 		16162499271DD810002D7C8C /* Apple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16162498271DD810002D7C8C /* Apple.swift */; };
+		16172C77278A96F2000F48AC /* Updatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16172C76278A96F2000F48AC /* Updatable.swift */; };
+		16172C79278A9AC6000F48AC /* ApiInitProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16172C78278A9AC6000F48AC /* ApiInitProgress.swift */; };
 		161FD7A4272E4ACE007FADA6 /* AVMetadataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161FD7A3272E4ACE007FADA6 /* AVMetadataLoader.swift */; };
 		161FD7A6272E4B86007FADA6 /* AVStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161FD7A5272E4B86007FADA6 /* AVStateDelegate.swift */; };
 		16228C4F270EF2ED00C701C8 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16228C4E270EF2ED00C701C8 /* CategoryView.swift */; };
@@ -170,6 +172,8 @@
 		1604067B2730E7EB00719408 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		1606D64B27339B8F006F512F /* Teams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teams.swift; sourceTree = "<group>"; };
 		16162498271DD810002D7C8C /* Apple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apple.swift; sourceTree = "<group>"; };
+		16172C76278A96F2000F48AC /* Updatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Updatable.swift; sourceTree = "<group>"; };
+		16172C78278A9AC6000F48AC /* ApiInitProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiInitProgress.swift; sourceTree = "<group>"; };
 		161FD7A3272E4ACE007FADA6 /* AVMetadataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVMetadataLoader.swift; sourceTree = "<group>"; };
 		161FD7A5272E4B86007FADA6 /* AVStateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVStateDelegate.swift; sourceTree = "<group>"; };
 		16228C4E270EF2ED00C701C8 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
@@ -656,6 +660,7 @@
 				1687DEB4271A1D5F00A118E4 /* Importable.swift */,
 				1687DEB6271A1D7E00A118E4 /* LazyStream.swift */,
 				1687DEB8271A1E8A00A118E4 /* Validity.swift */,
+				16172C76278A96F2000F48AC /* Updatable.swift */,
 			);
 			path = interface;
 			sourceTree = "<group>";
@@ -727,6 +732,7 @@
 				16CFBB312706D65100B136FC /* LoadingView.swift */,
 				16CFBB332706D66000B136FC /* ErrorView.swift */,
 				1603B4D4271A8A2E002FDBC4 /* ApiLoadingView.swift */,
+				16172C78278A9AC6000F48AC /* ApiInitProgress.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -971,6 +977,7 @@
 				16016FF4274B0F7C00712C55 /* LeagueStorage.swift in Sources */,
 				16B585EC270E450C00C1FA24 /* EPGMenu.swift in Sources */,
 				164B07652709FF0B00C7DE4C /* StreamItems.swift in Sources */,
+				16172C77278A96F2000F48AC /* Updatable.swift in Sources */,
 				16B801482715083A0022AC94 /* EPGGuide.swift in Sources */,
 				1678026027447BC300DE0FD7 /* LivescoreTickerView.swift in Sources */,
 				16997B8A2718AA8B00C49DFF /* ThemeColorFont.swift in Sources */,
@@ -1037,6 +1044,7 @@
 				16BFDA5F272F357C005E7D80 /* Fraction.swift in Sources */,
 				1686F75E2720C8E0006F9B7D /* StreamActivity.swift in Sources */,
 				16B2F75F2731A5DA0051D000 /* PlayerInterfaces.swift in Sources */,
+				16172C79278A9AC6000F48AC /* ApiInitProgress.swift in Sources */,
 				1687DEA1271A133800A118E4 /* v1Stream.swift in Sources */,
 				162D4505271F68D400E0C318 /* ActivityStorage.swift in Sources */,
 				16997B8C2718AA9600C49DFF /* ThemeColorBackground.swift in Sources */,
@@ -1203,7 +1211,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 383;
+				CURRENT_PROJECT_VERSION = 385;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1281,7 +1289,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 383;
+				CURRENT_PROJECT_VERSION = 385;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;

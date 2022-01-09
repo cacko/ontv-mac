@@ -48,8 +48,8 @@ class Schema {
               0x16cb_4120_db9d_551b,
             ],
             "League": [
-              0x97d0_384d_c4be_ce1e, 0xad80_72a1_5ebb_15ca, 0xc754_bf9f_daaa_204d,
-              0xe84a_9903_3395_98e2,
+              0x23ea_e797_70b5_8064, 0xf32b_03f7_5585_a0ac, 0x2b39_60fd_91c2_5303,
+              0x97f6_24e7_2528_c9cd,
             ],
             "Livescore": [
               0xc660_e89f_8b4e_e4fe, 0xb402_aaf7_edfb_663d, 0x5e00_b54d_0788_e26e,
