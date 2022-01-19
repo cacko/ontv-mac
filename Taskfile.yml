@@ -9,7 +9,7 @@ tasks:
   push:
     desc: push code
     cmds:
-      - git commit -am 
+      - git commit -am "$(curl -s https://commit.cacko.net/index.txt)"
       - git push
 
   init:
