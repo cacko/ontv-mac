@@ -5,12 +5,12 @@
 //  Created by Alex on 27/09/2021.
 //
 
-import AppKit
 import Combine
 import CoreStore
 import Defaults
 import Foundation
 import ObjectiveC
+import SwiftUI
 
 extension Defaults.Keys {
   static let userinfo = Key<API.UserInfo>("userinfo", default: .init(username: "", password: ""))
@@ -21,20 +21,90 @@ extension Defaults.Keys {
 }
 
 enum API {
-
-  enum State: Int, DefaultsSerializable {
-    case loading = 1
-    case ready = 2
-    case error = 3
-    case loggedin = 4
-    case idle = 0
+  
+  enum UpdateOperation {
+    case done, notify, state
   }
-
+  
+  struct Update {
+    var operation: UpdateOperation
+    var target: FetchType?
+    var notification: Notification.Name?
+    var destination: StateDestination?
+    var value: Any?
+  }
+  
+  class Updater: NSObject {
+    
+    let publisher = PassthroughSubject<Update, Never>()
+    
+    private var queue: [API.FetchType] = []
+    
+    private var current: API.FetchType!
+    
+    func add(task: API.FetchType) {
+      self.queue.insert(task, at: 0)
+      guard current == nil else {
+        return
+      }
+      current = self.queue.popLast()
+      API.Adapter.fetch(task)
+    }
+    
+    func done(task: API.FetchType) {
+      publisher.send(Update(operation: .done, target: task))
+      switch task {
+        
+      case .streams:
+        self.state(destination: .streams, value: .ready)
+      case .schedule:
+        self.state(destination: .schedule, value: .ready)
+      case .epg:
+        self.state(destination: .epg, value: .ready)
+      case .livescore:
+        self.state(destination: .livescore, value: .ready)
+      case .idle:
+        break
+      case .leagues:
+        self.state(destination: .leagues, value: .ready)
+      case .user:
+        self.state(destination: .api, value: .ready)
+      }
+      
+      guard queue.count > 0 else {
+        return
+      }
+      current = self.queue.popLast()
+      API.Adapter.fetch(current)
+    }
+    
+    func notify(name: Notification.Name, value: Any? = nil) {
+      publisher.send(Update(operation: .notify, notification: name, value: value as Any))
+    }
+    
+    func state(destination: StateDestination, value: API.State) {
+      publisher.send(Update(operation: .state, destination: destination, value: value as Any))
+    }
+    
+    func syncState(value: API.State) {
+      
+    }
+    
+  }
+  
+  enum StateDestination {
+    case streams, schedule, epg, livescore, idle, leagues, user, api, inprogress, loggedin
+  }
+  
+  enum State {
+    case loading, ready, error, loggedin, idle, boot, notavail
+  }
+  
   enum FetchType {
-    case streams, schedule, epg, livescore, leagues, idle
+    case streams, schedule, epg, livescore, idle, leagues, user
   }
-
-  enum LoadingItem: String {
+  
+  enum LoadingItem: String, DefaultsSerializable {
     case epg = "Loading EPG"
     case schedule = "Loading TheSportsDb"
     case stream = "Loading streams"
@@ -43,28 +113,26 @@ enum API {
     case livescore = "Loading livescores"
     case leagues = "Loading leagues"
   }
-
+  
   static let Adapter = ApiAdapter()
-
+  
   class ApiAdapter: NSObject, ObservableObject {
     @Published var error: API.Exception? = nil
-    @Published var state: API.State = .loading
     @Published var loading: API.LoadingItem = .loaded
-    @Published var epgState: ProviderState = .notavail
+    @Published var epgState: API.State = .boot
     @Published var user: UserInfo? = nil
     @Published var expires: String = ""
-    @Published var livescoreState: LivescoreState = .ready
+    @Published var livescoreState: API.State = .idle
     @Published var scheduleState: API.State = .idle
     @Published var streamsState: API.State = .idle
     @Published var leaguesState: API.State = .idle
     @Published var fetchType: API.FetchType = .idle
+    @Published var state: API.State = .boot
     @Published var inProgress: Bool = false
     @Published var progressTotal: Double = 0
     @Published var progressValue: Double = 0
     @Published var loggedIn: Bool = false
-
-    private var tasks: [Sendable] = []
-
+    
     var server_info: ServerInfo = ServerInfo(
       url: Defaults[.server_host],
       port: Defaults[.server_port],
@@ -75,20 +143,33 @@ enum API {
       timestamp_now: 0,
       time_now: ""
     )
-
+    
     var username: String = Defaults[.username]
-
+    
     var password: String = Defaults[.password]
-
+    
+    private var cancellable: Cancellable!
+    private let updater: Updater = Updater()
+    
     func login(username: String, password: String) async {
       self.username = username
       self.password = password
       await login()
     }
-
+    
+    func clean() {
+      //      guard tasks.count > 0 else {
+      //        return
+      //      }
+      //      tasks.forEach { $0.cancel() }
+    }
+    
     func fetch(_ type: API.FetchType) {
       Task.init {
         switch type {
+        case .user:
+          try await self.updateUser()
+          break
         case .streams:
           try await self.updateStreams()
           break
@@ -105,84 +186,82 @@ enum API {
           try await self.updateLeagues()
           break
         case .idle:
-          break
+          self.fetchType = .idle
         }
       }
     }
-
+    
     func login() async {
-      DispatchQueue.main.async {
-        self.state = .loading
-      }
       if username.count == 0 || password.count == 0 {
         DispatchQueue.main.async {
           self.state = .error
           self.error = API.Exception.invalidLogin("new app")
+//          Defaults[.account_status] = "Not connected"
           NotificationCenter.default.post(name: .openWindow, object: WindowController.prefences)
         }
         return
       }
+      
+      cancellable = updater.publisher
+        .sink { value in
+          DispatchQueue.main.async {
+            switch value.operation {
+            case .done:
+              break
+            case .notify:
+              NotificationCenter.default.post(name: value.notification!, object: value.value)
+            case .state:
+              switch value.destination {
+              case .streams:
+                self.streamsState = value.value as! API.State
+              case .schedule:
+                self.scheduleState = value.value as! API.State
+              case .epg:
+                self.epgState = value.value as! API.State
+              case .livescore:
+                self.livescoreState = value.value as! API.State
+              case .idle:
+                break
+              case .leagues:
+                self.leaguesState = value.value as! API.State
+              case .user:
+                self.state = value.value as! API.State
+              case .api:
+                self.state = value.value as! API.State
+              case .inprogress:
+                self.inProgress = value.value as! API.State == .loading
+              case .none:
+                break
+              case .loggedin:
+                self.error = nil
+                self.loggedIn = value.value as! API.State == .loggedin
+              }
+            }
+          }
+          
+        }
+      
       do {
-        _ = try await self.updateUser()
-
+        updater.add(task: .user)
         if Stream.isLoaded {
-          DispatchQueue.main.async {
-            self.state = .ready
-            self.streamsState = .ready
-            NotificationCenter.default.post(name: .updatestreams, object: nil)
-          }
+          updater.state(destination: .streams, value: .ready)
         }
         else {
-          DispatchQueue.main.async {
-            self.inProgress = true
-          }
+          updater.state(destination: .inprogress, value: .loading)
         }
-
-        if Stream.needsUpdate {
-          try await updateStreams()
-        }
-        else {
-          DispatchQueue.main.async {
-            self.state = .ready
-          }
-          NotificationCenter.default.post(name: .updatestreams, object: nil)
-        }
-
-        if League.needsUpdate {
-          try await updateLeagues()
-        }
-
-        if Schedule.needUpdate() {
-          try await updateSchedule()
-        }
-        else {
-          NotificationCenter.default.post(name: .updateschedule, object: nil)
-        }
-        NotificationCenter.default.post(name: .loaded, object: nil)
-        if EPG.needUpdate() {
-          try await updateEPG()
-        }
-        else {
-          DispatchQueue.main.async {
-            self.epgState = .loaded
-            NotificationCenter.default.post(name: .updateepg, object: nil)
-          }
-        }
-      }
-      catch let error {
-        DispatchQueue.main.async {
-          self.state = .error
-          self.error = API.Exception.invalidLogin(error.localizedDescription)
-        }
+        updater.add(task: .leagues)
+        updater.add(task: .streams)
+        updater.add(task: .schedule)
+        updater.add(task: .epg)
       }
     }
-
+    
     func updateUser() async throws {
       do {
         let response: LoginResponse =
-          try await fetchCodable(url: Endpoint.Login, codable: LoginResponse.self)
-          as! API.LoginResponse
-
+        try await fetchCodable(url: Endpoint.Login, codable: LoginResponse.self)
+        as! API.LoginResponse
+        
         DispatchQueue.main.async {
           self.user = response.user_info
           self.server_info = response.server_info
@@ -193,14 +272,18 @@ enum API {
             let formatter = RelativeDateTimeFormatter()
             formatter.unitsStyle = .full
             self.expires = formatter.localizedString(for: dt, relativeTo: Date())
+//            Defaults[.account_status] = "Connected. \(self.expires) left"
             if self.user!.isSubscriptionExpired() {
-              self.state = .error
+              self.updater.state(destination: .api, value: .error)
               self.error = API.Exception.subscriptionExpired(self.expires)
+              self.updater.done(task: .user)
               return
             }
           }
-          NotificationCenter.default.post(name: .loggedin, object: nil)
-          self.state = .loggedin
+          self.updater.done(task: .user)
+          self.updater.notify(name: .loggedin)
+          self.updater.state(destination: .loggedin, value: .loggedin)
+          self.updater.state(destination: .api, value: .loggedin)
         }
       }
       catch let error {
@@ -210,11 +293,12 @@ enum API {
         guard let storedServer = Defaults[.serverinfo] as ServerInfo? else {
           throw error
         }
-
+        
         guard storedUser.username != "" && storedServer.url != "" else {
+//          Defaults[.account_status] = "Not connected"
           throw error
         }
-
+        
         DispatchQueue.main.async {
           self.user = storedUser
           self.server_info = storedServer
@@ -229,141 +313,169 @@ enum API {
               return
             }
           }
-          self.state = .loggedin
-          NotificationCenter.default.post(name: .loggedin, object: nil)
+          self.updater.done(task: .user)
+          self.updater.state(destination: .loggedin, value: .loggedin)
+          self.updater.state(destination: .api, value: .loggedin)
+          self.updater.notify(name: .loggedin)
         }
       }
     }
-
+    
     func updateSchedule() async throws {
-      DispatchQueue.main.async {
-        self.loading = .schedule
+      guard self.scheduleState != .loading else {
+        return
       }
+      guard Schedule.needsUpdate else {
+        updater.notify(name: .updateschedule)
+        self.updater.done(task: .schedule)
+        return
+      }
+      updater.state(destination: .schedule, value: .loading)
       try await Schedule.fetch(url: Endpoint.Schedule) { _ in
-        Task.detached {
+        Task.init {
           do {
             try await Schedule.delete(Schedule.clearQuery)
-            DispatchQueue.main.async {
-              Defaults[.scheduleUpdated] = Date()
-              self.loading = .loaded
-              NotificationCenter.default.post(name: .updateschedule, object: nil)
-            }
+            Defaults[.scheduleUpdated] = Date()
+            self.updater.done(task: .schedule)
+            self.updater.notify(name: .updateschedule)
           }
           catch let error {
+            self.updater.done(task: .schedule)
             logger.error("\(error.localizedDescription)")
           }
         }
       }
     }
-
+    
     func updateStreams() async throws {
-      DispatchQueue.main.async {
-        self.loading = .category
+      guard self.streamsState != .loading else {
+        return
       }
+      
+      guard Stream.needsUpdate else {
+        self.updater.done(task: .streams)
+        self.updater.notify(name: .loaded)
+        return
+      }
+      
+      self.updater.state(destination: .streams, value: .loading)
+      
       try await Category.fetch(url: Endpoint.Categories) { _ in
-        DispatchQueue.main.async {
-          self.state = .ready
-        }
-        Task.detached {
+        Task.init {
           do {
             try await Category.delete(Category.clearQuery)
-            DispatchQueue.main.async {
-              self.loading = .stream
-            }
             try await Stream.fetch(url: Endpoint.Streams) { _ in
-              Task.detached {
+              Task.init {
                 do {
                   try await Stream.delete(Stream.clearQuery)
-                  DispatchQueue.main.async {
-                    Defaults[.streamsUpdated] = Date()
-                    NotificationCenter.default.post(name: .updatestreams, object: nil)
-                    self.loading = .loaded
-                    self.inProgress = false
-                  }
+                  self.updater.notify(name: .updatestreams)
+                  self.updater.state(destination: .inprogress, value: .ready)
+                  self.updater.done(task: .streams)
+                  self.updater.notify(name: .loaded)
+                  Defaults[.streamsUpdated] = Date()
                 }
                 catch let error {
-                  logger.error("\(error.localizedDescription)")
+                  self.updater.done(task: .streams)
+                  self.updater.notify(name: .loaded)
+                  logger.error(">>> \(error.localizedDescription)")
                 }
               }
             }
           }
           catch let error {
-            logger.error("\(error.localizedDescription)")
+            logger.error("??? \(error.localizedDescription)")
           }
         }
       }
     }
-
+    
     func updateEPG() async throws {
-      DispatchQueue.main.async {
-        self.loading = .epg
-        self.epgState = .loading
+      guard self.epgState != .loading else {
+        return
       }
+      
+      guard EPG.needsUpdate else {
+        updater.state(destination: .epg, value: .ready)
+        updater.notify(name: .updateepg)
+        self.updater.done(task: .epg)
+        
+        return
+      }
+      
+      updater.state(destination: .epg, value: .loading)
+      
       try await EPG.fetch(url: Endpoint.EPG) { _ in
         Task.detached {
           do {
             try await EPG.delete(EPG.clearQuery)
-            DispatchQueue.main.async {
-              Defaults[.epgUpdated] = Date()
-              DispatchQueue.main.async {
-                self.epgState = .loaded
-                self.loading = .loaded
-              }
-              NotificationCenter.default.post(name: .updateepg, object: nil)
-            }
+            Defaults[.epgUpdated] = Date()
+            self.updater.done(task: .epg)
+            self.updater.notify(name: .updateepg)
           }
           catch let error {
+            self.updater.done(task: .epg)
             logger.error("\(error.localizedDescription)")
           }
         }
       }
     }
-
+    
     func updateLivescore() async throws {
-      guard state == .ready else {
+      Task.detached {
+        guard self.livescoreState != .loading else {
+          return
+        }
+        DispatchQueue.main.async {
+          self.fetchType = .livescore
+          self.livescoreState = .loading
+        }
+        
+        try await Livescore.fetch(url: Endpoint.Livescores) { _ in
+          Task.detached {
+            do {
+              try await Livescore.delete(Livescore.clearQuery)
+              DispatchQueue.main.async {
+                self.livescoreState = .ready
+                self.fetchType = .idle
+              }
+            }
+            catch let error {
+              logger.error("\(error.localizedDescription)")
+              try await Livescore.delete(Livescore.clearQuery)
+              DispatchQueue.main.async {
+                self.livescoreState = .ready
+                self.fetchType = .idle
+              }
+            }
+          }
+        }
         return
       }
-      DispatchQueue.main.async {
-        self.livescoreState = .loading
-      }
-      try await Livescore.fetch(url: Endpoint.Livescores) { _ in
-        Task.detached {
-          do {
-            try await Livescore.delete(Livescore.clearQuery)
-            DispatchQueue.main.async {
-              self.livescoreState = .ready
-            }
-          }
-          catch let error {
-            logger.error("\(error.localizedDescription)")
-          }
-        }
-      }
-      return
     }
-
+    
     func updateLeagues() async throws {
       guard self.leaguesState != .loading else {
         return
       }
+      
+      guard League.needsUpdate else {
+        self.updater.done(task: .leagues)
+        return
+      }
+      
       DispatchQueue.main.async {
         self.loading = .leagues
         self.leaguesState = .loading
         self.fetchType = .leagues
       }
+      
       try await League.fetch(url: Endpoint.Leagues) { _ in
-        Task.detached {
-          DispatchQueue.main.async {
-            self.leaguesState = .ready
-            self.fetchType = .idle
-            self.loading = .loaded
-            Defaults[.leaguesUpdated] = Date()
-            NotificationCenter.default.post(name: .leagues_updates, object: nil)
-          }
-        }
+        Defaults[.leaguesUpdated] = Date()
+        self.updater.done(task: .leagues)
+        self.updater.notify(name: .leagues_updates)
       }
     }
-
+    
     func fetchData(
       url: URL
     ) async throws -> [[String: Any]] {
@@ -372,12 +484,12 @@ enum API {
         throw API.Exception.notJson
       }
       let data =
-        try
-        (JSONSerialization.jsonObject(with: json, options: [.mutableContainers])
-        as! [[String: Any]])
+      try
+      (JSONSerialization.jsonObject(with: json, options: [.mutableContainers])
+       as! [[String: Any]])
       return data
     }
-
+    
     func fetchCodable(
       url: URL,
       codable: Codable.Type
@@ -391,5 +503,5 @@ enum API {
       return result
     }
   }
-
+  
 }

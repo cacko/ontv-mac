@@ -73,7 +73,7 @@ extension StorageProvider where EntityType == Schedule {
 
   func fetch() {
     Task.init {
-      if Schedule.needUpdate() {
+      if Schedule.needsUpdate {
         try await API.Adapter.updateSchedule()
       }
     }

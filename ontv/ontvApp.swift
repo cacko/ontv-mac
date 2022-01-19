@@ -31,7 +31,27 @@ extension Defaults.Keys {
   static let leaguesUpdated = Key<Date>("leaguesTimestamp", default: Date(timeIntervalSince1970: 0))
   static let leagues = Key<Set<Int>>(
     "livescoreLeague",
-    default: Set([167, 35, 25, 17, 11, 8, 570, 321, 58, 73, 9, 7])
+    default: Set([
+      8,
+      25,
+      17,
+      11,
+      13,
+      7,
+      6265,
+      163,
+      350,
+      5668,
+      573,
+      5421,
+      7016,
+      7685,
+      572,
+      15,
+      167,
+      9,
+      20,
+    ])
   )
   static let tickerPosition = Key<Int>("tickerPosition", default: TickerPosition.top.rawValue)
 }

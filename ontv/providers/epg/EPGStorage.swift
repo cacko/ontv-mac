@@ -133,7 +133,7 @@ class EPGStorageAbstract: NSObject, ObservableObject, StorageProvider {
       DispatchQueue.main.async {
         self.state = .loading
       }
-      if EPG.needUpdate() {
+      if EPG.needsUpdate {
         try await API.Adapter.updateEPG()
       }
       DispatchQueue.main.async {

@@ -138,12 +138,14 @@ extension V1 {
       )
     }
 
-    static func needUpdate() -> Bool {
-      let updated = Defaults[.scheduleUpdated]
-      return !updated.isCloseTo(precision: 2.hours.timeInterval) || !updated.isSameDay(Date())
-
+    static var needsUpdate: Bool {
+      let updated = Defaults[.epgUpdated]
+      return !updated.isToday || !updated.isCloseTo(precision: 6.hours.timeInterval)
     }
-
+    
+    static var isLoaded: Bool {
+      Defaults[.epgUpdated].timeIntervalSince1970 > 0
+    }
     var isLive: Bool {
       let now = Date()
       return start.compare(now) == .orderedAscending && stop.compare(now) == .orderedDescending

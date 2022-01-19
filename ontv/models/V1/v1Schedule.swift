@@ -151,9 +151,12 @@ extension V1 {
       ])
     }
 
-    static func needUpdate() -> Bool {
-      let updated = Defaults[.scheduleUpdated]
-      return !updated.isCloseTo(precision: 2.hours.timeInterval)
+    static var needsUpdate: Bool {
+      !Defaults[.scheduleUpdated].isCloseTo(precision: 2.hours.timeInterval)
+    }
+    
+    static var isLoaded: Bool {
+      Defaults[.scheduleUpdated].timeIntervalSince1970 > 0
     }
   }
 }

@@ -176,7 +176,7 @@ struct SearchView: View {
         ScrollViewReader { proxy in
           ScrollView {
             VStack(alignment: .leading, spacing: 5) {
-              if api.epgState == .loaded {
+              if api.epgState == .ready {
                 ListReader(epgProvider.list) { listSnapshot in
                   ForEach(objectIn: listSnapshot) { obj in
                     EPGResult(obj)
