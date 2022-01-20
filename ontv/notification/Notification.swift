@@ -60,11 +60,7 @@ extension AppDelegate {
       switch obj {
       case .prefences:
         self.preferencesWindowController.show()
-        if self.window.isFloating {
-          self.preferencesWindowController.window?.level = .floating
-        }
-        self.preferencesWindowController.window?.orderFrontRegardless()
-        self.window.orderBack(nil)
+        self.preferencesWindowController.window?.level = .modalPanel
       default:
         break
       }
@@ -78,10 +74,6 @@ extension AppDelegate {
       default:
         break
       }
-    }
-
-    center.addObserver(forName: .loggedin, object: nil, queue: mainQueue) { _ in
-      NotificationCenter.default.post(name: .closeWindow, object: WindowController.prefences)
     }
 
     center.addObserver(forName: .toggleAudio, object: nil, queue: mainQueue) { _ in

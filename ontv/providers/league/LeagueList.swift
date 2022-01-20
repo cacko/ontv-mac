@@ -38,14 +38,14 @@ extension LeagueStorage {
     func selectPrevious() throws {}
 
     func onNavigate(_ notitication: Notification) {}
-
     override init() {
-      self.query = Where<EntityType>(NSPredicate(format: "sport_id = 1"))
+      self.query = Where<EntityType>(NSPredicate(value: true))
       self.list = Self.dataStack.publishList(
         From<EntityType>()
           .where(self.query)
           .orderBy(self.order)
       )
+      print(self.list.snapshot)
       super.init()
     }
   }
