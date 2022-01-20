@@ -326,7 +326,7 @@ enum API {
         return
       }
       guard Schedule.needsUpdate else {
-        updater.notify(name: .updateschedule)
+        self.updater.notify(name: .updateschedule)
         self.updater.done(task: .schedule)
         return
       }
@@ -359,6 +359,7 @@ enum API {
       }
       
       self.updater.state(destination: .streams, value: .loading)
+      self.updater.state(destination: .inprogress, value: .loading)
       
       try await Category.fetch(url: Endpoint.Categories) { _ in
         Task.init {
