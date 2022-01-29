@@ -21,8 +21,6 @@ fake = Faker()
 Logger = logging.Logger("ONTV")
 GIT = "/usr/local/bin/git"
 
-#       - git commit -am "fix CVE-2021-44228"
-
 
 def message():
     return requests.get("https://commit.cacko.net/index.txt").text.strip()
