@@ -45,11 +45,13 @@ extension V1 {
       from source: [String: Any],
       in transaction: BaseDataTransaction
     ) throws -> String? {
-      Self.asString(data: source, key: "id")
+      let res = Self.numberAsString(data: source, key: "id")
+      print(res)
+      return res
     }
 
     func loadData(from source: [String: Any]) {
-      id = Self.asString(data: source, key: "id")
+      id = Self.numberAsString(data: source, key: "id")
       league_id = Self.asInt64(data: source, key: "league_id")
       league_name = Self.asString(data: source, key: "league_name")
       country_id = Self.asInt64(data: source, key: "country_id")
@@ -89,7 +91,7 @@ extension V1 {
     }
 
     static var needsUpdate: Bool {
-      !Defaults[.leaguesUpdated].isCloseTo(precision: 20.days.timeInterval)
+      !Defaults[.leaguesUpdated].isCloseTo(precision: 1.seconds.timeInterval)
     }
 
     static var isLoaded: Bool {

@@ -74,6 +74,10 @@ extension ImportableModel {
   static func asString(data: [String: Any], key: String) -> String {
     data[key] as? String ?? ""
   }
+  
+  static func numberAsString(data: [String: Any], key: String) -> String {
+    String(describing: data[key])
+  }
 
   static func asDate(data: [String: Any], key: String) -> Date {
     do {
