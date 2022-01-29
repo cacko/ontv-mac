@@ -54,7 +54,9 @@ def packages(project: Project) -> Generator[ProjectPackage, None, None]:
 
 
 def package_for_version(project: Project, version: str) -> ProjectPackage:
+    print(project)
     for package in packages(project):
+        print(package)
         if package.version == version:
             return package
 
