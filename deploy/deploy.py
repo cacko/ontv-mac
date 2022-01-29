@@ -50,12 +50,12 @@ def getUploadJson() -> DeployJSON:
 
 
 def packages(project: Project) -> Generator[ProjectPackage, None, None]:
-    yield from project.packages.list()
+    packages: ProjectReleaseManager = project.packages
+    yield from packages.list(all=True)
 
 
 def package_for_version(project: Project, version: str) -> ProjectPackage:
     for package in packages(project):
-        print(package, version)
         if package.version == version:
             return package
 
