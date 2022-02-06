@@ -15,7 +15,7 @@
         "repositoryURL": "https://github.com/sindresorhus/Defaults",
         "state": {
           "branch": "main",
-          "revision": "55f3302c3ab30a8760f10042d0ebc0a6907f865a",
+          "revision": "c9198bb1d097486711a36269b191f4e96d93130b",
           "version": null
         }
       },
@@ -41,9 +41,9 @@
         "package": "SwiftDate",
         "repositoryURL": "https://github.com/cacko/SwiftDate",
         "state": {
-          "branch": null,
+          "branch": "master",
           "revision": "6190d0cefff3013e77ed567e6b074f324e5c5bf5",
-          "version": "6.3.1"
+          "version": null
         }
       },
       {

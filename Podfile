@@ -1,4 +1,4 @@
-platform :macos, '12.0'
+platform :macos, '12.2'
 
 target 'ontv' do
   use_frameworks!

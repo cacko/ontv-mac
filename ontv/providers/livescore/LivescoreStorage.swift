@@ -47,10 +47,8 @@ enum LivescoreStorage {
   }
 
   static func disable(_ content: ContentToggle) {
-    debugPrint(">>> livescore storage disable \(content)")
 
     guard active.contains(content) else {
-      debugPrint(">>> livescore storage does not contain \(content)")
       return
     }
     active.removeAll(where: { $0 == content })
@@ -72,11 +70,9 @@ enum LivescoreStorage {
   static func startTimer() {
 
     if timerState == .none {
-      debugPrint(">>> initialising timer")
       timer.schedule(deadline: .now(), repeating: .seconds(60))
       timer.setEventHandler {
         Task.detached {
-          debugPrint(">>> livescore timer call api.updatelivescore")
           try await API.Adapter.updateLivescore()
         }
       }
@@ -86,12 +82,10 @@ enum LivescoreStorage {
     }
 
     guard timerState == .suspended else {
-      debugPrint(">>> livescore timer is not suspended, not resuming")
       return
     }
     timer.resume()
     timerState = .active
-    debugPrint(">>> livescore timer resumed")
 
   }
 
@@ -99,13 +93,11 @@ enum LivescoreStorage {
   {
     
     guard timerState == .active else {
-      debugPrint(">>> livescore timer not active, can't suspend")
       return
     }
     
     timer.suspend()
     timerState = .suspended
-    debugPrint(">>> livescore timer suspended")
   }
 }
 

@@ -6,19 +6,15 @@ PODS:
   - KSPlayer (1.0):
     - KSPlayer/Audio (= 1.0)
     - KSPlayer/AVPlayer (= 1.0)
-    - KSPlayer/Basic (= 1.0)
     - KSPlayer/Core (= 1.0)
     - KSPlayer/MEPlayer (= 1.0)
     - KSPlayer/Metal (= 1.0)
     - KSPlayer/Subtitle (= 1.0)
-    - KSPlayer/UXKit (= 1.0)
+    - KSPlayer/SwiftUI (= 1.0)
     - KSPlayer/Video (= 1.0)
   - KSPlayer/Audio (1.0):
     - KSPlayer/Core
-  - KSPlayer/AVPlayer (1.0):
-    - KSPlayer/Basic
-  - KSPlayer/Basic (1.0):
-    - KSPlayer/UXKit
+  - KSPlayer/AVPlayer (1.0)
   - KSPlayer/Core (1.0):
     - KSPlayer/AVPlayer
   - KSPlayer/MEPlayer (1.0):
@@ -28,7 +24,8 @@ PODS:
     - KSPlayer/Subtitle
   - KSPlayer/Metal (1.0)
   - KSPlayer/Subtitle (1.0)
-  - KSPlayer/UXKit (1.0)
+  - KSPlayer/SwiftUI (1.0):
+    - KSPlayer/AVPlayer
   - KSPlayer/Video (1.0):
     - KSPlayer/Core
     - KSPlayer/Subtitle
@@ -54,18 +51,18 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FFmpeg:
-    :commit: 9e72a6989ac418b730670e193f07ebe822a9bf46
+    :commit: 1e438de436a57043a68fdf7a8ec62ea33e99f008
     :git: https://github.com/kingslay/KSPlayer.git
   KSPlayer:
-    :commit: 9e72a6989ac418b730670e193f07ebe822a9bf46
+    :commit: 1e438de436a57043a68fdf7a8ec62ea33e99f008
     :git: https://github.com/kingslay/KSPlayer.git
   OpenSSL:
-    :commit: 9e72a6989ac418b730670e193f07ebe822a9bf46
+    :commit: 1e438de436a57043a68fdf7a8ec62ea33e99f008
     :git: https://github.com/kingslay/KSPlayer.git
 
 SPEC CHECKSUMS:
   FFmpeg: 6593f811126654982330f647e8c0a54b5fb38257
-  KSPlayer: a6ea8483d44447d4b7282e3723ebed9101efb3ad
+  KSPlayer: f8dd9c7cac508db3ce1bd63288c1092dd6253440
   OpenSSL: a253b4b80f6c9512a45960472ddc5140342356bf
 
 PODFILE CHECKSUM: dfaebaa45ec0e84a368282dffb645867cc5f2749

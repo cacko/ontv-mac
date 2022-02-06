@@ -39,7 +39,7 @@ extension V1 {
     var name: String = ""
 
     @Field.Stored("timestamp")
-    var timestamp = Date()
+    var timestamp = Date(timeIntervalSince1970: 0)
 
     @Field.Stored("channels")
     var channels: String = ""
@@ -125,8 +125,8 @@ extension V1 {
       return []
     }
 
-    var startTime: Date {
-      timestamp
+    var startTime: Date? {
+      return timestamp
     }
 
     var title: String {
@@ -136,7 +136,10 @@ extension V1 {
     }
 
     var hasExpired: Bool {
-      let expireDate = self.startTime.addingTimeInterval(Self.expiresIn)
+      guard let st = self.startTime else {
+        return true
+      }
+      let expireDate = st.addingTimeInterval(Self.expiresIn)
       return Date().timeIntervalSince(expireDate) < 0
     }
 
