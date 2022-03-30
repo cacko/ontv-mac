@@ -46,7 +46,6 @@ extension V1 {
       in transaction: BaseDataTransaction
     ) throws -> String? {
       let res = Self.numberAsString(data: source, key: "id")
-      print(res)
       return res
     }
 

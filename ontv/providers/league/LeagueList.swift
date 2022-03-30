@@ -45,7 +45,6 @@ extension LeagueStorage {
           .where(self.query)
           .orderBy(self.order)
       )
-      print(self.list.snapshot)
       super.init()
     }
   }

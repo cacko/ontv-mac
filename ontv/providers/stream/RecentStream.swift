@@ -28,7 +28,7 @@ extension Provider.Stream {
 
   static let RecentItems = RecentStreams()
 
-  static let Recent = RecentActor()
+  static let Recent = Recents()
 
   class RecentStreams {
 
@@ -48,12 +48,12 @@ extension Provider.Stream {
 
     func load() {
       Task.init {
-        self.streams = await Recent.streams
+        self.streams = Recent.streams
       }
     }
   }
 
-  actor RecentActor {
+  class Recents {
     var autoPlay: Stream? = nil
 
     var player = Player.instance
@@ -108,32 +108,35 @@ extension Provider.Stream {
       }
     }
 
-    func load() {
-      self.streams = Activity.find(
-        OrderBy<Activity>(.descending("last_visit"))
-      ).reduce([]) {
-        (res, obj) in
-
-        guard res.count < RecentMenu.NUM_ITEMS else {
-          return res
+    @MainActor func load() {
+      DispatchQueue.main.async {
+        self.streams = Activity.find(
+          OrderBy<Activity>(.descending("last_visit"))
+        ).reduce([]) {
+          (res, obj) in
+          
+          guard res.count < RecentMenu.NUM_ITEMS else {
+            return res
+          }
+          
+          guard let activity: Activity = obj as Activity? else {
+            return res
+          }
+          
+          guard let stream: Stream = activity.stream else {
+            return res
+          }
+          
+          guard !stream.isAdult else {
+            return res
+          }
+          
+          return res + [stream]
         }
-
-        guard let activity: Activity = obj as Activity? else {
-          return res
-        }
-
-        guard let stream: Stream = activity.stream else {
-          return res
-        }
-
-        guard !stream.isAdult else {
-          return res
-        }
-
-        return res + [stream]
+        
+        self.autoPlay = self.streams.first
       }
 
-      self.autoPlay = self.streams.first
     }
 
     private func onNavigation(_ navigation: AppNavigation) {

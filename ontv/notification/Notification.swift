@@ -153,29 +153,27 @@ extension AppDelegate {
     }
 
     center.addObserver(forName: .loaded, object: nil, queue: mainQueue) { _ in
-      DispatchQueue.main.async {
-        Task.init {
-          await recent.load()
-          await recent.register()
-          quickStreams.load()
-          guard let stream = await recent.autoPlay
-          else {
-            self.player.controlsState = .always
-            return
-          }
-          NotificationCenter.default.post(name: .updatebookmarks, object: nil)
-          self.player.play(stream)
+      Task.init {
+        await recent.load()
+        recent.register()
+        await quickStreams.load()
+        guard let stream = recent.autoPlay
+        else {
+          self.player.controlsState = .always
+          return
         }
+        NotificationCenter.default.post(name: .updatebookmarks, object: nil)
+        self.player.play(stream)
       }
     }
 
     center.addObserver(forName: .contentToggle, object: nil, queue: mainQueue) { note in
-//      guard player.stream != nil else {
-//        return
-//      }
-//      guard player.stream.category_id > 0 else {
-//        return
-//      }
+      //      guard player.stream != nil else {
+      //        return
+      //      }
+      //      guard player.stream.category_id > 0 else {
+      //        return
+      //      }
       if let t = note.object as? ContentToggle {
         self.player.contentToggle = t
         switch t {

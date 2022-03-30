@@ -126,20 +126,23 @@ class Player: NSObject, PlayerProtocol, ObservableObject {
 
   func play(_ stream: Stream) {
     NotificationCenter.default.post(name: .changeStream, object: stream)
-    self.metadataState = .loading
-    self.metadata = StreamInfo.Metadata(
-      video: StreamInfo.Video(),
-      audio: StreamInfo.Audio()
-    )
-    self.state = .opening
-    self.retryTask?.cancel()
-    if self.state == .retry {
-      self.retries = 0
+    DispatchQueue.main.async {
+      self.metadataState = .loading
+      self.metadata = StreamInfo.Metadata(
+        video: StreamInfo.Video(),
+        audio: StreamInfo.Audio()
+      )
+      self.state = .opening
+      self.retryTask?.cancel()
+      if self.state == .retry {
+        self.retries = 0
+      }
+      self.stream = stream
+      self.epgId = stream.epg_channel_id
+      self.category = Category.get(stream.category_id)
+      self.vendorPlayer.play(stream)
     }
-    self.stream = stream
-    self.epgId = stream.epg_channel_id
-    self.category = Category.get(stream.category_id)
-    self.vendorPlayer.play(stream)
+
   }
 
   func retry() {

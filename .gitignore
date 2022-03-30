@@ -33,3 +33,4 @@ public/
 Applications/
 .env
 .envrc
+node_modules/
