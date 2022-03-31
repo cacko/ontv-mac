@@ -47,7 +47,7 @@ tasks:
     desc: publish dmg file as package
     cmds:
       - echo "publishing app to gitlab"
-      - poetry run python deploy/deploy.py {{.CLI_ARGS}}
+      - poetry run python -m deploy {{.CLI_ARGS}}
 
   uncacheimages:
     desc: removes app images cache

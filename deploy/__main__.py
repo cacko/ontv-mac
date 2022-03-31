@@ -1,4 +1,3 @@
-from ctypes import _CArgObject
 from github import (
     Github,
     GitRelease
@@ -16,8 +15,13 @@ version = check_output(["agvtool", "vers", "-terse"]).decode().strip()
 
 repo = Github(environ.get("GITHUB_TOKEN")).get_repo("cacko/ontv-mac")
 
+release_version = f"v1.0.{version}"
 
-release: GitRelease = repo.create_git_tag_and_release(f"v0.1.{version}", release_message=release_description)
+commit = repo.get_branch("master").commit
 
-release.GitRelease.upload_asset('ontv.dmg')
+release: GitRelease = repo.create_git_tag_and_release(
+    release_version, release_description, release_version, release_description, commit.sha, ''
+    )
+
+release.upload_asset('ontv.dmg')
  
