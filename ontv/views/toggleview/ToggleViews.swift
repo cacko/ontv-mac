@@ -23,6 +23,8 @@ struct ToggleView: View {
         if player.contentToggle == .title {
           ToggleViews.TitleView()
         }
+        ToggleViews.StreamsView()
+
         if [.epglist, .activityepg].contains(player.contentToggle) {
           ToggleViews.EPGContentView()
             .frame(width: geo.size.width, height: geo.size.height)

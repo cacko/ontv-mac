@@ -9,7 +9,7 @@ import Foundation
 
 
 enum Theme {
-    enum Font {
+enum Font {
         
     }
     enum Color {

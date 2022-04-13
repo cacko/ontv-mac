@@ -80,6 +80,9 @@
 		165C97FF2702291A00466207 /* MainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165C97FE2702291A00466207 /* MainWindow.swift */; };
 		165C98092702312700466207 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165C97EC2702260800466207 /* AVFoundation.framework */; platformFilter = maccatalyst; };
 		165C98172702315C00466207 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165C98162702315C00466207 /* Foundation.framework */; platformFilter = maccatalyst; };
+		165FADE82805FC0C00E1B58F /* StreamsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165FADE72805FC0C00E1B58F /* StreamsView.swift */; };
+		165FADEB2805FE9F00E1B58F /* CategoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165FADEA2805FE9F00E1B58F /* CategoryStorage.swift */; };
+		165FADED2805FEB300E1B58F /* CategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165FADEC2805FEB300E1B58F /* CategoryList.swift */; };
 		1668DBC9272CA64C00B60951 /* ListNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1668DBC8272CA64C00B60951 /* ListNavigator.swift */; };
 		1668EBFA2724ADEC00C5A286 /* Teko-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1668EBF92724ADEC00C5A286 /* Teko-Light.ttf */; };
 		1668EBFF2724ADFA00C5A286 /* Teko-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1668EBFB2724ADFA00C5A286 /* Teko-Medium.ttf */; };
@@ -243,6 +246,9 @@
 		165C981E2702319400466207 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		165C9820270231A000466207 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		165C9822270231A500466207 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		165FADE72805FC0C00E1B58F /* StreamsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamsView.swift; sourceTree = "<group>"; };
+		165FADEA2805FE9F00E1B58F /* CategoryStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryStorage.swift; sourceTree = "<group>"; };
+		165FADEC2805FEB300E1B58F /* CategoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryList.swift; sourceTree = "<group>"; };
 		1668DBC8272CA64C00B60951 /* ListNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNavigator.swift; sourceTree = "<group>"; };
 		1668EBF92724ADEC00C5A286 /* Teko-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Teko-Light.ttf"; sourceTree = "<group>"; };
 		1668EBFB2724ADFA00C5A286 /* Teko-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Teko-Medium.ttf"; sourceTree = "<group>"; };
@@ -460,6 +466,7 @@
 				162862E32732F4160015298D /* ScheduleView.swift */,
 				1677762827442E2500C46FC8 /* LivescoreView.swift */,
 				1678025F27447BC300DE0FD7 /* LivescoreTickerView.swift */,
+				165FADE72805FC0C00E1B58F /* StreamsView.swift */,
 			);
 			path = toggleview;
 			sourceTree = "<group>";
@@ -596,6 +603,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		165FADE92805FE8C00E1B58F /* category */ = {
+			isa = PBXGroup;
+			children = (
+				165FADEA2805FE9F00E1B58F /* CategoryStorage.swift */,
+				165FADEC2805FEB300E1B58F /* CategoryList.swift */,
+			);
+			path = category;
+			sourceTree = "<group>";
+		};
 		16700167270CFD2B00F6FAB2 /* models */ = {
 			isa = PBXGroup;
 			children = (
@@ -619,6 +635,7 @@
 		1686F75B2720C8A5006F9B7D /* providers */ = {
 			isa = PBXGroup;
 			children = (
+				165FADE92805FE8C00E1B58F /* category */,
 				16016FF2274B0F6F00712C55 /* league */,
 				16301275273F3B2D00F33027 /* livescore */,
 				162862D82732E9BB0015298D /* schedule */,
@@ -997,6 +1014,7 @@
 				164B075E2709FCFC00C7DE4C /* CategoryMenu.swift in Sources */,
 				16B585EA270DE92F00C1FA24 /* EPGView.swift in Sources */,
 				164B07562709FCB100C7DE4C /* BaseMenu.swift in Sources */,
+				165FADED2805FEB300E1B58F /* CategoryList.swift in Sources */,
 				16162499271DD810002D7C8C /* Apple.swift in Sources */,
 				162D4507271F69BF00E0C318 /* ActivityEPGList.swift in Sources */,
 				16F1307C274C33FD00898515 /* Double.swift in Sources */,
@@ -1027,6 +1045,7 @@
 				163E62A827263AF1007938C8 /* ToggleViews.swift in Sources */,
 				162862E62732F64B0015298D /* Icon.swift in Sources */,
 				16DAE01A274844DC0059E87C /* LivescoreTicker.swift in Sources */,
+				165FADE82805FC0C00E1B58F /* StreamsView.swift in Sources */,
 				16DE28CF2735AE3C00B63B8F /* ContentHeader.swift in Sources */,
 				1649B8FD2724706400C6A045 /* ApiUrl.swift in Sources */,
 				1687DEAD271A1B2800A118E4 /* Streams.swift in Sources */,
@@ -1070,6 +1089,7 @@
 				164B07692709FF3C00C7DE4C /* CategoryItems.swift in Sources */,
 				16CFBB322706D65100B136FC /* LoadingView.swift in Sources */,
 				1686F7612720C8FC006F9B7D /* ActivityEPG.swift in Sources */,
+				165FADEB2805FE9F00E1B58F /* CategoryStorage.swift in Sources */,
 				162862DC2732EA7A0015298D /* ScheduleEvents.swift in Sources */,
 				162862DA2732E9E50015298D /* ScheduleStorage.swift in Sources */,
 				167378FD2738578000528917 /* Thumb.swift in Sources */,
@@ -1215,7 +1235,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 397;
+				CURRENT_PROJECT_VERSION = 401;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1293,7 +1313,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 397;
+				CURRENT_PROJECT_VERSION = 401;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;

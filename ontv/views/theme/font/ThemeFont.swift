@@ -11,49 +11,66 @@ import SwiftUI
 
 extension Theme.Font {
 
+  enum Size {
+    static let base =
+      (NSScreen.main?.frame.height ?? 1920) / 50
+    static let large = Size.base + Size.base * 0.05
+    static let larger = Size.large + Size.large * 0.05
+    static let small = Size.base - Size.base * 0.05
+    static let smaller = Size.small - Size.small * 0.05
+    static let smallest = Size.smaller - Size.smaller * 0.05
+    static let big = Size.base * 1.5
+    static let superbig = Size.base * 3.5
+    static let title = Size.base * 1.5
+    static let EPGRow = CGSize(
+      width: NSFont.systemFontSize * 40,
+      height: Size.base + (Size.small * 3) + 10
+    )
+  }
+
   static let channel: SwiftUI.Font = Font.custom(
     "Atami Stencil Bold",
-    size: 18,
+    size: Size.base,
     relativeTo: .title
   )
-  static let programme: SwiftUI.Font = Font.custom("Teko SemiBold", size: 18, relativeTo: .title)
-  static let result: SwiftUI.Font = Font.custom("Atami Stencil Bold", size: 20, relativeTo: .title)
-  static let title: SwiftUI.Font = Font.custom("Atami Stencil Bold", size: 22, relativeTo: .title)
-  static let desc: SwiftUI.Font = Font.custom("Teko Light", size: 15, relativeTo: .title)
-  static let time: SwiftUI.Font = Font.system(size: 15, weight: .bold, design: .monospaced)
-  static let searchTime: SwiftUI.Font = Font.system(size: 10, design: .monospaced)
-  static let hint: SwiftUI.Font = Font.custom("Teko Light", size: 16, relativeTo: .title)
-  static let status: SwiftUI.Font = Font.custom("Teko Light", size: 16, relativeTo: .title)
-  static let score: SwiftUI.Font = Font.custom("Atami Stencil Bold", size: 20)
-  static let progress = Font.system(size: 18, weight: .light, design: .monospaced)
+  static let programme: SwiftUI.Font = Font.custom("Teko SemiBold", size: Size.base)
+  static let result: SwiftUI.Font = Font.custom("Atami Stencil Bold", size: Size.large)
+  static let title: SwiftUI.Font = Font.custom("Atami Stencil Bold", size: Size.larger)
+  static let desc: SwiftUI.Font = Font.custom("Teko Light", size: Size.small)
+  static let time: SwiftUI.Font = Font.system(size: Size.small, weight: .bold, design: .monospaced)
+  static let searchTime: SwiftUI.Font = Font.custom("Teko Light", size: Size.smallest)
+  static let hint: SwiftUI.Font = Font.custom("Teko Light", size: Size.small)
+  static let status: SwiftUI.Font = Font.custom("Teko Light", size: Size.small)
+  static let score: SwiftUI.Font = Font.custom("Atami Stencil Bold", size: Size.large)
 
   static let scheduleHeader: SwiftUI.Font = Font.custom(
     "Atami Stencil Bold",
-    size: 20,
+    size: Size.large,
     relativeTo: .title
   )
 
   enum Ticker {
     static let team: SwiftUI.Font = Font.custom(
       "Atami Stencil Bold",
-      size: 14,
+      size: Size.smaller,
       relativeTo: .title
     )
-    static let score: SwiftUI.Font = Font.custom("Atami Stencil Bold", size: 18)
-    static let hint: SwiftUI.Font = Font.custom("Teko Light", size: 16, relativeTo: .title)
+    static let score: SwiftUI.Font = Font.custom("Atami Stencil Bold", size: Size.base)
+    static let hint: SwiftUI.Font = Font.custom("Teko Light", size: Size.small)
   }
 
-  static let searchInput = NSFont(name: "Atami Stencil Bold", size: 30)
-  static let timeHint = NSFont.monospacedSystemFont(ofSize: 18, weight: .bold)
+  static let searchInput = Font.custom("Atami Stencil Bold", size: Size.big)
+  static let timeHint = NSFont.monospacedSystemFont(ofSize: Size.base, weight: .bold)
+  static let progress = Font.system(size: Size.base, weight: .light, design: .monospaced)
 
   enum Preferences {
-    static let userLabel = Font.system(size: 15, weight: .thin, design: .monospaced)
-    static let userValue = Font.system(size: 15, weight: .heavy, design: .rounded)
+    static let userLabel = Font.system(size: Size.small, weight: .thin, design: .monospaced)
+    static let userValue = Font.system(size: Size.small, weight: .heavy, design: .rounded)
   }
 
   enum Bookmark {
-    static let button = Font.system(size: 80, weight: .heavy, design: .monospaced)
-    static let title = Font.system(size: 30, weight: .heavy, design: .rounded)
+    static let button = Font.system(size: Size.superbig, weight: .heavy, design: .monospaced)
+    static let title = Font.system(size: Size.big, weight: .heavy, design: .rounded)
   }
 
   enum Control {

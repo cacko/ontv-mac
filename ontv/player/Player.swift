@@ -57,7 +57,7 @@ class Player: NSObject, PlayerProtocol, ObservableObject {
     }
   }
 
-  var contentToggle: ContentToggle? {
+var contentToggle: ContentToggle? {
     get {
       self._contentToggle
     }

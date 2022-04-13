@@ -12,7 +12,7 @@ import SwiftUI
 
 enum ContentToggle {
   case guide, category, epglist, search, title, loading, controls, errror, activityepg, bookmarks,
-    metadata, schedule, livescores, livescoresticker, none
+    metadata, schedule, livescores, livescoresticker, none, streams
 }
 
 enum ContentToggleIcon: String {
@@ -42,6 +42,7 @@ enum ContentToggleIcon: String {
   case volumeStage3 = "speaker.wave.3"
   case close = "xmark"
   case bookmark = "bookmark"
+  case streams = "tv.and.mediabox"
 
 }
 

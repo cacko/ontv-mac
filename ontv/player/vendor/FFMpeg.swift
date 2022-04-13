@@ -67,7 +67,6 @@ class PlayerFFMpeg: AbstractPlayer, PlayerControllerDelegate {
     KSPlayerManager.topBarShowInCase = .none
     KSPlayerManager.logLevel = .panic
     KSPlayerManager.canBackgroundPlay = true
-    KSPlayerManager.autoSelectEmbedSubtitle = false
     KSPlayerManager.enableBrightnessGestures = false
     KSPlayerManager.enablePlaytimeGestures = false
     KSPlayerManager.animateDelayTimeInterval = TimeInterval(5)
@@ -96,8 +95,6 @@ class PlayerFFMpeg: AbstractPlayer, PlayerControllerDelegate {
     let options = KSOptions()
     options.avOptions = ["AVURLAssetHTTPHeaderFieldsKey": header]
     options.preferredForwardBufferDuration = 1.0
-    options.hardwareDecodeH264 = true
-    options.hardwareDecodeH265 = true
     options.subtitleDisable = true
     return options
   }
