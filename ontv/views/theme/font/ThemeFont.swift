@@ -59,7 +59,7 @@ extension Theme.Font {
     static let hint: SwiftUI.Font = Font.custom("Teko Light", size: Size.small)
   }
 
-  static let searchInput = Font.custom("Atami Stencil Bold", size: Size.big)
+  static let searchInput = NSFont(name: "Atami Stencil Bold", size: Size.big)
   static let timeHint = NSFont.monospacedSystemFont(ofSize: Size.base, weight: .bold)
   static let progress = Font.system(size: Size.base, weight: .light, design: .monospaced)
 

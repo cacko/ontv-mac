@@ -85,7 +85,7 @@ struct MultilineTextView: NSViewRepresentable {
     view.isEditable = true
     view.isRulerVisible = true
     view.textStorage?.delegate = view
-//    view.font = Theme.Font.searchInput
+    view.font = Theme.Font.searchInput
     return view
   }
 
