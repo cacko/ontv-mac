@@ -36,7 +36,7 @@ extension PlayerAV {
       return
     }
     status = AVPlayerItem.Status(rawValue: statusNumber.intValue)!
-
+    
     switch status {
     case .readyToPlay:
       guard self.controller.state != PlayerState.playing else {
@@ -52,7 +52,9 @@ extension PlayerAV {
           msg: self.media.error?.localizedDescription ?? "kira mi qnko"
         )
       )
-    case .unknown: break
+    case .unknown:
+      print(status.hashValue)
+      break
     @unknown default: break
     }
   }

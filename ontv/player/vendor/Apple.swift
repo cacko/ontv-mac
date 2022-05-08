@@ -75,6 +75,7 @@ class PlayerAV: AbstractPlayer {
 
   override func initView(_ view: VideoView) {
     player = AVPlayer()
+    player.automaticallyWaitsToMinimizeStalling = true
     playerLayer = AVPlayerLayer(player: player)
     playerLayer.frame = view.frame
     playerLayer.minificationFilter = .nearest
@@ -98,25 +99,24 @@ class PlayerAV: AbstractPlayer {
     self.media = media
     self.player.replaceCurrentItem(with: self.media)
     self.player.play()
-    
+
   }
-  
+
   private func getMedia(_ stream: Stream) -> AVPlayerItem? {
-      try? self.resetMedia()
-      let media = AVPlayerItem(
-        asset: AVAsset(url: stream.url),
-        automaticallyLoadedAssetKeys: requiredAssetKeys
-      )
-      media.addObserver(
-        self,
-        forKeyPath: #keyPath(AVPlayerItem.status),
-        options: [.old, .new],
-        context: &playerItemContext
-      )
+    try? self.resetMedia()
+    let media = AVPlayerItem(
+      asset: AVAsset(url: stream.url),
+      automaticallyLoadedAssetKeys: requiredAssetKeys
+    )
+    media.addObserver(
+      self,
+      forKeyPath: #keyPath(AVPlayerItem.status),
+      options: [.old, .new],
+      context: &playerItemContext
+    )
     return media
   }
-  
-  
+
   private func resetMedia() throws {
     guard self.media != nil else {
       throw PlayerError(id: .null, msg: "alabala")
