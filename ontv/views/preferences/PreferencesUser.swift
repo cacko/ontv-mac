@@ -12,11 +12,11 @@ import SwiftUI
 
 extension PreferencesView {
   struct User: View {
-    
+
     struct UserInfoView: View {
-      
+
       @ObservedObject var api = API.Adapter
-      
+
       var body: some View {
         HStack(alignment: .center, spacing: 5) {
           VStack(alignment: .trailing) {
@@ -38,28 +38,29 @@ extension PreferencesView {
             .font(Theme.Font.Preferences.userValue)
         }.fixedSize(horizontal: false, vertical: true)
       }
-      
+
     }
-    
-    
+
     @ObservedObject var api = API.Adapter
     @Default(.server_host) var server_host
     @Default(.server_port) var server_port
     @Default(.server_protocol) var server_protocol
     @Default(.server_secure_port) var server_secure_port
-    
+
     @Default(.username) var username
     @Default(.password) var password
-    
+
+    @Default(.avBufferTime) var av_buffer_time
+
     private let contentWidth: Double = 450.0
     private let padding: Double = 15
-    
+
     func login() {
       Task.init {
         await api.login(username: username, password: password)
       }
     }
-    
+
     var body: some View {
       Preferences.Container(contentWidth: contentWidth) {
         Preferences.Section(title: "Server Info") {
@@ -89,6 +90,13 @@ extension PreferencesView {
             UserInfoView()
           }
         }
+        Preferences.Section(title: "Player") {
+          VStack(spacing: self.padding) {
+            TextField("AV Buffer Time (s)", value: $av_buffer_time, format: .number).disabled(
+              api.state == .loading
+            )
+          }
+        }
       }
       HStack {
         Button(action: { login() }) {
@@ -107,4 +115,3 @@ extension PreferencesView {
   }
 
 }
-

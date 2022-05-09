@@ -7,6 +7,7 @@
 
 import AVFoundation
 import Foundation
+import Defaults
 
 extension PlayerAV {
 
@@ -28,6 +29,19 @@ extension PlayerAV {
     }
 
     guard keyPath == #keyPath(AVPlayerItem.status) else {
+      guard keyPath == #keyPath(AVPlayerItem.loadedTimeRanges) else {
+        return
+      }
+      guard let tr = self.media.loadedTimeRanges as? [CMTimeRange] else {
+        return
+      }
+      if tr.last?.duration ?? CMTime(seconds: 0, preferredTimescale: 1)
+          > CMTime(seconds: Defaults[.avBufferTime], preferredTimescale: 1)
+      {
+        self.media.removeObserver(self, forKeyPath: #keyPath(AVPlayerItem.loadedTimeRanges))
+        self.player.playImmediately(atRate: 1)
+        self.loadMetadata()
+      }
       return
     }
 
@@ -36,13 +50,12 @@ extension PlayerAV {
       return
     }
     status = AVPlayerItem.Status(rawValue: statusNumber.intValue)!
-    
+
     switch status {
     case .readyToPlay:
       guard self.controller.state != PlayerState.playing else {
         return
       }
-      self.loadMetadata()
       break
     // Player item is ready to play.
     case .failed:
@@ -52,9 +65,7 @@ extension PlayerAV {
           msg: self.media.error?.localizedDescription ?? "kira mi qnko"
         )
       )
-    case .unknown:
-      print(status.hashValue)
-      break
+    case .unknown: break
     @unknown default: break
     }
   }

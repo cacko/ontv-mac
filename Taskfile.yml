@@ -34,7 +34,7 @@ tasks:
     cmds:
       - echo "create DMS"
       - rm -f ontv.dmg
-      - ./node_modules/.bin/appdmg ontv.json ontv.dmg
+      - ./node_modules/.bin/appdmg ontv.json ontv-arm64.dmg
 
   install:
     desc: copy new app localy

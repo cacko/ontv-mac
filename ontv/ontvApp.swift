@@ -54,6 +54,7 @@ extension Defaults.Keys {
     ])
   )
   static let tickerPosition = Key<Int>("tickerPosition", default: TickerPosition.top.rawValue)
+  static let avBufferTime = Key<Double>("avBufferTime", default: 10)
 }
 
 protocol Reorderable {

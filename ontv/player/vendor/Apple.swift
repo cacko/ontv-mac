@@ -11,6 +11,7 @@ import AppKit
 import Combine
 import Defaults
 import SwiftUI
+import Defaults
 
 class PlayerAV: AbstractPlayer {
 
@@ -75,7 +76,6 @@ class PlayerAV: AbstractPlayer {
 
   override func initView(_ view: VideoView) {
     player = AVPlayer()
-    player.automaticallyWaitsToMinimizeStalling = true
     playerLayer = AVPlayerLayer(player: player)
     playerLayer.frame = view.frame
     playerLayer.minificationFilter = .nearest
@@ -97,9 +97,17 @@ class PlayerAV: AbstractPlayer {
       return self.onError(PlayerError(id: .trackFailed, msg: "Cannot play track"))
     }
     self.media = media
+    self.media.preferredForwardBufferDuration = TimeInterval(Defaults[.avBufferTime])
     self.player.replaceCurrentItem(with: self.media)
+    self.player.automaticallyWaitsToMinimizeStalling = false
+    self.media.removeObserver(self, forKeyPath: #keyPath(AVPlayerItem.status))
+    self.media.addObserver(
+      self,
+      forKeyPath: #keyPath(AVPlayerItem.loadedTimeRanges),
+      options: [.old, .new],
+      context: &playerItemContext
+    )
     self.player.play()
-
   }
 
   private func getMedia(_ stream: Stream) -> AVPlayerItem? {
@@ -121,7 +129,7 @@ class PlayerAV: AbstractPlayer {
     guard self.media != nil else {
       throw PlayerError(id: .null, msg: "alabala")
     }
-    self.media.removeObserver(self, forKeyPath: #keyPath(AVPlayerItem.status))
+    //    self.media.removeObserver(self, forKeyPath: #keyPath(AVPlayerItem.status))
     self.media = nil
   }
 

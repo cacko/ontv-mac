@@ -64,8 +64,8 @@ extension Theme.Font {
   static let progress = Font.system(size: Size.base, weight: .light, design: .monospaced)
 
   enum Preferences {
-    static let userLabel = Font.system(size: Size.small, weight: .thin, design: .monospaced)
-    static let userValue = Font.system(size: Size.small, weight: .heavy, design: .rounded)
+    static let userLabel = Font.custom("Atami Stencil", size: Size.smallest)
+    static let userValue = Font.custom("Atami Stencil Bold", size: Size.smallest)
   }
 
   enum Bookmark {

@@ -181,22 +181,19 @@ var contentToggle: ContentToggle? {
     self.play(stream)
   }
 
-  func onStartPlaying() {
+func onStartPlaying() {
     self.retries = 0
     self.state = .playing
     NotificationCenter.default.post(name: .startPlaying, object: self.stream)
   }
 
   func onStopPlaying() {
-
     if self.state == .stopped {
       return
     }
-
     guard self.state == .opening else {
       return
     }
-
     guard self.retries < self.MAX_RETIRES else {
       return
     }
