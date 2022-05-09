@@ -85,6 +85,7 @@ enum PlayVendor: Int, DefaultsSerializable {
   case avfoundation = 1
   case unknown = 0
   case ffmpeg = 3
+  case vlckit = 4
 }
 
 struct VendorInfo {

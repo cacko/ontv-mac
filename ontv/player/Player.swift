@@ -90,6 +90,7 @@ var contentToggle: ContentToggle? {
   @Published var availableVendors: [VendorInfo] = [
     PlayerAV.vendor,
     PlayerFFMpeg.vendor,
+    PlayerVLCKit.vendor
   ]
 
   static let instance = Player()
@@ -114,6 +115,8 @@ var contentToggle: ContentToggle? {
       self.vendorPlayer = PlayerAV(self)
     case .ffmpeg:
       self.vendorPlayer = PlayerFFMpeg(self)
+    case .vlckit:
+      self.vendorPlayer = PlayerVLCKit(self)
     case .unknown:
       fatalError()
     }
