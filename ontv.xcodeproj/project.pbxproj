@@ -27,7 +27,6 @@
 		162862DC2732EA7A0015298D /* ScheduleEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162862DB2732EA7A0015298D /* ScheduleEvents.swift */; };
 		162862E42732F4160015298D /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162862E32732F4160015298D /* ScheduleView.swift */; };
 		162862E62732F64B0015298D /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162862E52732F64B0015298D /* Icon.swift */; };
-		162862E9273307FD0015298D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165C981E2702319400466207 /* QuartzCore.framework */; };
 		162D4505271F68D400E0C318 /* ActivityStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162D4504271F68D400E0C318 /* ActivityStorage.swift */; };
 		162D4507271F69BF00E0C318 /* ActivityEPGList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162D4506271F69BF00E0C318 /* ActivityEPGList.swift */; };
 		162DB53A27454F7500B1D95D /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162DB53927454F7500B1D95D /* Generator.swift */; };
@@ -56,8 +55,6 @@
 		1649B92427247F7E00C6A045 /* AtamiStencilBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1649B92027247F7E00C6A045 /* AtamiStencilBold.otf */; };
 		164A1A372735E1CE0023607A /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165C980227022B8900466207 /* AVKit.framework */; platformFilter = maccatalyst; };
 		164A1A382735E21C0023607A /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165C98142702315800466207 /* CoreVideo.framework */; platformFilter = maccatalyst; };
-		164A1A392735E21C0023607A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165C9820270231A000466207 /* Security.framework */; };
-		164A1A3B2735E21C0023607A /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165C9822270231A500466207 /* VideoToolbox.framework */; };
 		164B07562709FCB100C7DE4C /* BaseMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164B07552709FCB100C7DE4C /* BaseMenu.swift */; };
 		164B07582709FCD400C7DE4C /* VideoMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164B07572709FCD400C7DE4C /* VideoMenu.swift */; };
 		164B075A2709FCE700C7DE4C /* AudioMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164B07592709FCE700C7DE4C /* AudioMenu.swift */; };
@@ -361,7 +358,6 @@
 				16A10FB22829CA01007B19CC /* Security.framework in Frameworks */,
 				165C98092702312700466207 /* AVFoundation.framework in Frameworks */,
 				16A10FAD2829CA00007B19CC /* libc++.tbd in Frameworks */,
-				164A1A392735E21C0023607A /* Security.framework in Frameworks */,
 				1644803D27F38CCD004EA1C5 /* CoreStore in Frameworks */,
 				1644803727F38CAE004EA1C5 /* Preferences in Frameworks */,
 				16A10FAF2829CA01007B19CC /* libxml2.tbd in Frameworks */,
@@ -371,9 +367,7 @@
 				16F5FBFD2730B3F700CF62CB /* AudioToolbox.framework in Frameworks */,
 				1644803427F38C9D004EA1C5 /* Introspect in Frameworks */,
 				164A1A372735E1CE0023607A /* AVKit.framework in Frameworks */,
-				162862E9273307FD0015298D /* QuartzCore.framework in Frameworks */,
 				169C796027300384008F5973 /* AppKit.framework in Frameworks */,
-				164A1A3B2735E21C0023607A /* VideoToolbox.framework in Frameworks */,
 				16A10FAE2829CA01007B19CC /* libiconv.tbd in Frameworks */,
 				16C5B982270293DC0072F2B9 /* CoreData.framework in Frameworks */,
 				164A1A382735E21C0023607A /* CoreVideo.framework in Frameworks */,
@@ -917,7 +911,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1300;
-				LastUpgradeCheck = 1320;
+				LastUpgradeCheck = 1330;
 				TargetAttributes = {
 					165C97D92702257900466207 = {
 						CreatedOnToolsVersion = 13.0;
@@ -1291,7 +1285,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 414;
+				CURRENT_PROJECT_VERSION = 415;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1369,7 +1363,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 414;
+				CURRENT_PROJECT_VERSION = 415;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;

@@ -44,7 +44,7 @@ extension PlayerVLCKit {
           channels: info[VLCMediaTracksInformationAudioChannelsNumber] as! Int,
           rate: info[VLCMediaTracksInformationAudioRate] as! Int
         )
-        self.controller.metadataState = .loaded
+        self.controller.onMetadataLoaded()
         break
       default:
         break

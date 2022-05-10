@@ -23,5 +23,5 @@ release: GitRelease = repo.create_git_tag_and_release(
     release_version, release_description, release_version, release_description, commit.sha, ''
     )
 
-release.upload_asset('ontv.dmg')
+release.upload_asset('ontv-arm64.dmg')
  
