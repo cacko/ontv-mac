@@ -31,19 +31,21 @@ class PlayerVLCKit: AbstractPlayer, VLCMediaPlayerDelegate {
   
   override var isMuted: Bool {
     get {
-      self.player.audio.isMuted
+//      self.player.audio.isMuted
+      return false
     }
     set {
-      self.player.audio.isMuted.toggle()
+//      self.player.audio.isMuted.toggle()
     }
   }
   
   override var volume: Float {
     get {
-      Float(self.player.audio.volume * 100)
+//      Float(self.player.audio.volume * 100)
+      return 100
     }
     set {
-      self.player?.audio.volume = Int32(max(0, min(newValue / 100, 1)))
+//      self.player?.audio.volume = Int32(max(0, min(newValue / 100, 1)))
     }
   }
   

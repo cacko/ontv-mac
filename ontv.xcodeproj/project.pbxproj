@@ -172,7 +172,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		12587405E2B5FB4B3B0555BF /* Pods-craptv.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-craptv.debug.xcconfig"; path = "Target Support Files/Pods-craptv/Pods-craptv.debug.xcconfig"; sourceTree = "<group>"; };
 		16016FEA274AF70800712C55 /* PreferencesUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesUser.swift; sourceTree = "<group>"; };
 		16016FEC274AF72B00712C55 /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
 		16016FEE274AF7B800712C55 /* PreferencesLeagues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesLeagues.swift; sourceTree = "<group>"; };
@@ -341,7 +340,6 @@
 		347B393565F2FDF56EB0B38A /* Pods_ontv.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ontv.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E2EF40FFE6A819DA6FA825B /* Pods-ontv.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ontv.release.xcconfig"; path = "Target Support Files/Pods-ontv/Pods-ontv.release.xcconfig"; sourceTree = "<group>"; };
 		5FF37C19BA577CF48EB55556 /* Pods-ontv.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ontv.debug.xcconfig"; path = "Target Support Files/Pods-ontv/Pods-ontv.debug.xcconfig"; sourceTree = "<group>"; };
-		AAD6D56D497E9C6A07044579 /* Pods-craptv.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-craptv.release.xcconfig"; path = "Target Support Files/Pods-craptv/Pods-craptv.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -864,8 +862,6 @@
 		3A6FAA207C7B4EEC5A667072 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				12587405E2B5FB4B3B0555BF /* Pods-craptv.debug.xcconfig */,
-				AAD6D56D497E9C6A07044579 /* Pods-craptv.release.xcconfig */,
 				5FF37C19BA577CF48EB55556 /* Pods-ontv.debug.xcconfig */,
 				5E2EF40FFE6A819DA6FA825B /* Pods-ontv.release.xcconfig */,
 			);
@@ -1285,7 +1281,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 415;
+				CURRENT_PROJECT_VERSION = 416;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1363,7 +1359,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 415;
+				CURRENT_PROJECT_VERSION = 416;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
