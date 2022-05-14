@@ -33,7 +33,7 @@ extension V1 {
     var id: String = ""
 
     @Field.Stored("event_id")
-    var event_id: Int = 0
+  var event_id: Int = 0
 
     @Field.Stored("name")
     var name: String = ""

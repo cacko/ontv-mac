@@ -31,19 +31,18 @@ class PlayerVLCKit: AbstractPlayer, VLCMediaPlayerDelegate {
   
   override var isMuted: Bool {
     get {
-      self.player.audio.isMuted
+      return false
     }
     set {
-      self.player.audio.isMuted.toggle()
+      
     }
   }
   
   override var volume: Float {
     get {
-      Float(self.player.audio.volume * 100)
+     return 100
     }
     set {
-      self.player?.audio.volume = Int32(max(0, min(newValue / 100, 1)))
     }
   }
   
@@ -107,9 +106,6 @@ class PlayerVLCKit: AbstractPlayer, VLCMediaPlayerDelegate {
     self.player.stop()
     self.media = nil
   }
-  
-  
-  //    self.waitForResoze()
 
   
   func onMediaPlaying() {
@@ -136,8 +132,13 @@ class PlayerVLCKit: AbstractPlayer, VLCMediaPlayerDelegate {
       guard self.player.videoSize.width > 0 else {
         return
       }
-      DispatchQueue.main.async {
-        self.onMediaPlaying()
+      Task.detached {
+        do {
+          try await Task.sleep(nanoseconds: 300_000_000)
+          DispatchQueue.main.async {
+            self.onMediaPlaying()
+          }
+        }
       }
     }
     displayTask.activate()

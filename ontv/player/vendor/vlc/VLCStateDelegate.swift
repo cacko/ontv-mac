@@ -10,7 +10,7 @@ import VLCKit
 
 extension PlayerVLCKit {
   
-  func mediaPlayerStateChanged(_ aNotification: Notification?) {
+  func mediaPlayerStateChanged(_ aNotification: Notification) {
     switch self.player.state {
     case VLCMediaPlayerState.error:
       self.onError(PlayerError(id: .trackFailed, msg: "VLC throw error"))

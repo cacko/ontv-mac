@@ -148,14 +148,17 @@ extension LivescoreStorage {
       return instance
     }
     
-    func timestampInList(_ timestamp: Date) -> Bool {
+  func timestampInList(_ timestamp: Date) -> Bool {
       guard self.list.snapshot.first(where: { $0.$start_time == timestamp }) != nil else {
         return false
       }
-      return true
+    guard self.list.snapshot.filter({ $0.$start_time == timestamp && self.eventInList($0.event_id?.int ?? 0)}).isEmpty == false else {
+      return false
     }
+    return true
+  }
         
-    func eventInList(_ event_id: Int) -> Bool {
+  func eventInList(_ event_id: Int) -> Bool {
       guard event_id > 0 else {
         return false
       }

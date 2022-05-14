@@ -218,7 +218,6 @@ extension ToggleViews {
           ListReader(scheduleProvider.list) { snapshot in
             ForEach(sectionIn: snapshot) { section in
               if liverscoreProvider.timestampInList((section.first?.object!.timestamp)!) {
-
                 HStack(alignment: .center, spacing: 0) {
                   Section(header: ScheduleTime(section: section)) {
                     LazyVStack(alignment: .leading, spacing: 0) {

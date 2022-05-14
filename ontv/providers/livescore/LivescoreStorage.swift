@@ -19,7 +19,7 @@ enum LivescoreStorage {
 
   static let events = Events()
 
-  static func enable(_ content: ContentToggle) {
+static func enable(_ content: ContentToggle) {
     debugPrint(">>> livescore storage enable \(content)")
     guard active.contains(content) == false else {
       debugPrint(">>> livescore storage enable \(content) is already enabled")
