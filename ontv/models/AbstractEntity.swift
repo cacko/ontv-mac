@@ -28,7 +28,7 @@ extension AbstractEntity {
     CoreStoreDefaults.dataStack
   }
 
-  static func get(_ id: Int64) -> EntityType? {
+static func get(_ id: Int64) -> EntityType? {
     Self.findOne(
       Where<EntityType>(NSPredicate(format: "\(primaryKey) = %@", String(id)))
     )

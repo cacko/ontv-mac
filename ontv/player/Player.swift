@@ -57,7 +57,7 @@ class Player: NSObject, PlayerProtocol, ObservableObject {
     }
   }
 
-var contentToggle: ContentToggle? {
+  var contentToggle: ContentToggle? {
     get {
       self._contentToggle
     }
@@ -90,7 +90,7 @@ var contentToggle: ContentToggle? {
   @Published var availableVendors: [VendorInfo] = [
     PlayerAV.vendor,
     PlayerFFMpeg.vendor,
-    PlayerVLCKit.vendor
+    PlayerVLCKit.vendor,
   ]
 
   static let instance = Player()
@@ -165,26 +165,34 @@ var contentToggle: ContentToggle? {
   }
 
   func next() async {
-    guard self.stream != nil else {
-      return
+    DispatchQueue.main.async {
+      guard self.stream != nil else {
+        return
+      }
+      guard let stream = self.getNextPrevStream(.ascending) else {
+        return self.play(self.stream)
+      }
+      self.play(stream)
     }
-    guard let stream = await self.getNextPrevStream(.ascending) else {
-      return self.play(self.stream)
-    }
-    self.play(stream)
+
   }
 
   func prev() async {
-    guard self.stream != nil else {
-      return
+
+    DispatchQueue.main.async {
+      guard self.stream != nil else {
+        return
+      }
+      guard let stream = self.getNextPrevStream(.descending) else {
+        return self.play(self.stream)
+      }
+      self.play(stream)
+
     }
-    guard let stream = await self.getNextPrevStream(.descending) else {
-      return self.play(stream)
-    }
-    self.play(stream)
+
   }
 
-func onStartPlaying() {
+  func onStartPlaying() {
     self.retries = 0
     self.state = .playing
     NotificationCenter.default.post(name: .startPlaying, object: self.stream)
@@ -237,7 +245,7 @@ func onStartPlaying() {
     }
   }
 
-  private func getNextPrevStream(_ sort: Sorting) async -> Stream? {
+  private func getNextPrevStream(_ sort: Sorting) -> Stream? {
     guard let cat = Category.get(stream.category_id) as Category? else {
       return nil
     }

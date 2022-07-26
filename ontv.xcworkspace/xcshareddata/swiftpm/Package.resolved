@@ -6,7 +6,7 @@
       "location" : "https://github.com/JohnEstropia/CoreStore",
       "state" : {
         "branch" : "develop",
-        "revision" : "3317867a2f9709b8e3384488be8fffdae740733c"
+        "revision" : "da4ac192dba3db7e546be9513de522b210ec9240"
       }
     },
     {
@@ -15,7 +15,7 @@
       "location" : "https://github.com/sindresorhus/Defaults",
       "state" : {
         "branch" : "main",
-        "revision" : "d1e2109fc99a4471bc0193ae3f521fcf07695153"
+        "revision" : "981ccb0a01c54abbe3c12ccb8226108527bbf115"
       }
     },
     {
@@ -33,7 +33,7 @@
       "location" : "https://github.com/sindresorhus/Preferences",
       "state" : {
         "branch" : "main",
-        "revision" : "ffeaaad1def45d0625720dc1adae3789cd9c167d"
+        "revision" : "2651cd144615009242c994b087508fef99e9275c"
       }
     },
     {
