@@ -163,6 +163,7 @@ extension ToggleViews {
           }
           Spacer()
         }.background(Theme.Color.Background.ticker)
+
         if liverscoreProvider.tickerPosition == .top {
           Spacer()
         }

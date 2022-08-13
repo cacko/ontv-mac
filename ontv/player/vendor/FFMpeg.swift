@@ -69,7 +69,6 @@ class PlayerFFMpeg: AbstractPlayer, PlayerControllerDelegate {
     KSPlayerManager.canBackgroundPlay = true
     KSPlayerManager.enableBrightnessGestures = false
     KSPlayerManager.enablePlaytimeGestures = false
-    KSPlayerManager.animateDelayTimeInterval = TimeInterval(5)
     super.init(controller)
   }
 
@@ -94,7 +93,7 @@ class PlayerFFMpeg: AbstractPlayer, PlayerControllerDelegate {
     let header = ["User-Agent": "ontv/\(Bundle.main.buildVersionNumber)"]
     let options = KSOptions()
     options.avOptions = ["AVURLAssetHTTPHeaderFieldsKey": header]
-    options.preferredForwardBufferDuration = 1.0
+    options.maxBufferDuration = 15.0
     options.subtitleDisable = true
     return options
   }

@@ -41,6 +41,7 @@ class FFMpegPlayerView: VideoPlayerView {
     guard let error = error as Error? else {
       return
     }
+    debugPrint(error);
     self.onError(PlayerError(id: .trackFailed, msg: error.localizedDescription))
     
   }

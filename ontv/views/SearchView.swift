@@ -203,9 +203,10 @@ struct SearchView: View {
                 }
               }
             }
-          }.padding(EdgeInsets(top: 55, leading: 10, bottom: 0, trailing: 0))
+          }
         }
-      }.padding()
+      }.padding(EdgeInsets(top: 55, leading: 10, bottom: 40, trailing: 10))
+
       VStack(alignment: .trailing) {
         Spacer()
         HStack(alignment: .bottom) {

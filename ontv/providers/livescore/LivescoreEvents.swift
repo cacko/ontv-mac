@@ -15,6 +15,8 @@ import SwiftUI
 enum TickerPosition: Int {
   case top = 0;
   case bottom = 1;
+  case left = 2;
+  case right = 3;
 }
 
 extension LivescoreStorage {
@@ -48,7 +50,7 @@ extension LivescoreStorage {
     var scrollGenerator: LivescoreScrollGenerator
     @Published var scrollTo: String = ""
     @Published var scrollCount: Int = 0
-    @Published var tickerPosition: TickerPosition = .top {
+    @Published var tickerPosition: TickerPosition = .left {
       didSet {
         Defaults[.tickerPosition] = self.tickerPosition.rawValue
       }

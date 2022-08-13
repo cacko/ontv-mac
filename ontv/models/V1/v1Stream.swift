@@ -161,7 +161,7 @@ extension V1 {
     }
 
     var isAdult: Bool {
-      is_adult || category_id == 366
+      is_adult || [356,694].contains(category_id)
     }
 
     static var needsUpdate: Bool {

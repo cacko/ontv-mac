@@ -150,23 +150,24 @@ class MainWindow: NSWindow {
   }
 
   func reaspectPosition() {
-    let screenSize = NSScreen.main?.frame.size
-    let screenRect = NSRect(x: 0, y: 0, width: screenSize!.width, height: screenSize!.height)
-    let framePos = contentRect(forFrameRect: frame)
-
-    guard !screenRect.contains(framePos) else {
-      return
-    }
-
-    let dx = screenSize!.width - (framePos.minX + framePos.width)
-    guard dx > 0 else {
-      setFrame(framePos.offsetBy(dx: dx, dy: 0), display: true, animate: false)
-      return
-    }
-
-    guard framePos.minY > 0 else {
-      setFrame(framePos.offsetBy(dx: 0, dy: abs(framePos.minY)), display: true, animate: false)
-      return
-    }
+//    self.setFrameOrigin((self.screen?.visibleFrame.origin)!)
+//    let screenSize = self.screen?.visibleFrame.size
+//    let screenRect = NSRect(x: 0, y: 0, width: screenSize!.width, height: screenSize!.height)
+//    let framePos = contentRect(forFrameRect: frame)
+//
+//    guard !screenRect.contains(framePos) else {
+//      return
+//    }
+//
+//    let dx = screenSize!.width - (framePos.minX + framePos.width)
+//    guard dx > 0 else {
+//      setFrame(framePos.offsetBy(dx: dx, dy: 0), display: true, animate: false)
+//      return
+//    }
+//
+//    guard framePos.minY > 0 else {
+//      setFrame(framePos.offsetBy(dx: 0, dy: abs(framePos.minY)), display: true, animate: false)
+//      return
+//    }
   }
 }
