@@ -65,7 +65,6 @@ protocol PlayerView: NSResponder, NSAnimatablePropertyContainer, NSUserInterface
 protocol PlayerVendorProtocol {
   var volume: Float { get set }
   var isMuted: Bool { get set }
-  static var vendor: VendorInfo { get set }
   init(_ controller: Player)
   func play(_ stream: Stream)
   func stop()
@@ -74,31 +73,9 @@ protocol PlayerVendorProtocol {
   func deInitView()
 }
 
-
-extension Notification.Name {
-  static let vendorChange = Notification.Name("renderer_switch")
-  static let vendorChanged = Notification.Name("vendor_changed")
-  static let vendorToggle = Notification.Name("vendor_toggle")
-}
-
-enum PlayVendor: Int, DefaultsSerializable {
-  case avfoundation = 1
-  case unknown = 0
-  case ffmpeg = 3
-  case vlckit = 4
-}
-
-struct VendorInfo {
-  let icon: String
-  let hint: String
-  let id: PlayVendor
-  let features: [VendorFeature]
-}
-
 enum PlayerControlsState {
   case hidden, visible, hovered, always
 }
-
 
 protocol PlayerProtocol: ObservableObject {
   var error: PlayerError { get set }
@@ -119,8 +96,6 @@ protocol PlayerProtocol: ObservableObject {
   var icon: String { get set }
   var hint: String { get set }
   var metadata: StreamInfo.Metadata { get set }
-  var vendor: VendorInfo! { get set }
-  var availableVendors: [VendorInfo] { get set }
 
   func initView(_ view: VideoView)
   func play(_ stream: Stream)

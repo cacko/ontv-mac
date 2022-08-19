@@ -26,7 +26,6 @@ extension Defaults.Keys {
   static let scheduleUpdated = Key<Date>("scheduleUpdated", default: Date(timeIntervalSince1970: 0))
   static let epgUpdated = Key<Date>("epgUpdated", default: Date(timeIntervalSince1970: 0))
   static let volume = Key<Float>("volume", default: 100)
-  static let vendor = Key<PlayVendor>("vender", default: .ffmpeg)
   static let isFloating = Key<Bool>("isFloating", default: true)
   static let leaguesUpdated = Key<Date>("leaguesTimestamp", default: Date(timeIntervalSince1970: 0))
   static let leagues = Key<Set<Int>>(

@@ -1,7 +1,7 @@
 PODS:
-  - FFmpeg (5.0):
-    - FFmpeg/FFmpeg (= 5.0)
-  - FFmpeg/FFmpeg (5.0):
+  - FFmpeg (5.1):
+    - FFmpeg/FFmpeg (= 5.1)
+  - FFmpeg/FFmpeg (5.1):
     - OpenSSL
   - KSPlayer (1.0):
     - KSPlayer/Audio (= 1.0)
@@ -32,17 +32,11 @@ PODS:
   - OpenSSL (3.0.2):
     - OpenSSL/OpenSSL (= 3.0.2)
   - OpenSSL/OpenSSL (3.0.2)
-  - VLCKit (3.4.1b11)
 
 DEPENDENCIES:
   - FFmpeg (from `https://github.com/kingslay/KSPlayer.git`, branch `develop`)
   - KSPlayer (from `https://github.com/kingslay/KSPlayer.git`, branch `develop`)
   - OpenSSL (from `https://github.com/kingslay/KSPlayer.git`, branch `develop`)
-  - VLCKit (~> 3.4.1b9)
-
-SPEC REPOS:
-  trunk:
-    - VLCKit
 
 EXTERNAL SOURCES:
   FFmpeg:
@@ -57,21 +51,20 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FFmpeg:
-    :commit: dbf6e757059afe8e74193c73f0ab4d06a59e2508
+    :commit: c810d46ccb00d9e78e0574d7bd063140680f5ff7
     :git: https://github.com/kingslay/KSPlayer.git
   KSPlayer:
-    :commit: dbf6e757059afe8e74193c73f0ab4d06a59e2508
+    :commit: c810d46ccb00d9e78e0574d7bd063140680f5ff7
     :git: https://github.com/kingslay/KSPlayer.git
   OpenSSL:
-    :commit: dbf6e757059afe8e74193c73f0ab4d06a59e2508
+    :commit: c810d46ccb00d9e78e0574d7bd063140680f5ff7
     :git: https://github.com/kingslay/KSPlayer.git
 
 SPEC CHECKSUMS:
-  FFmpeg: dc2a6f08270ac927d9450e36adb9ec17f9fa843d
+  FFmpeg: afdcf31638c1a6a0253eaf9505983e21a3a5d2c1
   KSPlayer: d0ee11093f3230cc235a3f555f5c4aee9052265e
   OpenSSL: 9637184330c49c5862fc0bb383005bd55e5a2335
-  VLCKit: d6b8401b179b862024b68a8b5dcc3d1877e56b1b
 
-PODFILE CHECKSUM: f5194925a5a6151c811f2c2f73a3226c3d1f1569
+PODFILE CHECKSUM: 99d23fad93b2b877492af26b042869ea86ee5665
 
 COCOAPODS: 1.11.3

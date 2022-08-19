@@ -69,38 +69,8 @@ class VideoView: NSView {
       self.player.size = wsize.zoom(zoom)
       NotificationCenter.default.post(name: .reaspect, object: nil)
     }
-
-    center.addObserver(forName: .vendorChange, object: nil, queue: mainQueue) { note in
-      guard let renderer = note.object as? PlayVendor else {
-        return
-      }
-      self.vendorChange(renderer)
-    }
-
-    center.addObserver(forName: .vendorToggle, object: nil, queue: mainQueue) {
-      _ in self.vendorToggle()
-    }
   }
 
-  func vendorChange(_ vendor: PlayVendor) {
-    Defaults[.vendor] = vendor
-    self.player.switchVendor(vendor)
-    self.player.initView(self)
-    if let stream = self.player.stream {
-      self.player.play(stream)
-    }
-  }
-
-  func vendorToggle() {
-    let vendors = self.player.availableVendors + self.player.availableVendors
-    let newIdx = vendors.index(
-      after: vendors.firstIndex(where: { $0.id == self.player.vendor.id })!
-    )
-    guard let nextRenderer = vendors[newIdx] as VendorInfo? else {
-      fatalError()
-    }
-    NotificationCenter.default.post(name: .vendorChange, object: nextRenderer.id)
-  }
 
   func initPlayer() {
     player.initView(self)

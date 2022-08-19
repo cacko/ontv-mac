@@ -17,8 +17,6 @@ extension PlayerFFMpeg {
         self.controller.onStartPlaying()
       }
       break
-    case .error:
-      return
     case .buffering:
       DispatchQueue.main.async {
         self.controller.state = .buffering

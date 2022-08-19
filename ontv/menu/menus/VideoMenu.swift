@@ -25,62 +25,6 @@ class ZoomItem: BaseItem {
 
 }
 
-class VendorItem: BaseItem {
-  var vendor: PlayVendor
-
-  init(
-    title: String,
-    action: Selector?,
-    vendor: PlayVendor
-  ) {
-    self.vendor = vendor
-    super.init(title: title, action: action, keyEquivalent: "")
-    self.state = Defaults[.vendor] == vendor ? .on : .off
-
-    let center = NotificationCenter.default
-    let mainQueue = OperationQueue.main
-
-    center.addObserver(forName: .vendorChange, object: nil, queue: mainQueue) {
-      note in
-      guard let newVendor = note.object as? PlayVendor else {
-        return
-      }
-      self.state = newVendor == self.vendor ? .on : .off
-    }
-  }
-
-  override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
-    return false
-  }
-
-  @available(*, unavailable)
-  required init(
-    coder: NSCoder
-  ) {
-    fatalError("init(coder:) has not been implemented")
-  }
-}
-
-class VideoRendererMenu: BaseMenu {
-
-  override var actions: [NSMenuItem] {
-    Player.instance.availableVendors.map { (vendor: VendorInfo) in
-      VendorItem(
-        title: vendor.hint,
-        action: #selector(onVendorChange(sender:)),
-        vendor: vendor.id
-      )
-    }
-  }
-
-  static func item(_ parent: Menu) -> NSMenuItem {
-    let item = NSMenuItem(title: "Renderer", action: nil, keyEquivalent: "")
-    let menu = VideoRendererMenu(title: "", parent: parent)
-    item.submenu = menu
-    return item
-  }
-}
-
 class VideoMenu: BaseMenu {
 
   override var actions: [NSMenuItem] {
@@ -120,7 +64,6 @@ class VideoMenu: BaseMenu {
         zoom: .expand
       ),
       NSMenuItem.separator(),
-      VideoRendererMenu.item(parent),
     ]
   }
 }

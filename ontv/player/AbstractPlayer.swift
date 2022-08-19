@@ -9,11 +9,7 @@ import Defaults
 import Foundation
 
 class AbstractPlayer: NSObject, PlayerVendorProtocol {
-  class var vendor: VendorInfo {
-    get { VendorInfo(icon: "", hint: "", id: .unknown, features: []) }
-    set { }
-  }
-  
+
   typealias PlayerType = AbstractPlayer
 
   var volume: Float {

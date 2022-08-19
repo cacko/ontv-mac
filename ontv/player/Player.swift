@@ -77,50 +77,12 @@ class Player: NSObject, PlayerProtocol, ObservableObject {
   let MAX_RETIRES: Int = 5
 
   public var vendorPlayer: AbstractPlayer!
-  private var _changeVendor: PlayVendor! {
-    didSet {
-      self.vendor = self.availableVendors.first(where: { $0.id == self._changeVendor })
-    }
-  }
-  @Published var vendor: VendorInfo! {
-    didSet {
-      objectWillChange.send()
-    }
-  }
-  @Published var availableVendors: [VendorInfo] = [
-    PlayerAV.vendor,
-    PlayerFFMpeg.vendor,
-    PlayerVLCKit.vendor,
-  ]
 
   static let instance = Player()
 
   override init() {
     super.init()
-    let selectedVendor = Defaults[.vendor]
-    guard let sv = availableVendors.first(where: { $0.id == selectedVendor }) else {
-      fatalError()
-    }
-    self.vendor = sv
-    self.switchVendor(selectedVendor, boot: true)
-  }
-
-  func switchVendor(_ vendor: PlayVendor, boot: Bool = false) {
-    if self.vendorPlayer != nil {
-      self.stop()
-      self.vendorPlayer.deInitView()
-    }
-    switch vendor {
-    case .avfoundation:
-      self.vendorPlayer = PlayerAV(self)
-    case .ffmpeg:
-      self.vendorPlayer = PlayerFFMpeg(self)
-    case .vlckit:
-      self.vendorPlayer = PlayerVLCKit(self)
-    case .unknown:
-      fatalError()
-    }
-    self._changeVendor = vendor
+    self.vendorPlayer = PlayerFFMpeg(self)
   }
 
   func initView(_ view: VideoView) {

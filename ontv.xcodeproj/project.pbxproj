@@ -17,11 +17,8 @@
 		1603B4D5271A8A2E002FDBC4 /* ApiLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1603B4D4271A8A2E002FDBC4 /* ApiLoadingView.swift */; };
 		1604067C2730E7EB00719408 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1604067B2730E7EB00719408 /* CoreAudio.framework */; platformFilter = maccatalyst; };
 		1606D64C27339B8F006F512F /* Teams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1606D64B27339B8F006F512F /* Teams.swift */; };
-		16162499271DD810002D7C8C /* Apple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16162498271DD810002D7C8C /* Apple.swift */; };
 		16172C77278A96F2000F48AC /* Updatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16172C76278A96F2000F48AC /* Updatable.swift */; };
 		16172C79278A9AC6000F48AC /* ApiInitProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16172C78278A9AC6000F48AC /* ApiInitProgress.swift */; };
-		161FD7A4272E4ACE007FADA6 /* AVMetadataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161FD7A3272E4ACE007FADA6 /* AVMetadataLoader.swift */; };
-		161FD7A6272E4B86007FADA6 /* AVStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161FD7A5272E4B86007FADA6 /* AVStateDelegate.swift */; };
 		16228C4F270EF2ED00C701C8 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16228C4E270EF2ED00C701C8 /* CategoryView.swift */; };
 		162862DA2732E9E50015298D /* ScheduleStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162862D92732E9E50015298D /* ScheduleStorage.swift */; };
 		162862DC2732EA7A0015298D /* ScheduleEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162862DB2732EA7A0015298D /* ScheduleEvents.swift */; };
@@ -118,9 +115,6 @@
 		16997B8C2718AA9600C49DFF /* ThemeColorBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16997B8B2718AA9600C49DFF /* ThemeColorBackground.swift */; };
 		169C796027300384008F5973 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 169C795F27300384008F5973 /* AppKit.framework */; platformFilter = maccatalyst; };
 		169C79622730038E008F5973 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 169C79612730038E008F5973 /* SwiftUI.framework */; platformFilter = maccatalyst; };
-		16A10FA62829C3D7007B19CC /* VLCMetadataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A10FA52829C3D7007B19CC /* VLCMetadataLoader.swift */; };
-		16A10FA82829C3F0007B19CC /* VLCStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A10FA72829C3F0007B19CC /* VLCStateDelegate.swift */; };
-		16A10FAA2829C4E7007B19CC /* VLCKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A10FA92829C4E7007B19CC /* VLCKit.swift */; };
 		16A10FAB2829C954007B19CC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165C980E2702313C00466207 /* CoreGraphics.framework */; };
 		16A10FAC2829CA00007B19CC /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 165C98182702316900466207 /* libbz2.tbd */; };
 		16A10FAD2829CA00007B19CC /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 165C98192702316E00466207 /* libc++.tbd */; };
@@ -182,11 +176,8 @@
 		1603B4D4271A8A2E002FDBC4 /* ApiLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiLoadingView.swift; sourceTree = "<group>"; };
 		1604067B2730E7EB00719408 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		1606D64B27339B8F006F512F /* Teams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teams.swift; sourceTree = "<group>"; };
-		16162498271DD810002D7C8C /* Apple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apple.swift; sourceTree = "<group>"; };
 		16172C76278A96F2000F48AC /* Updatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Updatable.swift; sourceTree = "<group>"; };
 		16172C78278A9AC6000F48AC /* ApiInitProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiInitProgress.swift; sourceTree = "<group>"; };
-		161FD7A3272E4ACE007FADA6 /* AVMetadataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVMetadataLoader.swift; sourceTree = "<group>"; };
-		161FD7A5272E4B86007FADA6 /* AVStateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVStateDelegate.swift; sourceTree = "<group>"; };
 		16228C4E270EF2ED00C701C8 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		162862D92732E9E50015298D /* ScheduleStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleStorage.swift; sourceTree = "<group>"; };
 		162862DB2732EA7A0015298D /* ScheduleEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEvents.swift; sourceTree = "<group>"; };
@@ -297,9 +288,6 @@
 		169C795F27300384008F5973 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		169C79612730038E008F5973 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		16A10FA12829C2FD007B19CC /* ontv-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ontv-Bridging-Header.h"; sourceTree = "<group>"; };
-		16A10FA52829C3D7007B19CC /* VLCMetadataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLCMetadataLoader.swift; sourceTree = "<group>"; };
-		16A10FA72829C3F0007B19CC /* VLCStateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLCStateDelegate.swift; sourceTree = "<group>"; };
-		16A10FA92829C4E7007B19CC /* VLCKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLCKit.swift; sourceTree = "<group>"; };
 		16A5615E2745B9D900F2699C /* LivescoreScrollGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivescoreScrollGenerator.swift; sourceTree = "<group>"; };
 		16ACE77F270BFFA40096EF59 /* ProgressIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIndicator.swift; sourceTree = "<group>"; };
 		16AE6313274C8DCE002BC91C /* TickerAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerAction.swift; sourceTree = "<group>"; };
@@ -407,15 +395,6 @@
 				1601FC3C2720AE92009ED5F0 /* ThemeSize.swift */,
 			);
 			path = size;
-			sourceTree = "<group>";
-		};
-		161FD7A2272E4ABD007FADA6 /* av */ = {
-			isa = PBXGroup;
-			children = (
-				161FD7A3272E4ACE007FADA6 /* AVMetadataLoader.swift */,
-				161FD7A5272E4B86007FADA6 /* AVStateDelegate.swift */,
-			);
-			path = av;
 			sourceTree = "<group>";
 		};
 		162862D82732E9BB0015298D /* schedule */ = {
@@ -730,15 +709,6 @@
 			path = color;
 			sourceTree = "<group>";
 		};
-		16A10FA42829C3C3007B19CC /* vlc */ = {
-			isa = PBXGroup;
-			children = (
-				16A10FA52829C3D7007B19CC /* VLCMetadataLoader.swift */,
-				16A10FA72829C3F0007B19CC /* VLCStateDelegate.swift */,
-			);
-			path = vlc;
-			sourceTree = "<group>";
-		};
 		16B8013D271507210022AC94 /* stream */ = {
 			isa = PBXGroup;
 			children = (
@@ -840,12 +810,8 @@
 		16E69A9927076784007F8089 /* vendor */ = {
 			isa = PBXGroup;
 			children = (
-				16A10FA42829C3C3007B19CC /* vlc */,
 				16F5FBF32730238800CF62CB /* ffmpeg */,
-				161FD7A2272E4ABD007FADA6 /* av */,
-				16162498271DD810002D7C8C /* Apple.swift */,
 				16BFCE6D272F818C006B3EC5 /* FFMpeg.swift */,
-				16A10FA92829C4E7007B19CC /* VLCKit.swift */,
 			);
 			path = vendor;
 			sourceTree = "<group>";
@@ -880,7 +846,6 @@
 				165C97D72702257900466207 /* Frameworks */,
 				165C97D82702257900466207 /* Resources */,
 				3012A4957C4410C348FA573D /* [CP] Copy Pods Resources */,
-				8FB8890DD46EF25DCB0B8FFB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -978,23 +943,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ontv/Pods-ontv-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8FB8890DD46EF25DCB0B8FFB /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ontv/Pods-ontv-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ontv/Pods-ontv-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ontv/Pods-ontv-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		DFA17D3442A6928FF9BFCF1F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1036,7 +984,6 @@
 				1606D64C27339B8F006F512F /* Teams.swift in Sources */,
 				16E1B47C270931ED00D245C0 /* Date.swift in Sources */,
 				16CFBB302706D64800B136FC /* TitleView.swift in Sources */,
-				161FD7A4272E4ACE007FADA6 /* AVMetadataLoader.swift in Sources */,
 				16016FF4274B0F7C00712C55 /* LeagueStorage.swift in Sources */,
 				16B585EC270E450C00C1FA24 /* EPGMenu.swift in Sources */,
 				164B07652709FF0B00C7DE4C /* StreamItems.swift in Sources */,
@@ -1050,7 +997,6 @@
 				16228C4F270EF2ED00C701C8 /* CategoryView.swift in Sources */,
 				1687DEA7271A135500A118E4 /* v1Schedule.swift in Sources */,
 				1633B5FA272B926800D4D11E /* StreamSearch.swift in Sources */,
-				16A10FA82829C3F0007B19CC /* VLCStateDelegate.swift in Sources */,
 				16997B882718AA7300C49DFF /* ThemeColor.swift in Sources */,
 				16D983AB2723704B00E1DC5D /* Providers.swift in Sources */,
 				16BFCE6E272F818C006B3EC5 /* FFMpeg.swift in Sources */,
@@ -1059,7 +1005,6 @@
 				16B585EA270DE92F00C1FA24 /* EPGView.swift in Sources */,
 				164B07562709FCB100C7DE4C /* BaseMenu.swift in Sources */,
 				165FADED2805FEB300E1B58F /* CategoryList.swift in Sources */,
-				16162499271DD810002D7C8C /* Apple.swift in Sources */,
 				162D4507271F69BF00E0C318 /* ActivityEPGList.swift in Sources */,
 				16F1307C274C33FD00898515 /* Double.swift in Sources */,
 				16CFBB382706D67800B136FC /* ControlsView.swift in Sources */,
@@ -1083,7 +1028,6 @@
 				1630127C273F416000F33027 /* Int.swift in Sources */,
 				16AE6316274C900A002BC91C /* ScoreChangeAction.swift in Sources */,
 				16B8014A2715085F0022AC94 /* EPGLiveSearch.swift in Sources */,
-				16A10FAA2829C4E7007B19CC /* VLCKit.swift in Sources */,
 				167807BF27173173000FD21E /* Schema.swift in Sources */,
 				1630127A273F3B6D00F33027 /* LivescoreEvents.swift in Sources */,
 				165C97FB270228B000466207 /* Menu.swift in Sources */,
@@ -1122,7 +1066,6 @@
 				16016FF1274B002E00712C55 /* V1League.swift in Sources */,
 				16CFBB342706D66000B136FC /* ErrorView.swift in Sources */,
 				1687DEB9271A1E8A00A118E4 /* Validity.swift in Sources */,
-				161FD7A6272E4B86007FADA6 /* AVStateDelegate.swift in Sources */,
 				1677762927442E2500C46FC8 /* LivescoreView.swift in Sources */,
 				162DB53A27454F7500B1D95D /* Generator.swift in Sources */,
 				163E62A5272638C2007938C8 /* MetadataView.swift in Sources */,
@@ -1135,7 +1078,6 @@
 				16CFBB322706D65100B136FC /* LoadingView.swift in Sources */,
 				1686F7612720C8FC006F9B7D /* ActivityEPG.swift in Sources */,
 				165FADEB2805FE9F00E1B58F /* CategoryStorage.swift in Sources */,
-				16A10FA62829C3D7007B19CC /* VLCMetadataLoader.swift in Sources */,
 				162862DC2732EA7A0015298D /* ScheduleEvents.swift in Sources */,
 				162862DA2732E9E50015298D /* ScheduleStorage.swift in Sources */,
 				167378FD2738578000528917 /* Thumb.swift in Sources */,
@@ -1206,7 +1148,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.4;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1262,7 +1204,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.4;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1283,7 +1225,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 419;
+				CURRENT_PROJECT_VERSION = 3;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
@@ -1299,8 +1241,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 12.4;
-				MARKETING_VERSION = 1.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 2.0;
 				"OTHER_LDFLAGS[arch=arm64]" = (
 					"$(inherited)",
 					"-ObjC",
@@ -1361,7 +1303,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 419;
+				CURRENT_PROJECT_VERSION = 3;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
@@ -1377,8 +1319,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 12.4;
-				MARKETING_VERSION = 1.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 2.0;
 				"OTHER_LDFLAGS[arch=arm64]" = (
 					"$(inherited)",
 					"-ObjC",
@@ -1486,7 +1428,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JohnEstropia/CoreStore";
 			requirement = {
-				branch = develop;
+				branch = minIOS13;
 				kind = branch;
 			};
 		};

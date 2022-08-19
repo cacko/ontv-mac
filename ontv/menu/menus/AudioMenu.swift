@@ -35,7 +35,7 @@ class AudioMenuItem: NoModifierItem, AudioItemProtocol {
   let player = Player.instance
 
   override var isEnabled: Bool {
-    get { player.vendor.features.contains(.volume) }
+    get { true }
     set {}
   }
 
@@ -139,12 +139,5 @@ class AudioMenu: BaseMenu {
         audioCommand: .volume_set
       ),
     ]
-  }
-
-  override func observe() {
-    center.addObserver(forName: .vendorChanged, object: nil, queue: mainQueue) { note in
-      self.removeAllItems()
-      self._init()
-    }
   }
 }

@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/JohnEstropia/CoreStore",
       "state" : {
-        "branch" : "develop",
-        "revision" : "f738848e8cd015d71c92d16c23b99ebf2bc3dc22"
+        "branch" : "minIOS13",
+        "revision" : "1ed819b38d61a04845ad5512a0c09636dad4d7ff"
       }
     },
     {

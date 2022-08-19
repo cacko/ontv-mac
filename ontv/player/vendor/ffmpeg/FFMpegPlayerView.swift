@@ -41,13 +41,20 @@ class FFMpegPlayerView: VideoPlayerView {
     guard let error = error as Error? else {
       return
     }
+    if error.localizedDescription == "unknown" {
+      debugPrint("FAKE ERROR")
+      return
+    }
     self.onError(PlayerError(id: .trackFailed, msg: error.localizedDescription))
     
   }
 
   override open func player(layer: KSPlayerLayer, state: KSPlayerState) {
     super.player(layer: layer, state: state)
-
+    
+    guard state == .error, let player = layer.player else {
+      return
+    }
     guard state == .bufferFinished, let player = layer.player else {
       return
     }

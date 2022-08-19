@@ -33,7 +33,7 @@ tasks:
     desc: create dmg file
     cmds:
       - echo "create DMS"
-      - rm -f ontv.dmg
+      - rm -f ontv-arm64.dmg
       - ./node_modules/.bin/appdmg ontv.json ontv-arm64.dmg
 
   install:

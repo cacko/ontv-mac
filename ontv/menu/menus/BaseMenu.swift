@@ -130,10 +130,6 @@ class BaseMenu: NSMenu {
     NotificationCenter.default.post(name: .audioCommand, object: sender.parameter)
   }
 
-  @objc func onVendorChange(sender: VendorItem) {
-    NotificationCenter.default.post(name: .vendorChange, object: sender.vendor)
-  }
-
   @objc func onZoom(sender: ZoomItem) {
     NotificationCenter.default.post(name: .zoomchange, object: sender.zoom)
   }

@@ -47,18 +47,6 @@ class PlayerFFMpeg: AbstractPlayer, PlayerControllerDelegate {
 
   private var initialised: Bool = false
 
-  override class var vendor: VendorInfo {
-    get {
-      VendorInfo(
-        icon: "ffmpeg",
-        hint: "KSPlayer FFMMPEG",
-        id: .ffmpeg,
-        features: [.volume]
-      )
-    }
-    set {}
-  }
-
   required init(
     _ controller: Player
   ) {
