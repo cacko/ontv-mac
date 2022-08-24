@@ -87,6 +87,7 @@ struct ContentView: View {
           .sheet(isPresented: showSearch) {
             SearchView()
               .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
+              .padding(EdgeInsets(top: 55, leading: 10, bottom: 0, trailing: 0))
               .cornerRadius(player.isFullscreen ? 0 : 5)
           }
         if api.inProgress {

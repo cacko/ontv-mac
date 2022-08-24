@@ -43,7 +43,7 @@ class RecentMenu: StreamsSubmenu {
 class RecentCoreLazy: LazyStreams {
   static let expiresIn: TimeInterval = TimeInterval(0)
 
-  var startTime: Date? {
+  var startTime: Date {
     Date()
   }
 

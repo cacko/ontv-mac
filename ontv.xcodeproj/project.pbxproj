@@ -40,7 +40,6 @@
 		163FEB38272A0F5F0098CF8B /* HoverAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163FEB37272A0F5F0098CF8B /* HoverAction.swift */; };
 		163FEB3A272A10020098CF8B /* ListActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163FEB39272A10020098CF8B /* ListActions.swift */; };
 		163FEB3C272A10380098CF8B /* LiveBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163FEB3B272A10380098CF8B /* LiveBackground.swift */; };
-		1644802E27F38C82004EA1C5 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1644802D27F38C82004EA1C5 /* Kingfisher */; };
 		1644803427F38C9D004EA1C5 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 1644803327F38C9D004EA1C5 /* Introspect */; };
 		1644803727F38CAE004EA1C5 /* Preferences in Frameworks */ = {isa = PBXBuildFile; productRef = 1644803627F38CAE004EA1C5 /* Preferences */; };
 		1644803D27F38CCD004EA1C5 /* CoreStore in Frameworks */ = {isa = PBXBuildFile; productRef = 1644803C27F38CCD004EA1C5 /* CoreStore */; };
@@ -107,6 +106,7 @@
 		1687DEB7271A1D7E00A118E4 /* LazyStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1687DEB6271A1D7E00A118E4 /* LazyStream.swift */; };
 		1687DEB9271A1E8A00A118E4 /* Validity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1687DEB8271A1E8A00A118E4 /* Validity.swift */; };
 		168937EC270AB9B700F8364E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168937EB270AB9B700F8364E /* AppDelegate.swift */; };
+		168A6D3A28B2C9A200DCB9D3 /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 168A6D3928B2C9A200DCB9D3 /* NukeUI */; };
 		168F1DE22707200800A53DE6 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168F1DE12707200800A53DE6 /* Styles.swift */; };
 		16997B822718A9C400C49DFF /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16997B812718A9C400C49DFF /* Theme.swift */; };
 		16997B842718AA3700C49DFF /* ThemeFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16997B832718AA3700C49DFF /* ThemeFont.swift */; };
@@ -346,6 +346,7 @@
 				16A10FAD2829CA00007B19CC /* libc++.tbd in Frameworks */,
 				1644803D27F38CCD004EA1C5 /* CoreStore in Frameworks */,
 				1644803727F38CAE004EA1C5 /* Preferences in Frameworks */,
+				168A6D3A28B2C9A200DCB9D3 /* NukeUI in Frameworks */,
 				16A10FAF2829CA01007B19CC /* libxml2.tbd in Frameworks */,
 				167E55812760EFA900511B1F /* MetalPerformanceShadersGraph.framework in Frameworks */,
 				16A10FB32829CA01007B19CC /* VideoToolbox.framework in Frameworks */,
@@ -359,7 +360,6 @@
 				164A1A382735E21C0023607A /* CoreVideo.framework in Frameworks */,
 				16F5FBFC2730A0C100CF62CB /* MetalKit.framework in Frameworks */,
 				167E55822760EFA900511B1F /* MetalPerformanceShaders.framework in Frameworks */,
-				1644802E27F38C82004EA1C5 /* Kingfisher in Frameworks */,
 				1644804127F38D45004EA1C5 /* SwiftDate in Frameworks */,
 				6EE733194A7D45181382041F /* Pods_ontv.framework in Frameworks */,
 				16A10FAB2829C954007B19CC /* CoreGraphics.framework in Frameworks */,
@@ -853,12 +853,12 @@
 			);
 			name = ontv;
 			packageProductDependencies = (
-				1644802D27F38C82004EA1C5 /* Kingfisher */,
 				1644803327F38C9D004EA1C5 /* Introspect */,
 				1644803627F38CAE004EA1C5 /* Preferences */,
 				1644803C27F38CCD004EA1C5 /* CoreStore */,
 				1644804027F38D45004EA1C5 /* SwiftDate */,
 				1644804527F3908B004EA1C5 /* Defaults */,
+				168A6D3928B2C9A200DCB9D3 /* NukeUI */,
 			);
 			productName = craptv;
 			productReference = 165C97DA2702257900466207 /* ontv.app */;
@@ -890,12 +890,12 @@
 			);
 			mainGroup = 165C97D12702257900466207;
 			packageReferences = (
-				1644802C27F38C82004EA1C5 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				1644803227F38C9D004EA1C5 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				1644803527F38CAE004EA1C5 /* XCRemoteSwiftPackageReference "Preferences" */,
 				1644803827F38CC0004EA1C5 /* XCRemoteSwiftPackageReference "Defaults" */,
 				1644803B27F38CCD004EA1C5 /* XCRemoteSwiftPackageReference "CoreStore" */,
 				1644803F27F38D45004EA1C5 /* XCRemoteSwiftPackageReference "SwiftDate" */,
+				168A6D3828B2C9A200DCB9D3 /* XCRemoteSwiftPackageReference "NukeUI" */,
 			);
 			productRefGroup = 165C97DB2702257900466207 /* Products */;
 			projectDirPath = "";
@@ -1225,7 +1225,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 21;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
@@ -1234,6 +1234,7 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ontv/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = onTV;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.video";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
@@ -1303,7 +1304,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 21;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
@@ -1312,6 +1313,7 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ontv/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = onTV;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.video";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
@@ -1392,14 +1394,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1644802C27F38C82004EA1C5 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/cacko/Kingfisher";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		1644803227F38C9D004EA1C5 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
@@ -1440,14 +1434,17 @@
 				kind = branch;
 			};
 		};
+		168A6D3828B2C9A200DCB9D3 /* XCRemoteSwiftPackageReference "NukeUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/NukeUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.8.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1644802D27F38C82004EA1C5 /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1644802C27F38C82004EA1C5 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
-		};
 		1644803327F38C9D004EA1C5 /* Introspect */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1644803227F38C9D004EA1C5 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
@@ -1472,6 +1469,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1644803827F38CC0004EA1C5 /* XCRemoteSwiftPackageReference "Defaults" */;
 			productName = Defaults;
+		};
+		168A6D3928B2C9A200DCB9D3 /* NukeUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 168A6D3828B2C9A200DCB9D3 /* XCRemoteSwiftPackageReference "NukeUI" */;
+			productName = NukeUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

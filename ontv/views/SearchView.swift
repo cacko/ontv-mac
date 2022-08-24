@@ -171,7 +171,6 @@ struct SearchView: View {
     ZStack {
       VStack(alignment: .leading) {
         MultilineTextView(text: $search)
-          .padding(EdgeInsets(top: 55, leading: 10, bottom: 0, trailing: 0))
           .textFieldStyle(.squareBorder)
           .fixedSize(horizontal: false, vertical: true)
         ScrollViewReader { proxy in
@@ -204,7 +203,7 @@ struct SearchView: View {
                 }
               }
             }
-          }.padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
+          }
         }
       }.padding()
       VStack(alignment: .trailing) {

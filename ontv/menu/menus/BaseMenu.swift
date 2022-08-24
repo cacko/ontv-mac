@@ -80,7 +80,7 @@ class BaseMenu: NSMenu {
     }
 
     guard player.contentToggle == .search else {
-      self.player.state = .opening
+      self.player.state = .notSetURL
       NotificationCenter.default.post(name: .navigate, object: item.notification)
       return
     }

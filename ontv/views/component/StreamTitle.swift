@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Kingfisher
+import NukeUI
 import SwiftUI
 
 enum StreamTitleView {
@@ -28,15 +28,11 @@ enum StreamTitleView {
       Label {
         content
       } icon: {
-        KFImage(iconUrl)
-          .cacheOriginalImage()
-          .setProcessor(
-            DownsamplingImageProcessor(size: .init(width: 50, height: 21))
-          ).onSuccess { _ in
+        LazyImage(source: iconUrl).onSuccess { _ in
             self.icon.hasIcon = true
           }.onFailure { _ in
             self.icon.hasIcon = false
-          }.resizable()
+          }
           .frame(width: self.icon.hasIcon ? 50 : 0, height: 21, alignment: .center)
       }.labelStyle(.titleAndIcon)
     }
@@ -56,16 +52,12 @@ enum StreamTitleView {
     var body: some View {
       Label {
       } icon: {
-        KFImage(iconUrl)
-          .cacheOriginalImage()
-          .setProcessor(
-            DownsamplingImageProcessor(size: .init(width: 50, height: 21))
-          )
+        LazyImage(source: iconUrl)
           .onSuccess { _ in
             self.icon.hasIcon = true
           }.onFailure { _ in
             self.icon.hasIcon = false
-          }.resizable()
+          }
           .frame(width: self.icon.hasIcon ? 50 : 0, height: 21, alignment: .center)
       }.labelStyle(.iconOnly)
     }

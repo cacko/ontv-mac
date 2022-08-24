@@ -12,13 +12,33 @@ import Defaults
 import KSPlayer
 import SwiftUI
 
-class PlayerFFMpeg: AbstractPlayer, PlayerControllerDelegate {
+class PlayerFFMpeg: AbstractPlayer, PlayerControllerDelegate, MediaPlayerDelegate {
+  func preparedToPlay(player: KSPlayer.MediaPlayerProtocol) {
+    
+  }
+  
+  func changeLoadState(player: KSPlayer.MediaPlayerProtocol) {
+    
+  }
+  
+  func changeBuffering(player: KSPlayer.MediaPlayerProtocol, progress: Int) {
+    
+  }
+  
+  func playBack(player: KSPlayer.MediaPlayerProtocol, loopCount: Int) {
+    
+  }
+  
+  func finish(player: KSPlayer.MediaPlayerProtocol, error: Error?) {
+    self.player = player
+  }
+  
 
   let controller: Player
 
   var playerView: FFMpegPlayerView!
 
-  var player: MediaPlayerProtocol!
+var player: MediaPlayerProtocol!
 
   var media: KSPlayerResource!
 
@@ -72,17 +92,16 @@ class PlayerFFMpeg: AbstractPlayer, PlayerControllerDelegate {
   }
 
   override func deInitView() {
-    self.playerView.pause()
-    self.playerView.resetPlayer()
-    self.playerView.removeFromSuperview()
-    self.playerView = nil
+//    self.playerView.pause()
+//    self.playerView.resetPlayer()
+//    self.playerView.removeFromSuperview()
+//    self.playerView = nil
   }
 
   var options: KSOptions {
     let header = ["User-Agent": "ontv/\(Bundle.main.buildVersionNumber)"]
     let options = KSOptions()
     options.avOptions = ["AVURLAssetHTTPHeaderFieldsKey": header]
-    options.preferredForwardBufferDuration = 1.0
     options.subtitleDisable = true
     return options
   }
@@ -97,13 +116,17 @@ class PlayerFFMpeg: AbstractPlayer, PlayerControllerDelegate {
 
   override func play(_ stream: Stream) {
     media = KSPlayerResource(definitions: [self.definition(stream)])
-    playerView.set(resource: media)
-    playerView.delegate = self
-    playerView.play()
+    if ((player?.isPlaying) != nil) {
+      player.replace(url: stream.url, options: self.options)
+    } else {
+      playerView.set(resource: media)
+      playerView.delegate = self
+      playerView.play()
+    }
   }
 
   override func stop() {
-
+    
   }
 
 }

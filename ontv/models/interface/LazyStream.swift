@@ -25,7 +25,7 @@ protocol LazyStreams {
 
   var title: String { get }
 
-  var startTime: Date? { get }
+  var startTime: Date { get }
 
   var hasExpired: Bool { get }
 }

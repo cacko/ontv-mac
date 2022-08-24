@@ -155,7 +155,7 @@ enum API {
     private var cancellable: Cancellable!
     private let updater: Updater = Updater()
 
-    func login(username: String, password: String) async {
+    func doLogin(username: String, password: String) async {
       self.username = username
       self.password = password
       await login()
@@ -195,7 +195,7 @@ enum API {
       }
     }
 
-    func login() async {
+  func login() async {
       if username.count == 0 || password.count == 0 {
         DispatchQueue.main.async {
           self.state = .error
@@ -511,6 +511,7 @@ enum API {
       codable: Codable.Type
     ) async throws -> Decodable {
       let (data, response) = try await URLSession.shared.data(from: url)
+
       if response.mimeType != "application/json" {
         throw API.Exception.notJson
       }

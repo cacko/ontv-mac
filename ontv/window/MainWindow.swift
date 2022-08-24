@@ -46,7 +46,7 @@ class MainHostingController: NSHostingController<ContentView> {
 class MainWindowController: NSWindowController, NSWindowDelegate {
 
   var player = Player.instance
-  
+
   override func windowDidLoad() {
     super.windowDidLoad()
     window?.delegate = self
@@ -58,7 +58,7 @@ class MainWindowController: NSWindowController, NSWindowDelegate {
     super.mouseMoved(with: event)
 
     NSCursor.unhide()
-    
+
     guard self.player.controlsState != .always else {
       return
     }
@@ -98,6 +98,13 @@ class MainWindowController: NSWindowController, NSWindowDelegate {
     return self.hideCursorTask
   }
 
+  func windowDidChangeScreen(_ notification: Notification) {
+
+    let win = notification.object as! NSWindow
+    let swin = self.window as! MainWindow
+    swin.current_screen = win.screen! as NSScreen
+  }
+
   func windowWillResize(_ sender: NSWindow, to frameSize: NSSize) -> NSSize {
     guard let win = self.window as? MainWindow else {
       return frameSize
@@ -105,7 +112,8 @@ class MainWindowController: NSWindowController, NSWindowDelegate {
     if win.isFullScreen {
       let ss = NSScreen.main?.frame.size
       self.player.iconSize = NSSize(width: ss!.width / 30, height: ss!.width / 30)
-    } else {
+    }
+    else {
       self.player.iconSize = NSSize(width: frameSize.width / 30, height: frameSize.width / 30)
     }
     return frameSize
@@ -115,6 +123,7 @@ class MainWindowController: NSWindowController, NSWindowDelegate {
 
 class MainWindow: NSWindow {
   let player = Player.instance
+  var current_screen: NSScreen? = nil
 
   override var canBecomeMain: Bool {
     true
@@ -150,15 +159,25 @@ class MainWindow: NSWindow {
   }
 
   func reaspectPosition() {
-    let screenSize = NSScreen.main?.frame.size
-    let screenRect = NSRect(x: 0, y: 0, width: screenSize!.width, height: screenSize!.height)
+    guard self.current_screen != nil else {
+      self.current_screen = NSScreen.main
+      return
+    }
+    let screenSize = self.current_screen!.frame.size
+    let or4igibn = self.current_screen?.frame.origin
+    let screenRect = NSRect(
+      x: or4igibn!.x,
+      y: or4igibn!.y,
+      width: screenSize.width,
+      height: screenSize.height
+    )
     let framePos = contentRect(forFrameRect: frame)
 
     guard !screenRect.contains(framePos) else {
       return
     }
 
-    let dx = screenSize!.width - (framePos.minX + framePos.width)
+    let dx = screenSize.width - (framePos.minX + framePos.width)
     guard dx > 0 else {
       setFrame(framePos.offsetBy(dx: dx, dy: 0), display: true, animate: false)
       return

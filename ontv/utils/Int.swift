@@ -21,6 +21,10 @@ extension Int {
   var string: String {
     String(format: "%d", self.toNative())
   }
+  
+  var bitrate: String {
+    String(format: "%dkbps", self.toNative() / 1000)
+  }
 
   var score: String {
     let val = self.toNative()

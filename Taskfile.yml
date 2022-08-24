@@ -40,8 +40,8 @@ tasks:
     desc: copy new app localy
     cmds:
       - echo "copy app to /Applications"
-      - rm -rf /Applications/ontv.app
-      - mv Applications/ontv.app /Applications
+      - rm -rf /Applications/ontv.app || true
+      - mv Applications/ontv.app /Applications 
 
   publish:
     desc: publish dmg file as package

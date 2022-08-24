@@ -57,7 +57,7 @@ extension PreferencesView {
 
     func login() {
       Task.init {
-        await api.login(username: username, password: password)
+        await api.doLogin(username: username, password: password)
       }
     }
 

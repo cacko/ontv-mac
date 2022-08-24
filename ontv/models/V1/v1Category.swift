@@ -33,7 +33,7 @@ extension V1 {
       self.category_name
     }
 
-    var startTime: Date? {
+    var startTime: Date {
       Date()
     }
 

@@ -8,7 +8,6 @@
 import AppKit
 import CoreStore
 import Foundation
-import Kingfisher
 import SwiftUI
 
 struct AbstractEPGChannel<Content: View>: View {

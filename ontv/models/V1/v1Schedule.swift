@@ -33,7 +33,7 @@ extension V1 {
     var id: String = ""
 
     @Field.Stored("event_id")
-  var event_id: Int = 0
+    var event_id: Int = 0
 
     @Field.Stored("name")
     var name: String = ""
@@ -81,6 +81,7 @@ extension V1 {
       sport = Self.asString(data: source, key: "sport")
       country = Self.asString(data: source, key: "country")
       season = Self.asString(data: source, key: "season")
+      debugPrint(timestamp)
     }
 
     func update(from source: [String: Any], in transaction: BaseDataTransaction) throws {
@@ -125,7 +126,7 @@ extension V1 {
       return []
     }
 
-    var startTime: Date? {
+    var startTime: Date {
       return timestamp
     }
 
@@ -136,10 +137,7 @@ extension V1 {
     }
 
     var hasExpired: Bool {
-      guard let st = self.startTime else {
-        return true
-      }
-      let expireDate = st.addingTimeInterval(Self.expiresIn)
+      let expireDate = startTime.addingTimeInterval(Self.expiresIn)
       return Date().timeIntervalSince(expireDate) < 0
     }
 
@@ -157,7 +155,7 @@ extension V1 {
     static var needsUpdate: Bool {
       !Defaults[.scheduleUpdated].isCloseTo(precision: 2.hours.timeInterval)
     }
-    
+
     static var isLoaded: Bool {
       Defaults[.scheduleUpdated].timeIntervalSince1970 > 0
     }

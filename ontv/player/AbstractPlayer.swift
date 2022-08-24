@@ -26,6 +26,11 @@ class AbstractPlayer: NSObject, PlayerVendorProtocol {
     _ controller: Player
   ) {
     super.init()
+    DispatchQueue.main.async {
+      NotificationCenter.default.post(name: .playerLoaded, object: nil)
+
+    }
+
   }
 
   func initView(_ view: VideoView) {

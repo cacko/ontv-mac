@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Kingfisher
 import SwiftUI
 
 extension Theme.Font {
@@ -21,11 +20,12 @@ extension Theme.Font {
     static let smallest = Size.smaller - Size.smaller * 0.05
     static let big = Size.base * 1.5
     static let superbig = Size.base * 3.5
+    static let superbigContainer = (Size.base * 3.5) + 10
     static let title = Size.base * 1.5
     static let EPGRow = CGSize(
       width: NSFont.systemFontSize * 40,
       height: Size.base + (Size.small * 3) + 10
-    )
+  )
   }
 
   static let channel: SwiftUI.Font = Font.custom(

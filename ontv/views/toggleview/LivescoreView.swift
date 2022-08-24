@@ -1,7 +1,7 @@
 import AppKit
 import CoreStore
 import Defaults
-import Kingfisher
+import NukeUI
 import SwiftUI
 
 extension ToggleViews {
@@ -25,15 +25,11 @@ extension ToggleViews {
       var size: CGFloat! = 30.0
       var body: some View {
         if icon.hasIcon {
-          KFImage(icon.url)
-            .cacheOriginalImage()
-            .setProcessor(
-              DownsamplingImageProcessor(size: .init(width: size, height: size))
-            ).onSuccess { _ in
-              icon.hasIcon = true
-            }.onFailure { _ in
-              icon.hasIcon = false
-            }.resizable()
+          LazyImage(source: icon.url).onSuccess { _ in
+            icon.hasIcon = true
+          }.onFailure { _ in
+            icon.hasIcon = false
+          }
             .frame(width: icon.hasIcon ? size : 0, height: size, alignment: .center)
         }
       }

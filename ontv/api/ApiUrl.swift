@@ -9,6 +9,11 @@ import Foundation
 
 extension API {
 
+  static func toProxyUrl(url: URL) -> URL {
+    let res = URL(string: "https://preslav.cacko.net/\(url.absoluteString.b64)") ?? url
+    return res
+  }
+
   enum Endpoint {
 
     static var endpoint: String {
@@ -24,24 +29,33 @@ extension API {
     }
 
     static var Login: URL {
-      URL(
-        string: BaseAction
+      API.toProxyUrl(
+        url:
+          URL(
+            string: BaseAction
+          )!
       )
-        ?? URL(fileURLWithPath: "")
     }
 
     static var Streams: URL {
-      URL(
-        string:
-          "\(BaseAction)&action=get_live_streams"
-      ) ?? URL(fileURLWithPath: "")
+      API.toProxyUrl(
+        url:
+          URL(
+            string:
+              "\(BaseAction)&action=get_live_streams"
+          )!
+      )
     }
 
     static var Categories: URL {
-      URL(
-        string:
-          "\(BaseAction)&action=get_live_categories"
-      ) ?? URL(fileURLWithPath: "")
+      API.toProxyUrl(
+        url:
+          URL(
+            string:
+              "\(BaseAction)&action=get_live_categories"
+          )!
+      )
+
     }
 
     static var Schedule: URL {
@@ -53,8 +67,10 @@ extension API {
     }
 
     static func Stream(_ id: Int64) -> URL {
-      URL(string: "\(BaseResource)/\(id).ts")
-        ?? URL(fileURLWithPath: "")
+      API.toProxyUrl(
+        url:
+          URL(string: "\(BaseResource)/\(id).ts")!
+      )
     }
 
     static func Icon(id: Int64, epg: String = "") -> URL {
@@ -94,11 +110,11 @@ extension API {
       urlBuilder.path = "/api/assets/event/thumb/\(event).png"
       return urlBuilder.url!
     }
-    
+
     static var Sports: URL {
       URL(string: "https://ontv.cacko.net/api/data/sports.json") ?? URL(fileURLWithPath: "")
     }
-    
+
     static func SportIcon(id: String) -> URL {
       guard
         var urlBuilder = URLComponents(
@@ -110,11 +126,11 @@ extension API {
       urlBuilder.path = "/api/assets/sport/icon/\(id).png"
       return urlBuilder.url!
     }
-    
+
     static var Livescores: URL {
       URL(string: "https://ontv.cacko.net/api/data/livescores.json") ?? URL(fileURLWithPath: "")
     }
-    
+
     static var Leagues: URL {
       URL(string: "https://ontv.cacko.net/api/data/leagues.json") ?? URL(fileURLWithPath: "")
     }

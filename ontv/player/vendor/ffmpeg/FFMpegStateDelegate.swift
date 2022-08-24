@@ -11,11 +11,13 @@ import KSPlayer
 extension PlayerFFMpeg {
   func playerController(state: KSPlayerState) {
     switch state {
-    case .bufferFinished:
+    case .readyToPlay:
       DispatchQueue.main.async {
         self.controller.display = true
         self.controller.onStartPlaying()
       }
+      break
+    case .bufferFinished:
       break
     case .buffering:
       DispatchQueue.main.async {

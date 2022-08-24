@@ -32,4 +32,34 @@ extension String {
     let range = NSRange(location: 0, length: lhs.utf16.count)
     return regex.firstMatch(in: lhs, options: [], range: range) != nil
   }
+  
+  var b64: String {
+    if let data = self.data(using: .utf8) {
+      return data.base64EncodedString()
+    }
+    return ""
+  }
+  
+  var videoCodec: String {
+    
+    let parts = self.components(separatedBy: " ")
+    
+    return parts[0].uppercased()
+    
+  }
+  
+  var audioCodec: String {
+    
+    let parts = self.components(separatedBy: ",")
+    
+    return parts[0].uppercased()
+    
+  }
+  
+  func decodeBase64() -> String {
+    if let data = Data(base64Encoded: self) {
+      return String(data: data, encoding: .utf8)!
+    }
+    return ""
+  }
 }

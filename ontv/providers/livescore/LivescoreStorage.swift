@@ -8,8 +8,6 @@
 import CoreStore
 import Foundation
 
-
-
 enum LivescoreStorage {
 
   static var active: [ContentToggle] = []
@@ -19,7 +17,7 @@ enum LivescoreStorage {
 
   static let events = Events()
 
-static func enable(_ content: ContentToggle) {
+  static func enable(_ content: ContentToggle) {
     debugPrint(">>> livescore storage enable \(content)")
     guard active.contains(content) == false else {
       debugPrint(">>> livescore storage enable \(content) is already enabled")
@@ -38,7 +36,7 @@ static func enable(_ content: ContentToggle) {
       debugPrint(">>> livescore storage no active content not starting timer")
       return
     }
-    
+
     guard timerState != .active else {
       return
     }
@@ -89,13 +87,12 @@ static func enable(_ content: ContentToggle) {
 
   }
 
-  static func stopTimer()
-  {
-    
+  static func stopTimer() {
+
     guard timerState == .active else {
       return
     }
-    
+
     timer.suspend()
     timerState = .suspended
   }

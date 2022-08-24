@@ -7,14 +7,26 @@
 
 import Defaults
 import Foundation
+import KSPlayer
 import SwiftUI
+
+enum PlayerState {
+  case notSetURL
+  case readyToPlay
+  case buffering
+  case bufferFinished
+  case paused
+  case playedToTheEnd
+  case error
+  case retry
+  case opening
+  case playing
+  case stopped
+  case none
+}
 
 enum Sorting {
   case ascending, descending
-}
-
-enum PlayerState {
-  case opening, playing, stopped, error, retry, buffering, none
 }
 
 enum MetadataState {
@@ -34,6 +46,8 @@ struct PlayerError: Error, Identifiable, Equatable {
     case unexpected
     case trackFailed
     case retrying
+    case timeout
+    case unknown
     case null
   }
 
@@ -48,8 +62,7 @@ enum StreamInfo {
   }
   struct Audio {
     var codec: String = "Unknown"
-    var channels: Int = 0
-    var rate: Int = 0
+    var bitrate: String = ""
   }
   struct Metadata {
     var video: Video

@@ -1,6 +1,6 @@
 import AppKit
 import CoreStore
-import Kingfisher
+import NukeUI
 import SwiftUI
 
 extension ToggleViews {
@@ -24,16 +24,12 @@ extension ToggleViews {
       var size: CGFloat! = 30.0
       var body: some View {
         if icon.hasIcon {
-          KFImage(icon.url)
-            .cacheOriginalImage()
-            .setProcessor(
-              DownsamplingImageProcessor(size: .init(width: size, height: size))
-            ).onSuccess { _ in
-              icon.hasIcon = true
-            }.onFailure { _ in
-              icon.hasIcon = false
-            }.resizable()
-            .frame(width: icon.hasIcon ? size : 0, height: size, alignment: .center)
+          LazyImage(source: icon.url).onSuccess { _ in
+            icon.hasIcon = true
+          }.onFailure { _ in
+            icon.hasIcon = false
+          }
+          .frame(width: icon.hasIcon ? size : 0, height: size, alignment: .center)
         }
       }
     }
@@ -137,7 +133,7 @@ extension ToggleViews {
                       .id(livescore.$id)
                       .onTapGesture(count: 2) { toggle(livescore) }
                       .hoverAction()
-                      .hideView(state: forRemoval?.id == livescore.$id )
+                      .hideView(state: forRemoval?.id == livescore.$id)
                       .onScoreChange(state: livescore.$score_changed ?? 0 > 0)
                   }
                 }

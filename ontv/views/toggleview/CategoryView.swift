@@ -1,6 +1,5 @@
 import AppKit
 import CoreStore
-import Kingfisher
 import SwiftUI
 
 extension ToggleViews {

@@ -17,6 +17,10 @@ extension Int64 {
     String(format: "%d", self.toNative())
   }
   
+  var bitrate: String {
+    String(format: "%dkbps", self.toNative() / 1000)
+  }
+  
   var int: Int {
     Int(truncatingIfNeeded: self.toNative())
   }

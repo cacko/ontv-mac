@@ -20,6 +20,8 @@ extension Notification.Name {
   static let selectStream = NSNotification.Name("selectStream")
   static let loggedin = NSNotification.Name("loggedIn")
   static let loaded = NSNotification.Name("loaded")
+  static let autoPlayRecent = NSNotification.Name("autoplayRecent")
+  static let playerLoaded = NSNotification.Name("playerLoaded")
   static let fit = NSNotification.Name("fittosize")
   static let minimize = NSNotification.Name("minimize")
   static let toggleFullscreen = NSNotification.Name("toggle_fullscreen")
@@ -151,8 +153,22 @@ extension AppDelegate {
     center.addObserver(forName: .reload, object: nil, queue: mainQueue) { _ in
       self.player.retry()
     }
-
+    
+    center.addObserver(forName: .playerLoaded, object: nil, queue: mainQueue) { _ in
+      self.playerLoaded = true
+      if self.apiLoaded {
+        NotificationCenter.default.post(name: .autoPlayRecent, object: nil)
+      }
+    }
+    
     center.addObserver(forName: .loaded, object: nil, queue: mainQueue) { _ in
+      self.apiLoaded = true
+      if self.playerLoaded {
+        NotificationCenter.default.post(name: .autoPlayRecent, object: nil)
+      }
+    }
+    
+    center.addObserver(forName: .autoPlayRecent, object: nil, queue: mainQueue) { _ in
       Task.init {
         await recent.load()
         recent.register()
@@ -168,12 +184,6 @@ extension AppDelegate {
     }
 
     center.addObserver(forName: .contentToggle, object: nil, queue: mainQueue) { note in
-      //      guard player.stream != nil else {
-      //        return
-      //      }
-      //      guard player.stream.category_id > 0 else {
-      //        return
-      //      }
       if let t = note.object as? ContentToggle {
         self.player.contentToggle = t
         switch t {

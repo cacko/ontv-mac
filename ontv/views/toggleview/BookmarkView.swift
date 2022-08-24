@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Kingfisher
+import NukeUI
 import SwiftUI
 
 extension ToggleViews {
@@ -51,13 +51,10 @@ extension ToggleViews {
                     .foregroundColor(qs.isValid ? .gray : .primary)
                     .shadow(color: .black, radius: 1, x: 1, y: 1)
                   if let icon = qs.icon {
-                    KFImage(icon)
-                      .cacheOriginalImage()
-                      .setProcessor(
-                        DownsamplingImageProcessor(
-                          size: .init(width: 80, height: 40)
-                        )
-                      ).opacity(0.5)
+                    LazyImage(source: icon).frame(
+                      width: Theme.Font.Size.superbigContainer,
+                      height: Theme.Font.Size.superbigContainer
+                    ).opacity(0.5)
                   }
                 }
                 .padding()
@@ -65,7 +62,8 @@ extension ToggleViews {
               .highPriorityGesture(
                 TapGesture(count: 2)
                   .onEnded({ _ in
-                    bookmark(qs)})
+                    bookmark(qs)
+                  })
               )
               .buttonStyle(CustomButtonStyle(Theme.Font.Bookmark.button))
               .cornerRadius(10)

@@ -55,6 +55,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   var menu: NSMenu!
 
   var fadeTask: DispatchWorkItem!
+  
+  var apiLoaded = false
+  
+  var playerLoaded = false
 
   override init() {
     window = MainWindow(

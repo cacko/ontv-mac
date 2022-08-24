@@ -35,27 +35,56 @@ class FFMpegPlayerView: VideoPlayerView {
     srtControl.view.removeFromSuperview()
     replayButton.isHidden = true
     replayButton.removeFromSuperview()
+    self.playerLayer.player?.delegate = self.controller as? MediaPlayerDelegate
   }
 
-  override func player(layer _: KSPlayerLayer, finish error: Error?) {
-    guard let error = error as Error? else {
+  override func player(layer playerLayer: KSPlayerLayer, finish error: Error?) {
+
+    guard let error = error as NSError? else {
       return
     }
-    if error.localizedDescription == "unknown" {
-      debugPrint("FAKE ERROR")
-      return
+    if error.code == 4 {
+      return self.onError(PlayerError(id: .unknown, msg: error.code.string))
     }
-    self.onError(PlayerError(id: .trackFailed, msg: error.localizedDescription))
-    
+
+    if error.code == 2 {
+      return self.onError(PlayerError(id: .timeout, msg: error.code.string))
+    }
+
+    self.onError(PlayerError(id: .trackFailed, msg: error.code.string))
   }
 
   override open func player(layer: KSPlayerLayer, state: KSPlayerState) {
     super.player(layer: layer, state: state)
-    
-    guard state == .error, let player = layer.player else {
-      return
-    }
+
     guard state == .bufferFinished, let player = layer.player else {
+      DispatchQueue.main.async {
+        switch state {
+        case .notSetURL:
+          self.controller.state = .notSetURL
+          break
+        case .buffering:
+          self.controller.state = .buffering
+          break
+        case .bufferFinished:
+          self.controller.state = .bufferFinished
+          break
+        case .paused:
+          self.controller.state = .paused
+          break
+        case .playedToTheEnd:
+          self.controller.state = .playedToTheEnd
+          break
+        case .error:
+          //          self.controller.state = .error
+          //          let err = layer.player.
+          //          self.onError(PlayerError(id: .unknown, msg: err.code.string))
+          break
+        case .readyToPlay:
+          self.controller.state = .readyToPlay
+          break
+        }
+      }
       return
     }
 
@@ -64,13 +93,14 @@ class FFMpegPlayerView: VideoPlayerView {
     }
 
     Player.instance.metadata.video = StreamInfo.Video(
-      codec: videoTrack.codecType.description,
+      codec: videoTrack.description.videoCodec,
       resolution: videoTrack.naturalSize
     )
 
     DispatchQueue.main.async {
+      self.controller.state = .bufferFinished
       Player.instance.size = videoTrack.naturalSize
-      NotificationCenter.default.post(name: .fit, object: videoTrack.naturalSize)
+      Player.instance.onMetadataLoaded()
     }
 
     guard let audioTrack = player.tracks(mediaType: .audio).first else {
@@ -78,19 +108,29 @@ class FFMpegPlayerView: VideoPlayerView {
     }
 
     Player.instance.metadata.audio = StreamInfo.Audio(
-      codec: audioTrack.codecType.description,
-      channels: 2,
-      rate: 44100
+      codec: audioTrack.description.audioCodec,
+      bitrate: audioTrack.bitRate.bitrate
     )
     DispatchQueue.main.async {
       Player.instance.metadataState = .loaded
     }
   }
-  
+
   func onError(_ error: PlayerError) {
     DispatchQueue.main.async {
-      self.controller.error = error
-      self.controller.state = .error
+      if error.id == .unknown || error.id == .timeout {
+        guard let stream = self.controller.stream else {
+          self.controller.error = error
+          self.controller.state = .error
+          return
+        }
+        self.controller.stop()
+        self.controller.play(stream)
+      }
+      else {
+        self.controller.error = error
+        self.controller.state = .error
+      }
     }
   }
 }

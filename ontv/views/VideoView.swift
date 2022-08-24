@@ -18,10 +18,12 @@ enum Video {
 extension NSNotification.Name {
   static let reaspect = NSNotification.Name("re_aspect")
   static let zoomchange = NSNotification.Name("zppm_change")
+  static let changescreen = NSNotification.Name("change_screen")
 }
 
 class VideoView: NSView {
   var player = Player.instance
+  let current_screen: NSScreen! = nil
 
   func postInit() {
     player.initView(self)

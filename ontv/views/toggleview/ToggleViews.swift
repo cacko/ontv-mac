@@ -23,6 +23,9 @@ struct ToggleView: View {
         if player.contentToggle == .title {
           ToggleViews.TitleView()
         }
+        if player.contentToggle == .metadata {
+          ToggleViews.MetadataView()
+        }
         ToggleViews.StreamsView()
 
         if [.epglist, .activityepg].contains(player.contentToggle) {
