@@ -48,6 +48,10 @@ class AbstractPlayer: NSObject, PlayerVendorProtocol {
   func play(_ stream: Stream) {
     fatalError("Not implemented")
   }
+  
+  func reconnect() {
+    fatalError("Not implemented")
+  }
 
   func stop() {
     fatalError("Not implemented")

@@ -80,6 +80,8 @@ protocol PlayerVendorProtocol {
   var isMuted: Bool { get set }
   init(_ controller: Player)
   func play(_ stream: Stream)
+  func reconnect()
+
   func stop()
   func initView(_ view: VideoView)
   func sizeView(_ newSize: NSSize)
@@ -112,6 +114,7 @@ protocol PlayerProtocol: ObservableObject {
 
   func initView(_ view: VideoView)
   func play(_ stream: Stream)
+  func reconnect()
   func retry()
   func stop()
   func prev() async

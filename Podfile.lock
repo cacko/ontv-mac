@@ -35,7 +35,7 @@ PODS:
 
 DEPENDENCIES:
   - FFmpeg (from `https://github.com/kingslay/KSPlayer.git`, branch `develop`)
-  - KSPlayer (from `https://github.com/kingslay/KSPlayer.git`, branch `develop`)
+  - KSPlayer (from `https://github.com/cacko/KSPlayer.git`, branch `develop`)
   - OpenSSL (from `https://github.com/kingslay/KSPlayer.git`, branch `develop`)
 
 EXTERNAL SOURCES:
@@ -44,20 +44,20 @@ EXTERNAL SOURCES:
     :git: https://github.com/kingslay/KSPlayer.git
   KSPlayer:
     :branch: develop
-    :git: https://github.com/kingslay/KSPlayer.git
+    :git: https://github.com/cacko/KSPlayer.git
   OpenSSL:
     :branch: develop
     :git: https://github.com/kingslay/KSPlayer.git
 
 CHECKOUT OPTIONS:
   FFmpeg:
-    :commit: c954a8c3b9d6d4338e40ac5cfafe20f414c1435f
+    :commit: 27cb3fcfa5fd692caafef2baf4bbac69f05b963d
     :git: https://github.com/kingslay/KSPlayer.git
   KSPlayer:
-    :commit: c954a8c3b9d6d4338e40ac5cfafe20f414c1435f
-    :git: https://github.com/kingslay/KSPlayer.git
+    :commit: cd5aa91098d49bad88a975952894b3e94710cf84
+    :git: https://github.com/cacko/KSPlayer.git
   OpenSSL:
-    :commit: c954a8c3b9d6d4338e40ac5cfafe20f414c1435f
+    :commit: 27cb3fcfa5fd692caafef2baf4bbac69f05b963d
     :git: https://github.com/kingslay/KSPlayer.git
 
 SPEC CHECKSUMS:
@@ -65,6 +65,6 @@ SPEC CHECKSUMS:
   KSPlayer: d0ee11093f3230cc235a3f555f5c4aee9052265e
   OpenSSL: 9637184330c49c5862fc0bb383005bd55e5a2335
 
-PODFILE CHECKSUM: 99d23fad93b2b877492af26b042869ea86ee5665
+PODFILE CHECKSUM: 1169ddb2373efc2afa61a03c6f272945aa9f5c7b
 
 COCOAPODS: 1.11.3

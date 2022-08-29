@@ -23,21 +23,6 @@ class FFMpegPlayerView: VideoPlayerView {
     super.init(frame: .zero)
   }
 
-  override func customizeUIComponents() {
-    super.customizeUIComponents()
-    navigationBar.isHidden = true
-    toolBar.isHidden = true
-    toolBar.timeSlider.isHidden = true
-    toolBar.removeFromSuperview()
-    loadingIndector.removeFromSuperview()
-    seekToView.isHidden = true
-    seekToView.removeFromSuperview()
-    srtControl.view.removeFromSuperview()
-    replayButton.isHidden = true
-    replayButton.removeFromSuperview()
-    self.playerLayer.player?.delegate = self.controller as? MediaPlayerDelegate
-  }
-
   override func player(layer playerLayer: KSPlayerLayer, finish error: Error?) {
 
     guard let error = error as NSError? else {

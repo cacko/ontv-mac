@@ -81,8 +81,7 @@ extension V1 {
       sport = Self.asString(data: source, key: "sport")
       country = Self.asString(data: source, key: "country")
       season = Self.asString(data: source, key: "season")
-      debugPrint(timestamp)
-    }
+   }
 
     func update(from source: [String: Any], in transaction: BaseDataTransaction) throws {
       self.loadData(from: source)

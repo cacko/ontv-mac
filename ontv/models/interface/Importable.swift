@@ -81,7 +81,7 @@ extension ImportableModel {
 
   static func asDate(data: [String: Any], key: String) -> Date {
     do {
-      return try Date(data[key] as? String ?? "", strategy: .iso8601)
+      return try Date(data[key] as! String, strategy: .iso8601)
     }
     catch {
       return Date(timeIntervalSince1970: 0)

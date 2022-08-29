@@ -11,6 +11,10 @@ import Defaults
 import SwiftUI
 
 class Player: NSObject, PlayerProtocol, ObservableObject {
+  func reconnect() {
+    self.vendorPlayer.reconnect()
+  }
+  
 
   @Published var error = PlayerError(id: .null, msg: "")
   @Published var resolution = CGSize(width: 1920, height: 1080)

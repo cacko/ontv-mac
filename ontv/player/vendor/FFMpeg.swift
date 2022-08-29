@@ -115,13 +115,20 @@ var player: MediaPlayerProtocol!
   }
 
   override func play(_ stream: Stream) {
-    media = KSPlayerResource(definitions: [self.definition(stream)])
+    media = KSPlayerResource(url: stream.url)
     if ((player?.isPlaying) != nil) {
       player.replace(url: stream.url, options: self.options)
     } else {
       playerView.set(resource: media)
       playerView.delegate = self
       playerView.play()
+    }
+  }
+  
+  override func reconnect() {
+    if ((player?.isPlaying) != nil) {
+      player.replace(url: self.media.definitions[0].url, options: self.options)
+      self.controller.onStartPlaying()
     }
   }
 
