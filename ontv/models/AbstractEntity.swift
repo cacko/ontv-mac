@@ -34,7 +34,7 @@ static func get(_ id: Int64) -> EntityType? {
     )
   }
 
-  static func getAll() -> [EntityType] {
+static func getAll() -> [EntityType] {
     do {
       return try dataStack.fetchAll(From<EntityType>().orderBy(orderBy))
     }
@@ -76,7 +76,7 @@ static func get(_ id: Int64) -> EntityType? {
   
   
   static func delete(_ deleteClause: DeleteClause...) async throws {
-    CoreStoreDefaults.dataStack.perform(
+    self.dataStack.perform(
       asynchronous: { transaction -> Void in
         try transaction.deleteAll(
           From<EntityType>(),
@@ -89,7 +89,7 @@ static func get(_ id: Int64) -> EntityType? {
   
   static func deleteAll() {
     do {
-      try CoreStoreDefaults.dataStack.perform(
+      try self.dataStack.perform(
         synchronous: { transaction -> Void in
           try transaction.deleteAll(
             From<EntityType>(),

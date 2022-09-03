@@ -9,6 +9,7 @@ import AppKit
 import Combine
 import Defaults
 import SwiftUI
+import KSPlayer
 
 class Player: NSObject, PlayerProtocol, ObservableObject {
   func reconnect() {
@@ -83,6 +84,8 @@ class Player: NSObject, PlayerProtocol, ObservableObject {
   public var vendorPlayer: AbstractPlayer!
 
   static let instance = Player()
+  
+  public var media: KSPlayerResource!
 
   override init() {
     super.init()
@@ -161,6 +164,8 @@ class Player: NSObject, PlayerProtocol, ObservableObject {
   func onStartPlaying() {
     self.retries = 0
     self.state = .playing
+    volume = Defaults[.volume]
+
     NotificationCenter.default.post(name: .startPlaying, object: self.stream)
   }
 
@@ -168,7 +173,7 @@ class Player: NSObject, PlayerProtocol, ObservableObject {
     if self.state == .stopped {
       return
     }
-    guard self.state == .opening else {
+guard self.state == .opening else {
       return
     }
     guard self.retries < self.MAX_RETIRES else {
@@ -195,7 +200,7 @@ class Player: NSObject, PlayerProtocol, ObservableObject {
   func onAudioCommand(_ parameter: Audio.Parameter) {
     switch parameter.command {
     case .volume_offset:
-      self.volume = max(0, min(self.volume + parameter.value, 100))
+      self.volume = max(0, min(self.volume + parameter.value, 200))
       NotificationCenter.default.post(
         name: .audioCommandResult,
         object: Audio.Result(command: .volume_set, value: self.volume)

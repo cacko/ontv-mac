@@ -161,7 +161,7 @@ extension V1 {
     }
 
     var isAdult: Bool {
-      is_adult || category_id == 366
+      is_adult || [366,694].contains(category_id) || title ~= "^(porn|xxx|adult|alba|bang|balkan ero|babes tv)"
     }
 
     static var needsUpdate: Bool {

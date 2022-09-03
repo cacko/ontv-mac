@@ -6,12 +6,25 @@
 //
 
 import Foundation
+import Defaults
 
 extension API {
 
   static func toProxyUrl(url: URL) -> URL {
-    let res = URL(string: "https://preslav.cacko.net/\(url.absoluteString.b64)") ?? url
-    return res
+    
+    var useProxy = Defaults[.useProxy]
+    
+    _ = Defaults.observe(.useProxy) { change in
+      useProxy = change.newValue
+    }
+        
+    if useProxy {
+      let res = URL(string: "https://preslav.cacko.net/\(url.absoluteString.b64)") ?? url
+      return res
+    }
+    
+    return url
+
   }
 
   enum Endpoint {

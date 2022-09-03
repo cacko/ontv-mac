@@ -84,7 +84,7 @@ extension LivescoreStorage {
 
     func onNavigate(_ notitication: Notification) {}
 
-    static var leagueQuery: Where<EntityType> {
+  static var leagueQuery: Where<EntityType> {
       guard let leagues = Defaults[.leagues] as Set<Int>? else {
         return Where<Livescore>(NSPredicate(value: true))
       }

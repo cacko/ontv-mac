@@ -71,7 +71,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       window: window
     )
     player = Player.instance
-    player.volume = Defaults[.volume]
     super.init()
   }
 

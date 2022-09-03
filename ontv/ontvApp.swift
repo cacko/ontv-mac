@@ -25,7 +25,7 @@ extension Defaults.Keys {
   static let streamsUpdated = Key<Date>("streamsUpdated", default: Date(timeIntervalSince1970: 0))
   static let scheduleUpdated = Key<Date>("scheduleUpdated", default: Date(timeIntervalSince1970: 0))
   static let epgUpdated = Key<Date>("epgUpdated", default: Date(timeIntervalSince1970: 0))
-  static let volume = Key<Float>("volume", default: 100)
+  static let volume = Key<Float>("volume", default: 50)
   static let isFloating = Key<Bool>("isFloating", default: true)
   static let leaguesUpdated = Key<Date>("leaguesTimestamp", default: Date(timeIntervalSince1970: 0))
   static let leagues = Key<Set<Int>>(
@@ -53,7 +53,7 @@ extension Defaults.Keys {
     ])
   )
   static let tickerPosition = Key<Int>("tickerPosition", default: TickerPosition.top.rawValue)
-  static let avBufferTime = Key<Double>("avBufferTime", default: 10)
+  static let useProxy = Key<Bool>("useProxy", default: false)
 }
 
 protocol Reorderable {

@@ -8,6 +8,20 @@
 import CoreStore
 import Foundation
 
+
+struct ImportError: Error, Identifiable, Equatable {
+  var id: Errors
+  
+  enum Errors {
+    case unknown
+    case date
+  }
+  
+  //    let kind: Errors
+  let msg: String
+}
+
+
 protocol ImportableModel {
 
   associatedtype EntityType: CoreStoreObject
@@ -81,10 +95,14 @@ extension ImportableModel {
 
   static func asDate(data: [String: Any], key: String) -> Date {
     do {
-      return try Date(data[key] as! String, strategy: .iso8601)
+      let calc = try Date(data[key] as! String, strategy: .iso8601)
+      guard let res = calc as Date? else {
+        throw ImportError(id:.date, msg: "kura mi yanko")
+      }
+      return res
     }
     catch {
-      return Date(timeIntervalSince1970: 0)
+    return Date(timeIntervalSince1970: 0)
     }
   }
 

@@ -124,13 +124,15 @@ class ScheduleMenu: BaseMenu, NSMenuDelegate, CollectionMenu {
   func updateMenus() {
     self.removeAllItems()
     self._init()
-    (Schedule.getAll() as [LazyStreams]).filter { $0.hasExpired }
+      (Schedule.getAll() as [LazyStreams])
       .forEach { (item: LazyStreams) in
-        let m = ScheduleItem(action: #selector(onSchedule(sender:)), corelazy: item)
-        m.target = self
-        addItem(m)
-        let submenu = ScheduleStreamsMenu(title: "", parent: parent, corelazy: item)
-        m.submenu = submenu
+        if !item.hasExpired {
+          let m = ScheduleItem(action: #selector(onSchedule(sender:)), corelazy: item)
+          m.target = self
+          addItem(m)
+          let submenu = ScheduleStreamsMenu(title: "", parent: parent, corelazy: item)
+          m.submenu = submenu
+        }
       }
     DispatchQueue.main.asyncAfter(deadline: .now() + 60) {
       self.removeExpired()

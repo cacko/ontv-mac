@@ -14,31 +14,30 @@ import SwiftUI
 
 class PlayerFFMpeg: AbstractPlayer, PlayerControllerDelegate, MediaPlayerDelegate {
   func preparedToPlay(player: KSPlayer.MediaPlayerProtocol) {
-    
+
   }
-  
+
   func changeLoadState(player: KSPlayer.MediaPlayerProtocol) {
-    
+
   }
-  
+
   func changeBuffering(player: KSPlayer.MediaPlayerProtocol, progress: Int) {
-    
+
   }
-  
+
   func playBack(player: KSPlayer.MediaPlayerProtocol, loopCount: Int) {
-    
+
   }
-  
+
   func finish(player: KSPlayer.MediaPlayerProtocol, error: Error?) {
     self.player = player
   }
-  
 
   let controller: Player
 
   var playerView: FFMpegPlayerView!
 
-var player: MediaPlayerProtocol!
+  var player: MediaPlayerProtocol!
 
   var media: KSPlayerResource!
 
@@ -61,7 +60,9 @@ var player: MediaPlayerProtocol!
       return (self.player?.playbackVolume ?? 0) * 100
     }
     set {
-      self.playerView?.playerLayer.player?.playbackVolume = max(0, min(newValue / 100, 1))
+      let newVolume = max(0, min(newValue / 100, 2))
+      let volumeGain = 6 * newVolume
+      self.playerView?.playerLayer.player?.playbackVolumeGain = volumeGain
     }
   }
 
@@ -87,15 +88,15 @@ var player: MediaPlayerProtocol!
     playerView.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
       playerView.widthAnchor.constraint(equalTo: view.widthAnchor),
-      playerView.heightAnchor.constraint(equalTo: view.heightAnchor)
+      playerView.heightAnchor.constraint(equalTo: view.heightAnchor),
     ])
   }
 
   override func deInitView() {
-//    self.playerView.pause()
-//    self.playerView.resetPlayer()
-//    self.playerView.removeFromSuperview()
-//    self.playerView = nil
+    //    self.playerView.pause()
+    //    self.playerView.resetPlayer()
+    //    self.playerView.removeFromSuperview()
+    //    self.playerView = nil
   }
 
   var options: KSOptions {
@@ -116,7 +117,8 @@ var player: MediaPlayerProtocol!
 
   override func play(_ stream: Stream) {
     media = KSPlayerResource(url: stream.url)
-    if ((player?.isPlaying) != nil) {
+    controller.media = media
+    if (player?.isPlaying) != nil {
       player.replace(url: stream.url, options: self.options)
     } else {
       playerView.set(resource: media)
@@ -124,16 +126,16 @@ var player: MediaPlayerProtocol!
       playerView.play()
     }
   }
-  
+
   override func reconnect() {
-    if ((player?.isPlaying) != nil) {
+    if (player?.isPlaying) != nil {
       player.replace(url: self.media.definitions[0].url, options: self.options)
       self.controller.onStartPlaying()
     }
   }
 
   override func stop() {
-    
+
   }
 
 }

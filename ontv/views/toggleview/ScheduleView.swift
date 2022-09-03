@@ -169,7 +169,6 @@ extension ToggleViews {
               ForEach(streams, id: \.id) {
                 stream in
                 ScheduleStream(stream: stream)
-                  .id(stream.id)
               }
             }
           }
@@ -177,7 +176,7 @@ extension ToggleViews {
       }
     }
 
-    struct ScheduleStream: View {
+struct ScheduleStream: View {
       var stream: Stream
 
       func openStream() {

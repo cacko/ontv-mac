@@ -22,7 +22,7 @@ extension PreferencesView {
       self.leagueProvider.fetch()
     }
 
-    func isSelected(_ id: Int64) -> Binding<Bool> {
+func isSelected(_ id: Int64) -> Binding<Bool> {
       Binding(
         get: {
           leagues.contains(id.int)
@@ -50,10 +50,10 @@ extension PreferencesView {
               ) {
                 ListReader(leagueProvider.list) { snapshot in
                   ForEach(objectIn: snapshot) { league in
-                    Toggle(isOn: isSelected(league.$league_id!)) {
-                      Text(league.$leagueName!)
-                        .frame(maxWidth: 180, alignment: .leading)
-                    }
+                  Toggle(isOn: isSelected(league.$league_id!)) {
+                    Text(league.$leagueName!)
+                      .frame(maxWidth: 180, alignment: .leading)
+                  }
                   }
                 }
               }

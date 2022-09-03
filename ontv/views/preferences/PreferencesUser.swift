@@ -50,7 +50,7 @@ extension PreferencesView {
     @Default(.username) var username
     @Default(.password) var password
 
-    @Default(.avBufferTime) var av_buffer_time
+    @Default(.useProxy) var use_proxy
 
     private let contentWidth: Double = 450.0
     private let padding: Double = 15
@@ -92,9 +92,12 @@ extension PreferencesView {
         }
         Preferences.Section(title: "Player") {
           VStack(spacing: self.padding) {
-            TextField("AV Buffer Time (s)", value: $av_buffer_time, format: .number).disabled(
-              api.state == .loading
-            )
+            HStack {
+              Toggle(isOn: $use_proxy) {
+                Text("Use HTTPS Proxy")
+                  .frame(maxWidth: 180, alignment: .leading)
+              }
+            }
           }
         }
       }

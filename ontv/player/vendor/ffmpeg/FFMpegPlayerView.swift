@@ -24,6 +24,10 @@ class FFMpegPlayerView: VideoPlayerView {
   }
 
   override func player(layer playerLayer: KSPlayerLayer, finish error: Error?) {
+    
+    debugPrint(">>>>>>>>>>>>>>>>>>>>>>>>>>>> ERRROROOOOROOOROROR \(String(describing: error)) \(String(describing: playerLayer.player?.playbackState))")
+    
+    debugPrint(">>>> \(controller.media!)")
 
     guard let error = error as NSError? else {
       return
@@ -83,7 +87,6 @@ class FFMpegPlayerView: VideoPlayerView {
     )
 
     DispatchQueue.main.async {
-      self.controller.state = .bufferFinished
       Player.instance.size = videoTrack.naturalSize
       Player.instance.onMetadataLoaded()
     }

@@ -126,7 +126,10 @@ extension V1 {
     }
 
     var startTime: Date {
-      return timestamp
+      guard let res = timestamp as Date? else {
+        return Date(timeIntervalSince1970: 0)
+      }
+      return res
     }
 
     var title: String {

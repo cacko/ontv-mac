@@ -9,6 +9,7 @@ import CoreStore
 import Defaults
 import Foundation
 
+
 struct QuickStream: Validity {
   var idx: Int = 0
 
