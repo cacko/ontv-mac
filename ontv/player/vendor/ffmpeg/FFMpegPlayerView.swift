@@ -22,12 +22,24 @@ class FFMpegPlayerView: VideoPlayerView {
     self.controller = controller
     super.init(frame: .zero)
   }
+  
+  override func customizeUIComponents() {
+    super.customizeUIComponents()
+    navigationBar.isHidden = true
+    toolBar.isHidden = true
+    toolBar.timeSlider.isHidden = true
+    toolBar.removeFromSuperview()
+    loadingIndector.removeFromSuperview()
+    seekToView.isHidden = true
+    seekToView.removeFromSuperview()
+    srtControl.view.removeFromSuperview()
+    replayButton.isHidden = true
+    replayButton.removeFromSuperview()
+  }
+
 
   override func player(layer playerLayer: KSPlayerLayer, finish error: Error?) {
-    
-    debugPrint(">>>>>>>>>>>>>>>>>>>>>>>>>>>> ERRROROOOOROOOROROR \(String(describing: error)) \(String(describing: playerLayer.player?.playbackState))")
-    
-    debugPrint(">>>> \(controller.media!)")
+        
 
     guard let error = error as NSError? else {
       return
@@ -46,11 +58,11 @@ class FFMpegPlayerView: VideoPlayerView {
   override open func player(layer: KSPlayerLayer, state: KSPlayerState) {
     super.player(layer: layer, state: state)
 
-    guard state == .bufferFinished, let player = layer.player else {
+    guard state == .bufferFinished  else {
       DispatchQueue.main.async {
         switch state {
-        case .notSetURL:
-          self.controller.state = .notSetURL
+        case .prepareToPlay:
+          self.controller.state = .buffering
           break
         case .buffering:
           self.controller.state = .buffering
@@ -77,7 +89,7 @@ class FFMpegPlayerView: VideoPlayerView {
       return
     }
 
-    guard let videoTrack = player.tracks(mediaType: .video).first as MediaPlayerTrack? else {
+    guard let videoTrack = layer.player.tracks(mediaType: .video).first as MediaPlayerTrack? else {
       return
     }
 
@@ -91,7 +103,7 @@ class FFMpegPlayerView: VideoPlayerView {
       Player.instance.onMetadataLoaded()
     }
 
-    guard let audioTrack = player.tracks(mediaType: .audio).first else {
+    guard let audioTrack = layer.player.tracks(mediaType: .audio).first else {
       return
     }
 

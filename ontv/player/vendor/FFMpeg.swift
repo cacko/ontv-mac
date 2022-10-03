@@ -13,6 +13,26 @@ import KSPlayer
 import SwiftUI
 
 class PlayerFFMpeg: AbstractPlayer, PlayerControllerDelegate, MediaPlayerDelegate {
+  func readyToPlay(player: some KSPlayer.MediaPlayerProtocol) {
+    
+  }
+  
+  func changeLoadState(player: some KSPlayer.MediaPlayerProtocol) {
+    
+  }
+  
+  func changeBuffering(player: some KSPlayer.MediaPlayerProtocol, progress: Int) {
+    
+  }
+  
+  func playBack(player: some KSPlayer.MediaPlayerProtocol, loopCount: Int) {
+    
+  }
+  
+  func finish(player: some KSPlayer.MediaPlayerProtocol, error: Error?) {
+    
+  }
+  
   func preparedToPlay(player: KSPlayer.MediaPlayerProtocol) {
 
   }
@@ -51,7 +71,7 @@ class PlayerFFMpeg: AbstractPlayer, PlayerControllerDelegate, MediaPlayerDelegat
       self.player?.isMuted ?? false
     }
     set {
-      self.playerView?.playerLayer.player?.isMuted.toggle()
+      self.playerView?.playerLayer?.player.isMuted.toggle()
     }
   }
 
@@ -62,7 +82,7 @@ class PlayerFFMpeg: AbstractPlayer, PlayerControllerDelegate, MediaPlayerDelegat
     set {
       let newVolume = max(0, min(newValue / 100, 2))
       let volumeGain = 6 * newVolume
-      self.playerView?.playerLayer.player?.playbackVolumeGain = volumeGain
+      self.playerView?.playerLayer?.player.playbackVolumeGain = volumeGain
     }
   }
 

@@ -47,7 +47,7 @@ tasks:
     desc: publish dmg file as package
     cmds:
       - echo "publishing app to gitlab"
-      - poetry run python -m deploy {{.CLI_ARGS}}
+      - conda run --live-stream -n ontv-mac python -m deploy {{.CLI_ARGS}}
 
   uncacheimages:
     desc: removes app images cache
