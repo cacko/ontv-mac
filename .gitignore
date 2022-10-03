@@ -34,3 +34,4 @@ Applications/
 .env
 .envrc
 node_modules/
+__pycache__
