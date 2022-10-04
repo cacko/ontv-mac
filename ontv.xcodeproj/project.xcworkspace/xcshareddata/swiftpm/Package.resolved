@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/sindresorhus/Defaults",
       "state" : {
-        "branch" : "main",
-        "revision" : "d1e2109fc99a4471bc0193ae3f521fcf07695153"
+        "revision" : "981ccb0a01c54abbe3c12ccb8226108527bbf115",
+        "version" : "6.3.0"
       }
     },
     {
@@ -41,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kean/NukeUI",
       "state" : {
-        "revision" : "db55022a8e483774ebbf3568727071477546d9ea",
-        "version" : "0.8.3"
+        "branch" : "main",
+        "revision" : "7338ed8ea76de18598bfafbca0cbdc74300a6b10"
       }
     },
     {

@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/sindresorhus/Defaults",
       "state" : {
-        "branch" : "main",
-        "revision" : "d1e2109fc99a4471bc0193ae3f521fcf07695153"
+        "revision" : "981ccb0a01c54abbe3c12ccb8226108527bbf115",
+        "version" : "6.3.0"
       }
     },
     {
@@ -41,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kean/NukeUI",
       "state" : {
-        "revision" : "db55022a8e483774ebbf3568727071477546d9ea",
-        "version" : "0.8.3"
+        "branch" : "main",
+        "revision" : "7338ed8ea76de18598bfafbca0cbdc74300a6b10"
       }
     },
     {
@@ -51,7 +51,7 @@
       "location" : "https://github.com/sindresorhus/Preferences",
       "state" : {
         "branch" : "main",
-        "revision" : "ffeaaad1def45d0625720dc1adae3789cd9c167d"
+        "revision" : "8bd4c0fbc97d89f41637984eda8287b0cb022474"
       }
     },
     {
@@ -69,7 +69,7 @@
       "location" : "https://github.com/siteline/SwiftUI-Introspect",
       "state" : {
         "branch" : "master",
-        "revision" : "7ef0df639079491ee1aaf6b83b6fd4d08df80393"
+        "revision" : "d3cbf32788250741d397cfb5bcd532c37aa1096d"
       }
     }
   ],

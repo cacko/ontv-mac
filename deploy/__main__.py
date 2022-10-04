@@ -1,6 +1,5 @@
 from github import (
-    Github,
-    GitRelease
+    Github
 )
 from os import environ
 from faker import Faker
@@ -12,11 +11,9 @@ print(release_description)
 
 version = check_output(["agvtool", "vers", "-terse"]).decode().strip()
 
-print(version)
-
 repo = Github(environ.get("GITHUB_TOKEN")).get_repo("cacko/ontv-mac")
 
-release_version = f"v2.0.{version}"
+release_version = f"v2.1.{version}"
 
 commit = repo.get_branch("master").commit
 
