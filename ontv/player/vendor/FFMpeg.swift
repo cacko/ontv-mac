@@ -92,13 +92,13 @@ class PlayerFFMpeg: AbstractPlayer, PlayerControllerDelegate, MediaPlayerDelegat
     _ controller: Player
   ) {
     self.controller = controller
-    KSPlayerManager.firstPlayerType = KSMEPlayer.self
-    KSPlayerManager.topBarShowInCase = .none
-    KSPlayerManager.logLevel = .panic
-    KSPlayerManager.canBackgroundPlay = true
-    KSPlayerManager.enableBrightnessGestures = false
-    KSPlayerManager.enablePlaytimeGestures = false
-    KSPlayerManager.animateDelayTimeInterval = TimeInterval(5)
+      KSOptions.firstPlayerType = KSMEPlayer.self
+    KSOptions.topBarShowInCase = .none
+    KSOptions.logLevel = .panic
+    KSOptions.canBackgroundPlay = true
+    KSOptions.enableBrightnessGestures = false
+    KSOptions.enablePlaytimeGestures = false
+    KSOptions.animateDelayTimeInterval = TimeInterval(5)
     super.init(controller)
   }
 
