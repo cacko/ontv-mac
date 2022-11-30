@@ -51,6 +51,7 @@ struct ContentView: View {
   @ObservedObject var api = API.Adapter
   @ObservedObject var ticker = LivescoreStorage.events
   @State private var hasBorder = false
+  
 
   let showSearch = Binding<Bool>(
     get: {
@@ -117,7 +118,7 @@ struct ContentView: View {
           Image("splash").resizable().aspectRatio(contentMode: .fill).opacity(
             (player.stream != nil) ? 0 : 0.5
           )
-        ).background(.black)
+        ).background(.black).preferredColorScheme(.dark)
     }
   }
 }

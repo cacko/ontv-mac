@@ -51,13 +51,13 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FFmpeg:
-    :commit: b49f10756cd98e54b27c2b3739e23825d194b195
+    :commit: b65f64b3142caeb9810fdccf8ad8910a8f0dc37d
     :git: https://github.com/kingslay/KSPlayer.git
   KSPlayer:
-    :commit: 9d1fd88d909a36b9743d798ef75cff1d161d4080
+    :commit: d7c1b2eef76ed33d962e45a783a39ec89a3cc2d6
     :git: https://github.com/cacko/KSPlayer.git
   OpenSSL:
-    :commit: b49f10756cd98e54b27c2b3739e23825d194b195
+    :commit: b65f64b3142caeb9810fdccf8ad8910a8f0dc37d
     :git: https://github.com/kingslay/KSPlayer.git
 
 SPEC CHECKSUMS:
