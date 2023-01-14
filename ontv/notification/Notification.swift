@@ -105,7 +105,7 @@ extension AppDelegate {
 
     center.addObserver(forName: .fetch, object: nil, queue: mainQueue) { note in
       if let fetchType = note.object as? API.FetchType {
-        API.Adapter.fetch(fetchType)
+        API.Adapter.fetch(fetchType, force: true)
       }
     }
 

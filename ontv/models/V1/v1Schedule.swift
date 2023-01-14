@@ -16,7 +16,7 @@ extension V1 {
 
     typealias EntityType = Schedule
 
-    static let expiresIn = TimeInterval(60 * 60 * 2 + 60 * 15)
+    static let expiresIn = TimeInterval((60 * 60 * 2) + (60 * 15))
 
     static var currentIds: [String] = [""]
 
@@ -140,7 +140,7 @@ extension V1 {
 
     var hasExpired: Bool {
       let expireDate = startTime.addingTimeInterval(Self.expiresIn)
-      return Date().timeIntervalSince(expireDate) < 0
+      return Date() > expireDate
     }
 
     class var orderBy: OrderBy<Schedule> {

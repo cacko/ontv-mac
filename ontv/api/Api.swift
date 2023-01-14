@@ -168,20 +168,20 @@ enum API {
       //      tasks.forEach { $0.cancel() }
     }
 
-    func fetch(_ type: API.FetchType) {
+    func fetch(_ type: API.FetchType, force: Bool = false) {
       Task.init {
         switch type {
         case .user:
           try await self.updateUser()
           break
         case .streams:
-          try await self.updateStreams()
+          try await self.updateStreams(force: force)
           break
         case .epg:
-          try await self.updateEPG()
+          try await self.updateEPG(force: force)
           break
         case .schedule:
-          try await self.updateSchedule()
+          try await self.updateSchedule(force: force)
           break
         case .livescore:
           try await self.updateLivescore()
@@ -325,11 +325,12 @@ enum API {
       }
     }
 
-    func updateSchedule() async throws {
+    func updateSchedule(force: Bool = false) async throws {
       guard self.scheduleState != .loading else {
         return
       }
-      guard Schedule.needsUpdate else {
+      let doUpdate = force || Schedule.needsUpdate
+      guard doUpdate else {
         self.updater.notify(name: .updateschedule)
         self.updater.done(task: .schedule)
         return
@@ -351,12 +352,12 @@ enum API {
       }
     }
 
-    func updateStreams() async throws {
+    func updateStreams(force: Bool = false) async throws {
       guard self.streamsState != .loading else {
         return
       }
-
-      guard Stream.needsUpdate else {
+      let doUpdate = force || Stream.needsUpdate
+      guard doUpdate else {
         self.updater.done(task: .streams)
         self.updater.notify(name: .loaded)
         return
@@ -394,12 +395,13 @@ enum API {
       }
     }
 
-    func updateEPG() async throws {
+    func updateEPG(force: Bool = false) async throws {
       guard self.epgState != .loading else {
         return
       }
 
-      guard EPG.needsUpdate else {
+      let doUpdate = force || EPG.needsUpdate
+      guard doUpdate else {
         self.updater.state(destination: .epg, value: .ready)
         self.updater.notify(name: .updateepg)
         self.updater.done(task: .epg)

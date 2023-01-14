@@ -13,7 +13,7 @@ version = check_output(["agvtool", "vers", "-terse"]).decode().strip()
 
 repo = Github(environ.get("GITHUB_TOKEN")).get_repo("cacko/ontv-mac")
 
-release_version = f"v2.1.{version}"
+release_version = f"v2.2.{version}"
 
 commit = repo.get_branch("master").commit
 
