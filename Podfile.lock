@@ -54,7 +54,7 @@ CHECKOUT OPTIONS:
     :commit: 6b7d207f0217eaee0890d66f6de00663d05d404c
     :git: https://github.com/kingslay/FFmpegKit.git
   KSPlayer:
-    :commit: c5c21d0844c930eb0c38c53cfd1162b3cb2ba9c2
+    :commit: 3fce7891448bcec735a6cd897216e28bcd32d66a
     :git: https://github.com/cacko/KSPlayer.git
   OpenSSL:
     :commit: 6b7d207f0217eaee0890d66f6de00663d05d404c
