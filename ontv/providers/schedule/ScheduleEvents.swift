@@ -15,15 +15,24 @@ extension ScheduleStorage {
 
     typealias EntityType = Schedule
 
-    @Published var state: ProviderState = .notavail
+    @Published var state: ProviderState = .notavail  {
+      didSet {
+        objectWillChange.send()
+      }
+    }
 
-    @Published var active: Bool = false
+    @Published var active: Bool = false {
+      didSet {
+        objectWillChange.send()
+      }
+    }
 
     var selectedId: String = "" {
       didSet {
         objectWillChange.send()
       }
     }
+    
 
     @Published var search: String = "" {
       didSet {
@@ -52,19 +61,30 @@ extension ScheduleStorage {
           .where(self.query)
           .orderBy(self.order)
       )
+      if self.list.snapshot.hasItems() {
+        self.state = .loaded
+      }
       super.init()
       self.observe()
     }
 
     func observe() {
       Self.center.addObserver(forName: .updateschedule, object: nil, queue: Self.mainQueue) { _ in
-        try? self.list.refetch(
-          From<Schedule>()
-            .sectionBy("timestamp")
-            .where(self.query)
-            .orderBy(self.order),
-          sourceIdentifier: nil
-        )
+        Task.init {
+          do {
+            self.state = .loading
+            try self.list.refetch(
+              From<Schedule>()
+                .sectionBy("timestamp")
+                .where(self.query)
+                .orderBy(self.order),
+              sourceIdentifier: nil
+            )
+            self.state = .loaded
+          } catch let error {
+            logger.error("\(error.localizedDescription)")
+          }
+        }
       }
     }
 

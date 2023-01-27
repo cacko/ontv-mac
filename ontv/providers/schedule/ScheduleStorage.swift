@@ -74,7 +74,11 @@ extension StorageProvider where EntityType == Schedule {
   func fetch() {
     Task.init {
       if Schedule.needsUpdate {
-        try await API.Adapter.updateSchedule()
+        do {
+          try await API.Adapter.updateSchedule()
+        } catch let error {
+          logger.error("\(error.localizedDescription)")
+        }
       }
     }
   }

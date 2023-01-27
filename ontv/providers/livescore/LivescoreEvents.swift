@@ -41,7 +41,12 @@ extension LivescoreStorage {
     }
     var order: OrderBy<Livescore> = Livescore.orderBy
     var search: String = ""
-    var state: ProviderState = .notavail
+
+    @Published var state: ProviderState = .notavail  {
+      didSet {
+        objectWillChange.send()
+      }
+    }
     var scrollTimer: DispatchSourceTimer = DispatchSource.makeTimerSource()
     var scrollTimerState: TimerState = .none
     var leagueObserver: DefaultsObservation!
@@ -58,8 +63,10 @@ extension LivescoreStorage {
       didSet {
         guard self.active else {
           debugPrint(">>> livescore scroll actove = false, call stop timer")
-
           return self.stopScrollTimer()
+        }
+        if self.state == .notavail {
+          self.state = .loading
         }
         self.startScrollTimer()
         debugPrint(">>> livescore scroll actove = true, call start timer")
@@ -128,6 +135,7 @@ extension LivescoreStorage {
               return
             }
             self.active = true
+            self.state = .loaded
           }
         }
       }

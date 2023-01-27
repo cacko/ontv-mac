@@ -71,7 +71,11 @@ enum LivescoreStorage {
       timer.schedule(deadline: .now(), repeating: .seconds(60))
       timer.setEventHandler {
         Task.detached {
-          try await API.Adapter.updateLivescore()
+          do {
+            try await API.Adapter.updateLivescore()
+          } catch let error {
+            logger.error("\(error.localizedDescription)")
+          }
         }
       }
       timer.activate()

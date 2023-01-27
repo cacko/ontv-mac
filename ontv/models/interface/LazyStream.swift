@@ -22,7 +22,7 @@ protocol LazyStreams {
   static var expiresIn: TimeInterval { get }
 
   var Streams: [LazyStream] { get }
-
+  
   var title: String { get }
 
   var startTime: Date { get }

@@ -124,6 +124,16 @@ extension V1 {
       }
       return []
     }
+    
+    var StreamsList: ListPublisher<V1.Stream> {
+      let ids = streams.split(separator: ",")
+      let predicate = NSPredicate(format: "stream_id in %@", ids)
+      return V1.Stream.dataStack.publishList(
+        From<Stream>()
+          .where(Where<Stream>(predicate))
+          .orderBy(Stream.orderBy)
+      )
+    }
 
     var startTime: Date {
       guard let res = timestamp as Date? else {

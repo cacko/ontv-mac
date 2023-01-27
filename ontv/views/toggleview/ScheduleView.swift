@@ -144,30 +144,20 @@ extension ToggleViews {
 
     struct ScheduleStreams: View {
       var schedule: ObjectPublisher<Schedule>
-      var streams: [Stream]
+      var list: ListPublisher<Stream>
 
       init(
         schedule: ObjectPublisher<Schedule>
       ) {
         self.schedule = schedule
-        self.streams = []
-        guard let ids = schedule.streams?.split(separator: ",") as NSArray? else {
-          return
-        }
-        guard ids.count > 0 else {
-          return
-        }
-        self.streams = Stream.find(
-          Where<Stream>(NSPredicate(format: "stream_id IN %@", ids))
-        )
+        self.list = schedule.StreamsList!
       }
 
       var body: some View {
-        if streams.count > 0 {
           ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack {
-              ForEach(streams, id: \.id) {
-                stream in
+              ListReader(self.list) { snapshot in
+              ForEach(objectIn: snapshot) { stream in
                 ScheduleStream(stream: stream)
               }
             }
@@ -177,7 +167,7 @@ extension ToggleViews {
     }
 
 struct ScheduleStream: View {
-      var stream: Stream
+      var stream: ObjectPublisher<Stream>
 
       func openStream() {
         NotificationCenter.default.post(name: .selectStream, object: stream)
@@ -186,8 +176,8 @@ struct ScheduleStream: View {
       var body: some View {
         Button(action: { openStream() }) {
           HStack(alignment: .top) {
-            StreamTitleView.TitleView(stream.icon) {
-              Text(stream.title)
+            StreamTitleView.TitleView(stream.icon!) {
+              Text(stream.title!)
                 .font(Theme.Font.programme)
                 .lineLimit(1)
                 .truncationMode(.tail)
@@ -209,6 +199,26 @@ struct ScheduleStream: View {
     var body: some View {
       VStack(alignment: .trailing) {
         ContentHeaderView(title: "SportsDB Schedule", icon: ContentToggleIcon.schedule)
+        if scheduleProvider.state == .notavail || liverscoreProvider.state == .loading {
+          HStack {
+            Spacer()
+            VStack {
+              Spacer()
+              if liverscoreProvider.state == .notavail {
+                Text("Schedule not available")
+                .font(Theme.Font.title)
+                .textCase(.uppercase)
+              }
+              if liverscoreProvider.state == .loading {
+                Text("Schedule is loading")
+                  .font(Theme.Font.title)
+                  .textCase(.uppercase)
+              }
+              Spacer()
+            }
+            Spacer()
+          }
+        }
         ScrollingView {
           ListReader(scheduleProvider.list) { snapshot in
             ForEach(sectionIn: snapshot) { section in

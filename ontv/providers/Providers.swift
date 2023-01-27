@@ -28,7 +28,7 @@ protocol StorageProvider: ObservableObject {
   var order: OrderBy<EntityType> { get set }
   var search: String { get set }
   var active: Bool { get set }
-  var state: ProviderState { get set }
+var state: ProviderState { get set }
 
   func selectNext() throws
   func selectPrevious() throws
