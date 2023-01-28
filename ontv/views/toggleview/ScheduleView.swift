@@ -170,7 +170,7 @@ struct ScheduleStream: View {
       var stream: ObjectPublisher<Stream>
 
       func openStream() {
-        NotificationCenter.default.post(name: .selectStream, object: stream)
+        NotificationCenter.default.post(name: .selectStream, object: stream.object)
       }
 
       var body: some View {
