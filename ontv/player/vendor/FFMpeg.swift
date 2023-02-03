@@ -14,38 +14,46 @@ import SwiftUI
 
 class PlayerFFMpeg: AbstractPlayer, PlayerControllerDelegate, MediaPlayerDelegate {
   func readyToPlay(player: some KSPlayer.MediaPlayerProtocol) {
-    
+    debugPrint("")
+
   }
   
   func changeLoadState(player: some KSPlayer.MediaPlayerProtocol) {
-    
+    debugPrint("")
+
   }
   
   func changeBuffering(player: some KSPlayer.MediaPlayerProtocol, progress: Int) {
-    
+    debugPrint("")
   }
   
   func playBack(player: some KSPlayer.MediaPlayerProtocol, loopCount: Int) {
-    
+    debugPrint("")
+
   }
   
   func finish(player: some KSPlayer.MediaPlayerProtocol, error: Error?) {
-    
+    debugPrint("")
+
   }
   
   func preparedToPlay(player: KSPlayer.MediaPlayerProtocol) {
+    debugPrint("")
 
   }
 
   func changeLoadState(player: KSPlayer.MediaPlayerProtocol) {
+    debugPrint("")
 
   }
 
   func changeBuffering(player: KSPlayer.MediaPlayerProtocol, progress: Int) {
+    debugPrint("")
 
   }
 
   func playBack(player: KSPlayer.MediaPlayerProtocol, loopCount: Int) {
+    debugPrint("")
 
   }
 
