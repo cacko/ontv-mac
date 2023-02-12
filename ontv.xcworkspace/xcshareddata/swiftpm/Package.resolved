@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kaishin/Gifu",
       "state" : {
-        "revision" : "51f2eab32903e336f590c013267cfa4d7f8b06c4",
-        "version" : "3.3.1"
+        "revision" : "c8c8cd8e98eb73b8353b612c2925461c956fddc8",
+        "version" : "3.4.0"
       }
     },
     {
@@ -51,7 +51,7 @@
       "location" : "https://github.com/sindresorhus/Preferences",
       "state" : {
         "branch" : "main",
-        "revision" : "8bd4c0fbc97d89f41637984eda8287b0cb022474"
+        "revision" : "00342137c16b1351408669ca88be60036aa7e343"
       }
     },
     {
@@ -69,7 +69,7 @@
       "location" : "https://github.com/siteline/SwiftUI-Introspect",
       "state" : {
         "branch" : "master",
-        "revision" : "d3cbf32788250741d397cfb5bcd532c37aa1096d"
+        "revision" : "223b26ba8b525530f1eb9355f80b84ec735ba168"
       }
     }
   ],

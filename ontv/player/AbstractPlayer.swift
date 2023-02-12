@@ -12,7 +12,7 @@ class AbstractPlayer: NSObject, PlayerVendorProtocol {
 
   typealias PlayerType = AbstractPlayer
 
-  var volume: Float {
+var volume: Float {
     get { fatalError() }
     set { fatalError() }
   }
