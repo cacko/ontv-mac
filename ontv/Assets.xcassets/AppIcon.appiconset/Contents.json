@@ -1,19 +1,19 @@
 {
   "images" : [
     {
-      "filename" : "a2b37e5cab8219c8f8386ca182b8f720_Journey_of_Greed_16x16x32.png",
+      "filename" : "16.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "16x16"
     },
     {
-      "filename" : "a2b37e5cab8219c8f8386ca182b8f720_Journey_of_Greed_32x32x32.png",
+      "filename" : "32 1.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "16x16"
     },
     {
-      "filename" : "a2b37e5cab8219c8f8386ca182b8f720_Journey_of_Greed_32x32x32-1.png",
+      "filename" : "32 2.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "32x32"
@@ -31,31 +31,31 @@
       "size" : "128x128"
     },
     {
-      "filename" : "a2b37e5cab8219c8f8386ca182b8f720_Journey_of_Greed_256x256x32.png",
+      "filename" : "256 1.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "128x128"
     },
     {
-      "filename" : "a2b37e5cab8219c8f8386ca182b8f720_Journey_of_Greed_256x256x32-1.png",
+      "filename" : "256.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "256x256"
     },
     {
-      "filename" : "a2b37e5cab8219c8f8386ca182b8f720_Journey_of_Greed_512x512x32.png",
+      "filename" : "512 1.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "256x256"
     },
     {
-      "filename" : "a2b37e5cab8219c8f8386ca182b8f720_Journey_of_Greed_512x512x32-1.png",
+      "filename" : "512.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "512x512"
     },
     {
-      "filename" : "a2b37e5cab8219c8f8386ca182b8f720_Journey_of_Greed_1024x1024x32.png",
+      "filename" : "16 1.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "512x512"

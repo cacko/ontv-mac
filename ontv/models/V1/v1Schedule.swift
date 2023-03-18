@@ -39,7 +39,7 @@ extension V1 {
     var name: String = ""
 
     @Field.Stored("timestamp")
-    var timestamp = Date(timeIntervalSince1970: 0)
+    var timestamp = Date()
 
     @Field.Stored("channels")
     var channels: String = ""
@@ -136,10 +136,13 @@ extension V1 {
     }
 
     var startTime: Date {
-      guard let res = timestamp as Date? else {
+      switch self {
+      case nil:
         return Date(timeIntervalSince1970: 0)
+      default:
+        break
       }
-      return res
+      return timestamp
     }
 
     var title: String {
