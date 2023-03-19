@@ -90,7 +90,7 @@ class PlayerFFMpeg: AbstractPlayer, PlayerControllerDelegate, MediaPlayerDelegat
     set {
       let newVolume = max(0, min(newValue / 100, 2))
       let volumeGain = 6 * newVolume
-      self.playerView?.playerLayer?.player.playbackVolumeGain = volumeGain
+//      self.playerView?.playerLayer?.player.playbackVolumeGain = volumeGain
     }
   }
 

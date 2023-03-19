@@ -1243,7 +1243,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
 				MARKETING_VERSION = 13.1;
-				"OTHER_LDFLAGS[arch=arm64]" = (
+				"OTHER_LDFLAGS[arch=*]" = (
 					"$(inherited)",
 					"-ObjC",
 					"-l\"bz2\"",
@@ -1257,7 +1257,7 @@
 					"-framework",
 					"\"AudioToolbox\"",
 					"-framework",
-					"\"FFmpeg\"",
+					"\"FFmpegKit\"",
 					"-framework",
 					"\"Foundation\"",
 					"-framework",
@@ -1282,7 +1282,6 @@
 					"\"VideoToolbox\"",
 					"-weak_framework",
 					"\"MetalKit\"",
-					"-Wl,-no_compact_unwind",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.cacko.ontv;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1336,7 +1335,6 @@
 					"-framework",
 					"\"AudioToolbox\"",
 					"-framework",
-					"\"FFmpeg\"",
 					"-framework",
 					"\"Foundation\"",
 					"-framework",
