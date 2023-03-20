@@ -72,7 +72,6 @@
 		165C97FD270228F900466207 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165C97FC270228F900466207 /* VideoView.swift */; };
 		165C97FF2702291A00466207 /* MainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165C97FE2702291A00466207 /* MainWindow.swift */; };
 		165C98092702312700466207 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165C97EC2702260800466207 /* AVFoundation.framework */; platformFilter = maccatalyst; };
-		165C98172702315C00466207 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165C98162702315C00466207 /* Foundation.framework */; platformFilter = maccatalyst; };
 		165FADE82805FC0C00E1B58F /* StreamsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165FADE72805FC0C00E1B58F /* StreamsView.swift */; };
 		165FADEB2805FE9F00E1B58F /* CategoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165FADEA2805FE9F00E1B58F /* CategoryStorage.swift */; };
 		165FADED2805FEB300E1B58F /* CategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165FADEC2805FEB300E1B58F /* CategoryList.swift */; };
@@ -107,6 +106,7 @@
 		1687DEB9271A1E8A00A118E4 /* Validity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1687DEB8271A1E8A00A118E4 /* Validity.swift */; };
 		168937EC270AB9B700F8364E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168937EB270AB9B700F8364E /* AppDelegate.swift */; };
 		168A6D3A28B2C9A200DCB9D3 /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 168A6D3928B2C9A200DCB9D3 /* NukeUI */; };
+		168E1D8B29C8EDEA001A8654 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165C98162702315C00466207 /* Foundation.framework */; };
 		168F1DE22707200800A53DE6 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168F1DE12707200800A53DE6 /* Styles.swift */; };
 		16997B822718A9C400C49DFF /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16997B812718A9C400C49DFF /* Theme.swift */; };
 		16997B842718AA3700C49DFF /* ThemeFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16997B832718AA3700C49DFF /* ThemeFont.swift */; };
@@ -349,9 +349,9 @@
 				16A10FAF2829CA01007B19CC /* libxml2.tbd in Frameworks */,
 				167E55812760EFA900511B1F /* MetalPerformanceShadersGraph.framework in Frameworks */,
 				16A10FB32829CA01007B19CC /* VideoToolbox.framework in Frameworks */,
-				165C98172702315C00466207 /* Foundation.framework in Frameworks */,
 				16F5FBFD2730B3F700CF62CB /* AudioToolbox.framework in Frameworks */,
 				1644803427F38C9D004EA1C5 /* Introspect in Frameworks */,
+				168E1D8B29C8EDEA001A8654 /* Foundation.framework in Frameworks */,
 				164A1A372735E1CE0023607A /* AVKit.framework in Frameworks */,
 				169C796027300384008F5973 /* AppKit.framework in Frameworks */,
 				16A10FAE2829CA01007B19CC /* libiconv.tbd in Frameworks */,
@@ -1103,6 +1103,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_MODULE_DEBUGGING = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
@@ -1128,8 +1129,8 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
-				DEAD_CODE_STRIPPING = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				EXCLUDED_ARCHS = "";
@@ -1147,7 +1148,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1166,6 +1167,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_MODULE_DEBUGGING = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
@@ -1191,7 +1193,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
-				DEAD_CODE_STRIPPING = YES;
+				DEAD_CODE_STRIPPING = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXCLUDED_ARCHS = "";
@@ -1203,7 +1205,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1219,12 +1221,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_MODULES = NO;
 				CODE_SIGN_ENTITLEMENTS = ontv/ontv.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
@@ -1297,12 +1299,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_MODULES = NO;
 				CODE_SIGN_ENTITLEMENTS = ontv/ontv.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
@@ -1321,7 +1323,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.1;
 				MARKETING_VERSION = 13.1;
-				"OTHER_LDFLAGS[arch=arm64]" = (
+				"OTHER_LDFLAGS[arch=*]" = (
 					"$(inherited)",
 					"-ObjC",
 					"-l\"bz2\"",
@@ -1334,7 +1336,6 @@
 					"\"AppKit\"",
 					"-framework",
 					"\"AudioToolbox\"",
-					"-framework",
 					"-framework",
 					"\"Foundation\"",
 					"-framework",

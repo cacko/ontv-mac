@@ -8,7 +8,6 @@
 import Combine
 import CoreStore
 import Defaults
-import Foundation
 import ObjectiveC
 import SwiftUI
 
