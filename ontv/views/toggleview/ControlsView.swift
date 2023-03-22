@@ -133,12 +133,12 @@ extension ToggleViews {
           obj: ContentToggle.epglist,
           hint: "Show programmes for all streams"
         )
-        ControlItemView(
-          icon: .activityepg,
-          note: .contentToggle,
-          obj: ContentToggle.activityepg,
-          hint: "Show programme for recently opened streams"
-        )
+//        ControlItemView(
+//          icon: .activityepg,
+//          note: .contentToggle,
+//          obj: ContentToggle.activityepg,
+//          hint: "Show programme for recently opened streams"
+//        )
       }
     }
   }

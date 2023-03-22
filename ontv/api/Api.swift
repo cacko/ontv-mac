@@ -411,7 +411,7 @@ enum API {
       self.updater.state(destination: .loading, value: .epg)
 
       try await EPG.fetch(url: Endpoint.EPG) { _ in
-        Task.detached {
+        Task.init {
           do {
             try await EPG.delete(EPG.clearQuery)
             Defaults[.epgUpdated] = Date()
