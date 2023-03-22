@@ -30,7 +30,7 @@ tasks:
       - agvtool next-version -all
       - echo "building app"
       - xcodebuild clean
-      - xcodebuild  ARCHS=arm64 ONLY_ACTIVE_ARCH=NO -workspace ontv.xcworkspace -scheme {{.SCHEME}} -configuration Release DSTROOT="/Users/jago/Code/{{.PROJECT}}" archive
+      - xcodebuild  ARCHS=arm64 ONLY_ACTIVE_ARCH=NO -workspace ontv.xcworkspace -scheme {{.SCHEME}} -configuration Release -archivePath . archive
 
   export:
     desc: export env
