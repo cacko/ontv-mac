@@ -25,19 +25,19 @@
       "size" : "32x32"
     },
     {
-      "filename" : "128.png",
+      "filename" : "128 1.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "128x128"
     },
     {
-      "filename" : "256 1.png",
+      "filename" : "512 3.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "128x128"
     },
     {
-      "filename" : "256.png",
+      "filename" : "512 2.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "256x256"
@@ -55,7 +55,7 @@
       "size" : "512x512"
     },
     {
-      "filename" : "senior_outside_facilitator_1-upscaled.png",
+      "filename" : "биг.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "512x512"
