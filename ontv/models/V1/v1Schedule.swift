@@ -136,12 +136,6 @@ extension V1 {
     }
 
     var startTime: Date {
-      switch self {
-      case nil:
-        return Date(timeIntervalSince1970: 0)
-      default:
-        break
-      }
       return timestamp
     }
 
@@ -152,7 +146,7 @@ extension V1 {
     }
 
     var hasExpired: Bool {
-      let expireDate = startTime.addingTimeInterval(Self.expiresIn)
+      let expireDate = timestamp.addingTimeInterval(Self.expiresIn)
       return Date() > expireDate
     }
 

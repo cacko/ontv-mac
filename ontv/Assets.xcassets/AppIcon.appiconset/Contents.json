@@ -25,19 +25,19 @@
       "size" : "32x32"
     },
     {
-      "filename" : "128 1.png",
+      "filename" : "128.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "128x128"
     },
     {
-      "filename" : "512 3.png",
+      "filename" : "256 1.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "128x128"
     },
     {
-      "filename" : "512 2.png",
+      "filename" : "256.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "256x256"
@@ -55,7 +55,7 @@
       "size" : "512x512"
     },
     {
-      "filename" : "биг.png",
+      "filename" : "output-onlinepngtools.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "512x512"

@@ -30,7 +30,7 @@ tasks:
       - agvtool next-version -all
       - echo "building app"
       - xcodebuild clean
-      - mkdir -p ./Applicationс
+      - mkdir -p ./Applications
       - xcodebuild  ARCHS=arm64 ONLY_ACTIVE_ARCH=NO -workspace ontv.xcworkspace -scheme ontv -configuration Release DSTROOT="/Users/jago/Code/ontv-mac" archive
 
   export:
