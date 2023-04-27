@@ -8,7 +8,7 @@
 import CoreStore
 import Defaults
 import Foundation
-import Preferences
+import Settings
 import SwiftUI
 
 enum WindowController {

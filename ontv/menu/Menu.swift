@@ -8,7 +8,6 @@
 import AppKit
 import Defaults
 import Foundation
-import Preferences
 import SwiftUI
 
 extension NSMenuItem {

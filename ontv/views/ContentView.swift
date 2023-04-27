@@ -7,7 +7,6 @@
 
 import AppKit
 import Defaults
-import Preferences
 import SwiftUI
 
 enum ContentToggle {

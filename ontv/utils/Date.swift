@@ -12,7 +12,7 @@ extension Date {
 
   func isSameDay(_ date2: Date) -> Bool {
     let diff = Calendar.current.dateComponents([.day], from: self, to: date2)
-    if diff.day == 0 {
+  if diff.day == 0 {
       return true
     }
     else {

@@ -41,7 +41,6 @@
 		163FEB3A272A10020098CF8B /* ListActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163FEB39272A10020098CF8B /* ListActions.swift */; };
 		163FEB3C272A10380098CF8B /* LiveBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163FEB3B272A10380098CF8B /* LiveBackground.swift */; };
 		1644803427F38C9D004EA1C5 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 1644803327F38C9D004EA1C5 /* Introspect */; };
-		1644803727F38CAE004EA1C5 /* Preferences in Frameworks */ = {isa = PBXBuildFile; productRef = 1644803627F38CAE004EA1C5 /* Preferences */; };
 		1644803D27F38CCD004EA1C5 /* CoreStore in Frameworks */ = {isa = PBXBuildFile; productRef = 1644803C27F38CCD004EA1C5 /* CoreStore */; };
 		1644804127F38D45004EA1C5 /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = 1644804027F38D45004EA1C5 /* SwiftDate */; };
 		1644804627F3908B004EA1C5 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 1644804527F3908B004EA1C5 /* Defaults */; };
@@ -151,6 +150,7 @@
 		16D983AD27238D7500E1DC5D /* AbstractPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D983AC27238D7500E1DC5D /* AbstractPlayer.swift */; };
 		16DAC40F2745E30800239B3C /* ControlSFSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DAC40E2745E30800239B3C /* ControlSFSymbol.swift */; };
 		16DAE01A274844DC0059E87C /* LivescoreTicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DAE019274844DC0059E87C /* LivescoreTicker.swift */; };
+		16DD1D3F29F9A92F00F68EF8 /* Settings in Frameworks */ = {isa = PBXBuildFile; productRef = 16DD1D3E29F9A92F00F68EF8 /* Settings */; };
 		16DE28CF2735AE3C00B63B8F /* ContentHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DE28CE2735AE3C00B63B8F /* ContentHeader.swift */; };
 		16E1B47C270931ED00D245C0 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E1B47B270931ED00D245C0 /* Date.swift */; };
 		16E9A0CC270279A200C4607E /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E9A0CB270279A200C4607E /* Api.swift */; };
@@ -334,6 +334,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16DD1D3F29F9A92F00F68EF8 /* Settings in Frameworks */,
 				1644804627F3908B004EA1C5 /* Defaults in Frameworks */,
 				16A10FAC2829CA00007B19CC /* libbz2.tbd in Frameworks */,
 				169C79622730038E008F5973 /* SwiftUI.framework in Frameworks */,
@@ -344,7 +345,6 @@
 				165C98092702312700466207 /* AVFoundation.framework in Frameworks */,
 				16A10FAD2829CA00007B19CC /* libc++.tbd in Frameworks */,
 				1644803D27F38CCD004EA1C5 /* CoreStore in Frameworks */,
-				1644803727F38CAE004EA1C5 /* Preferences in Frameworks */,
 				168A6D3A28B2C9A200DCB9D3 /* NukeUI in Frameworks */,
 				16A10FAF2829CA01007B19CC /* libxml2.tbd in Frameworks */,
 				167E55812760EFA900511B1F /* MetalPerformanceShadersGraph.framework in Frameworks */,
@@ -852,11 +852,11 @@
 			name = ontv;
 			packageProductDependencies = (
 				1644803327F38C9D004EA1C5 /* Introspect */,
-				1644803627F38CAE004EA1C5 /* Preferences */,
 				1644803C27F38CCD004EA1C5 /* CoreStore */,
 				1644804027F38D45004EA1C5 /* SwiftDate */,
 				1644804527F3908B004EA1C5 /* Defaults */,
 				168A6D3928B2C9A200DCB9D3 /* NukeUI */,
+				16DD1D3E29F9A92F00F68EF8 /* Settings */,
 			);
 			productName = craptv;
 			productReference = 165C97DA2702257900466207 /* ontv.app */;
@@ -889,11 +889,11 @@
 			mainGroup = 165C97D12702257900466207;
 			packageReferences = (
 				1644803227F38C9D004EA1C5 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
-				1644803527F38CAE004EA1C5 /* XCRemoteSwiftPackageReference "Preferences" */,
 				1644803827F38CC0004EA1C5 /* XCRemoteSwiftPackageReference "Defaults" */,
 				1644803B27F38CCD004EA1C5 /* XCRemoteSwiftPackageReference "CoreStore" */,
 				1644803F27F38D45004EA1C5 /* XCRemoteSwiftPackageReference "SwiftDate" */,
 				168A6D3828B2C9A200DCB9D3 /* XCRemoteSwiftPackageReference "NukeUI" */,
+				164EBF7529F72A50005B28F4 /* XCRemoteSwiftPackageReference "Settings" */,
 			);
 			productRefGroup = 165C97DB2702257900466207 /* Products */;
 			projectDirPath = "";
@@ -1226,7 +1226,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 28;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
@@ -1304,7 +1304,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 28;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = SPBF9BNRG3;
 				ENABLE_APP_SANDBOX = YES;
@@ -1400,14 +1400,6 @@
 				kind = branch;
 			};
 		};
-		1644803527F38CAE004EA1C5 /* XCRemoteSwiftPackageReference "Preferences" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sindresorhus/Preferences";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 		1644803827F38CC0004EA1C5 /* XCRemoteSwiftPackageReference "Defaults" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/Defaults";
@@ -1432,6 +1424,14 @@
 				kind = branch;
 			};
 		};
+		164EBF7529F72A50005B28F4 /* XCRemoteSwiftPackageReference "Settings" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/Settings.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		168A6D3828B2C9A200DCB9D3 /* XCRemoteSwiftPackageReference "NukeUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kean/NukeUI";
@@ -1447,11 +1447,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1644803227F38C9D004EA1C5 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
 			productName = Introspect;
-		};
-		1644803627F38CAE004EA1C5 /* Preferences */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1644803527F38CAE004EA1C5 /* XCRemoteSwiftPackageReference "Preferences" */;
-			productName = Preferences;
 		};
 		1644803C27F38CCD004EA1C5 /* CoreStore */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1472,6 +1467,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 168A6D3828B2C9A200DCB9D3 /* XCRemoteSwiftPackageReference "NukeUI" */;
 			productName = NukeUI;
+		};
+		16DD1D3E29F9A92F00F68EF8 /* Settings */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 164EBF7529F72A50005B28F4 /* XCRemoteSwiftPackageReference "Settings" */;
+			productName = Settings;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -7,7 +7,7 @@
 
 import CoreStore
 import Defaults
-import Preferences
+import Settings
 import SwiftUI
 
 extension PreferencesView {

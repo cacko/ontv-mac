@@ -9,7 +9,6 @@ import AppKit
 import Combine
 import CoreStore
 import Defaults
-import Preferences
 import SwiftUI
 import os
 

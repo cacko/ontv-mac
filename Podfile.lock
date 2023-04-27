@@ -1,7 +1,7 @@
 PODS:
-  - FFmpegKit (5.1):
-    - FFmpegKit/FFmpegKit (= 5.1)
-  - FFmpegKit/FFmpegKit (5.1):
+  - FFmpegKit (6.0.0):
+    - FFmpegKit/FFmpegKit (= 6.0.0)
+  - FFmpegKit/FFmpegKit (6.0.0):
     - OpenSSL
   - KSPlayer (1.0):
     - KSPlayer/Audio (= 1.0)
@@ -29,9 +29,9 @@ PODS:
   - KSPlayer/Video (1.0):
     - KSPlayer/Core
     - KSPlayer/Subtitle
-  - OpenSSL (3.0.7):
-    - OpenSSL/OpenSSL (= 3.0.7)
-  - OpenSSL/OpenSSL (3.0.7)
+  - OpenSSL (3.1.0):
+    - OpenSSL/OpenSSL (= 3.1.0)
+  - OpenSSL/OpenSSL (3.1.0)
 
 DEPENDENCIES:
   - FFmpegKit (from `https://github.com/kingslay/FFmpegKit.git`, branch `main`)
@@ -51,19 +51,19 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FFmpegKit:
-    :commit: d41408f641596f7876d4963b908168321d8218af
+    :commit: 0ad32bf8291c52a10d799e8e56022d15d1b4211f
     :git: https://github.com/kingslay/FFmpegKit.git
   KSPlayer:
-    :commit: e7166d059a4da5459913ce0e5d5897efe0fbd30c
+    :commit: 92c2a3f05d4efda5ee1cac59398eedeb0523ce34
     :git: https://github.com/kingslay/KSPlayer.git
   OpenSSL:
-    :commit: d41408f641596f7876d4963b908168321d8218af
+    :commit: 0ad32bf8291c52a10d799e8e56022d15d1b4211f
     :git: https://github.com/kingslay/FFmpegKit.git
 
 SPEC CHECKSUMS:
-  FFmpegKit: 7aaceb5b80a8f70a9bed9353bc9d96e2360dcaad
+  FFmpegKit: a5ea09868a7dfae71511d050ae266c531a912ca8
   KSPlayer: c5ddb98d9e2862a66640e82f1c9187e1e08c01fa
-  OpenSSL: 49b6db0248e35b90229f68eb19e6afb3d43ed937
+  OpenSSL: 6aa7f5e8dc7205addef1d48ad0108182782ded78
 
 PODFILE CHECKSUM: 46ae551c52676920e0b07a5ae010a77b3a1a0034
 
