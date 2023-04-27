@@ -39,8 +39,8 @@ func isSelected(_ id: Int64) -> Binding<Bool> {
     }
 
     var body: some View {
-      Preferences.Container(contentWidth: contentWidth) {
-        Preferences.Section(title: "Leagues", verticalAlignment: .top) {
+      Settings.Container(contentWidth: contentWidth) {
+        Settings.Section(title: "Leagues", verticalAlignment: .top) {
           VStack(alignment: .leading, spacing: 0) {
             HStack(alignment: .top, spacing: 0) {
               ScrollingView(

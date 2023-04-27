@@ -138,16 +138,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       PreferencesView.Leagues()
     }
 
-    return Preferences.PaneHostingController(pane: paneView)
+    return Settings.PaneHostingController(pane: paneView)
   }
 
-  private lazy var preferences: [PreferencePane] = [
+  private lazy var preferences: [SettingsPane] = [
     StreamsPreferencesView(),
     LeaguesPreferencesView(),
   ]
 
-  lazy var preferencesWindowController = PreferencesWindowController(
-    preferencePanes: preferences,
+  lazy var preferencesWindowController = SettingsWindowController(
+    panes: preferences,
     style: .segmentedControl,
     animated: true,
     hidesToolbarForSingleItem: true

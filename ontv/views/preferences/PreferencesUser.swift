@@ -62,8 +62,8 @@ extension PreferencesView {
     }
 
     var body: some View {
-      Preferences.Container(contentWidth: contentWidth) {
-        Preferences.Section(title: "Server Info") {
+      Settings.Container(contentWidth: contentWidth) {
+        Settings.Section(title: "Server Info") {
           VStack(spacing: self.padding) {
             TextField("Host", text: $server_host)
           }.disabled(api.state == .loading)
@@ -77,7 +77,7 @@ extension PreferencesView {
             TextField("Secure Port", text: $server_secure_port)
           }.disabled(api.state == .loading)
         }
-        Preferences.Section(title: "Credentials") {
+        Settings.Section(title: "Credentials") {
           VStack(spacing: self.padding) {
             TextField("Username", text: $username)
           }.disabled(api.state == .loading)
@@ -85,12 +85,12 @@ extension PreferencesView {
             SecureField("Password", text: $password)
           }.disabled(api.state == .loading)
         }
-        Preferences.Section(title: "User info") {
+        Settings.Section(title: "User info") {
           VStack(spacing: self.padding) {
             UserInfoView()
           }
         }
-        Preferences.Section(title: "Player") {
+        Settings.Section(title: "Player") {
           VStack(spacing: self.padding) {
             HStack {
               Toggle(isOn: $use_proxy) {
