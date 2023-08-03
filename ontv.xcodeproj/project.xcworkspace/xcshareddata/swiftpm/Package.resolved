@@ -64,6 +64,15 @@
       }
     },
     {
+      "identity" : "swiftui-frameless-window",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/astzweig/swiftui-frameless-window",
+      "state" : {
+        "revision" : "c71dec8ca2aa8063cd39a49b111b483869be13ff",
+        "version" : "1.0.0"
+      }
+    },
+    {
       "identity" : "swiftui-introspect",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/siteline/SwiftUI-Introspect",
