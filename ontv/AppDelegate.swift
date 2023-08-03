@@ -76,12 +76,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
   func applicationDidFinishLaunching(_ notification: Notification) {
     let app: NSApplication = notification.object as! NSApplication
-    let crapwindow = app.windows.first
+    let crapwindow = app.windows.last
     crapwindow?.resignKey()
     crapwindow?.resignMain()
     crapwindow?.resignFirstResponder()
     crapwindow?.setIsVisible(false)
-
 
     let contentViewController = MainHostingController(rootView: ContentView())
     observe()
@@ -99,17 +98,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     window.makeKeyAndOrderFront(nil)
     window.makeMain()
     window.becomeFirstResponder()
+    app.windows.last?.close()
+
     menu = Menu()
-    #if DEBUG
-      window.isFloating = false
-    #else
-      window.isFloating = Defaults[.isFloating]
-    #endif
+    window.isFloating = Defaults[.isFloating]
     Task.init {
       await API.Adapter.login()
     }
-    crapwindow?.close()
-    app.removeWindowsItem(crapwindow!)
     player.iconSize = NSSize(width: window.frame.width / 30, height: window.frame.width / 30)
   }
 

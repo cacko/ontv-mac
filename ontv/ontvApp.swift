@@ -11,6 +11,7 @@ import CoreStore
 import Defaults
 import SwiftUI
 import os
+import FramelessWindow
 
 let logger = Logger(subsystem: "net.cacko.ontv", category: "video")
 
@@ -85,7 +86,8 @@ struct ontvApp: App {
   }
 
   var body: some Scene {
-    WindowGroup {}
+    FramelessWindow(withId: "window-id") {
+    }
   }
 }
 
