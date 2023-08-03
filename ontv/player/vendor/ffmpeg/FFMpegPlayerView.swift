@@ -32,7 +32,6 @@ class FFMpegPlayerView: VideoPlayerView {
     loadingIndector.removeFromSuperview()
     seekToView.isHidden = true
     seekToView.removeFromSuperview()
-    srtControl.view.removeFromSuperview()
     replayButton.isHidden = true
     replayButton.removeFromSuperview()
   }

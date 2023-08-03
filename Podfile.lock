@@ -51,20 +51,20 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FFmpegKit:
-    :commit: 0ad32bf8291c52a10d799e8e56022d15d1b4211f
+    :commit: a08c1611338e41521a6a3204e406adeb2747a4d5
     :git: https://github.com/kingslay/FFmpegKit.git
   KSPlayer:
-    :commit: b6e172de68eee7ee2f9ec63239ce5c3e1fbee5aa
+    :commit: 0fa121927d9d48a901f6500fc3263615ad27db24
     :git: https://github.com/kingslay/KSPlayer.git
   OpenSSL:
-    :commit: 0ad32bf8291c52a10d799e8e56022d15d1b4211f
+    :commit: a08c1611338e41521a6a3204e406adeb2747a4d5
     :git: https://github.com/kingslay/FFmpegKit.git
 
 SPEC CHECKSUMS:
-  FFmpegKit: a5ea09868a7dfae71511d050ae266c531a912ca8
+  FFmpegKit: 4e1ef73eefa04503e9b463c9417683f024af82e4
   KSPlayer: c5ddb98d9e2862a66640e82f1c9187e1e08c01fa
   OpenSSL: 6aa7f5e8dc7205addef1d48ad0108182782ded78
 
-PODFILE CHECKSUM: 46ae551c52676920e0b07a5ae010a77b3a1a0034
+PODFILE CHECKSUM: fb24b2a4fa088c7b4631b33e02a93f7c65580de1
 
-COCOAPODS: 1.12.0
+COCOAPODS: 1.12.1

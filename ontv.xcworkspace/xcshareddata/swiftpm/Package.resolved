@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/JohnEstropia/CoreStore",
       "state" : {
-        "branch" : "minIOS13",
-        "revision" : "1ed819b38d61a04845ad5512a0c09636dad4d7ff"
+        "revision" : "118bb685fcf2bbcfd5702fea07ec105cdc8cb43d",
+        "version" : "9.1.0"
       }
     },
     {
@@ -41,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kean/NukeUI",
       "state" : {
-        "branch" : "main",
-        "revision" : "7338ed8ea76de18598bfafbca0cbdc74300a6b10"
+        "revision" : "db55022a8e483774ebbf3568727071477546d9ea",
+        "version" : "0.8.3"
       }
     },
     {
@@ -69,7 +69,7 @@
       "location" : "https://github.com/siteline/SwiftUI-Introspect",
       "state" : {
         "branch" : "master",
-        "revision" : "a2b9069cb3738261a2f024a16d1de809b0eb0b01"
+        "revision" : "72a509c93166540c0adf8323fd2652daade7f9f6"
       }
     }
   ],

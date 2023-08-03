@@ -81,7 +81,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     crapwindow?.resignMain()
     crapwindow?.resignFirstResponder()
     crapwindow?.setIsVisible(false)
-    app.removeWindowsItem(crapwindow!)
+
 
     let contentViewController = MainHostingController(rootView: ContentView())
     observe()
@@ -108,6 +108,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     Task.init {
       await API.Adapter.login()
     }
+    crapwindow?.close()
+    app.removeWindowsItem(crapwindow!)
     player.iconSize = NSSize(width: window.frame.width / 30, height: window.frame.width / 30)
   }
 
