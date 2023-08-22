@@ -31,6 +31,10 @@
 			</dict>
 			<key>rd-media.xyz</key>
 			<dict>
+				<key>NSAllowsArbitraryLoads</key>
+				<true/>
+				<key>NSAllowsArbitraryLoadsForMedia</key>
+				<true/>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
 				<key>NSExceptionRequiresForwardSecrecy</key>
@@ -38,7 +42,22 @@
 				<key>NSIncludesSubdomains</key>
 				<true/>
 				<key>NSRequiresCertificateTransparency</key>
+				<false/>
+			</dict>
+			<key>89.45.13.144</key>
+			<dict>
+				<key>NSAllowsArbitraryLoads</key>
 				<true/>
+				<key>NSAllowsArbitraryLoadsForMedia</key>
+				<true/>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSRequiresCertificateTransparency</key>
+				<false/>
 			</dict>
 		</dict>
 	</dict>
