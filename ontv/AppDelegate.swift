@@ -9,7 +9,7 @@ import CoreStore
 import Defaults
 import Foundation
 import Settings
-import SwiftUI
+import AppKit
 
 enum WindowController {
   case main, prefences
@@ -24,7 +24,7 @@ extension NSWindow.StyleMask {
   }
 }
 
-extension Preferences.PaneIdentifier {
+extension Settings.PaneIdentifier {
   static let streams = Self("streams")
   static let urlinput = Self("urlinput")
   static let leagues = Self("leagues")
@@ -108,8 +108,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     player.iconSize = NSSize(width: window.frame.width / 30, height: window.frame.width / 30)
   }
 
-  let StreamsPreferencesView: () -> PreferencePane = {
-    let paneView = Preferences.Pane(
+  let StreamsPreferencesView: () -> SettingsPane = {
+    let paneView = Settings.Pane(
       identifier: .streams,
       title: "Streams",
       toolbarIcon: NSImage(
@@ -120,11 +120,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       PreferencesView.User()
     }
 
-    return Preferences.PaneHostingController(pane: paneView)
+    return Settings.PaneHostingController(pane: paneView)
   }
 
-  let LeaguesPreferencesView: () -> PreferencePane = {
-    let paneView = Preferences.Pane(
+  let LeaguesPreferencesView: () -> SettingsPane = {
+    let paneView = Settings.Pane(
       identifier: .leagues,
       title: "Leagues",
       toolbarIcon: NSImage(

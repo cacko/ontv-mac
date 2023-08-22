@@ -86,7 +86,7 @@ struct ontvApp: App {
   }
 
   var body: some Scene {
-    FramelessWindow(withId: "window-id") {
+    WindowGroup() {
     }
   }
 }

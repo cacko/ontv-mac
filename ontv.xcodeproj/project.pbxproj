@@ -62,7 +62,6 @@
 		164E4EC227137DD0001849E5 /* ApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164E4EC127137DD0001849E5 /* ApiResponse.swift */; };
 		164E4EC4271388F8001849E5 /* AbstractEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164E4EC3271388F8001849E5 /* AbstractEntity.swift */; };
 		165497F727142131003B2F0A /* QuickStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165497F627142131003B2F0A /* QuickStream.swift */; };
-		1655D17C2A7B6C8400D18E36 /* FramelessWindow in Frameworks */ = {isa = PBXBuildFile; productRef = 1655D17B2A7B6C8400D18E36 /* FramelessWindow */; };
 		165C90252A67B62900FBCF4B /* CoreStore in Frameworks */ = {isa = PBXBuildFile; productRef = 165C90242A67B62900FBCF4B /* CoreStore */; };
 		165C90282A67B63800FBCF4B /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 165C90272A67B63800FBCF4B /* NukeUI */; };
 		165C97DE2702257900466207 /* ontvApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165C97DD2702257900466207 /* ontvApp.swift */; };
@@ -365,7 +364,6 @@
 				1604067C2730E7EB00719408 /* CoreAudio.framework in Frameworks */,
 				16A10FB12829CA01007B19CC /* QuartzCore.framework in Frameworks */,
 				16A10FB22829CA01007B19CC /* Security.framework in Frameworks */,
-				1655D17C2A7B6C8400D18E36 /* FramelessWindow in Frameworks */,
 				165C98092702312700466207 /* AVFoundation.framework in Frameworks */,
 				16A10FAD2829CA00007B19CC /* libc++.tbd in Frameworks */,
 				165C90282A67B63800FBCF4B /* NukeUI in Frameworks */,
@@ -885,7 +883,6 @@
 				16DD1D3E29F9A92F00F68EF8 /* Settings */,
 				165C90242A67B62900FBCF4B /* CoreStore */,
 				165C90272A67B63800FBCF4B /* NukeUI */,
-				1655D17B2A7B6C8400D18E36 /* FramelessWindow */,
 			);
 			productName = craptv;
 			productReference = 165C97DA2702257900466207 /* ontv.app */;
@@ -923,7 +920,6 @@
 				164EBF7529F72A50005B28F4 /* XCRemoteSwiftPackageReference "Settings" */,
 				165C90232A67B62900FBCF4B /* XCRemoteSwiftPackageReference "CoreStore" */,
 				165C90262A67B63800FBCF4B /* XCRemoteSwiftPackageReference "NukeUI" */,
-				1655D17A2A7B6C8400D18E36 /* XCRemoteSwiftPackageReference "swiftui-frameless-window" */,
 			);
 			productRefGroup = 165C97DB2702257900466207 /* Products */;
 			projectDirPath = "";
@@ -1472,14 +1468,6 @@
 				kind = branch;
 			};
 		};
-		1655D17A2A7B6C8400D18E36 /* XCRemoteSwiftPackageReference "swiftui-frameless-window" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/astzweig/swiftui-frameless-window";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		165C90232A67B62900FBCF4B /* XCRemoteSwiftPackageReference "CoreStore" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JohnEstropia/CoreStore";
@@ -1513,11 +1501,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1644803827F38CC0004EA1C5 /* XCRemoteSwiftPackageReference "Defaults" */;
 			productName = Defaults;
-		};
-		1655D17B2A7B6C8400D18E36 /* FramelessWindow */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1655D17A2A7B6C8400D18E36 /* XCRemoteSwiftPackageReference "swiftui-frameless-window" */;
-			productName = FramelessWindow;
 		};
 		165C90242A67B62900FBCF4B /* CoreStore */ = {
 			isa = XCSwiftPackageProductDependency;

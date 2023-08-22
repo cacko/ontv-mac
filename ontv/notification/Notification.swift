@@ -156,9 +156,6 @@ extension AppDelegate {
     
     center.addObserver(forName: .playerLoaded, object: nil, queue: mainQueue) { _ in
       self.playerLoaded = true
-      do {
-        sleep(5)
-      }
       if self.apiLoaded {
         NotificationCenter.default.post(name: .autoPlayRecent, object: nil)
       }
