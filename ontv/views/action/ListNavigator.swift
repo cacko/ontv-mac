@@ -64,8 +64,8 @@ struct ListHighlightAction: ViewModifier {
     content
       .background(background)
       .onAppear(perform: { onAppear() })
-      .onChange(of: selectedId, perform: { _ in onHighlight() })
-      .onChange(of: player.stream.id, perform: { playId in onPlay(playId) })
+      .onChange(of: selectedId) { _, _ in onHighlight() }
+      .onChange(of: player.stream.id) { _, playId in onPlay(playId) }
   }
 }
 

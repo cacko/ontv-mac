@@ -34,10 +34,6 @@ struct LoadingView: View {
             }.padding()
                 .background(Theme.Color.Background.header)
             Spacer()
-        }.onChange(
-            of: player.state,
-            perform: { st in
-                onState(st)
-            })
+        }.onChange(of: player.state){ _, st in onState(st)}
     }
 }

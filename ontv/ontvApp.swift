@@ -11,7 +11,6 @@ import CoreStore
 import Defaults
 import SwiftUI
 import os
-import FramelessWindow
 
 let logger = Logger(subsystem: "net.cacko.ontv", category: "video")
 

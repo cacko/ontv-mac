@@ -82,10 +82,7 @@ extension ToggleViews {
       }.onAppear(perform: {
         epgStorage.search = player.stream!.epg_channel_id
       })
-      .onChange(
-        of: player.stream.epg_channel_id,
-        perform: { newid in epgStorage.search = newid }
-      )
+      .onChange(of: player.stream.epg_channel_id) { _, newid in epgStorage.search = newid }
     }
   }
 }

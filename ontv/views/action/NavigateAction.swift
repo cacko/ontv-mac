@@ -26,11 +26,9 @@ struct NavigateAction: ViewModifier {
 
   func body(content: Content) -> some View {
     content.onChange(
-      of: selectedId,
-      perform: { id in
+      of: selectedId){ _, id in
         onSelect(id)
       }
-    )
   }
 }
 

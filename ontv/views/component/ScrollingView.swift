@@ -108,8 +108,7 @@ struct ScrollingView<Content: View>: View {
               .onEnded { _ in }
           )
         ).onChange(
-          of: dragPosition,
-          perform: { (drag) in
+          of: dragPosition) { (_, drag) in
             switch direction {
             case .vertical:
               return onVerticalScroll(drag, outside)
@@ -119,7 +118,6 @@ struct ScrollingView<Content: View>: View {
               break
             }
           }
-        )
       }
     }
   }

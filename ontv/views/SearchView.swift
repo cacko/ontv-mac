@@ -141,12 +141,11 @@ struct EPGResult: View {
       .hoverAction()
       .background(background)
       .onChange(
-        of: epgSearch.selectedId,
-        perform: { selectedId in
+        of: epgSearch.selectedId) { _, selectedId in
           self.background =
             selectedId == epg.id ? Theme.Color.Hover.listItem.on : Theme.Color.Hover.listItem.off
         }
-      )
+      
     }
   }
 }
