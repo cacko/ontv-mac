@@ -30,7 +30,7 @@ class Player: NSObject, PlayerProtocol, ObservableObject {
   @Published var hint: String = ""
   @Published var controlsState: PlayerControlsState = .hidden
   @Published var volumeStage: Int = 1
-  @Published var iconSize: NSSize = NSSize(width: 15.0, height: 15.0)
+  @Published var iconSize: NSSize = NSSize(width: 14.0, height: 14.0)
   @Published var size: NSSize = NSSize(width: 12.0, height: 9.0) {
     didSet {
       guard self.size.width * self.size.height > 0 else {

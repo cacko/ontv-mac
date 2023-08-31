@@ -12,7 +12,7 @@ extension Theme.Font {
 
   enum Size {
     static let base =
-      (NSScreen.main?.frame.height ?? 1920) / 50
+      (NSScreen.main?.frame.height ?? 1920) / 80
     static let large = Size.base + Size.base * 0.05
     static let larger = Size.large + Size.large * 0.05
     static let small = Size.base - Size.base * 0.05
