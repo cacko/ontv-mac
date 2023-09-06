@@ -49,7 +49,7 @@ extension ToggleViews {
           HStack(alignment: .top) {
             StreamTitleView.TitleView(stream.icon!) {
               Text(stream.title!)
-                .font(Theme.Font.programme)
+                .font(Theme.Font.result)
                 .lineLimit(1)
                 .truncationMode(.tail)
                 .multilineTextAlignment(.leading)
