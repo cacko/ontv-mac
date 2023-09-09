@@ -12,7 +12,7 @@ extension Theme.Size {
 
     enum EPG {
         static let row = NSSize(
-            width: NSFont.systemFontSize * 30, height: NSFont.systemFontSize * 4)
+            width: NSFont.systemFontSize * 30, height: NSFont.systemFontSize * 5)
     }
 
 }
