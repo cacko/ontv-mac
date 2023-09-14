@@ -335,18 +335,12 @@ enum API {
         return
       }
       updater.state(destination: .schedule, value: .loading)
+      try await Schedule.delete(Schedule.clearQuery)
       try await Schedule.fetch(url: Endpoint.Schedule) { _ in
         Task.init {
-          do {
-            try await Schedule.delete(Schedule.clearQuery)
             Defaults[.scheduleUpdated] = Date()
             self.updater.done(task: .schedule)
             self.updater.notify(name: .updateschedule)
-          }
-          catch let error {
-            self.updater.done(task: .schedule)
-            logger.error("\(error.localizedDescription)")
-          }
         }
       }
     }
