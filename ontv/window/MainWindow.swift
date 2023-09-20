@@ -58,8 +58,12 @@ class MainWindowController: NSWindowController, NSWindowDelegate {
     super.mouseMoved(with: event)
 
     NSCursor.unhide()
-
+        
     guard self.player.controlsState != .always else {
+      return
+    }
+    
+    guard event.locationInWindow.y < 200 else {
       return
     }
 
