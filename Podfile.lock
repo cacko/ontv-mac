@@ -1,7 +1,7 @@
 PODS:
-  - FFmpegKit (6.0.0):
-    - FFmpegKit/FFmpegKit (= 6.0.0)
-  - FFmpegKit/FFmpegKit (6.0.0):
+  - FFmpegKit (6.0.0.1):
+    - FFmpegKit/FFmpegKit (= 6.0.0.1)
+  - FFmpegKit/FFmpegKit (6.0.0.1):
     - OpenSSL
   - KSPlayer (1.0):
     - KSPlayer/Audio (= 1.0)
@@ -34,37 +34,37 @@ PODS:
   - OpenSSL/OpenSSL (3.1.0)
 
 DEPENDENCIES:
-  - FFmpegKit (from `https://github.com/kingslay/FFmpegKit.git`, branch `main`)
-  - KSPlayer (from `https://github.com/kingslay/KSPlayer.git`, branch `develop`)
-  - OpenSSL (from `https://github.com/kingslay/FFmpegKit.git`, branch `main`)
+  - FFmpegKit (from `https://github.com/cacko/FFmpegKit.git`, branch `nozbvv`)
+  - KSPlayer (from `https://github.com/cacko/KSPlayer.git`, branch `develop`)
+  - OpenSSL (from `https://github.com/cacko/FFmpegKit.git`, branch `nozbvv`)
 
 EXTERNAL SOURCES:
   FFmpegKit:
-    :branch: main
-    :git: https://github.com/kingslay/FFmpegKit.git
+    :branch: nozbvv
+    :git: https://github.com/cacko/FFmpegKit.git
   KSPlayer:
     :branch: develop
-    :git: https://github.com/kingslay/KSPlayer.git
+    :git: https://github.com/cacko/KSPlayer.git
   OpenSSL:
-    :branch: main
-    :git: https://github.com/kingslay/FFmpegKit.git
+    :branch: nozbvv
+    :git: https://github.com/cacko/FFmpegKit.git
 
 CHECKOUT OPTIONS:
   FFmpegKit:
-    :commit: 0340040c9ee9c3a7efceff73ec92476767ef9802
-    :git: https://github.com/kingslay/FFmpegKit.git
+    :commit: cd243f8d873a9588d4bd99d29efce7a2579ba166
+    :git: https://github.com/cacko/FFmpegKit.git
   KSPlayer:
-    :commit: b4c05dca35d4f0eca477664ba0f53a1b375fc73e
-    :git: https://github.com/kingslay/KSPlayer.git
+    :commit: 8d34f477a1dfd3751f4b07021bf9d4175e7eaf4d
+    :git: https://github.com/cacko/KSPlayer.git
   OpenSSL:
-    :commit: 0340040c9ee9c3a7efceff73ec92476767ef9802
-    :git: https://github.com/kingslay/FFmpegKit.git
+    :commit: cd243f8d873a9588d4bd99d29efce7a2579ba166
+    :git: https://github.com/cacko/FFmpegKit.git
 
 SPEC CHECKSUMS:
-  FFmpegKit: 4e1ef73eefa04503e9b463c9417683f024af82e4
-  KSPlayer: c5ddb98d9e2862a66640e82f1c9187e1e08c01fa
+  FFmpegKit: 27e7d2d6087dd5a759efcf4c73bd39e709499922
+  KSPlayer: 538da5153563745529d1d82bd0d41ba45a1226aa
   OpenSSL: 6aa7f5e8dc7205addef1d48ad0108182782ded78
 
-PODFILE CHECKSUM: b4f8d077d442095f7ffefa208aad4f06469fa8ba
+PODFILE CHECKSUM: 85fff4fbb31833db2b7d44fdd4d8160f59f33df4
 
-COCOAPODS: 1.13.0
+COCOAPODS: 1.14.2
