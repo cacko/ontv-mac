@@ -89,8 +89,7 @@ class PlayerFFMpeg: AbstractPlayer, PlayerControllerDelegate, MediaPlayerDelegat
     }
     set {
       let newVolume = max(0, min(newValue / 100, 2))
-      let volumeGain = 6 * newVolume
-//      self.playerView?.playerLayer?.player.playbackVolumeGain = volumeGain
+      self.playerView?.playerLayer?.player.playbackVolume = newVolume
     }
   }
 
@@ -131,7 +130,7 @@ class PlayerFFMpeg: AbstractPlayer, PlayerControllerDelegate, MediaPlayerDelegat
     let header = ["User-Agent": "ontv/\(Bundle.main.buildVersionNumber)"]
     let options = KSOptions()
     options.avOptions = ["AVURLAssetHTTPHeaderFieldsKey": header]
-    options.subtitleDisable = true
+//    options.subtitleDisable = true
     return options
   }
 

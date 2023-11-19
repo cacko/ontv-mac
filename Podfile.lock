@@ -1,70 +1,70 @@
 PODS:
-  - FFmpegKit (6.0.0.1):
-    - FFmpegKit/FFmpegKit (= 6.0.0.1)
-  - FFmpegKit/FFmpegKit (6.0.0.1):
+  - FFmpegKit (6.1.0):
+    - FFmpegKit/FFmpegKit (= 6.1.0)
+  - FFmpegKit/FFmpegKit (6.1.0):
     - OpenSSL
-  - KSPlayer (1.0):
-    - KSPlayer/Audio (= 1.0)
-    - KSPlayer/AVPlayer (= 1.0)
-    - KSPlayer/Core (= 1.0)
-    - KSPlayer/MEPlayer (= 1.0)
-    - KSPlayer/Metal (= 1.0)
-    - KSPlayer/Subtitle (= 1.0)
-    - KSPlayer/SwiftUI (= 1.0)
-    - KSPlayer/Video (= 1.0)
-  - KSPlayer/Audio (1.0):
+  - KSPlayer (1.1.0):
+    - KSPlayer/Audio (= 1.1.0)
+    - KSPlayer/AVPlayer (= 1.1.0)
+    - KSPlayer/Core (= 1.1.0)
+    - KSPlayer/MEPlayer (= 1.1.0)
+    - KSPlayer/Metal (= 1.1.0)
+    - KSPlayer/Subtitle (= 1.1.0)
+    - KSPlayer/SwiftUI (= 1.1.0)
+    - KSPlayer/Video (= 1.1.0)
+  - KSPlayer/Audio (1.1.0):
     - KSPlayer/Core
-  - KSPlayer/AVPlayer (1.0)
-  - KSPlayer/Core (1.0):
+  - KSPlayer/AVPlayer (1.1.0)
+  - KSPlayer/Core (1.1.0):
     - KSPlayer/AVPlayer
-  - KSPlayer/MEPlayer (1.0):
+  - KSPlayer/MEPlayer (1.1.0):
     - FFmpegKit
     - KSPlayer/AVPlayer
     - KSPlayer/Metal
     - KSPlayer/Subtitle
-  - KSPlayer/Metal (1.0)
-  - KSPlayer/Subtitle (1.0)
-  - KSPlayer/SwiftUI (1.0):
+  - KSPlayer/Metal (1.1.0)
+  - KSPlayer/Subtitle (1.1.0)
+  - KSPlayer/SwiftUI (1.1.0):
     - KSPlayer/AVPlayer
-  - KSPlayer/Video (1.0):
+  - KSPlayer/Video (1.1.0):
     - KSPlayer/Core
     - KSPlayer/Subtitle
-  - OpenSSL (3.1.0):
-    - OpenSSL/OpenSSL (= 3.1.0)
-  - OpenSSL/OpenSSL (3.1.0)
+  - OpenSSL (3.1.4):
+    - OpenSSL/OpenSSL (= 3.1.4)
+  - OpenSSL/OpenSSL (3.1.4)
 
 DEPENDENCIES:
-  - FFmpegKit (from `https://github.com/cacko/FFmpegKit.git`, branch `nozbvv`)
-  - KSPlayer (from `https://github.com/cacko/KSPlayer.git`, branch `develop`)
-  - OpenSSL (from `https://github.com/cacko/FFmpegKit.git`, branch `nozbvv`)
+  - FFmpegKit (from `https://github.com/kingslay/FFmpegKit.git`, branch `main`)
+  - KSPlayer (from `https://github.com/kingslay/KSPlayer.git`, branch `develop`)
+  - OpenSSL (from `https://github.com/kingslay/FFmpegKit.git`, branch `main`)
 
 EXTERNAL SOURCES:
   FFmpegKit:
-    :branch: nozbvv
-    :git: https://github.com/cacko/FFmpegKit.git
+    :branch: main
+    :git: https://github.com/kingslay/FFmpegKit.git
   KSPlayer:
     :branch: develop
-    :git: https://github.com/cacko/KSPlayer.git
+    :git: https://github.com/kingslay/KSPlayer.git
   OpenSSL:
-    :branch: nozbvv
-    :git: https://github.com/cacko/FFmpegKit.git
+    :branch: main
+    :git: https://github.com/kingslay/FFmpegKit.git
 
 CHECKOUT OPTIONS:
   FFmpegKit:
-    :commit: cd243f8d873a9588d4bd99d29efce7a2579ba166
-    :git: https://github.com/cacko/FFmpegKit.git
+    :commit: 648c6a90ab1c471df90d282464c7be2488354c1f
+    :git: https://github.com/kingslay/FFmpegKit.git
   KSPlayer:
-    :commit: 8d34f477a1dfd3751f4b07021bf9d4175e7eaf4d
-    :git: https://github.com/cacko/KSPlayer.git
+    :commit: f1e03d678aeddab34bdba865d503c28bb89ef80a
+    :git: https://github.com/kingslay/KSPlayer.git
   OpenSSL:
-    :commit: cd243f8d873a9588d4bd99d29efce7a2579ba166
-    :git: https://github.com/cacko/FFmpegKit.git
+    :commit: 648c6a90ab1c471df90d282464c7be2488354c1f
+    :git: https://github.com/kingslay/FFmpegKit.git
 
 SPEC CHECKSUMS:
-  FFmpegKit: 27e7d2d6087dd5a759efcf4c73bd39e709499922
-  KSPlayer: 538da5153563745529d1d82bd0d41ba45a1226aa
-  OpenSSL: 6aa7f5e8dc7205addef1d48ad0108182782ded78
+  FFmpegKit: 6926fbc00e24a1cdf589a234606a5847933cfd1f
+  KSPlayer: 28a8e7cf7eb1d16defe05233a907d42be6fa07d6
+  OpenSSL: a9672a56cb60049926be29cab99cb781ad4cacdd
 
-PODFILE CHECKSUM: 85fff4fbb31833db2b7d44fdd4d8160f59f33df4
+PODFILE CHECKSUM: e30563b19869f0154e09b6c20796e9ded65a167c
 
 COCOAPODS: 1.14.2
