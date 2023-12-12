@@ -13,6 +13,10 @@ import KSPlayer
 import SwiftUI
 
 class PlayerFFMpeg: AbstractPlayer, PlayerControllerDelegate, MediaPlayerDelegate {
+  func playerController(seek: TimeInterval) {
+    debugPrint("")
+  }
+  
   func readyToPlay(player: some KSPlayer.MediaPlayerProtocol) {
     debugPrint("")
 

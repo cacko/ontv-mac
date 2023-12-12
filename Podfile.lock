@@ -2,6 +2,7 @@ PODS:
   - FFmpegKit (6.1.0):
     - FFmpegKit/FFmpegKit (= 6.1.0)
   - FFmpegKit/FFmpegKit (6.1.0):
+    - Libass
     - OpenSSL
   - KSPlayer (1.1.0):
     - KSPlayer/Audio (= 1.1.0)
@@ -29,6 +30,9 @@ PODS:
   - KSPlayer/Video (1.1.0):
     - KSPlayer/Core
     - KSPlayer/Subtitle
+  - Libass (0.17.1):
+    - Libass/Libass (= 0.17.1)
+  - Libass/Libass (0.17.1)
   - OpenSSL (3.1.4):
     - OpenSSL/OpenSSL (= 3.1.4)
   - OpenSSL/OpenSSL (3.1.4)
@@ -36,6 +40,7 @@ PODS:
 DEPENDENCIES:
   - FFmpegKit (from `https://github.com/kingslay/FFmpegKit.git`, branch `main`)
   - KSPlayer (from `https://github.com/kingslay/KSPlayer.git`, branch `develop`)
+  - Libass (from `https://github.com/kingslay/FFmpegKit.git`, branch `main`)
   - OpenSSL (from `https://github.com/kingslay/FFmpegKit.git`, branch `main`)
 
 EXTERNAL SOURCES:
@@ -45,26 +50,33 @@ EXTERNAL SOURCES:
   KSPlayer:
     :branch: develop
     :git: https://github.com/kingslay/KSPlayer.git
+  Libass:
+    :branch: main
+    :git: https://github.com/kingslay/FFmpegKit.git
   OpenSSL:
     :branch: main
     :git: https://github.com/kingslay/FFmpegKit.git
 
 CHECKOUT OPTIONS:
   FFmpegKit:
-    :commit: 648c6a90ab1c471df90d282464c7be2488354c1f
+    :commit: 7340b3242320d69b13f89e5cf7e771d7369138a6
     :git: https://github.com/kingslay/FFmpegKit.git
   KSPlayer:
-    :commit: f1e03d678aeddab34bdba865d503c28bb89ef80a
+    :commit: 3c892b7b4c1daaae2d2e0a010dec8f65c1017645
     :git: https://github.com/kingslay/KSPlayer.git
+  Libass:
+    :commit: 7340b3242320d69b13f89e5cf7e771d7369138a6
+    :git: https://github.com/kingslay/FFmpegKit.git
   OpenSSL:
-    :commit: 648c6a90ab1c471df90d282464c7be2488354c1f
+    :commit: 7340b3242320d69b13f89e5cf7e771d7369138a6
     :git: https://github.com/kingslay/FFmpegKit.git
 
 SPEC CHECKSUMS:
-  FFmpegKit: 6926fbc00e24a1cdf589a234606a5847933cfd1f
+  FFmpegKit: 93c7ddb1eee5ad42286b87cc688461823b6ecfd4
   KSPlayer: 28a8e7cf7eb1d16defe05233a907d42be6fa07d6
-  OpenSSL: a9672a56cb60049926be29cab99cb781ad4cacdd
+  Libass: e88af2324e1217e3a4c8bdc675f6f23a9dfc7677
+  OpenSSL: 9a1c748444fb6c045b146e5a55173645e13171a3
 
-PODFILE CHECKSUM: e30563b19869f0154e09b6c20796e9ded65a167c
+PODFILE CHECKSUM: a26774fb9d2a10d99a99fd35ea8bf3500b0d1e78
 
-COCOAPODS: 1.14.2
+COCOAPODS: 1.14.3
