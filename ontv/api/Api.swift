@@ -489,8 +489,12 @@ enum API {
 
     func fetchData(
       url: URL
-    ) async throws -> [[String: Any]] {
-      let (json, response) = try await URLSession.shared.data(from: url)
+    ) async throws -> [[String: Any]] {      
+      let config = URLSessionConfiguration.default
+      config.timeoutIntervalForRequest = TimeInterval(5)
+      config.timeoutIntervalForResource = TimeInterval(5)
+      let urlSession = URLSession(configuration: config)
+      let (json, response) = try await urlSession.data(from: url)
       if response.mimeType != "application/json" {
         throw API.Exception.notJson
       }

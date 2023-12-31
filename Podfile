@@ -7,6 +7,7 @@ target 'ontv' do
   pod 'KSPlayer',:git => 'https://github.com/kingslay/KSPlayer.git', :branch => 'develop'
   pod 'FFmpegKit',:git => 'https://github.com/kingslay/FFmpegKit.git', :branch => 'main'
   pod 'OpenSSL',:git => 'https://github.com/kingslay/FFmpegKit.git', :branch => 'main'
+  pod 'DisplayCriteria',:git => 'https://github.com/kingslay/KSPlayer.git', :branch => 'develop'
   pod 'Libass',:git => 'https://github.com/kingslay/FFmpegKit.git', :branch => 'main'
   # Pods for ontv
 
