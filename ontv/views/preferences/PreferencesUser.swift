@@ -43,9 +43,7 @@ extension PreferencesView {
 
     @ObservedObject var api = API.Adapter
     @Default(.server_host) var server_host
-    @Default(.server_port) var server_port
     @Default(.server_protocol) var server_protocol
-    @Default(.server_secure_port) var server_secure_port
 
     @Default(.username) var username
     @Default(.password) var password
@@ -68,13 +66,7 @@ extension PreferencesView {
             TextField("Host", text: $server_host)
           }.disabled(api.state == .loading)
           VStack(spacing: self.padding) {
-            TextField("Port", text: $server_port)
-          }.disabled(api.state == .loading)
-          VStack(spacing: self.padding) {
             TextField("Protocol", text: $server_protocol)
-          }.disabled(api.state == .loading)
-          VStack(spacing: self.padding) {
-            TextField("Secure Port", text: $server_secure_port)
           }.disabled(api.state == .loading)
         }
         Settings.Section(title: "Credentials") {

@@ -16,9 +16,9 @@ let logger = Logger(subsystem: "net.cacko.ontv", category: "video")
 
 extension Defaults.Keys {
   static let server_host = Key<String>("server_host", default: "rd-media.xyz")
-  static let server_port = Key<String>("server_port", default: "8080")
-  static let server_protocol = Key<String>("server_protocol", default: "http")
-  static let server_secure_port = Key<String>("server_secure_port", default: "25463")
+  static let server_port = Key<String>("server_port", default: "80")
+  static let server_protocol = Key<String>("server_protocol", default: "https")
+  static let server_secure_port = Key<String>("server_secure_port", default: "443")
   static let username = Key<String>("username", default: "")
   static let password = Key<String>("password", default: "")
   static let streamsUpdated = Key<Date>("streamsUpdated", default: Date(timeIntervalSince1970: 0))

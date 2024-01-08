@@ -30,7 +30,7 @@ extension API {
   enum Endpoint {
 
     static var endpoint: String {
-      "\(API.Adapter.server_info.server_protocol)://\(API.Adapter.server_info.url):\(API.Adapter.server_info.port)"
+      "\(API.Adapter.server_info.server_protocol)://\(API.Adapter.server_info.url)"
     }
 
     static var BaseAction: String {
