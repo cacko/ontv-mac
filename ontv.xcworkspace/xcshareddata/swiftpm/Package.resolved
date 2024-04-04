@@ -1,12 +1,13 @@
 {
+  "originHash" : "173f5b4bb9570109285e2f986dc25d3a0be0956b5c223bef4cb79ee0cf5d7950",
   "pins" : [
     {
       "identity" : "corestore",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/JohnEstropia/CoreStore",
       "state" : {
-        "revision" : "4b6d9a54e75d2c9fd2c3c768f7d4aa3175c09133",
-        "version" : "9.2.0"
+        "revision" : "118bb685fcf2bbcfd5702fea07ec105cdc8cb43d",
+        "version" : "9.1.0"
       }
     },
     {
@@ -51,7 +52,7 @@
       "location" : "https://github.com/sindresorhus/Settings.git",
       "state" : {
         "branch" : "main",
-        "revision" : "4f794b48e1882634f6393c7bb45690986593ab18"
+        "revision" : "3e1816c7620775b6b54fa26de5914f3d476c9a0c"
       }
     },
     {
@@ -69,9 +70,9 @@
       "location" : "https://github.com/siteline/SwiftUI-Introspect",
       "state" : {
         "branch" : "master",
-        "revision" : "1136c9a348329887844de9353107c787becc675b"
+        "revision" : "72a509c93166540c0adf8323fd2652daade7f9f6"
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }
