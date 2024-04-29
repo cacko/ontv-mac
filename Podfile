@@ -1,4 +1,4 @@
-platform :macos, '14.2'
+platform :macos, '14.5'
 
 target 'ontv' do
   # Comment the next line if you don't want to use dynamic frameworks
