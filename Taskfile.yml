@@ -50,7 +50,7 @@ tasks:
     cmds:
       - echo "copy app to /Applications"
       - rm -rf /Applications/onTV.app || true
-      - mv Applications/onTV.app /Applications 
+      - mv -f Applications/onTV.app /Applications 
 
   publish:
     desc: publish dmg file as package
