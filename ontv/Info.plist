@@ -4,6 +4,10 @@
 <dict>
 	<key>ATSApplicationFontsPath</key>
 	<string>.</string>
+	<key>INIntentsSupported</key>
+	<array>
+		<string>Intent</string>
+	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -14,6 +18,21 @@
 		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>89.45.13.144</key>
+			<dict>
+				<key>NSAllowsArbitraryLoads</key>
+				<true/>
+				<key>NSAllowsArbitraryLoadsForMedia</key>
+				<true/>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSRequiresCertificateTransparency</key>
+				<false/>
+			</dict>
 			<key>maria-db.co</key>
 			<dict>
 				<key>NSAllowsArbitraryLoads</key>
@@ -30,21 +49,6 @@
 				<false/>
 			</dict>
 			<key>rd-media.xyz</key>
-			<dict>
-				<key>NSAllowsArbitraryLoads</key>
-				<true/>
-				<key>NSAllowsArbitraryLoadsForMedia</key>
-				<true/>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-				<key>NSExceptionRequiresForwardSecrecy</key>
-				<false/>
-				<key>NSIncludesSubdomains</key>
-				<true/>
-				<key>NSRequiresCertificateTransparency</key>
-				<false/>
-			</dict>
-			<key>89.45.13.144</key>
 			<dict>
 				<key>NSAllowsArbitraryLoads</key>
 				<true/>

@@ -78,11 +78,11 @@ extension AppDelegate {
       }
     }
 
-    center.addObserver(forName: .toggleAudio, object: nil, queue: mainQueue) { _ in
-      DispatchQueue.main.async {
-        self.player.isMuted.toggle()
-      }
-    }
+//    center.addObserver(forName: .toggleAudio, object: nil, queue: mainQueue) { _ in
+//      DispatchQueue.main.async {
+//        self.player.isMuted.toggle()
+//      }
+//    }
 
     center.addObserver(forName: .toggleFullscreen, object: nil, queue: mainQueue) { _ in
 

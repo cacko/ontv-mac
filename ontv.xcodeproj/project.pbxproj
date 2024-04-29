@@ -141,10 +141,6 @@
 		16BFCE6E272F818C006B3EC5 /* FFMpeg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BFCE6D272F818C006B3EC5 /* FFMpeg.swift */; };
 		16BFDA5F272F357C005E7D80 /* Fraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BFDA5E272F357C005E7D80 /* Fraction.swift */; };
 		16C5B982270293DC0072F2B9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16C5B981270293DC0072F2B9 /* CoreData.framework */; platformFilter = maccatalyst; };
-		16CBA1452A7B620900FF9199 /* Libcrypto.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16CBA1442A7B620900FF9199 /* Libcrypto.xcframework */; };
-		16CBA1462A7B620900FF9199 /* Libcrypto.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 16CBA1442A7B620900FF9199 /* Libcrypto.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		16CBA1492A7B621F00FF9199 /* Libssl.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16CBA1482A7B621F00FF9199 /* Libssl.xcframework */; };
-		16CBA14A2A7B621F00FF9199 /* Libssl.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 16CBA1482A7B621F00FF9199 /* Libssl.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		16CFBB302706D64800B136FC /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CFBB2F2706D64800B136FC /* TitleView.swift */; };
 		16CFBB322706D65100B136FC /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CFBB312706D65100B136FC /* LoadingView.swift */; };
 		16CFBB342706D66000B136FC /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CFBB332706D66000B136FC /* ErrorView.swift */; };
@@ -163,26 +159,28 @@
 		16F54B78274742D2004BC87B /* MajorMonoDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16F54B77274742D2004BC87B /* MajorMonoDisplay-Regular.ttf */; };
 		16F5FBF52730239B00CF62CB /* FFMpegStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F5FBF42730239B00CF62CB /* FFMpegStateDelegate.swift */; };
 		16F5FBF9273023D700CF62CB /* FFMpegPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F5FBF8273023D700CF62CB /* FFMpegPlayerView.swift */; };
-		16F5FBFA27304A6A00CF62CB /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165C98102702314900466207 /* CoreMedia.framework */; platformFilter = maccatalyst; };
+		16F5FBFA27304A6A00CF62CB /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165C98102702314900466207 /* CoreMedia.framework */; };
 		16F5FBFC2730A0C100CF62CB /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16F5FBFB2730A0C100CF62CB /* MetalKit.framework */; platformFilter = maccatalyst; };
-		16F5FBFD2730B3F700CF62CB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165C98072702311E00466207 /* AudioToolbox.framework */; platformFilter = maccatalyst; };
-		C76D8498FBB7F2522FEE2232 /* Pods_ontv.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 347B393565F2FDF56EB0B38A /* Pods_ontv.framework */; };
+		16F5FBFD2730B3F700CF62CB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165C98072702311E00466207 /* AudioToolbox.framework */; };
+		7C27BE51F4374AA983E5E11A /* Pods_ontv.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60292EA57E6492BE6FD225B1 /* Pods_ontv.framework */; };
+		EFEF1F492BDF45EC0032D70B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165C98072702311E00466207 /* AudioToolbox.framework */; };
+		EFEF1F4A2BDF46AE0032D70B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165C97EC2702260800466207 /* AVFoundation.framework */; };
+		EFEF1F4B2BDF46AE0032D70B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 166A045D272EDC1500761A55 /* Cocoa.framework */; };
+		EFEF1F4C2BDF46AE0032D70B /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1604067B2730E7EB00719408 /* CoreAudio.framework */; };
+		EFEF1F4D2BDF46AE0032D70B /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165C980C2702313700466207 /* CoreFoundation.framework */; };
+		EFEF1F4E2BDF46AE0032D70B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165C980E2702313C00466207 /* CoreGraphics.framework */; };
+		EFEF1F4F2BDF46AE0032D70B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165C98102702314900466207 /* CoreMedia.framework */; };
+		EFEF1F502BDF46AE0032D70B /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165C98142702315800466207 /* CoreVideo.framework */; };
+		EFEF1F512BDF46AE0032D70B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165C98162702315C00466207 /* Foundation.framework */; };
+		EFEF1F522BDF46AE0032D70B /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 167E55802760EFA900511B1F /* Metal.framework */; };
+		EFEF1F532BDF46AE0032D70B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165C981E2702319400466207 /* QuartzCore.framework */; };
+		EFEF1F542BDF46AE0032D70B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165C9820270231A000466207 /* Security.framework */; };
+		EFEF1F552BDF46AE0032D70B /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165C9822270231A500466207 /* VideoToolbox.framework */; };
+		EFEF1F5A2BDF46AE0032D70B /* AVFAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFEF1F562BDF46AE0032D70B /* AVFAudio.framework */; };
+		EFEF1F5B2BDF46AE0032D70B /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFEF1F572BDF46AE0032D70B /* IOKit.framework */; };
+		EFEF1F5C2BDF46AE0032D70B /* IOSurface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFEF1F582BDF46AE0032D70B /* IOSurface.framework */; };
+		EFEF1F5D2BDF46AE0032D70B /* DiskArbitration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFEF1F592BDF46AE0032D70B /* DiskArbitration.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		16CBA1472A7B620900FF9199 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				16CBA14A2A7B621F00FF9199 /* Libssl.xcframework in Embed Frameworks */,
-				16CBA1462A7B620900FF9199 /* Libcrypto.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		16016FEA274AF70800712C55 /* PreferencesUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesUser.swift; sourceTree = "<group>"; };
@@ -325,8 +323,6 @@
 		16BFCE6D272F818C006B3EC5 /* FFMpeg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFMpeg.swift; sourceTree = "<group>"; };
 		16BFDA5E272F357C005E7D80 /* Fraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fraction.swift; sourceTree = "<group>"; };
 		16C5B981270293DC0072F2B9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		16CBA1442A7B620900FF9199 /* Libcrypto.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Libcrypto.xcframework; path = Pods/OpenSSL/Sources/Libcrypto.xcframework; sourceTree = "<group>"; };
-		16CBA1482A7B621F00FF9199 /* Libssl.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Libssl.xcframework; path = Pods/OpenSSL/Sources/Libssl.xcframework; sourceTree = "<group>"; };
 		16CFBB2F2706D64800B136FC /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		16CFBB312706D65100B136FC /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		16CFBB332706D66000B136FC /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
@@ -345,9 +341,13 @@
 		16F5FBF42730239B00CF62CB /* FFMpegStateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFMpegStateDelegate.swift; sourceTree = "<group>"; };
 		16F5FBF8273023D700CF62CB /* FFMpegPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFMpegPlayerView.swift; sourceTree = "<group>"; };
 		16F5FBFB2730A0C100CF62CB /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
-		347B393565F2FDF56EB0B38A /* Pods_ontv.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ontv.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		66F64BA8953D33C095E2B806 /* Pods-ontv.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ontv.debug.xcconfig"; path = "Target Support Files/Pods-ontv/Pods-ontv.debug.xcconfig"; sourceTree = "<group>"; };
-		FBA0C5F4EB7829F159952E73 /* Pods-ontv.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ontv.release.xcconfig"; path = "Target Support Files/Pods-ontv/Pods-ontv.release.xcconfig"; sourceTree = "<group>"; };
+		60292EA57E6492BE6FD225B1 /* Pods_ontv.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ontv.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBDCE188D6C382A68338166D /* Pods-ontv.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ontv.release.xcconfig"; path = "Target Support Files/Pods-ontv/Pods-ontv.release.xcconfig"; sourceTree = "<group>"; };
+		CE0F57EADED42B04396EA55D /* Pods-ontv.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ontv.debug.xcconfig"; path = "Target Support Files/Pods-ontv/Pods-ontv.debug.xcconfig"; sourceTree = "<group>"; };
+		EFEF1F562BDF46AE0032D70B /* AVFAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFAudio.framework; path = System/Library/Frameworks/AVFAudio.framework; sourceTree = SDKROOT; };
+		EFEF1F572BDF46AE0032D70B /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		EFEF1F582BDF46AE0032D70B /* IOSurface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOSurface.framework; path = System/Library/Frameworks/IOSurface.framework; sourceTree = SDKROOT; };
+		EFEF1F592BDF46AE0032D70B /* DiskArbitration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DiskArbitration.framework; path = System/Library/Frameworks/DiskArbitration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -355,52 +355,58 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFEF1F4A2BDF46AE0032D70B /* AVFoundation.framework in Frameworks */,
 				16DD1D3F29F9A92F00F68EF8 /* Settings in Frameworks */,
 				1644804627F3908B004EA1C5 /* Defaults in Frameworks */,
 				16A10FAC2829CA00007B19CC /* libbz2.tbd in Frameworks */,
+				EFEF1F542BDF46AE0032D70B /* Security.framework in Frameworks */,
+				EFEF1F5A2BDF46AE0032D70B /* AVFAudio.framework in Frameworks */,
+				EFEF1F532BDF46AE0032D70B /* QuartzCore.framework in Frameworks */,
+				EFEF1F4C2BDF46AE0032D70B /* CoreAudio.framework in Frameworks */,
+				EFEF1F5B2BDF46AE0032D70B /* IOKit.framework in Frameworks */,
 				169C79622730038E008F5973 /* SwiftUI.framework in Frameworks */,
 				16F5FBFA27304A6A00CF62CB /* CoreMedia.framework in Frameworks */,
 				165C90252A67B62900FBCF4B /* CoreStore in Frameworks */,
 				1604067C2730E7EB00719408 /* CoreAudio.framework in Frameworks */,
 				16A10FB12829CA01007B19CC /* QuartzCore.framework in Frameworks */,
+				EFEF1F4D2BDF46AE0032D70B /* CoreFoundation.framework in Frameworks */,
 				16A10FB22829CA01007B19CC /* Security.framework in Frameworks */,
+				EFEF1F4E2BDF46AE0032D70B /* CoreGraphics.framework in Frameworks */,
 				165C98092702312700466207 /* AVFoundation.framework in Frameworks */,
+				EFEF1F552BDF46AE0032D70B /* VideoToolbox.framework in Frameworks */,
 				16A10FAD2829CA00007B19CC /* libc++.tbd in Frameworks */,
+				EFEF1F502BDF46AE0032D70B /* CoreVideo.framework in Frameworks */,
 				165C90282A67B63800FBCF4B /* NukeUI in Frameworks */,
+				EFEF1F5C2BDF46AE0032D70B /* IOSurface.framework in Frameworks */,
 				16A10FAF2829CA01007B19CC /* libxml2.tbd in Frameworks */,
+				EFEF1F4B2BDF46AE0032D70B /* Cocoa.framework in Frameworks */,
 				167E55812760EFA900511B1F /* MetalPerformanceShadersGraph.framework in Frameworks */,
 				16A10FB32829CA01007B19CC /* VideoToolbox.framework in Frameworks */,
 				16F5FBFD2730B3F700CF62CB /* AudioToolbox.framework in Frameworks */,
+				EFEF1F522BDF46AE0032D70B /* Metal.framework in Frameworks */,
+				EFEF1F5D2BDF46AE0032D70B /* DiskArbitration.framework in Frameworks */,
 				1644803427F38C9D004EA1C5 /* Introspect in Frameworks */,
 				167F4D282A95719D0039DF2D /* SwiftDate in Frameworks */,
 				168E1D8B29C8EDEA001A8654 /* Foundation.framework in Frameworks */,
-				16CBA1492A7B621F00FF9199 /* Libssl.xcframework in Frameworks */,
+				EFEF1F492BDF45EC0032D70B /* AudioToolbox.framework in Frameworks */,
 				164A1A372735E1CE0023607A /* AVKit.framework in Frameworks */,
+				EFEF1F4F2BDF46AE0032D70B /* CoreMedia.framework in Frameworks */,
 				169C796027300384008F5973 /* AppKit.framework in Frameworks */,
-				16CBA1452A7B620900FF9199 /* Libcrypto.xcframework in Frameworks */,
 				16A10FAE2829CA01007B19CC /* libiconv.tbd in Frameworks */,
 				16C5B982270293DC0072F2B9 /* CoreData.framework in Frameworks */,
 				164A1A382735E21C0023607A /* CoreVideo.framework in Frameworks */,
 				16F5FBFC2730A0C100CF62CB /* MetalKit.framework in Frameworks */,
+				EFEF1F512BDF46AE0032D70B /* Foundation.framework in Frameworks */,
 				167E55822760EFA900511B1F /* MetalPerformanceShaders.framework in Frameworks */,
 				16A10FAB2829C954007B19CC /* CoreGraphics.framework in Frameworks */,
 				167E55832760EFA900511B1F /* Metal.framework in Frameworks */,
-				C76D8498FBB7F2522FEE2232 /* Pods_ontv.framework in Frameworks */,
+				7C27BE51F4374AA983E5E11A /* Pods_ontv.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		095D4F10862194DD82175386 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				66F64BA8953D33C095E2B806 /* Pods-ontv.debug.xcconfig */,
-				FBA0C5F4EB7829F159952E73 /* Pods-ontv.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		16016FE9274AF6EC00712C55 /* preferences */ = {
 			isa = PBXGroup;
 			children = (
@@ -557,7 +563,7 @@
 				165C97DC2702257900466207 /* ontv */,
 				165C97DB2702257900466207 /* Products */,
 				165C97EB2702260800466207 /* Frameworks */,
-				095D4F10862194DD82175386 /* Pods */,
+				6E3FFCF6DA39C4017843BEA0 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -595,8 +601,10 @@
 		165C97EB2702260800466207 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				16CBA1482A7B621F00FF9199 /* Libssl.xcframework */,
-				16CBA1442A7B620900FF9199 /* Libcrypto.xcframework */,
+				EFEF1F562BDF46AE0032D70B /* AVFAudio.framework */,
+				EFEF1F592BDF46AE0032D70B /* DiskArbitration.framework */,
+				EFEF1F572BDF46AE0032D70B /* IOKit.framework */,
+				EFEF1F582BDF46AE0032D70B /* IOSurface.framework */,
 				167E55802760EFA900511B1F /* Metal.framework */,
 				167E557F2760EFA900511B1F /* MetalPerformanceShaders.framework */,
 				167E557E2760EFA900511B1F /* MetalPerformanceShadersGraph.framework */,
@@ -625,7 +633,7 @@
 				165C98072702311E00466207 /* AudioToolbox.framework */,
 				165C980227022B8900466207 /* AVKit.framework */,
 				165C97EC2702260800466207 /* AVFoundation.framework */,
-				347B393565F2FDF56EB0B38A /* Pods_ontv.framework */,
+				60292EA57E6492BE6FD225B1 /* Pods_ontv.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -857,6 +865,15 @@
 			path = ffmpeg;
 			sourceTree = "<group>";
 		};
+		6E3FFCF6DA39C4017843BEA0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CE0F57EADED42B04396EA55D /* Pods-ontv.debug.xcconfig */,
+				CBDCE188D6C382A68338166D /* Pods-ontv.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -864,12 +881,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 165C97E82702257B00466207 /* Build configuration list for PBXNativeTarget "ontv" */;
 			buildPhases = (
-				4F583121FD538F59533364D6 /* [CP] Check Pods Manifest.lock */,
+				B19FDF65EAE538834E3C1837 /* [CP] Check Pods Manifest.lock */,
 				165C97D62702257900466207 /* Sources */,
 				165C97D72702257900466207 /* Frameworks */,
 				165C97D82702257900466207 /* Resources */,
-				C72646C966E5E498661A0308 /* [CP] Copy Pods Resources */,
-				16CBA1472A7B620900FF9199 /* Embed Frameworks */,
+				957D02AD90EC904B7889C43C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -950,7 +966,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4F583121FD538F59533364D6 /* [CP] Check Pods Manifest.lock */ = {
+		957D02AD90EC904B7889C43C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ontv/Pods-ontv-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ontv/Pods-ontv-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ontv/Pods-ontv-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B19FDF65EAE538834E3C1837 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -970,23 +1003,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C72646C966E5E498661A0308 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ontv/Pods-ontv-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ontv/Pods-ontv-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ontv/Pods-ontv-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1253,7 +1269,7 @@
 		};
 		165C97E92702257B00466207 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 66F64BA8953D33C095E2B806 /* Pods-ontv.debug.xcconfig */;
+			baseConfigurationReference = CE0F57EADED42B04396EA55D /* Pods-ontv.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1263,9 +1279,9 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 150;
+				CURRENT_PROJECT_VERSION = 200;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = SPBF9BNRG3;
+				DEVELOPMENT_TEAM = KX2LYPKNF7;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = NO;
@@ -1335,7 +1351,7 @@
 		};
 		165C97EA2702257B00466207 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FBA0C5F4EB7829F159952E73 /* Pods-ontv.release.xcconfig */;
+			baseConfigurationReference = CBDCE188D6C382A68338166D /* Pods-ontv.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1345,9 +1361,9 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 150;
+				CURRENT_PROJECT_VERSION = 200;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = SPBF9BNRG3;
+				DEVELOPMENT_TEAM = KX2LYPKNF7;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = NO;

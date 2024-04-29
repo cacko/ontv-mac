@@ -76,10 +76,10 @@ protocol PlayerView: NSResponder, NSAnimatablePropertyContainer, NSUserInterface
 {}
 
 protocol PlayerVendorProtocol {
-  var volume: Float { get set }
-  var isMuted: Bool { get set }
+//  var volume: Float { get set }
+//  var isMuted: Bool { get set }
   init(_ controller: Player)
-  func play(_ stream: Stream)
+func play(_ stream: Stream)
   func reconnect()
 
   func stop()
@@ -102,11 +102,11 @@ protocol PlayerProtocol: ObservableObject {
   var size: NSSize { get set }
   var iconSize: NSSize { get set }
   var stream: Stream! { get set }
-  var isMuted: Bool { get set }
+//  var isMuted: Bool { get set }
   var epgId: String { get set }
   var category: Category? { get set }
   var contentToggle: ContentToggle? { get set }
-  var volume: Float { get set }
+//  var volume: Float { get set }
   var controlsState: PlayerControlsState { get set }
   var icon: String { get set }
   var hint: String { get set }

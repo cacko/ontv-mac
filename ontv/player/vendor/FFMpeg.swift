@@ -12,6 +12,7 @@ import Defaults
 import KSPlayer
 import SwiftUI
 
+
 class PlayerFFMpeg: AbstractPlayer, PlayerControllerDelegate, MediaPlayerDelegate {
   func playerController(seek: TimeInterval) {
     debugPrint("")
@@ -65,7 +66,7 @@ class PlayerFFMpeg: AbstractPlayer, PlayerControllerDelegate, MediaPlayerDelegat
     self.player = player
   }
 
-  let controller: Player
+  var controller: Player
 
   var playerView: FFMpegPlayerView!
 
@@ -77,25 +78,25 @@ class PlayerFFMpeg: AbstractPlayer, PlayerControllerDelegate, MediaPlayerDelegat
   let mainQueue = OperationQueue.main
 
   var playerItemContext = 0
-
-  override var isMuted: Bool {
-    get {
-      self.player?.isMuted ?? false
-    }
-    set {
-      self.playerView?.playerLayer?.player.isMuted.toggle()
-    }
-  }
-
-  override var volume: Float {
-    get {
-      return (self.player?.playbackVolume ?? 0) * 100
-    }
-    set {
-      let newVolume = max(0, min(newValue / 100, 2))
-      self.playerView?.playerLayer?.player.playbackVolume = newVolume
-    }
-  }
+//
+//  override var isMuted: Bool {
+//    get {
+//      self.player?.isMuted ?? false
+//    }
+//    set {
+//      self.playerView.playerLayer?.player.isMuted.toggle()
+//    }
+//  }
+//
+//  override var volume: Float {
+//    get {
+//      return (self.player?.playbackVolume ?? 0) * 100
+//    }
+//    set {
+//      let newVolume = max(0, min(newValue / 100, 2))
+//      self.playerView.playerLayer?.player.playbackVolume = newVolume
+//    }
+//  }
 
   private var initialised: Bool = false
 
@@ -113,7 +114,7 @@ class PlayerFFMpeg: AbstractPlayer, PlayerControllerDelegate, MediaPlayerDelegat
     super.init(controller)
   }
 
-  override func initView(_ view: VideoView) {
+  @MainActor override func initView(_ view: VideoView) {
     playerView = FFMpegPlayerView(controller)
     view.addSubview(playerView)
     playerView.translatesAutoresizingMaskIntoConstraints = false
@@ -146,7 +147,7 @@ class PlayerFFMpeg: AbstractPlayer, PlayerControllerDelegate, MediaPlayerDelegat
     )
   }
 
-  override func play(_ stream: Stream) {
+  @MainActor override func play(_ stream: Stream) {
     media = KSPlayerResource(url: stream.url)
     controller.media = media
     if (player?.isPlaying) != nil {
@@ -158,7 +159,7 @@ class PlayerFFMpeg: AbstractPlayer, PlayerControllerDelegate, MediaPlayerDelegat
     }
   }
 
-  override func reconnect() {
+  @MainActor override func reconnect() {
     if (player?.isPlaying) != nil {
       player.replace(url: self.media.definitions[0].url, options: self.options)
       self.controller.onStartPlaying()

@@ -12,7 +12,7 @@ import SwiftUI
 import KSPlayer
 
 class Player: NSObject, PlayerProtocol, ObservableObject {
-  func reconnect() {
+  @MainActor func reconnect() {
     self.vendorPlayer.reconnect()
   }
   
@@ -40,27 +40,27 @@ class Player: NSObject, PlayerProtocol, ObservableObject {
     }
   }
   @Published var stream: Stream!
-  @Published var isMuted: Bool = false {
-    didSet {
-      self.vendorPlayer.isMuted.toggle()
-    }
-  }
+//  @Published var isMuted: Bool = false {
+//    didSet {
+//      self.vendorPlayer.isMuted.toggle()
+//    }
+//  }
   @Published var metadata: StreamInfo.Metadata = StreamInfo.Metadata(
     video: StreamInfo.Video(),
     audio: StreamInfo.Audio()
   )
   @Published var metadataState: MetadataState = .loading
 
-  var volume: Float = 100.0 {
-    didSet {
-      self.vendorPlayer.volume = self.volume
-      var stage = self.volume / 33
-      stage.round(.up)
-      self.volumeStage = min(3, max(1, Int(stage)))
-      Defaults[.volume] = self.volume
-      objectWillChange.send()
-    }
-  }
+//  var volume: Float = 100.0 {
+//    didSet {
+//      self.vendorPlayer.volume = self.volume
+//      var stage = self.volume / 33
+//      stage.round(.up)
+//      self.volumeStage = min(3, max(1, Int(stage)))
+//      Defaults[.volume] = self.volume
+//      objectWillChange.send()
+//    }
+//  }
 
   var contentToggle: ContentToggle? {
     get {
@@ -92,7 +92,7 @@ class Player: NSObject, PlayerProtocol, ObservableObject {
     self.vendorPlayer = PlayerFFMpeg(self)
   }
 
-  func initView(_ view: VideoView) {
+  @MainActor func initView(_ view: VideoView) {
     self.vendorPlayer.initView(view)
   }
 
@@ -164,7 +164,7 @@ class Player: NSObject, PlayerProtocol, ObservableObject {
   func onStartPlaying() {
     self.retries = 0
     self.state = .playing
-    volume = Defaults[.volume]
+//    volume = Defaults[.volume]
 
     NotificationCenter.default.post(name: .startPlaying, object: self.stream)
   }
@@ -198,22 +198,22 @@ guard self.state == .opening else {
   }
 
   func onAudioCommand(_ parameter: Audio.Parameter) {
-    switch parameter.command {
-    case .volume_offset:
-      self.volume = max(0, min(self.volume + parameter.value, 200))
-      NotificationCenter.default.post(
-        name: .audioCommandResult,
-        object: Audio.Result(command: .volume_set, value: self.volume)
-      )
-      break
+//    switch parameter.command {
+//    case .volume_offset:
+//      self.volume = max(0, min(self.volume + parameter.value, 200))
+//      NotificationCenter.default.post(
+//        name: .audioCommandResult,
+//        object: Audio.Result(command: .volume_set, value: self.volume)
+//      )
+//      break
 
-    case .volume_set:
-      self.volume = parameter.value
-      NotificationCenter.default.post(
-        name: .audioCommandResult,
-        object: Audio.Result(command: .volume_set, value: self.volume)
-      )
-    }
+//    case .volume_set:
+//      self.volume = parameter.value
+//      NotificationCenter.default.post(
+//        name: .audioCommandResult,
+//        object: Audio.Result(command: .volume_set, value: self.volume)
+//      )
+//    }
   }
 
   private func getNextPrevStream(_ sort: Sorting) -> Stream? {

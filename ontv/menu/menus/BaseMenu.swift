@@ -60,10 +60,10 @@ class BaseMenu: NSMenu {
     NotificationCenter.default.post(name: .minimize, object: nil)
   }
 
-  @objc func onAudioMute(sender: NSMenuItem) {
-    sender.state = player.isMuted ? .off : .on
-    NotificationCenter.default.post(name: .toggleAudio, object: nil)
-  }
+//  @objc func onAudioMute(sender: NSMenuItem) {
+//    sender.state = player.isMuted ? .off : .on
+//    NotificationCenter.default.post(name: .toggleAudio, object: nil)
+//  }
 
   @objc func onStream(sender: StreamItem) {
     NotificationCenter.default.post(name: .selectStream, object: sender)
@@ -126,9 +126,9 @@ class BaseMenu: NSMenu {
     NotificationCenter.default.post(name: .contentToggle, object: sender.notification)
   }
 
-  @objc func onAudioCommand(sender: AudioItem) {
-    NotificationCenter.default.post(name: .audioCommand, object: sender.parameter)
-  }
+//  @objc func onAudioCommand(sender: AudioItem) {
+//    NotificationCenter.default.post(name: .audioCommand, object: sender.parameter)
+//  }
 
   @objc func onZoom(sender: ZoomItem) {
     NotificationCenter.default.post(name: .zoomchange, object: sender.zoom)

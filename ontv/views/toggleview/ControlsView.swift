@@ -165,12 +165,12 @@ extension ToggleViews {
         obj: nil,
         hint: "Exit fullscreen"
       )
-      ControlItemView(
-        icon: player.isMuted
-          ? ContentToggleIcon.isMutedOn : volumeStage(stage: player.volumeStage),
-        note: Notification.Name.toggleAudio,
-        hint: "Toggle audio"
-      )
+//      ControlItemView(
+//        icon: player.isMuted
+//          ? ContentToggleIcon.isMutedOn : volumeStage(stage: player.volumeStage),
+//        note: Notification.Name.toggleAudio,
+//        hint: "Toggle audio"
+//      )
       if !player.isFullscreen {
         ControlItemView(
           icon: player.onTop ? .onTopOn : .onTopOff,

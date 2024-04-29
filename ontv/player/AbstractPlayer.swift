@@ -8,19 +8,20 @@
 import Defaults
 import Foundation
 
+
 class AbstractPlayer: NSObject, PlayerVendorProtocol {
 
   typealias PlayerType = AbstractPlayer
 
-var volume: Float {
-    get { fatalError() }
-    set { fatalError() }
-  }
-
-  var isMuted: Bool {
-    get { fatalError() }
-    set { fatalError() }
-  }
+//var volume: Float {
+//    get { fatalError() }
+//    set { fatalError() }
+//  }
+//
+//  var isMuted: Bool {
+//    get { fatalError() }
+//    set { fatalError() }
+//  }
 
   required init(
     _ controller: Player
@@ -33,7 +34,7 @@ var volume: Float {
 
   }
 
-  func initView(_ view: VideoView) {
+  @MainActor func initView(_ view: VideoView) {
     fatalError("Not implemented")
   }
 
@@ -45,11 +46,11 @@ var volume: Float {
 
   }
 
-  func play(_ stream: Stream) {
+  @MainActor func play(_ stream: Stream) {
     fatalError("Not implemented")
   }
   
-  func reconnect() {
+  @MainActor func reconnect() {
     fatalError("Not implemented")
   }
 

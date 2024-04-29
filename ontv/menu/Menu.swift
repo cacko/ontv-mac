@@ -68,7 +68,7 @@ class Menu: NSMenu, NSMenuDelegate, NSMenuItemValidation, NSUserInterfaceValidat
             mainMenu.delegate = self
             addMenu(StreamMenu(title: "Stream", parent: self))
             addMenu(VideoMenu(title: "Video", parent: self))
-            addMenu(AudioMenu(title: "Audio", parent: self))
+//            addMenu(AudioMenu(title: "Audio", parent: self))
             addMenu(CategoryMenu(title: "Category", parent: self))
             addMenu(ScheduleMenu(title: "Schedule", parent: self))
             addMenu(EPGMenu(title: "EPG", parent: self))

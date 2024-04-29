@@ -1,4 +1,5 @@
 {
+  "originHash" : "173f5b4bb9570109285e2f986dc25d3a0be0956b5c223bef4cb79ee0cf5d7950",
   "pins" : [
     {
       "identity" : "corestore",
@@ -73,5 +74,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }
