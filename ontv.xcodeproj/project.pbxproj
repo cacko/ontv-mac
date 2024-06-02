@@ -1260,7 +1260,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 250;
+				CURRENT_PROJECT_VERSION = 251;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = KX2LYPKNF7;
 				ENABLE_APP_SANDBOX = YES;
@@ -1280,7 +1280,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
-				MARKETING_VERSION = 14.5;
+				MARKETING_VERSION = 14.5.1;
 				"OTHER_LDFLAGS[arch=*]" = (
 					"$(inherited)",
 					"-ObjC",
@@ -1342,7 +1342,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 250;
+				CURRENT_PROJECT_VERSION = 251;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = KX2LYPKNF7;
 				ENABLE_APP_SANDBOX = YES;
@@ -1362,7 +1362,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
-				MARKETING_VERSION = 14.5;
+				MARKETING_VERSION = 14.5.1;
 				"OTHER_LDFLAGS[arch=*]" = (
 					"$(inherited)",
 					"-ObjC",
