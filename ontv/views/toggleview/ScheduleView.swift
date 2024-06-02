@@ -1,6 +1,6 @@
 import AppKit
 import CoreStore
-import Introspect
+import SwiftUIIntrospect
 import NukeUI
 import SwiftUI
 

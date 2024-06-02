@@ -7,7 +7,7 @@
 
 import AppKit
 import CoreStore
-import Introspect
+import SwiftUIIntrospect
 import SwiftUI
 
 struct ControlItemView: View {

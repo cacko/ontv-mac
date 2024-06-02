@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Introspect
+import SwiftUIIntrospect
 import SwiftUI
 
 extension Animation {
@@ -93,7 +93,7 @@ struct ScrollingView<Content: View>: View {
               content
             }
           }
-        }.introspectScrollView { view in
+        }.introspect(.view){ view in
           scrollView = view
         }.simultaneousGesture(
           DragGesture(minimumDistance: 0).updating($dragPosition) {

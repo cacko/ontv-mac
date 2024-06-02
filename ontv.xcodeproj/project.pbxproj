@@ -39,7 +39,6 @@
 		163FEB38272A0F5F0098CF8B /* HoverAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163FEB37272A0F5F0098CF8B /* HoverAction.swift */; };
 		163FEB3A272A10020098CF8B /* ListActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163FEB39272A10020098CF8B /* ListActions.swift */; };
 		163FEB3C272A10380098CF8B /* LiveBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163FEB3B272A10380098CF8B /* LiveBackground.swift */; };
-		1644803427F38C9D004EA1C5 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 1644803327F38C9D004EA1C5 /* Introspect */; };
 		1644804627F3908B004EA1C5 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 1644804527F3908B004EA1C5 /* Defaults */; };
 		1644804A27F3BEDA004EA1C5 /* Defaults+Workaround.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1644804927F3BEDA004EA1C5 /* Defaults+Workaround.swift */; };
 		1649B8FD2724706400C6A045 /* ApiUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1649B8FC2724706400C6A045 /* ApiUrl.swift */; };
@@ -142,7 +141,6 @@
 		16D983AD27238D7500E1DC5D /* AbstractPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D983AC27238D7500E1DC5D /* AbstractPlayer.swift */; };
 		16DAC40F2745E30800239B3C /* ControlSFSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DAC40E2745E30800239B3C /* ControlSFSymbol.swift */; };
 		16DAE01A274844DC0059E87C /* LivescoreTicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DAE019274844DC0059E87C /* LivescoreTicker.swift */; };
-		16DD1D3F29F9A92F00F68EF8 /* Settings in Frameworks */ = {isa = PBXBuildFile; productRef = 16DD1D3E29F9A92F00F68EF8 /* Settings */; };
 		16DE28CF2735AE3C00B63B8F /* ContentHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DE28CE2735AE3C00B63B8F /* ContentHeader.swift */; };
 		16E1B47C270931ED00D245C0 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E1B47B270931ED00D245C0 /* Date.swift */; };
 		16E9A0CC270279A200C4607E /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E9A0CB270279A200C4607E /* Api.swift */; };
@@ -155,6 +153,9 @@
 		16F5FBFC2730A0C100CF62CB /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16F5FBFB2730A0C100CF62CB /* MetalKit.framework */; platformFilter = maccatalyst; };
 		16F5FBFD2730B3F700CF62CB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165C98072702311E00466207 /* AudioToolbox.framework */; };
 		7C27BE51F4374AA983E5E11A /* Pods_ontv.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60292EA57E6492BE6FD225B1 /* Pods_ontv.framework */; };
+		EF8D899B2C0C11AB00FB65D8 /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = EF8D899A2C0C11AB00FB65D8 /* SwiftUIIntrospect */; };
+		EF8D899F2C0C11AB00FB65D8 /* SwiftUIIntrospect-Static in Frameworks */ = {isa = PBXBuildFile; productRef = EF8D899E2C0C11AB00FB65D8 /* SwiftUIIntrospect-Static */; };
+		EF8D89A22C0C13C500FB65D8 /* Settings in Frameworks */ = {isa = PBXBuildFile; productRef = EF8D89A12C0C13C500FB65D8 /* Settings */; };
 		EFEF1F4A2BDF46AE0032D70B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 165C97EC2702260800466207 /* AVFoundation.framework */; };
 		EFEF1F4B2BDF46AE0032D70B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 166A045D272EDC1500761A55 /* Cocoa.framework */; };
 		EFEF1F4C2BDF46AE0032D70B /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1604067B2730E7EB00719408 /* CoreAudio.framework */; };
@@ -345,10 +346,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFEF1F4A2BDF46AE0032D70B /* AVFoundation.framework in Frameworks */,
-				16DD1D3F29F9A92F00F68EF8 /* Settings in Frameworks */,
 				1644804627F3908B004EA1C5 /* Defaults in Frameworks */,
 				16A10FAC2829CA00007B19CC /* libbz2.tbd in Frameworks */,
 				EFEF1F542BDF46AE0032D70B /* Security.framework in Frameworks */,
+				EF8D89A22C0C13C500FB65D8 /* Settings in Frameworks */,
 				EFEF1F5A2BDF46AE0032D70B /* AVFAudio.framework in Frameworks */,
 				EFEF1F532BDF46AE0032D70B /* QuartzCore.framework in Frameworks */,
 				EFEF1F4C2BDF46AE0032D70B /* CoreAudio.framework in Frameworks */,
@@ -369,15 +370,16 @@
 				16F5FBFD2730B3F700CF62CB /* AudioToolbox.framework in Frameworks */,
 				EFEF1F522BDF46AE0032D70B /* Metal.framework in Frameworks */,
 				EFEF1F5D2BDF46AE0032D70B /* DiskArbitration.framework in Frameworks */,
-				1644803427F38C9D004EA1C5 /* Introspect in Frameworks */,
 				167F4D282A95719D0039DF2D /* SwiftDate in Frameworks */,
 				168E1D8B29C8EDEA001A8654 /* Foundation.framework in Frameworks */,
 				164A1A372735E1CE0023607A /* AVKit.framework in Frameworks */,
+				EF8D899B2C0C11AB00FB65D8 /* SwiftUIIntrospect in Frameworks */,
 				169C796027300384008F5973 /* AppKit.framework in Frameworks */,
 				16A10FAE2829CA01007B19CC /* libiconv.tbd in Frameworks */,
 				16C5B982270293DC0072F2B9 /* CoreData.framework in Frameworks */,
 				16F5FBFC2730A0C100CF62CB /* MetalKit.framework in Frameworks */,
 				167E55822760EFA900511B1F /* MetalPerformanceShaders.framework in Frameworks */,
+				EF8D899F2C0C11AB00FB65D8 /* SwiftUIIntrospect-Static in Frameworks */,
 				7C27BE51F4374AA983E5E11A /* Pods_ontv.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -871,12 +873,13 @@
 			);
 			name = ontv;
 			packageProductDependencies = (
-				1644803327F38C9D004EA1C5 /* Introspect */,
 				1644804527F3908B004EA1C5 /* Defaults */,
-				16DD1D3E29F9A92F00F68EF8 /* Settings */,
 				165C90242A67B62900FBCF4B /* CoreStore */,
 				165C90272A67B63800FBCF4B /* NukeUI */,
 				167F4D272A95719D0039DF2D /* SwiftDate */,
+				EF8D899A2C0C11AB00FB65D8 /* SwiftUIIntrospect */,
+				EF8D899E2C0C11AB00FB65D8 /* SwiftUIIntrospect-Static */,
+				EF8D89A12C0C13C500FB65D8 /* Settings */,
 			);
 			productName = craptv;
 			productReference = 165C97DA2702257900466207 /* ontv.app */;
@@ -908,12 +911,12 @@
 			);
 			mainGroup = 165C97D12702257900466207;
 			packageReferences = (
-				1644803227F38C9D004EA1C5 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				1644803827F38CC0004EA1C5 /* XCRemoteSwiftPackageReference "Defaults" */,
-				164EBF7529F72A50005B28F4 /* XCRemoteSwiftPackageReference "Settings" */,
 				165C90232A67B62900FBCF4B /* XCRemoteSwiftPackageReference "CoreStore" */,
 				165C90262A67B63800FBCF4B /* XCRemoteSwiftPackageReference "NukeUI" */,
 				167F4D262A95719D0039DF2D /* XCRemoteSwiftPackageReference "SwiftDate" */,
+				EF8D89992C0C11AB00FB65D8 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+				EF8D89A02C0C13C500FB65D8 /* XCRemoteSwiftPackageReference "Settings" */,
 			);
 			productRefGroup = 165C97DB2702257900466207 /* Products */;
 			projectDirPath = "";
@@ -1430,28 +1433,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1644803227F38C9D004EA1C5 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		1644803827F38CC0004EA1C5 /* XCRemoteSwiftPackageReference "Defaults" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/Defaults";
 			requirement = {
 				kind = upToNextMinorVersion;
 				minimumVersion = 6.3.0;
-			};
-		};
-		164EBF7529F72A50005B28F4 /* XCRemoteSwiftPackageReference "Settings" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sindresorhus/Settings.git";
-			requirement = {
-				branch = main;
-				kind = branch;
 			};
 		};
 		165C90232A67B62900FBCF4B /* XCRemoteSwiftPackageReference "CoreStore" */ = {
@@ -1478,14 +1465,25 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		EF8D89992C0C11AB00FB65D8 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.4;
+			};
+		};
+		EF8D89A02C0C13C500FB65D8 /* XCRemoteSwiftPackageReference "Settings" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/Settings.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1644803327F38C9D004EA1C5 /* Introspect */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1644803227F38C9D004EA1C5 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
-			productName = Introspect;
-		};
 		1644804527F3908B004EA1C5 /* Defaults */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1644803827F38CC0004EA1C5 /* XCRemoteSwiftPackageReference "Defaults" */;
@@ -1506,9 +1504,19 @@
 			package = 167F4D262A95719D0039DF2D /* XCRemoteSwiftPackageReference "SwiftDate" */;
 			productName = SwiftDate;
 		};
-		16DD1D3E29F9A92F00F68EF8 /* Settings */ = {
+		EF8D899A2C0C11AB00FB65D8 /* SwiftUIIntrospect */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 164EBF7529F72A50005B28F4 /* XCRemoteSwiftPackageReference "Settings" */;
+			package = EF8D89992C0C11AB00FB65D8 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = SwiftUIIntrospect;
+		};
+		EF8D899E2C0C11AB00FB65D8 /* SwiftUIIntrospect-Static */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF8D89992C0C11AB00FB65D8 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = "SwiftUIIntrospect-Static";
+		};
+		EF8D89A12C0C13C500FB65D8 /* Settings */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF8D89A02C0C13C500FB65D8 /* XCRemoteSwiftPackageReference "Settings" */;
 			productName = Settings;
 		};
 /* End XCSwiftPackageProductDependency section */
