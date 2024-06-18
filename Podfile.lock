@@ -34,58 +34,47 @@ PODS:
   - Libass (0.17.1):
     - Libass/Libass (= 0.17.1)
   - Libass/Libass (0.17.1)
-  - OpenSSL (3.1.4):
-    - OpenSSL/OpenSSL (= 3.1.4)
-  - OpenSSL/OpenSSL (3.1.4)
 
 DEPENDENCIES:
-  - DisplayCriteria (from `https://github.com/kingslay/KSPlayer.git`, branch `develop`)
+  - DisplayCriteria (from `https://github.com/kingslay/KSPlayer.git`, branch `main`)
   - FFmpegKit (from `https://github.com/kingslay/FFmpegKit.git`, branch `main`)
-  - KSPlayer (from `https://github.com/kingslay/KSPlayer.git`, branch `develop`)
+  - KSPlayer (from `https://github.com/kingslay/KSPlayer.git`, branch `main`)
   - Libass (from `https://github.com/kingslay/FFmpegKit.git`, branch `main`)
-  - OpenSSL (from `https://github.com/kingslay/FFmpegKit.git`, branch `main`)
 
 EXTERNAL SOURCES:
   DisplayCriteria:
-    :branch: develop
+    :branch: main
     :git: https://github.com/kingslay/KSPlayer.git
   FFmpegKit:
     :branch: main
     :git: https://github.com/kingslay/FFmpegKit.git
   KSPlayer:
-    :branch: develop
+    :branch: main
     :git: https://github.com/kingslay/KSPlayer.git
   Libass:
-    :branch: main
-    :git: https://github.com/kingslay/FFmpegKit.git
-  OpenSSL:
     :branch: main
     :git: https://github.com/kingslay/FFmpegKit.git
 
 CHECKOUT OPTIONS:
   DisplayCriteria:
-    :commit: f3e8542c74d93499ff8b92e3af47c55d9d7a09fa
+    :commit: 4540c3fcc4f2d3acc4a05c02d995d41b5568e963
     :git: https://github.com/kingslay/KSPlayer.git
   FFmpegKit:
-    :commit: 0cf47b1d0582276ef742cbe6c097dd9414b20583
+    :commit: 85b77c589de0360c111de16752db86b60496d70b
     :git: https://github.com/kingslay/FFmpegKit.git
   KSPlayer:
-    :commit: f3e8542c74d93499ff8b92e3af47c55d9d7a09fa
+    :commit: 4540c3fcc4f2d3acc4a05c02d995d41b5568e963
     :git: https://github.com/kingslay/KSPlayer.git
   Libass:
-    :commit: 0cf47b1d0582276ef742cbe6c097dd9414b20583
-    :git: https://github.com/kingslay/FFmpegKit.git
-  OpenSSL:
-    :commit: 0cf47b1d0582276ef742cbe6c097dd9414b20583
+    :commit: 85b77c589de0360c111de16752db86b60496d70b
     :git: https://github.com/kingslay/FFmpegKit.git
 
 SPEC CHECKSUMS:
   DisplayCriteria: bb0a90faf14b30848bc50ac0516340ce50164187
-  FFmpegKit: 493ae4ab5daa410bcd171ed555718e8c5ee94081
+  FFmpegKit: 26f80ba643f77e525bc6505a98839a56d91aae4f
   KSPlayer: cd8c2427873dddcd3a577f8bb230885c06e5ac2e
   Libass: e88af2324e1217e3a4c8bdc675f6f23a9dfc7677
-  OpenSSL: 9a1c748444fb6c045b146e5a55173645e13171a3
 
-PODFILE CHECKSUM: dcfc859e72bc42f54eb0d652d9b771250ec50dc2
+PODFILE CHECKSUM: 788aa8c5c5fe7f0e0c4f74b80ed9d9f7a5db211f
 
 COCOAPODS: 1.15.2

@@ -47,7 +47,7 @@ extension Notification.Name {
 
 extension AppDelegate {
 
-  func observe() {
+func observe() {
     let center = NotificationCenter.default
     let mainQueue = OperationQueue.main
 

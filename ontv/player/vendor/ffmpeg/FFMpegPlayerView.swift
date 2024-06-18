@@ -60,7 +60,7 @@ class FFMpegPlayerView: VideoPlayerView {
     guard state == .bufferFinished  else {
       DispatchQueue.main.async {
         switch state {
-        case .prepareToPlay:
+        case .preparing:
           self.controller.state = .buffering
           break
         case .buffering:
@@ -83,6 +83,8 @@ class FFMpegPlayerView: VideoPlayerView {
         case .readyToPlay:
           self.controller.state = .readyToPlay
           break
+        case .initialized:
+          break;
         }
       }
       return

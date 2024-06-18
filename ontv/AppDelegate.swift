@@ -81,9 +81,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     crapwindow?.resignMain()
     crapwindow?.resignFirstResponder()
     crapwindow?.setIsVisible(false)
+    crapwindow?.close()
 
+    
     let contentViewController = MainHostingController(rootView: ContentView())
-    observe()
+
     window.center()
     window.acceptsMouseMovedEvents = true
     window.setFrameAutosaveName("Main Window")
@@ -92,20 +94,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     window.collectionBehavior = .fullScreenPrimary
     window.backgroundColor = .black
     window.hasShadow = false
-    window.showsResizeIndicator = true
     windowController.window?.delegate = windowController
     windowController.showWindow(self)
     window.makeKeyAndOrderFront(nil)
     window.makeMain()
     window.becomeFirstResponder()
-    app.windows.last?.close()
+    
 
-    menu = Menu()
     window.isFloating = Defaults[.isFloating]
     Task.init {
       await API.Adapter.login()
     }
     player.iconSize = NSSize(width: window.frame.width / 30, height: window.frame.width / 30)
+    observe()
+    
   }
 
   let StreamsPreferencesView: () -> SettingsPane = {
@@ -150,6 +152,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     hidesToolbarForSingleItem: true
   )
 
+  
   func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
     return NSApplication.TerminateReply.terminateNow
   }

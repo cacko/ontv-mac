@@ -28,14 +28,16 @@ class Menu: NSMenu, NSMenuDelegate, NSMenuItemValidation, NSUserInterfaceValidat
     
     var mainMenu: NSMenu
     var player = Player.instance
+  
     
     init() {
-        mainMenu = NSApplication.shared.mainMenu ?? NSMenu()
-        super.init(title: "")
-        _init()
-        update()
+      logger.info("main menu init")
+      mainMenu = NSApplication.shared.mainMenu ?? NSMenu()
+      super.init(title: mainMenu.title)
+      _init()
+      update()
     }
-    
+
     @available(*, unavailable)
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

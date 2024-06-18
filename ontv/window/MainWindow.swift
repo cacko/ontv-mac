@@ -101,6 +101,7 @@ class MainWindowController: NSWindowController, NSWindowDelegate {
     }
     return self.hideCursorTask
   }
+  
 
   func windowDidChangeScreen(_ notification: Notification) {
 
@@ -122,6 +123,11 @@ class MainWindowController: NSWindowController, NSWindowDelegate {
     }
     return frameSize
   }
+  
+  func windowDidBecomeKey(_ notification: Notification) {
+    _ = Menu()
+  }
+  
 
 }
 
@@ -132,7 +138,11 @@ class MainWindow: NSWindow {
   override var canBecomeMain: Bool {
     true
   }
-
+  
+  override var canBecomeKey: Bool {
+    true
+  }
+  
   var isFullScreen = false {
     didSet {
       self.toggleFullScreen(self)
@@ -140,13 +150,11 @@ class MainWindow: NSWindow {
       if isFullScreen {
         self.player.size = (NSScreen.main?.frame.size)!
         isFloating = isFullScreen
-        showsResizeIndicator = false
         NSCursor.hide()
       }
       else {
         NSCursor.unhide()
         self.player.size = self.frame.size
-        showsResizeIndicator = true
       }
     }
   }

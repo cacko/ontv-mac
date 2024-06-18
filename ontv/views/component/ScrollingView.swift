@@ -55,13 +55,19 @@ struct ScrollingView<Content: View>: View {
     let delta = drag.y
     let maxOffset = geo.frame(in: .global).maxY * -1
     vOffset = min(max(maxOffset, vOffset + delta), 0)
-    scrollView.scroll(NSPoint(x: 0, y: vOffset))
+    guard scrollView == nil else {
+      scrollView.scroll(NSPoint(x: 0, y: vOffset))
+      return
+    }
   }
 
   func onHorizontalScroll(_ drag: NSPoint, _ geo: GeometryProxy) {
     let delta = drag.x
     hOffset += 100 * (delta > 0 ? 1 : -1)
-    scrollView?.scroll(NSPoint(x: hOffset, y: 0))
+    guard scrollView == nil else {
+      scrollView?.scroll(NSPoint(x: hOffset, y: 0))
+      return
+    }
   }
 
   var body: some View {
