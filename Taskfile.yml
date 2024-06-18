@@ -41,10 +41,9 @@ tasks:
   dmg:
     desc: create dmg file
     cmds:
-      - echo "create DMS"
-      - rm -f ontv-arm64.dmg
-      - ./node_modules/.bin/appdmg ontv.json ontv-arm64.dmg
-
+      - echo "create DMG"
+      - rm -f "ontv-arm64.dmg" || true
+      - create-dmg --volname "onTV" --volicon "icon.icns" --window-pos 200 120 --window-size 800 400   --icon-size 100   --icon "onTV.app" 200 190   --hide-extension "onTV.app"   --app-drop-link 600 185   "ontv-arm64.dmg" Applications/ontv.app
   install:
     desc: copy new app localy
     cmds:
