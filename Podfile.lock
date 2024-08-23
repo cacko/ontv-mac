@@ -57,16 +57,16 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   DisplayCriteria:
-    :commit: 4540c3fcc4f2d3acc4a05c02d995d41b5568e963
+    :commit: 18e1600578a02aa22593bca5531dd6def96950db
     :git: https://github.com/kingslay/KSPlayer.git
   FFmpegKit:
-    :commit: 85b77c589de0360c111de16752db86b60496d70b
+    :commit: 26f2e669c307826f5b9df3f7f695102ccaf9c2ef
     :git: https://github.com/kingslay/FFmpegKit.git
   KSPlayer:
-    :commit: 4540c3fcc4f2d3acc4a05c02d995d41b5568e963
+    :commit: 18e1600578a02aa22593bca5531dd6def96950db
     :git: https://github.com/kingslay/KSPlayer.git
   Libass:
-    :commit: 85b77c589de0360c111de16752db86b60496d70b
+    :commit: 26f2e669c307826f5b9df3f7f695102ccaf9c2ef
     :git: https://github.com/kingslay/FFmpegKit.git
 
 SPEC CHECKSUMS:
